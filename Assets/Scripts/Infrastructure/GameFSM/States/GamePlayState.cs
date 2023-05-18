@@ -1,22 +1,21 @@
-﻿namespace Infrastructure.GameFSM.States
+﻿
+namespace Infrastructure.GameFSM.States
 {
-    public class GamePlayState : IState
+    public class GameplayState : IState
     {
         private readonly GameStateMachine _gameStateMachine;
         
-        public GamePlayState(GameStateMachine gameStateMachine)
+        public GameplayState(GameStateMachine gameStateMachine)
         {
             _gameStateMachine = gameStateMachine;
         }
         
         public void Enter()
         {
-
         }
 
         public void Exit()
         {
-
         }
     }
 }

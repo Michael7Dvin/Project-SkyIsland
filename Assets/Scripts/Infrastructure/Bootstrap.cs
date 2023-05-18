@@ -13,17 +13,17 @@ namespace Infrastructure
         public void Construct(GameStateMachine gameStateMachine,
             BootstrapState bootstrapState,
             MainMenuState mainMenuState,
-            LoadLevelState loadLevelState,
-            GamePlayState gamePlayState)
+            LoadSceneState loadSceneState,
+            GameplayState gameplayState)
         {
             _gameStateMachine = gameStateMachine;
             
             _gameStateMachine.AddState(bootstrapState);
             _gameStateMachine.AddState(mainMenuState);
-            _gameStateMachine.AddState(loadLevelState);
-            _gameStateMachine.AddState(gamePlayState);
+            _gameStateMachine.AddState(loadSceneState);
+            _gameStateMachine.AddState(gameplayState);
         }
 
-        private void Awake() => _gameStateMachine.EnterState<BootstrapState>();
+        private void Start() => _gameStateMachine.EnterState<BootstrapState>();
     }
 }
