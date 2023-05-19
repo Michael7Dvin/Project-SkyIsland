@@ -16,14 +16,19 @@ namespace Infrastructure.GameFSM.States
 
         public void Enter()
         {
-            SceneLoadRequest request = new(_utilityDataProvider.ScenesInfo.IslandSceneName, OnLevelLoaded);
-            _gameStateMachine.EnterState<LoadSceneState, SceneLoadRequest>(request);
+            StartGame();
         }
 
         public void Exit()
         {
         }
 
+        private void StartGame()
+        {
+            SceneLoadRequest request = new(_utilityDataProvider.ScenesInfo.IslandSceneName, OnLevelLoaded);
+            _gameStateMachine.EnterState<LoadSceneState, SceneLoadRequest>(request);
+        }
+        
         public void OnLevelLoaded()
         {
             _gameStateMachine.EnterState<GameplayState>();

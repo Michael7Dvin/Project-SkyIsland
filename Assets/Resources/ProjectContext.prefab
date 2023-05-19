@@ -75,3 +75,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scenesInfo: {fileID: 11400000, guid: 2dfaa30438c2b8c43986cc55b2600435, type: 2}
+  _playerCameraConfig: {fileID: 11400000, guid: ad388cb0510c95d478d47c00ad2abfaa,
+    type: 2}

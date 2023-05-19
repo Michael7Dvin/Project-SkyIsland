@@ -1,0 +1,84 @@
+{
+    "name": "Input",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "47ff6b7c-4e4a-4eac-ba61-8d4ea51fcc0d",
+            "actions": [
+                {
+                    "name": "Orbital Rotation",
+                    "type": "Value",
+                    "id": "c8abdcbd-7c0b-433e-8a96-eb708ed4805c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "9a0805a0-c0b3-4983-90a6-b70c56d15696",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Orbital Rotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "bafe9b8a-84c7-4e15-a2eb-830720269521",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse & Keyboard",
+                    "action": "Orbital Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "7b3f2296-78dd-4ef0-b9a7-4bf0733fef13",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse & Keyboard",
+                    "action": "Orbital Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a9168923-1901-4002-957e-eff3535813c3",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "InvertVector2",
+                    "groups": "Mouse & Keyboard",
+                    "action": "Orbital Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Mouse & Keyboard",
+            "bindingGroup": "Mouse & Keyboard",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

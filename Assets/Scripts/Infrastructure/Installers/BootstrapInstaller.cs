@@ -1,8 +1,10 @@
-﻿using Infrastructure.GameFSM;
+﻿using Infrastructure.Configuration;
+using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.SceneLoading;
 using Infrastructure.Services;
 using Infrastructure.Services.Logger;
+using PlayerCamera;
 using UnityEngine;
 using Zenject;
 
@@ -11,11 +13,13 @@ namespace Infrastructure.Installers
     public class BootstrapInstaller : MonoInstaller
     {
         [SerializeField] private ScenesInfo _scenesInfo;
+        [SerializeField] private PlayerCameraConfig _playerCameraConfig;
 
         public override void InstallBindings()
         {
             BindGameStateMachine();
             BindServices();
+            BindFactories();
         }
 
         private void BindGameStateMachine()
@@ -41,6 +45,16 @@ namespace Infrastructure.Installers
                 .Bind<UtilityDataProvider>()
                 .AsSingle()
                 .WithArguments(_scenesInfo);
+
+            Container
+                .Bind<ConfigProvider>()
+                .AsSingle()
+                .WithArguments(_playerCameraConfig);
+        }
+
+        private void BindFactories()
+        {
+            Container.Bind<PlayerCameraFactory>().AsSingle();
         }
     }
 }
