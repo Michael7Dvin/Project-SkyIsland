@@ -1,37 +1,45 @@
-﻿
-using Infrastructure.Configuration;
-using PlayerCamera;
+﻿using System.Threading.Tasks;
+using Infrastructure.Services.Logger;
+using Infrastructure.Services.Updater;
 using UnityEngine;
 
 namespace Infrastructure.GameFSM.States
 {
     public class GameplayState : IState
     {
-        private readonly ConfigProvider _configProvider;
-        private readonly PlayerCameraFactory _playerCameraFactory;
+        private readonly IUpdater _updater;
+        private readonly ICustomLogger _logger;
 
-        public GameplayState(ConfigProvider configProvider, PlayerCameraFactory playerCameraFactory)
+        public GameplayState(IUpdater updater, ICustomLogger logger)
         {
-            _configProvider = configProvider;
-            _playerCameraFactory = playerCameraFactory;
+            _updater = updater;
+            _logger = logger;
         }
 
         public void Enter()
         {
-            SpawnCameraForDebug();
+            DebugUpdater();
         }
 
         public void Exit()
         {
         }
-
-        public void SpawnCameraForDebug()
+        
+        private async void DebugUpdater()
         {
-            Vector3 cameraParentPosition = new Vector3(28.2298698f, 2.5940001f, 14.3753576f);
-            GameObject cameraParent = new GameObject("Camera Parent");
-            cameraParent.transform.position = cameraParentPosition;
-
-            _playerCameraFactory.Create(_configProvider.GetForPlayerCamera(), cameraParent.transform);
+            _logger.Log("Creating listener1...");
+            await Task.Delay(4000);
+            UpdatesListenerForDebug listener1 = new(_updater, _logger);
+            await Task.Delay(3000);
+            listener1.Dispose();
+            _logger.Log("listener1 disposed");
+            
+            _logger.Log("Creating listener2...");
+            await Task.Delay(4000);
+            UpdatesListenerForDebug listener2 = new(_updater, _logger);
+            await Task.Delay(3000);
+            listener2.Dispose();
+            _logger.Log("listener2 disposed");
         }
     }
 }

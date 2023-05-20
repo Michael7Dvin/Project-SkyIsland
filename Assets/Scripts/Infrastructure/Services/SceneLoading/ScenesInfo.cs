@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Infrastructure.SceneLoading
+namespace Infrastructure.Services.SceneLoading
 {
     [CreateAssetMenu(fileName = "Scenes Info", menuName = "Scenes Info")]
     public class ScenesInfo : ScriptableObject

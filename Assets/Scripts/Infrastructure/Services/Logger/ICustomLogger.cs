@@ -2,6 +2,6 @@
 {
     public interface ICustomLogger
     {
-        public void Log(string message);
+        void Log(string message);
     }
 }

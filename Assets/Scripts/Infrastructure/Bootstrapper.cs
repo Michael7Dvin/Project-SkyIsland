@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Infrastructure
 {
-    public class Bootstrap : MonoBehaviour
+    public class Bootstrapper : MonoBehaviour, IInitializable
     {
         private GameStateMachine _gameStateMachine;
 
@@ -23,7 +23,8 @@ namespace Infrastructure
             _gameStateMachine.AddState(loadSceneState);
             _gameStateMachine.AddState(gameplayState);
         }
-
-        private void Start() => _gameStateMachine.EnterState<BootstrapState>();
+        
+        public void Initialize() => 
+            _gameStateMachine.EnterState<BootstrapState>();
     }
 }

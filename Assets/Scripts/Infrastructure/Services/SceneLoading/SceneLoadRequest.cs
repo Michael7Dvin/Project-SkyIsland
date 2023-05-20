@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Infrastructure.SceneLoading
+namespace Infrastructure.Services.SceneLoading
 {
     public struct SceneLoadRequest
     {

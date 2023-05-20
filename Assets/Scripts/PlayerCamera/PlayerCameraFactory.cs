@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PlayerCamera
 {
-    public class PlayerCameraFactory
+    public class PlayerCameraFactory : IPlayerCameraFactory
     {
         private const string CameraGameobjectName = "Player Camera";
         private const string CameraFollowPointName = "Camera Follow Point";

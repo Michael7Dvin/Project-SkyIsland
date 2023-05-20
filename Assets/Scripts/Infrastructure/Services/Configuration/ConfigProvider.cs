@@ -1,6 +1,6 @@
 ﻿using PlayerCamera;
 
-namespace Infrastructure.Configuration
+namespace Infrastructure.Services.Configuration
 {
     public class ConfigProvider : IConfigProvider
     {

@@ -1,4 +1,4 @@
-﻿using Infrastructure.SceneLoading;
+﻿using Infrastructure.Services.SceneLoading;
 
 namespace Infrastructure.Services
 {
