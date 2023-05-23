@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlayerCamera
+namespace Gameplay.PlayerCamera
 {
     public interface IPlayerCameraFactory
     {

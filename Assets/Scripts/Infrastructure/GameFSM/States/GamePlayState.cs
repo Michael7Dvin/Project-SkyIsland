@@ -1,7 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Common.FSM;
+using Gameplay.BodyEnvironmentObserving;
+using Gameplay.Movement.States.Implementations;
+using Gameplay.Player.Movement;
 using Infrastructure.Services.Logger;
 using Infrastructure.Services.Updater;
-using UnityEngine;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -18,28 +21,34 @@ namespace Infrastructure.GameFSM.States
 
         public void Enter()
         {
-            DebugUpdater();
+            DebugPlayerMovement(_updater, _logger);
         }
 
         public void Exit()
         {
         }
-        
-        private async void DebugUpdater()
+
+        private async void DebugPlayerMovement(IUpdater updater, ICustomLogger logger)
         {
-            _logger.Log("Creating listener1...");
-            await Task.Delay(4000);
-            UpdatesListenerForDebug listener1 = new(_updater, _logger);
-            await Task.Delay(3000);
-            listener1.Dispose();
-            _logger.Log("listener1 disposed");
+            PlayerMovement playerMovement = new PlayerMovement(updater, logger);
             
-            _logger.Log("Creating listener2...");
-            await Task.Delay(4000);
-            UpdatesListenerForDebug listener2 = new(_updater, _logger);
-            await Task.Delay(3000);
-            listener2.Dispose();
-            _logger.Log("listener2 disposed");
+            _logger.Log("Start of Debug");
+            
+            _logger.Log("Player On the Ground");
+            playerMovement.EnterStateForDebug<DebugStayState>();
+            playerMovement.BodyEnvironmentObserverPublicForDebug.SetBodyEnvironmentTypeForDebug(BodyEnvironmentType.Grounded);
+            await Task.Delay(2000);
+            
+            _logger.Log("Player In Air");
+            playerMovement.BodyEnvironmentObserverPublicForDebug.SetBodyEnvironmentTypeForDebug(BodyEnvironmentType.InAir);
+            await Task.Delay(20);
+            
+            _logger.Log("Player On the Ground");
+            playerMovement.BodyEnvironmentObserverPublicForDebug.SetBodyEnvironmentTypeForDebug(BodyEnvironmentType.Grounded);
+            
+            playerMovement.Dispose();
+            
+            _logger.Log("End of Debug");
         }
     }
 }

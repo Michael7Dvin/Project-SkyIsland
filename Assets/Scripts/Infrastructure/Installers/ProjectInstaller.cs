@@ -1,11 +1,11 @@
-﻿using Infrastructure.GameFSM;
+﻿using Gameplay.PlayerCamera;
+using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services;
 using Infrastructure.Services.Configuration;
 using Infrastructure.Services.Logger;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.Updater;
-using PlayerCamera;
 using UnityEngine;
 using Zenject;
 

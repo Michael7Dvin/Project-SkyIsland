@@ -1,7 +1,7 @@
 ﻿using Cinemachine;
 using UnityEngine;
 
-namespace PlayerCamera
+namespace Gameplay.PlayerCamera
 {
     public class PlayerCameraFactory : IPlayerCameraFactory
     {

@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services;
+﻿using Common.FSM;
+using Infrastructure.Services;
 using Infrastructure.Services.SceneLoading;
 
 namespace Infrastructure.GameFSM.States

@@ -1,4 +1,4 @@
-﻿using PlayerCamera;
+﻿using Gameplay.PlayerCamera;
 
 namespace Infrastructure.Services.Configuration
 {

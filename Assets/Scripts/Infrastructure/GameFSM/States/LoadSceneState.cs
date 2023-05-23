@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.FSM;
 using Infrastructure.Services.SceneLoading;
 
 namespace Infrastructure.GameFSM.States
@@ -12,10 +13,10 @@ namespace Infrastructure.GameFSM.States
             _sceneLoader = sceneLoader;
         }
 
-        public void Enter(SceneLoadRequest request)
+        public void Enter(SceneLoadRequest argument)
         {
-            string sceneName = request.SceneName;
-            Action onLoad = request.OnLoad;
+            string sceneName = argument.SceneName;
+            Action onLoad = argument.OnLoad;
             
             _sceneLoader.Load(sceneName, onLoad);
         }
