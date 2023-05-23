@@ -1,10 +1,10 @@
 ﻿using Common.Observable;
 using UnityEngine;
 
-namespace Gameplay.BodyEnvironmentObserving
+namespace Gameplay.BodyEnvironmentObserving.GroundDetection
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class GroundDetector : MonoBehaviour
+    public class GroundDetector : MonoBehaviour, IGroundDetector
     {
         [SerializeField] private LayerMask _groundLayerMask;
         private Rigidbody _rigidbody;

@@ -1,21 +1,26 @@
 ﻿using Cinemachine;
+using Infrastructure.Services.Configuration;
 using UnityEngine;
 
-namespace Gameplay.PlayerCamera
+namespace Gameplay.Player.PlayerCamera
 {
     public class PlayerCameraFactory : IPlayerCameraFactory
     {
-        private const string CameraGameobjectName = "Player Camera";
-        private const string CameraFollowPointName = "Camera Follow Point";
-        
-        public GameObject Create(PlayerCameraConfig config, Transform parent)
+        private readonly PlayerCameraConfig _config;
+
+        public PlayerCameraFactory(IConfigProvider configProvider)
         {
-            GameObject camera = Object.Instantiate(new GameObject(CameraGameobjectName), parent);
+            _config = configProvider.GetForPlayer().Camera;
+        }
+
+        public GameObject Create(Transform parent)
+        {
+            GameObject camera = Object.Instantiate(_config.EmptyCameraParent, parent);
             Transform transform = camera.transform;
             
-            CreateCamera(config.Camera, transform);
-            Transform followPointTransform = CreateFollowPoint(config.CameraFollowPointOffsetFromPlayer, transform).transform;
-            CreateCameraController(config.CameraController, followPointTransform, transform);
+            CreateCamera(_config.Camera, transform);
+            Transform followPointTransform = CreateFollowPoint(_config.FollowPointOffsetFromPlayer, transform).transform;
+            CreateCameraController(_config.Controller, followPointTransform, transform);
 
             return camera;
         }
@@ -25,7 +30,7 @@ namespace Gameplay.PlayerCamera
 
         private GameObject CreateFollowPoint(Vector3 offset, Transform parent)
         {
-            GameObject followPoint = Object.Instantiate(new GameObject(CameraFollowPointName), parent);
+            GameObject followPoint = Object.Instantiate(_config.EmptyFollowPoint, parent);
             followPoint.transform.localPosition = offset;
             return followPoint;
         }

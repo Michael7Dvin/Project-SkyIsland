@@ -1,17 +1,18 @@
-﻿using Gameplay.PlayerCamera;
+﻿using Gameplay.Player;
 
 namespace Infrastructure.Services.Configuration
 {
     public class ConfigProvider : IConfigProvider
     {
-        private readonly PlayerCameraConfig _playerCameraConfig;
+        private readonly PlayerConfig _playerConfig;
 
-        public ConfigProvider(PlayerCameraConfig playerCameraConfig)
+        public ConfigProvider(PlayerConfig playerConfig)
         {
-            _playerCameraConfig = playerCameraConfig;
+            _playerConfig = playerConfig;
         }
 
-        public PlayerCameraConfig GetForPlayerCamera() =>
-            _playerCameraConfig;
+        public PlayerConfig GetForPlayer() =>
+            _playerConfig;
+
     }
 }

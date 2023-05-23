@@ -6,24 +6,22 @@ using Infrastructure.Services.Updater;
 
 namespace Gameplay.Movement.States.Implementations
 {
-    public class DebugFallState : IMovementStateWithArguments<string>
+    public class DebugFallState : IMovementState
     {
         private readonly float _speed;
-        
         private readonly IUpdater _updater;
         private readonly ICustomLogger _logger;
 
         public DebugFallState(float speed, IUpdater updater, ICustomLogger logger)
         {
             _speed = speed;
-            
             _updater = updater;
             _logger = logger;
         }
 
-        public void Enter(string argument)
+        public void Enter()
         {
-            _logger.Log("Enter Fall State, argument: " + argument);
+            _logger.Log("Enter Fall State");
             _updater.Updated += Fall;
         }
 
@@ -35,7 +33,7 @@ namespace Gameplay.Movement.States.Implementations
 
         private void Fall(float deltaTime)
         {
-            _logger.Log($"Fall: {_speed * deltaTime}m");
+            _logger.Log("Fall " + _speed * deltaTime);
         }
 
         public bool IsWorkableWithBodyEnvironmentType(BodyEnvironmentType type)

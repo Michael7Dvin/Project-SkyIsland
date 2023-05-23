@@ -14,15 +14,11 @@ namespace Gameplay.Movement.States.Implementations
             _logger = logger;
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _logger.Log("Enter Stay State");
-        }
 
-        public void Exit()
-        {
+        public void Exit() => 
             _logger.Log("Exit Stay State");
-        }
 
         public bool IsWorkableWithBodyEnvironmentType(BodyEnvironmentType type)
         {

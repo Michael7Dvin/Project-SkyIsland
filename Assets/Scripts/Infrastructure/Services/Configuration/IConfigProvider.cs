@@ -1,9 +1,9 @@
-using Gameplay.PlayerCamera;
+using Gameplay.Player;
 
 namespace Infrastructure.Services.Configuration
 {
     public interface IConfigProvider
     {
-        PlayerCameraConfig GetForPlayerCamera();
+        PlayerConfig GetForPlayer();
     }
 }

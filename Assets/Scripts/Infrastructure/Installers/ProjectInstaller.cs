@@ -1,4 +1,5 @@
-﻿using Gameplay.PlayerCamera;
+﻿using Gameplay.Player;
+using Gameplay.Player.PlayerCamera;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services;
@@ -14,7 +15,7 @@ namespace Infrastructure.Installers
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private ScenesInfo _scenesInfo;
-        [SerializeField] private PlayerCameraConfig _playerCameraConfig;
+        [SerializeField] private PlayerConfig _playerConfig;
 
         public override void InstallBindings()
         {
@@ -48,9 +49,10 @@ namespace Infrastructure.Installers
                 .WithArguments(_scenesInfo);
 
             Container
-                .Bind<ConfigProvider>()
+                .Bind<IConfigProvider>()
+                .To<ConfigProvider>()
                 .AsSingle()
-                .WithArguments(_playerCameraConfig);
+                .WithArguments(_playerConfig);
             
             Container
                 .BindInterfacesAndSelfTo<Updater>()

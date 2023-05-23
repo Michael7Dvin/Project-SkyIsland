@@ -3,36 +3,27 @@ using Common.FSM;
 using Gameplay.BodyEnvironmentObserving;
 using Gameplay.Movement.States.Base;
 using Gameplay.Movement.States.Implementations;
-using Infrastructure.Services.Logger;
-using Infrastructure.Services.Updater;
+using UnityEngine;
 
 namespace Gameplay.Player.Movement
 {
     public class PlayerMovement
     {
-        public readonly BodyEnvironmentObserver BodyEnvironmentObserverPublicForDebug;
-
-        private const string FallStateArgument = "FALL";
-
         private readonly StateMachine<IExitableMovementState> _stateMachine;
+        private readonly IBodyEnvironmentObserver _bodyEnvironmentObserver;
 
-        public PlayerMovement(IUpdater updater, ICustomLogger logger)
+        public PlayerMovement(StateMachine<IExitableMovementState> stateMachine,
+            IBodyEnvironmentObserver bodyEnvironmentObserver)
         {
-            BodyEnvironmentObserverPublicForDebug = new BodyEnvironmentObserver();
-
-            _stateMachine = new StateMachine<IExitableMovementState>();
-            _stateMachine.AddState(new DebugStayState(logger));
-            _stateMachine.AddState(new DebugFallState(-5f, updater, logger));
-
-            BodyEnvironmentObserverPublicForDebug.EnvironmentType.Changed += OnEnvironmentTypeChanged;
+            _stateMachine = stateMachine;
+            _bodyEnvironmentObserver = bodyEnvironmentObserver;
+            
+            _bodyEnvironmentObserver.EnvironmentType.Changed += OnEnvironmentTypeChanged;
         }
-
-        public void EnterStateForDebug<TState>() where TState : IMovementState => 
-            _stateMachine.EnterState<TState>();
-
+        
         public void Dispose()
         {
-            BodyEnvironmentObserverPublicForDebug.EnvironmentType.Changed -= OnEnvironmentTypeChanged;
+            _bodyEnvironmentObserver.EnvironmentType.Changed -= OnEnvironmentTypeChanged;
         }
         
         private void OnEnvironmentTypeChanged(BodyEnvironmentType environmentType)
@@ -45,7 +36,7 @@ namespace Gameplay.Player.Movement
                         _stateMachine.EnterState<DebugStayState>();
                         break;
                     case BodyEnvironmentType.InAir:
-                        _stateMachine.EnterState<DebugFallState, string>(FallStateArgument);
+                        _stateMachine.EnterState<DebugFallState>();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);
