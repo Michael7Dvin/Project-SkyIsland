@@ -14,6 +14,10 @@ namespace Infrastructure.GameFSM.States
             _gameStateMachine = gameStateMachine;
             _utilityDataProvider = utilityDataProvider;
         }
+        
+        public void Dispose()
+        {
+        }
 
         public void Enter()
         {

@@ -14,17 +14,15 @@ namespace Gameplay.BodyEnvironmentObserving
             _groundDetector.Grounded.Changed += OnGroundedChanged;
         }
 
-        public void Dispose()
-        {
+        public void Dispose() => 
             _groundDetector.Grounded.Changed -= OnGroundedChanged;
-        }
-        
+
         private void OnGroundedChanged(bool isGrounded)
         {
             if (isGrounded == true)
-            {
                 _environmentType.Value = BodyEnvironmentType.Grounded;
-            }
+            else
+                _environmentType.Value = BodyEnvironmentType.InAir;
         }
 
         public IReadOnlyObservable<BodyEnvironmentType> EnvironmentType => _environmentType;

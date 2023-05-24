@@ -4,6 +4,10 @@ namespace Infrastructure.GameFSM.States
 {
     public class GameplayState : IState
     {
+        public void Dispose()
+        {
+        }
+        
         public void Enter()
         {
         }

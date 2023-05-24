@@ -1,6 +1,8 @@
-﻿namespace Common.FSM
+﻿using System;
+
+namespace Common.FSM
 {
-    public interface IExitableState
+    public interface IExitableState : IDisposable
     {
         void Exit();
     }

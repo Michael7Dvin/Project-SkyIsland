@@ -15,6 +15,10 @@ namespace Infrastructure.GameFSM.States
             _utilityDataProvider = utilityDataProvider;
         }
 
+        public void Dispose()
+        {
+        }
+
         public void Enter()
         {
             SceneLoadRequest request = new(_utilityDataProvider.ScenesInfo.MainMenuSceneName, OnMainMenuLoaded);

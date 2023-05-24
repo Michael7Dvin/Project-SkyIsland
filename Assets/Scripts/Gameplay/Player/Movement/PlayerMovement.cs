@@ -3,27 +3,28 @@ using Common.FSM;
 using Gameplay.BodyEnvironmentObserving;
 using Gameplay.Movement.States.Base;
 using Gameplay.Movement.States.Implementations;
-using UnityEngine;
 
 namespace Gameplay.Player.Movement
 {
-    public class PlayerMovement
+    public class PlayerMovement : IPlayerMovement
     {
-        private readonly StateMachine<IExitableMovementState> _stateMachine;
+        private readonly StateMachine<ExitableMovementState> _stateMachine;
         private readonly IBodyEnvironmentObserver _bodyEnvironmentObserver;
 
-        public PlayerMovement(StateMachine<IExitableMovementState> stateMachine,
+        public PlayerMovement(StateMachine<ExitableMovementState> stateMachine,
             IBodyEnvironmentObserver bodyEnvironmentObserver)
         {
             _stateMachine = stateMachine;
             _bodyEnvironmentObserver = bodyEnvironmentObserver;
             
+            _stateMachine.EnterState<FallState>();
             _bodyEnvironmentObserver.EnvironmentType.Changed += OnEnvironmentTypeChanged;
         }
         
         public void Dispose()
         {
             _bodyEnvironmentObserver.EnvironmentType.Changed -= OnEnvironmentTypeChanged;
+            _stateMachine.Dispose();
         }
         
         private void OnEnvironmentTypeChanged(BodyEnvironmentType environmentType)
@@ -33,10 +34,10 @@ namespace Gameplay.Player.Movement
                 switch (environmentType)
                 {
                     case BodyEnvironmentType.Grounded:
-                        _stateMachine.EnterState<DebugStayState>();
+                        _stateMachine.EnterState<StayState>();
                         break;
                     case BodyEnvironmentType.InAir:
-                        _stateMachine.EnterState<DebugFallState>();
+                        _stateMachine.EnterState<FallState>();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);

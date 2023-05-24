@@ -98,4 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _groundLayerMask:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 55

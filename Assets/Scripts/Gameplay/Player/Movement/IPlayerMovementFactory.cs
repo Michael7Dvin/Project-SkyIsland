@@ -5,6 +5,6 @@ namespace Gameplay.Player.Movement
 {
     public interface IPlayerMovementFactory
     {
-        PlayerMovement Create(CharacterController characterController, IBodyEnvironmentObserver bodyEnvironmentObserver);
+        IPlayerMovement Create(CharacterController characterController, IBodyEnvironmentObserver bodyEnvironmentObserver);
     }
 }

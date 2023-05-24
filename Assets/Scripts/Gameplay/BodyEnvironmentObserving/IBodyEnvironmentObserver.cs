@@ -1,8 +1,9 @@
-﻿using Common.Observable;
+﻿using System;
+using Common.Observable;
 
 namespace Gameplay.BodyEnvironmentObserving
 {
-    public interface IBodyEnvironmentObserver
+    public interface IBodyEnvironmentObserver : IDisposable
     {
         IReadOnlyObservable<BodyEnvironmentType> EnvironmentType { get; }
     }

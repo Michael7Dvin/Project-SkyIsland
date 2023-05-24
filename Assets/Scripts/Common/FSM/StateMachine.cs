@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using Common.Observable;
+using UnityEngine;
 
 namespace Common.FSM
 {
-    public class StateMachine<TBaseState> where TBaseState : IExitableState
+    public class StateMachine<TBaseState> : IDisposable where TBaseState : IExitableState
     {
         private readonly Dictionary<Type, TBaseState> _states = new();
         private readonly Observable<TBaseState> _activeState = new();
         
         public IReadOnlyObservable<TBaseState> ActiveState => _activeState;
+
+        public void Dispose()
+        {
+            foreach (KeyValuePair<Type, TBaseState> keyValuePair in _states) 
+                keyValuePair.Value.Dispose();
+        }
 
         public void EnterState<TState>() where TState : TBaseState, IState
         {
@@ -19,7 +26,7 @@ namespace Common.FSM
             _activeState.Value = newState;
             (newState as IState).Enter();
         }
-        
+
         public void EnterState<TState, TArgs>(TArgs args) where TState : TBaseState, IStateWithArguments<TArgs>
         {
             TBaseState newState = _states[typeof(TState)];
@@ -28,7 +35,7 @@ namespace Common.FSM
             _activeState.Value = newState;
             (newState as IStateWithArguments<TArgs>).Enter(args);
         }
-        
+
         public void AddState<TState>(TState state) where TState : TBaseState
         {
             Type stateType = typeof(TState); 

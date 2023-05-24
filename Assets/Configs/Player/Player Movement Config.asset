@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601841d039794a569e4e8b75e2de53ad, type: 3}
   m_Name: Player Movement Config
   m_EditorClassIdentifier: 
-  FallSpeed: -5
+  _fallSpeed: -5

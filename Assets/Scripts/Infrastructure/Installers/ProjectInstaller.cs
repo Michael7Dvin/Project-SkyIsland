@@ -4,6 +4,7 @@ using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services;
 using Infrastructure.Services.Configuration;
+using Infrastructure.Services.Input;
 using Infrastructure.Services.Logger;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.Updater;
@@ -20,7 +21,6 @@ namespace Infrastructure.Installers
         public override void InstallBindings()
         {
             BindServices();
-            BindFactories();
             BindGameStateMachine();
         }
 
@@ -57,11 +57,11 @@ namespace Infrastructure.Installers
             Container
                 .BindInterfacesAndSelfTo<Updater>()
                 .AsSingle();
-        }
-        
-        private void BindFactories()
-        {
-            Container.Bind<PlayerCameraFactory>().AsSingle();
+
+            Container
+                .Bind<IInputService>()
+                .To<InputService>()
+                .AsSingle();
         }
     }
 }

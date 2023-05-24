@@ -12,14 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2947110d163e484da3a1536076469584, type: 3}
   m_Name: Player Camera Config
   m_EditorClassIdentifier: 
-  <Camera>k__BackingField: {fileID: 4411593278993987247, guid: b63b5eacfd344ff488cb326936a381e2,
+  _camera: {fileID: 4411593278993987247, guid: b63b5eacfd344ff488cb326936a381e2, type: 3}
+  _controller: {fileID: 2179092886694071536, guid: 50ac387c723166b428572480ebd34ba0,
     type: 3}
-  <Controller>k__BackingField: {fileID: 2179092886694071536, guid: 50ac387c723166b428572480ebd34ba0,
+  _followPointOffsetFromPlayer: {x: 0, y: 1.5, z: 0}
+  _emptyCameraParent: {fileID: 4447553296280818875, guid: 693af17c7b8cd6946b7d0bb08340edf3,
     type: 3}
-  <FollowPointOffsetFromPlayer>k__BackingField: {x: 0, y: 1.5, z: 0}
-  <CameraGameobjectName>k__BackingField: Player Camera
-  <FollowPointName>k__BackingField: Camera Follow Point
-  <EmptyCameraParent>k__BackingField: {fileID: 4447553296280818875, guid: 693af17c7b8cd6946b7d0bb08340edf3,
-    type: 3}
-  <EmptyFollowPoint>k__BackingField: {fileID: 1546973404921165371, guid: 79d989f7e4df6ed49b22f381e939c83c,
+  _emptyFollowPoint: {fileID: 1546973404921165371, guid: 79d989f7e4df6ed49b22f381e939c83c,
     type: 3}

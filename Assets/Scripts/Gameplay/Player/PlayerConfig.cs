@@ -7,10 +7,14 @@ namespace Gameplay.Player
     [CreateAssetMenu(fileName = "Player Config", menuName = "Configs/Player/Config")]
     public class PlayerConfig : ScriptableObject
     {
-        [field: SerializeField] public GameObject Prefab { get; private set; }
-        [field: SerializeField] public GameObject GroundDetectorPrefab { get; private set; }
-
-        [field: SerializeField] public PlayerMovementConfig Movement { get; private set; }
-        [field: SerializeField] public PlayerCameraConfig Camera { get; private set; }
+        [SerializeField] private GameObject _prefab;
+        [SerializeField] private GameObject _groundDetectorPrefab;
+        [SerializeField] private PlayerMovementConfig _movement;
+        [SerializeField] private PlayerCameraConfig _camera;
+        
+        public GameObject Prefab => _prefab;
+        public GameObject GroundDetectorPrefab => _groundDetectorPrefab;
+        public PlayerMovementConfig Movement => _movement;
+        public PlayerCameraConfig Camera => _camera;
     }
 }
