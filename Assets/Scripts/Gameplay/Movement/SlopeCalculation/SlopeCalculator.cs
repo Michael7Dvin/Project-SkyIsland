@@ -8,20 +8,23 @@ namespace Gameplay.Movement.SlopeCalculation
         private readonly IUpdater _updater;
 
         private readonly Transform _rayOriginPoint;
-        private readonly float _rayDistance;
-        private RaycastHit _slopeHit;
+        private readonly float _sphereCastRadius;
+        private readonly float _sphereCastDistance;
 
         public SlopeCalculator(IUpdater updater,
             Transform rayOriginPoint,
-            float rayDistance)
+            float sphereCastRadius,
+            float sphereCastDistance)
         {
             _updater = updater;
             _rayOriginPoint = rayOriginPoint;
-            _rayDistance = rayDistance;
+            _sphereCastDistance = sphereCastDistance;
+            _sphereCastRadius = sphereCastRadius;
 
             _updater.FixedUpdated += FixedUpdate;
         }
         
+        public Vector3 SlopeDirection { get; private set; }
         public float SlopeAngle { get; private set; }
 
         public void Dispose() => 
@@ -32,15 +35,16 @@ namespace Gameplay.Movement.SlopeCalculation
 
         private void CalculateGetSlopeAngle()
         {
-            Vector3 rayDirection = Vector3.down;
-            
-            if (Physics.Raycast(_rayOriginPoint.position, rayDirection, out _slopeHit, _rayDistance))
+            if (Physics.SphereCast(_rayOriginPoint.position, _sphereCastRadius, Vector3.down, out RaycastHit hit, _sphereCastDistance))
             {
-                SlopeAngle = Vector3.Angle(_slopeHit.normal, Vector3.up);
+                Vector3 surfaceNormal = hit.normal;
+                SlopeAngle = Vector3.Angle(surfaceNormal, Vector3.up);
+                SlopeDirection = Vector3.up - surfaceNormal * Vector3.Dot(Vector3.up, surfaceNormal);
             }
             else
             {
                 SlopeAngle = 0f;
+                SlopeDirection = Vector3.zero;
             }
         }
     }

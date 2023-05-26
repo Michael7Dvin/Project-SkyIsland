@@ -12,11 +12,11 @@ namespace Gameplay.Movement.SlopeCalculation
             _updater = updater;
         }
 
-        public ISlopeCalculator Create(Transform parent, GameObject rayCastPointPrefab, float rayDistance)
+        public ISlopeCalculator Create(Transform parent, GameObject rayCastPointPrefab, float sphereCastRadius, float sphereCastDistance)
         {
             GameObject rayCastPoint = Object.Instantiate(rayCastPointPrefab, parent);
             
-            return new SlopeCalculator(_updater, rayCastPoint.transform, rayDistance);
+            return new SlopeCalculator(_updater, rayCastPoint.transform, sphereCastRadius, sphereCastDistance);
         }
     }
 }

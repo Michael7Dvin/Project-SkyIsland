@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jogSpeed: 5
   _fallSpeed: -5
-  _slopeCalculatorRayCastPointPrefab: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
+  _slopeCalculatorSphereCastPointPrefab: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
     type: 3}
-  _slopeCalculatorRayCastDistance: 1
+  _slopeCalculatorSphereCastRadius: 0.25
+  _slopeCalculatorSphereCastDistance: 1

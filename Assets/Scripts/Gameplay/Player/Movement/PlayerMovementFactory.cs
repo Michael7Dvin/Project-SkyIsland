@@ -39,11 +39,11 @@ namespace Gameplay.Player.Movement
         public IPlayerMovement Create(Transform parent, CharacterController characterController,
             IGroundTypeObserver groundTypeObserver, Transform camera)
         {
-            StateMachine<ExitableMovementState> movementStateMachine = CreateMovementStateMachine(characterController, camera);
-
             ISlopeCalculator slopeCalculator = CreateSlopeCalculator(parent);
-                
             
+            StateMachine<ExitableMovementState> movementStateMachine = 
+                CreateMovementStateMachine(characterController, camera, slopeCalculator);
+
             PlayerMovement movement = new(movementStateMachine, groundTypeObserver, slopeCalculator);
             
             return movement;
@@ -51,19 +51,23 @@ namespace Gameplay.Player.Movement
 
         private ISlopeCalculator CreateSlopeCalculator(Transform parent)
         {
-            return _slopeCalculatorFactory.Create(parent, _config.SlopeCalculatorRayCastPointPrefab,
-                _config.SlopeCalculatorRayCastDistance);
+            return _slopeCalculatorFactory.Create(parent, _config.SlopeCalculatorSphereCastPointPrefab,
+                _config.SlopeCalculatorSphereCastRadius, _config.SlopeCalculatorSphereCastDistance);
         }
 
-        private StateMachine<ExitableMovementState> CreateMovementStateMachine(CharacterController characterController, Transform camera)
+        private StateMachine<ExitableMovementState> CreateMovementStateMachine(CharacterController characterController,
+            Transform camera,
+            ISlopeCalculator slopeCalculator)
         {
             StateMachine<ExitableMovementState> movementStateMachine = new();
 
             movementStateMachine.AddState(new StayState(_logger));
             movementStateMachine.AddState(new FallState(_config.FallSpeed, characterController, _updater, _logger));
 
-            JogState jogState = new(_config.JogSpeed, characterController, _updater, _inputService, _logger, camera);
+            JogState jogState = 
+                new(_config.JogSpeed, characterController, slopeCalculator, _updater, _inputService, _logger, camera);
             movementStateMachine.AddState(jogState);
+            
             return movementStateMachine;
         }
     }
