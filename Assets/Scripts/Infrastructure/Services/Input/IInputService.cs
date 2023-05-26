@@ -5,7 +5,7 @@ namespace Infrastructure.Services.Input
 {
     public interface IInputService
     {
-        public IReadOnlyObservable<Vector2> HorizontalDirection { get; }
+        public IReadOnlyObservable<Vector3> HorizontalDirection { get; }
         public IReadOnlyObservable<float> HorizontalMagnitude { get; }
     }
 }

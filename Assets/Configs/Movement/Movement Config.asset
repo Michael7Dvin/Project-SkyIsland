@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601841d039794a569e4e8b75e2de53ad, type: 3}
-  m_Name: Player Movement Config
+  m_Script: {fileID: 11500000, guid: e68df4502fa24b84918393c233348d49, type: 3}
+  m_Name: Movement Config
   m_EditorClassIdentifier: 
-  _jogSpeed: 5
-  _fallSpeed: -5
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 1

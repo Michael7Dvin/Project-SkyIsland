@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Common.FSM;
-using Gameplay.BodyEnvironmentObserving;
+using Gameplay.GroundTypeObserving;
 
 namespace Gameplay.Movement.States.Base
 {
     public abstract class ExitableMovementState : IExitableState
     {
-        protected abstract HashSet<BodyEnvironmentType> AllowedBodyEnvironmentTypes { get; }
+        protected abstract HashSet<GroundType> AllowedBodyEnvironmentTypes { get; }
 
         public abstract void Exit();
 
-        public bool IsWorkableWithBodyEnvironmentType(BodyEnvironmentType type) => 
+        public bool IsWorkableWithBodyEnvironmentType(GroundType type) => 
             AllowedBodyEnvironmentTypes.Contains(type);
 
         public abstract void Dispose();

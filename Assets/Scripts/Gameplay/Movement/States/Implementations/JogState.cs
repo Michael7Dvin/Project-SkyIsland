@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Gameplay.BodyEnvironmentObserving;
+using Gameplay.GroundTypeObserving;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Logger;
@@ -10,28 +10,33 @@ namespace Gameplay.Movement.States.Implementations
 {
     public class JogState : MovementState
     {
-        private readonly float _speed;
+        private readonly float _jogSpeed;
         
         private readonly CharacterController _characterController;
         private readonly IUpdater _updater;
         private readonly IInputService _input;
         private readonly ICustomLogger _logger;
+        
+        private readonly Transform _camera;
 
-        public JogState(CharacterController characterController,
+        public JogState(float jogSpeed,
+            CharacterController characterController,
             IUpdater updater,
             IInputService input,
-
-            ICustomLogger logger)
+            ICustomLogger logger,
+            Transform camera)
         {
+            _jogSpeed = jogSpeed;
             _characterController = characterController;
             _updater = updater;
             _input = input;
             _logger = logger;
+            _camera = camera;
         }
 
-        protected override HashSet<BodyEnvironmentType> AllowedBodyEnvironmentTypes { get; } = new()
+        protected override HashSet<GroundType> AllowedBodyEnvironmentTypes { get; } = new()
             {
-                BodyEnvironmentType.Grounded
+                GroundType.Ground
             };
 
         public override void Dispose() => 
@@ -51,11 +56,18 @@ namespace Gameplay.Movement.States.Implementations
 
         private void Move(float deltaTime)
         {
-            if (_input.HorizontalDirection.Value != Vector2.zero)
+            if (_input.HorizontalDirection.Value != Vector3.zero)
             {
-                Vector2 velocity = _input.HorizontalDirection.Value * _speed * deltaTime;
-                _characterController.Move(new Vector3(velocity.x, 0f, velocity.y));
+                Vector3 alignedInputDirection = AlignInputDirectionToCameraView(_input.HorizontalDirection.Value);
+                
+                Vector3 velocity = alignedInputDirection * _jogSpeed * deltaTime;
+                _characterController.Move(velocity);
             }
+
+            _characterController.Move(new Vector3(0f, -3 * deltaTime, 0f));
         }
+
+        private Vector3 AlignInputDirectionToCameraView(Vector3 inputDirection) => 
+            Quaternion.AngleAxis(_camera.rotation.eulerAngles.y, Vector3.up) * inputDirection;
     }
 }

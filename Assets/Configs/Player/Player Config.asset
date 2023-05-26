@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3f2883ca0a4c9d8be37e73abe46150, type: 3}
   m_Name: Player Config
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 7594591460846268915, guid: aec5e93783575ed46b934c1811d6484e, type: 3}
-  _groundDetectorPrefab: {fileID: 5613183371219961214, guid: a2e39701dba5bb94280861c1552bb929,
+  _playerPrefab: {fileID: 5838045571477127563, guid: aec5e93783575ed46b934c1811d6484e,
+    type: 3}
+  _groundTypeObserverPrefab: {fileID: 3218358126444947009, guid: a2e39701dba5bb94280861c1552bb929,
     type: 3}
   _movement: {fileID: 11400000, guid: a5290cca6376790488b53d04def30bd6, type: 2}
   _camera: {fileID: 11400000, guid: 4b97f4861d04fc74dba6ec0f65ff4c0c, type: 2}

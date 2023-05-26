@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3034294189273912009}
   - component: {fileID: 3218358126444947009}
   m_Layer: 3
-  m_Name: Ground Detector
+  m_Name: Ground Type Observer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,10 +80,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 0.25
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.215, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3218358126444947009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,9 +93,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5613183371219961214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a41eefe2ed044c2839db067b10f5870, type: 3}
+  m_Script: {fileID: 11500000, guid: 57f706440eb5442dbde4d9abed80e932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundLayerMask:
-    serializedVersion: 2
-    m_Bits: 55

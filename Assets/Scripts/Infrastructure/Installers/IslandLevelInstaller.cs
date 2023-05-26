@@ -1,4 +1,4 @@
-﻿using Gameplay.BodyEnvironmentObserving;
+﻿using Gameplay.GroundTypeObserving;
 using Gameplay.Levels;
 using Gameplay.Player;
 using Gameplay.Player.Movement;
@@ -22,7 +22,7 @@ namespace Infrastructure.Installers
         {
             Container.Bind<IPlayerCameraFactory>().To<PlayerCameraFactory>().AsSingle();
             Container.Bind<IPlayerMovementFactory>().To<PlayerMovementFactory>().AsSingle();
-            Container.Bind<IBodyEnvironmentObserverFactory>().To<BodyEnvironmentObserverFactory>().AsSingle();
+            Container.Bind<IGroundTypeObserverFactory>().To<GroundTypeObserverFactory>().AsSingle();
             Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
         }
 

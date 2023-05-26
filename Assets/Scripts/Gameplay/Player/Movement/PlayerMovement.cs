@@ -1,6 +1,6 @@
 ﻿using System;
 using Common.FSM;
-using Gameplay.BodyEnvironmentObserving;
+using Gameplay.GroundTypeObserving;
 using Gameplay.Movement.States.Base;
 using Gameplay.Movement.States.Implementations;
 
@@ -9,38 +9,38 @@ namespace Gameplay.Player.Movement
     public class PlayerMovement : IPlayerMovement
     {
         private readonly StateMachine<ExitableMovementState> _stateMachine;
-        private readonly IBodyEnvironmentObserver _bodyEnvironmentObserver;
+        private readonly IGroundTypeObserver _groundObserver;
 
         public PlayerMovement(StateMachine<ExitableMovementState> stateMachine,
-            IBodyEnvironmentObserver bodyEnvironmentObserver)
+            IGroundTypeObserver groundObserver)
         {
             _stateMachine = stateMachine;
-            _bodyEnvironmentObserver = bodyEnvironmentObserver;
+            _groundObserver = groundObserver;
             
             _stateMachine.EnterState<FallState>();
-            _bodyEnvironmentObserver.EnvironmentType.Changed += OnEnvironmentTypeChanged;
+            _groundObserver.CurrentGroundType.Changed += OnEnvironmentTypeChanged;
         }
         
         public void Dispose()
         {
-            _bodyEnvironmentObserver.EnvironmentType.Changed -= OnEnvironmentTypeChanged;
+            _groundObserver.CurrentGroundType.Changed -= OnEnvironmentTypeChanged;
             _stateMachine.Dispose();
         }
         
-        private void OnEnvironmentTypeChanged(BodyEnvironmentType environmentType)
+        private void OnEnvironmentTypeChanged(GroundType groundType)
         {
-            if (_stateMachine.ActiveState.Value.IsWorkableWithBodyEnvironmentType(environmentType) == false)
+            if (_stateMachine.ActiveState.Value.IsWorkableWithBodyEnvironmentType(groundType) == false)
             {
-                switch (environmentType)
+                switch (groundType)
                 {
-                    case BodyEnvironmentType.Grounded:
-                        _stateMachine.EnterState<StayState>();
+                    case GroundType.Ground:
+                        _stateMachine.EnterState<JogState>();
                         break;
-                    case BodyEnvironmentType.InAir:
+                    case GroundType.Air:
                         _stateMachine.EnterState<FallState>();
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException(nameof(environmentType), environmentType, null);
+                        throw new ArgumentOutOfRangeException(nameof(groundType), groundType, null);
                 }    
             }
         }

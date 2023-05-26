@@ -13,12 +13,12 @@ namespace Gameplay.Player.PlayerCamera
             _config = configProvider.GetForPlayer().Camera;
         }
 
-        public GameObject Create(Transform parent)
+        public Camera Create(Transform parent)
         {
-            GameObject camera = Object.Instantiate(_config.EmptyCameraParent, parent);
-            Transform transform = camera.transform;
+            GameObject cameraGameObject = Object.Instantiate(_config.EmptyCameraParent, parent);
+            Transform transform = cameraGameObject.transform;
             
-            CreateCamera(_config.Camera, transform);
+            Camera camera = CreateCamera(_config.Camera, transform);
             Transform followPointTransform = CreateFollowPoint(_config.FollowPointOffsetFromPlayer, transform).transform;
             CreateCameraController(_config.Controller, followPointTransform, transform);
 

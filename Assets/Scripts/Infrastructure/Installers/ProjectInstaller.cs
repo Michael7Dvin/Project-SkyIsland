@@ -1,5 +1,5 @@
-﻿using Gameplay.Player;
-using Gameplay.Player.PlayerCamera;
+﻿using Gameplay.Movement;
+using Gameplay.Player;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services;
@@ -16,6 +16,8 @@ namespace Infrastructure.Installers
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private ScenesInfo _scenesInfo;
+        
+        [SerializeField] private MovementConfig _movementConfig;
         [SerializeField] private PlayerConfig _playerConfig;
 
         public override void InstallBindings()
@@ -52,7 +54,7 @@ namespace Infrastructure.Installers
                 .Bind<IConfigProvider>()
                 .To<ConfigProvider>()
                 .AsSingle()
-                .WithArguments(_playerConfig);
+                .WithArguments(_movementConfig, _playerConfig);
             
             Container
                 .BindInterfacesAndSelfTo<Updater>()

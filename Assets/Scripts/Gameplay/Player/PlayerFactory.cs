@@ -1,5 +1,5 @@
-﻿using Gameplay.BodyEnvironmentObserving;
-using Gameplay.BodyEnvironmentObserving.GroundDetection;
+﻿using Gameplay.GroundTypeObserving;
+using Gameplay.MonoBehaviours;
 using Gameplay.Player.Movement;
 using Gameplay.Player.PlayerCamera;
 using Infrastructure.Services.Configuration;
@@ -13,64 +13,58 @@ namespace Gameplay.Player
         private readonly PlayerConfig _config;
 
         private readonly ICustomLogger _logger;
+        
         private readonly IPlayerCameraFactory _cameraFactory;
         private readonly IPlayerMovementFactory _movementFactory;
-        
-        private readonly IBodyEnvironmentObserverFactory _bodyEnvironmentObserverFactory;
+        private readonly IGroundTypeObserverFactory _groundTypeObserverFactory;
 
         public PlayerFactory(IConfigProvider configProvider,
             ICustomLogger logger,
             IPlayerCameraFactory cameraFactory,
             IPlayerMovementFactory movementFactory,
-            IBodyEnvironmentObserverFactory bodyEnvironmentObserverFactory)
+            IGroundTypeObserverFactory groundTypeObserverFactory)
         {
             _config = configProvider.GetForPlayer();
             _logger = logger;
             _cameraFactory = cameraFactory;
             _movementFactory = movementFactory;
-            _bodyEnvironmentObserverFactory = bodyEnvironmentObserverFactory;
+            _groundTypeObserverFactory = groundTypeObserverFactory;
         }
 
         public Player Create(Vector3 position, Quaternion rotation)
         {
-            GameObject playerGameobject = CreatePlayerGameobject(position, rotation);
-            GameObject groundDetectorGameobject = CreateGroundDetector(playerGameobject);
-            
-            _cameraFactory.Create(playerGameobject.transform);
+            GameObject player = Object.Instantiate(_config.PlayerPrefab.gameObject, position, rotation);
+            Camera camera = _cameraFactory.Create(player.transform);
 
-            GetComponents(playerGameobject,
-                groundDetectorGameobject,
+            GetComponents(player,
                 out CharacterController characterController,
-                out IGameObjectLifeCycleNotifier gameObjectLifeCycleNotifier,
-                out IGroundDetector groundDetector);
+                out IGameObjectLifeCycleObserver playerGameObjectLifeCycleNotifier);
+
+            IGroundTypeObserver groundTypeObserver = CreateGroundTypeObserver(player);
+            IPlayerMovement movement = CreatePlayerMovement(characterController, groundTypeObserver, camera.transform);
             
-            IBodyEnvironmentObserver bodyEnvironmentObserver = _bodyEnvironmentObserverFactory.Create(groundDetector);
-            IPlayerMovement movement = _movementFactory.Create(characterController, bodyEnvironmentObserver);
-            
-            return new Player(movement, bodyEnvironmentObserver, gameObjectLifeCycleNotifier);
+            return new Player(movement, playerGameObjectLifeCycleNotifier);
         }
 
-        private GameObject CreateGroundDetector(GameObject playerGameobject) => 
-            Object.Instantiate(_config.GroundDetectorPrefab, playerGameobject.transform);
-
-        private GameObject CreatePlayerGameobject(Vector3 position, Quaternion rotation) => 
-            Object.Instantiate(_config.Prefab, position, rotation);
-
         private void GetComponents(GameObject player,
-            GameObject groundDetectorObject,
             out CharacterController characterController,
-            out IGameObjectLifeCycleNotifier gameObjectLifeCycleNotifier,
-            out IGroundDetector groundDetector)
+            out IGameObjectLifeCycleObserver playerGameObjectLifeCycleObserver)
         {
             if (player.TryGetComponent(out characterController) == false)
                 _logger.LogError($"{nameof(player)} prefab have no {nameof(CharacterController)} attached");
             
-            if (player.TryGetComponent(out gameObjectLifeCycleNotifier) == false)
-                _logger.LogError($"{nameof(player)} prefab have no {nameof(IGameObjectLifeCycleNotifier)} attached");
-            
-            if (groundDetectorObject.TryGetComponent(out groundDetector) == false)
-                _logger.LogError($"{nameof(groundDetectorObject)} prefab have no {nameof(IGroundDetector)} attached");
+            if (player.TryGetComponent(out playerGameObjectLifeCycleObserver) == false)
+                _logger.LogError($"{nameof(player)} prefab have no {nameof(IGameObjectLifeCycleObserver)} attached");
+        }
 
+        private IGroundTypeObserver CreateGroundTypeObserver(GameObject player) => 
+            _groundTypeObserverFactory.Create(player.transform, _config.GroundTypeObserverPrefab);
+
+        private IPlayerMovement CreatePlayerMovement(CharacterController characterController,
+            IGroundTypeObserver groundTypeObserver,
+            Transform cameraTransform)
+        {
+            return _movementFactory.Create(characterController, groundTypeObserver, cameraTransform);
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Gameplay.Player.PlayerCamera
 {
     public interface IPlayerCameraFactory
     {
-        GameObject Create(Transform parent);
+        Camera Create(Transform parent);
     }
 }

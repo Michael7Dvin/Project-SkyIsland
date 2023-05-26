@@ -1973,6 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1798603218126435411}
   - component: {fileID: 1727705084257290255}
+  - component: {fileID: 6142025612652924269}
   - component: {fileID: 5838045571477127563}
   m_Layer: 3
   m_Name: Player
@@ -2022,9 +2023,36 @@ CharacterController:
   m_Radius: 0.25
   m_SlopeLimit: 40
   m_StepOffset: 0.3
-  m_SkinWidth: 0.1
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!54 &6142025612652924269
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594591460846268915}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &5838045571477127563
 MonoBehaviour:
   m_ObjectHideFlags: 0

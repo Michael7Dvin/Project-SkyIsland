@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.BodyEnvironmentObserving;
+using Gameplay.GroundTypeObserving;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Logger;
 
@@ -14,9 +14,9 @@ namespace Gameplay.Movement.States.Implementations
             _logger = logger;
         }
 
-        protected override HashSet<BodyEnvironmentType> AllowedBodyEnvironmentTypes { get; } = new()
+        protected override HashSet<GroundType> AllowedBodyEnvironmentTypes { get; } = new()
         {
-            BodyEnvironmentType.Grounded,
+            GroundType.Ground,
         };
 
         public override void Dispose()

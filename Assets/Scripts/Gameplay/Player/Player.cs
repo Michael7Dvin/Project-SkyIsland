@@ -1,5 +1,5 @@
 ﻿using System;
-using Gameplay.BodyEnvironmentObserving;
+using Gameplay.MonoBehaviours;
 using Gameplay.Player.Movement;
 
 namespace Gameplay.Player
@@ -7,23 +7,20 @@ namespace Gameplay.Player
     public class Player : IDisposable
     {
         private readonly IPlayerMovement _movement;
-        private readonly IBodyEnvironmentObserver _bodyEnvironmentObserver;
-        private readonly IGameObjectLifeCycleNotifier _gameObjectLifeCycleNotifier;
+        private readonly IGameObjectLifeCycleObserver _gameObjectLifeCycleObserver;
 
-        public Player(IPlayerMovement movement, IBodyEnvironmentObserver bodyEnvironmentObserver, IGameObjectLifeCycleNotifier gameObjectLifeCycleNotifier)
+        public Player(IPlayerMovement movement, IGameObjectLifeCycleObserver gameObjectLifeCycleObserver)
         {
             _movement = movement;
-            _bodyEnvironmentObserver = bodyEnvironmentObserver;
-            _gameObjectLifeCycleNotifier = gameObjectLifeCycleNotifier;
+            _gameObjectLifeCycleObserver = gameObjectLifeCycleObserver;
 
-            _gameObjectLifeCycleNotifier.Destroyed += Dispose;
+            _gameObjectLifeCycleObserver.Destroyed += Dispose;
         }
 
         public void Dispose()
         {
             _movement.Dispose();
-            _bodyEnvironmentObserver.Dispose();
-            _gameObjectLifeCycleNotifier.Destroyed -= Dispose;
+            _gameObjectLifeCycleObserver.Destroyed -= Dispose;
         }
     }
 }
