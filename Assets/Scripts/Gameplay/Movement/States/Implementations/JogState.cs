@@ -64,7 +64,7 @@ namespace Gameplay.Movement.States.Implementations
                 _characterController.Move(velocity);
             }
 
-            _characterController.Move(new Vector3(0f, -3 * deltaTime, 0f));
+            _characterController.Move(new Vector3(0f, -4.5f * deltaTime, 0f));
         }
 
         private Vector3 AlignInputDirectionToCameraView(Vector3 inputDirection) => 

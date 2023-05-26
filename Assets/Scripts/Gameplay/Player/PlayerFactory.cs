@@ -41,7 +41,11 @@ namespace Gameplay.Player
                 out IGameObjectLifeCycleObserver playerGameObjectLifeCycleNotifier);
 
             IGroundTypeObserver groundTypeObserver = CreateGroundTypeObserver(player);
-            IPlayerMovement movement = CreatePlayerMovement(characterController, groundTypeObserver, camera.transform);
+            
+            IPlayerMovement movement = CreatePlayerMovement(player.transform,
+                characterController,
+                groundTypeObserver,
+                camera.transform);
             
             return new Player(movement, playerGameObjectLifeCycleNotifier);
         }
@@ -60,11 +64,11 @@ namespace Gameplay.Player
         private IGroundTypeObserver CreateGroundTypeObserver(GameObject player) => 
             _groundTypeObserverFactory.Create(player.transform, _config.GroundTypeObserverPrefab);
 
-        private IPlayerMovement CreatePlayerMovement(CharacterController characterController,
+        private IPlayerMovement CreatePlayerMovement(Transform parent, CharacterController characterController,
             IGroundTypeObserver groundTypeObserver,
             Transform cameraTransform)
         {
-            return _movementFactory.Create(characterController, groundTypeObserver, cameraTransform);
+            return _movementFactory.Create(parent, characterController, groundTypeObserver, cameraTransform);
         }
     }
 }
