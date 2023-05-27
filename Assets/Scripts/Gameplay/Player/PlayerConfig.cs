@@ -8,14 +8,8 @@ namespace Gameplay.Player
     [CreateAssetMenu(fileName = "Player Config", menuName = "Configs/Player/Config")]
     public class PlayerConfig : ScriptableObject
     {
-        [SerializeField] private GameObjectLifeCycleNotifier _playerPrefab;
-        [SerializeField] private CollisionsNotifier _groundTypeObserverPrefab;
-        [SerializeField] private PlayerMovementConfig _movement;
-        [SerializeField] private PlayerCameraConfig _camera;
-        
-        public GameObjectLifeCycleNotifier PlayerPrefab => _playerPrefab;
-        public CollisionsNotifier GroundTypeObserverPrefab => _groundTypeObserverPrefab;
-        public PlayerMovementConfig Movement => _movement;
-        public PlayerCameraConfig Camera => _camera;
+        [field: SerializeField] public GameObjectLifeCycleNotifier PlayerPrefab { get; private set; }
+        [field: SerializeField] public PlayerMovementConfig MovementConfig { get; private set; }
+        [field: SerializeField] public PlayerCameraConfig CameraConfig { get; private set; }
     }
 }

@@ -27,7 +27,7 @@ namespace Gameplay.Player.Movement
             IInputService inputService,
             ICustomLogger logger)
         {
-            _config = configProvider.GetForPlayer().Movement;
+            _config = configProvider.GetForPlayer().MovementConfig;
             
             _updater = updater;
             _inputService = inputService;
@@ -42,10 +42,14 @@ namespace Gameplay.Player.Movement
             IGroundTypeTracker groundTypeTracker = CreateGroundTypeTracker(groundSpherecaster);
             ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSpherecaster);
             
-            StateMachine<ExitableMovementState> movementStateMachine = 
-                CreateMovementStateMachine(characterController, camera, slopeCalculator);
+            StateMachine<ExitableMovementState> movementStateMachine = CreateMovementStateMachine(camera);
 
-            PlayerMovement movement = new(movementStateMachine, groundTypeTracker, slopeCalculator);
+            PlayerMovement movement = new(movementStateMachine,
+                characterController,
+                groundSpherecaster,
+                groundTypeTracker,
+                slopeCalculator,
+                _updater);
             
             return movement;
         }
@@ -62,17 +66,20 @@ namespace Gameplay.Player.Movement
         private ISlopeCalculator CreateSlopeCalculator(IGroundSpherecaster groundSpherecaster) => 
             new SlopeCalculator(groundSpherecaster);
 
-        private StateMachine<ExitableMovementState> CreateMovementStateMachine(CharacterController characterController,
-            Transform camera,
-            ISlopeCalculator slopeCalculator)
+        private StateMachine<ExitableMovementState> CreateMovementStateMachine(Transform camera)
         {
             StateMachine<ExitableMovementState> movementStateMachine = new();
-
-            movementStateMachine.AddState(new StayState(_logger));
-            movementStateMachine.AddState(new FallState(_config.FallSpeed, characterController, _updater, _logger));
-
-            JogState jogState = 
-                new(_config.JogSpeed, characterController, slopeCalculator, _updater, _inputService, _logger, camera);
+            
+            FallState fallState = new(_config.FallVerticalSpeed,
+                _config.FallHorizontalSpeed,
+                camera,
+                _updater,
+                _inputService,
+                _logger);
+            
+            JogState jogState = new(_config.JogSpeed, _config.AntiBumpSpeed, camera, _updater, _inputService, _logger);
+            
+            movementStateMachine.AddState(fallState);
             movementStateMachine.AddState(jogState);
             
             return movementStateMachine;

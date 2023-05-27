@@ -5,18 +5,14 @@ namespace Gameplay.Player.Movement
     [CreateAssetMenu(fileName = "Player Movement Config", menuName = "Configs/Player/Movement")]
     public class PlayerMovementConfig : ScriptableObject
     {
-        [SerializeField] private float _jogSpeed;
-        [SerializeField] private float _fallSpeed;
+        [field: SerializeField] public float JogSpeed { get; private set; }
+        [field: SerializeField] public float AntiBumpSpeed { get; private set; }
 
-        [SerializeField] private GameObject _groundSphereCastingPointPrefab;
-        [SerializeField] private float _groundSphereCastingSphereRadius;
-        [SerializeField] private float _groundSphereCastingDistance;
+        [field: SerializeField] public float FallVerticalSpeed { get; private set; }
+        [field: SerializeField] public float FallHorizontalSpeed { get; private set; }
 
-        public float JogSpeed => _jogSpeed;
-        public float FallSpeed => _fallSpeed;
-
-        public GameObject GroundSphereCastingPointPrefab => _groundSphereCastingPointPrefab;
-        public float GroundSphereCastingSphereRadius => _groundSphereCastingSphereRadius;
-        public float GroundSphereCastingDistance => _groundSphereCastingDistance;
+        [field: SerializeField] public GameObject GroundSphereCastingPointPrefab { get; private set; }
+        [field: SerializeField] public float GroundSphereCastingSphereRadius { get; private set; }
+        [field: SerializeField] public float GroundSphereCastingDistance { get; private set; }
     }
 }
