@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.GroundTypeObserving;
+using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Logger;
 using Infrastructure.Services.Updater;

@@ -8,15 +8,15 @@ namespace Gameplay.Player.Movement
         [SerializeField] private float _jogSpeed;
         [SerializeField] private float _fallSpeed;
 
-        [SerializeField] private GameObject _slopeCalculatorSphereCastPointPrefab;
-        [SerializeField] private float _slopeCalculatorSphereCastRadius;
-        [SerializeField] private float _slopeCalculatorSphereCastDistance;
+        [SerializeField] private GameObject _groundSphereCastingPointPrefab;
+        [SerializeField] private float _groundSphereCastingSphereRadius;
+        [SerializeField] private float _groundSphereCastingDistance;
 
         public float JogSpeed => _jogSpeed;
         public float FallSpeed => _fallSpeed;
 
-        public GameObject SlopeCalculatorSphereCastPointPrefab => _slopeCalculatorSphereCastPointPrefab;
-        public float SlopeCalculatorSphereCastRadius => _slopeCalculatorSphereCastRadius;
-        public float SlopeCalculatorSphereCastDistance => _slopeCalculatorSphereCastDistance;
+        public GameObject GroundSphereCastingPointPrefab => _groundSphereCastingPointPrefab;
+        public float GroundSphereCastingSphereRadius => _groundSphereCastingSphereRadius;
+        public float GroundSphereCastingDistance => _groundSphereCastingDistance;
     }
 }

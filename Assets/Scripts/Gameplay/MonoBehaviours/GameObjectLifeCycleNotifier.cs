@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.MonoBehaviours
 {
-    public class GameObjectLifeCycleObserver : MonoBehaviour, IGameObjectLifeCycleObserver
+    public class GameObjectLifeCycleNotifier : MonoBehaviour, IGameObjectLifeCycleNotifier
     {
         public event Action Destroyed;
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common.FSM;
-using Gameplay.GroundTypeObserving;
+using Gameplay.Movement.GroundTypeTracking;
 
 namespace Gameplay.Movement.States.Base
 {

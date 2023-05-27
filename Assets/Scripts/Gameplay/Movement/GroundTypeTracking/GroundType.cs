@@ -1,4 +1,4 @@
-﻿namespace Gameplay.GroundTypeObserving
+﻿namespace Gameplay.Movement.GroundTypeTracking
 {
     public enum GroundType
     {

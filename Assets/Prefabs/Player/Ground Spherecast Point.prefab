@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6896753121839807907}
   m_Layer: 3
-  m_Name: Slope Sphere Cast Point
+  m_Name: Ground Spherecast Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

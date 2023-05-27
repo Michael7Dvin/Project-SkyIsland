@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.MonoBehaviours
 {
-    public interface ICollisionObserver : IGameObjectLifeCycleObserver
+    public interface ICollisionNotifier : IGameObjectLifeCycleNotifier
     {
         event Action<Collision> CollisionEntered;
         event Action<Collision> CollisionStayed;

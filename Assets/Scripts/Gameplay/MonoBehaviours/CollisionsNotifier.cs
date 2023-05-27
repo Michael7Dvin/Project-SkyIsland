@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.MonoBehaviours
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CollisionObserver : GameObjectLifeCycleObserver, ICollisionObserver
+    public class CollisionsNotifier : GameObjectLifeCycleNotifier, ICollisionNotifier
     {
         public event Action<Collision> CollisionEntered;
         public event Action<Collision> CollisionStayed;

@@ -7,20 +7,20 @@ namespace Gameplay.Player
     public class Player : IDisposable
     {
         private readonly IPlayerMovement _movement;
-        private readonly IGameObjectLifeCycleObserver _gameObjectLifeCycleObserver;
+        private readonly IGameObjectLifeCycleNotifier _gameObjectLifeCycleNotifier;
 
-        public Player(IPlayerMovement movement, IGameObjectLifeCycleObserver gameObjectLifeCycleObserver)
+        public Player(IPlayerMovement movement, IGameObjectLifeCycleNotifier gameObjectLifeCycleNotifier)
         {
             _movement = movement;
-            _gameObjectLifeCycleObserver = gameObjectLifeCycleObserver;
+            _gameObjectLifeCycleNotifier = gameObjectLifeCycleNotifier;
 
-            _gameObjectLifeCycleObserver.Destroyed += Dispose;
+            _gameObjectLifeCycleNotifier.Destroyed += Dispose;
         }
 
         public void Dispose()
         {
             _movement.Dispose();
-            _gameObjectLifeCycleObserver.Destroyed -= Dispose;
+            _gameObjectLifeCycleNotifier.Destroyed -= Dispose;
         }
     }
 }

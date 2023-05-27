@@ -2,7 +2,7 @@ using System;
 
 namespace Gameplay.MonoBehaviours
 {
-    public interface IGameObjectLifeCycleObserver
+    public interface IGameObjectLifeCycleNotifier
     {
         event Action Destroyed;
     }

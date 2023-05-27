@@ -1,6 +1,6 @@
 ﻿using System;
 using Common.FSM;
-using Gameplay.GroundTypeObserving;
+using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.States.Base;
 using Gameplay.Movement.States.Implementations;
@@ -10,24 +10,26 @@ namespace Gameplay.Player.Movement
     public class PlayerMovement : IPlayerMovement
     {
         private readonly StateMachine<ExitableMovementState> _stateMachine;
-        private readonly IGroundTypeObserver _groundObserver;
+
+        private readonly IGroundTypeTracker _groundTracker;
         private readonly ISlopeCalculator _slopeCalculator;
 
         public PlayerMovement(StateMachine<ExitableMovementState> stateMachine,
-            IGroundTypeObserver groundObserver,
+            IGroundTypeTracker groundTracker,
             ISlopeCalculator slopeCalculator)
         {
             _stateMachine = stateMachine;
-            _groundObserver = groundObserver;
+            
+            _groundTracker = groundTracker;
             _slopeCalculator = slopeCalculator;
 
             _stateMachine.EnterState<FallState>();
-            _groundObserver.CurrentGroundType.Changed += OnEnvironmentTypeChanged;
+            _groundTracker.CurrentGroundType.Changed += OnEnvironmentTypeChanged;
         }
         
         public void Dispose()
         {
-            _groundObserver.CurrentGroundType.Changed -= OnEnvironmentTypeChanged;
+            _groundTracker.CurrentGroundType.Changed -= OnEnvironmentTypeChanged;
             _stateMachine.Dispose();
             _slopeCalculator.Dispose();
         }

@@ -1,6 +1,5 @@
-﻿using Gameplay.GroundTypeObserving;
-using Gameplay.Levels;
-using Gameplay.Movement.SlopeCalculation;
+﻿using Gameplay.Levels;
+using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Player;
 using Gameplay.Player.Movement;
 using Gameplay.Player.PlayerCamera;
@@ -23,8 +22,7 @@ namespace Infrastructure.Installers
         {
             Container.Bind<IPlayerCameraFactory>().To<PlayerCameraFactory>().AsSingle();
             Container.Bind<IPlayerMovementFactory>().To<PlayerMovementFactory>().AsSingle();
-            Container.Bind<IGroundTypeObserverFactory>().To<GroundTypeObserverFactory>().AsSingle();
-            Container.Bind<ISlopeCalculatorFactory>().To<SlopeCalculatorFactory>().AsSingle();
+            Container.Bind<IGroundSpherecasterFactory>().To<GroundSpherecasterFactory>().AsSingle();
             Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
         }
 

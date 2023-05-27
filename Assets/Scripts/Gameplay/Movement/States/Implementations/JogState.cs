@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Gameplay.GroundTypeObserving;
+using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Input;
@@ -85,7 +85,6 @@ namespace Gameplay.Movement.States.Implementations
             if (_slopeCalculator.SlopeAngle >= _characterController.slopeLimit)
             {
                 Vector3 velocity = _slopeCalculator.SlopeDirection * -5f * deltaTime;
-                //velocity.y -= _slopeCalculator.SlopeHitPoint.y;
                 _characterController.Move(velocity);
             }
         }

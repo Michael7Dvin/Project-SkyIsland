@@ -1,5 +1,6 @@
 ﻿using Common.FSM;
-using Gameplay.GroundTypeObserving;
+using Gameplay.Movement.GroundSpherecasting;
+using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.States.Base;
 using Gameplay.Movement.States.Implementations;
@@ -17,15 +18,14 @@ namespace Gameplay.Player.Movement
         private readonly IInputService _inputService;
         private readonly ICustomLogger _logger;
 
-        private readonly ISlopeCalculatorFactory _slopeCalculatorFactory;
-        
         private readonly PlayerMovementConfig _config;
+
+        private readonly IGroundSpherecasterFactory _groundSpherecasterFactory;
 
         public PlayerMovementFactory(IConfigProvider configProvider,
             IUpdater updater,
             IInputService inputService,
-            ICustomLogger logger,
-            ISlopeCalculatorFactory slopeCalculatorFactory)
+            ICustomLogger logger)
         {
             _config = configProvider.GetForPlayer().Movement;
             
@@ -33,27 +33,34 @@ namespace Gameplay.Player.Movement
             _inputService = inputService;
             _logger = logger;
             
-            _slopeCalculatorFactory = slopeCalculatorFactory;
+            _groundSpherecasterFactory = new GroundSpherecasterFactory(_updater);
         }
 
-        public IPlayerMovement Create(Transform parent, CharacterController characterController,
-            IGroundTypeObserver groundTypeObserver, Transform camera)
+        public IPlayerMovement Create(Transform parent, CharacterController characterController, Transform camera)
         {
-            ISlopeCalculator slopeCalculator = CreateSlopeCalculator(parent);
+            IGroundSpherecaster groundSpherecaster = CreateGroundSpherecaster(parent);
+            IGroundTypeTracker groundTypeTracker = CreateGroundTypeTracker(groundSpherecaster);
+            ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSpherecaster);
             
             StateMachine<ExitableMovementState> movementStateMachine = 
                 CreateMovementStateMachine(characterController, camera, slopeCalculator);
 
-            PlayerMovement movement = new(movementStateMachine, groundTypeObserver, slopeCalculator);
+            PlayerMovement movement = new(movementStateMachine, groundTypeTracker, slopeCalculator);
             
             return movement;
         }
 
-        private ISlopeCalculator CreateSlopeCalculator(Transform parent)
+        private IGroundSpherecaster CreateGroundSpherecaster(Transform parent)
         {
-            return _slopeCalculatorFactory.Create(parent, _config.SlopeCalculatorSphereCastPointPrefab,
-                _config.SlopeCalculatorSphereCastRadius, _config.SlopeCalculatorSphereCastDistance);
+            return _groundSpherecasterFactory.Create(parent, _config.GroundSphereCastingPointPrefab,
+                _config.GroundSphereCastingSphereRadius, _config.GroundSphereCastingDistance);
         }
+        
+        private IGroundTypeTracker CreateGroundTypeTracker(IGroundSpherecaster groundSpherecaster) => 
+            new GroundTypeTracker(groundSpherecaster);
+
+        private ISlopeCalculator CreateSlopeCalculator(IGroundSpherecaster groundSpherecaster) => 
+            new SlopeCalculator(groundSpherecaster);
 
         private StateMachine<ExitableMovementState> CreateMovementStateMachine(CharacterController characterController,
             Transform camera,
