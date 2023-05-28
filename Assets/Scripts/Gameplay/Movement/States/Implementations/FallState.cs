@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Input;
-using Infrastructure.Services.Logger;
-using Infrastructure.Services.Updater;
 using UnityEngine;
 
 namespace Gameplay.Movement.States.Implementations
@@ -15,53 +13,53 @@ namespace Gameplay.Movement.States.Implementations
         
         private readonly Transform _camera;
 
-        private readonly IUpdater _updater;
         private readonly IInputService _input;
-        private readonly ICustomLogger _logger;
 
         public FallState(float verticalSpeed,
             float horizontalspeed,
             Transform camera,
-            IUpdater updater,
-            IInputService input,
-            ICustomLogger logger)
+            IInputService input)
         {
             _verticalSpeed = verticalSpeed;
             _horizontalspeed = horizontalspeed;
             
             _camera = camera;
 
-            _updater = updater;
             _input = input;
-            _logger = logger;
         }
 
-        protected override HashSet<GroundType> AllowedGroundTypes { get; } = new()
+        protected override HashSet<GroundType> CanStartWithGroundTypes { get; } = new()
         {
             GroundType.Air,
         };
 
-        public override void Dispose() => 
-            _updater.Updated -= Update;
-
-        private void Update(float deltaTime)
+        protected override HashSet<GroundType> CanWorkWithGroundTypes { get; } = new()
         {
-            MoveVelocity = GetFallVelocity(deltaTime);
+            GroundType.Air,
+        };
+
+        public override void Dispose()
+        {
         }
-        
+
         public override void Enter()
         {
-            _logger.Log("Enter Fall State");
-            _updater.Updated += Update;
         }
 
         public override void Exit()
         {
-            _logger.Log("Exit Fall State");
-            _updater.Updated -= Update;
         }
-        
-        private Vector3 GetFallVelocity(float deltaTime)
+
+        public override Vector3 GetMoveVelocty(float deltaTime)
+        {
+            Vector3 velocity = GetVerticalVelocity(deltaTime) + GetHorizontalVelocity(deltaTime);
+            return velocity;
+        }
+
+        private Vector3 GetVerticalVelocity(float deltaTime) => 
+            Vector3.down * _verticalSpeed * deltaTime;
+
+        private Vector3 GetHorizontalVelocity(float deltaTime)
         {
             Vector3 velocity = new();
             
@@ -71,7 +69,7 @@ namespace Gameplay.Movement.States.Implementations
                 velocity = cameraAlignedDirection * _horizontalspeed * deltaTime;
             }
             
-            return velocity + Vector3.down * _verticalSpeed * deltaTime;
+            return velocity;
         }
 
         private Vector3 AlignDirectionToCameraView(Vector3 direction) => 

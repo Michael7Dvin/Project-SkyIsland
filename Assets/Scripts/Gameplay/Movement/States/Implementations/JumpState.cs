@@ -2,8 +2,6 @@
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Input;
-using Infrastructure.Services.Logger;
-using Infrastructure.Services.Updater;
 using UnityEngine;
 
 namespace Gameplay.Movement.States.Implementations
@@ -18,54 +16,51 @@ namespace Gameplay.Movement.States.Implementations
         
         private readonly Transform _camera;
 
-        private readonly IUpdater _updater;
         private readonly IInputService _input;
-        private readonly ICustomLogger _logger;
 
         public JumpState(AnimationCurve jumpCurve,
             float horizontalspeed,
             Transform camera,
-            IUpdater updater,
-            IInputService input,
-            ICustomLogger logger)
+            IInputService input)
         {
             _jumpCurve = jumpCurve;
             _horizontalspeed = horizontalspeed;
             
             _camera = camera;
-            
-            _updater = updater;
+
             _input = input;
-            _logger = logger;
 
             SetTotalTime();
         }
 
-        protected override HashSet<GroundType> AllowedGroundTypes { get; } = new()
+        protected override HashSet<GroundType> CanStartWithGroundTypes { get; } = new()
+        {
+            GroundType.Ground,
+        };
+
+        protected override HashSet<GroundType> CanWorkWithGroundTypes { get; } = new()
         {
             GroundType.Ground,
             GroundType.Air,
+            GroundType.Slope,
         };
 
-        public override void Dispose() => 
-            _updater.Updated -= Update;
-
-        private void Update(float deltaTime)
+        public override void Dispose()
         {
-            Vector3 velocity = GetJumpVelocity(deltaTime) + GetHorizontalMoveVelocity(deltaTime);
-            MoveVelocity = velocity;
         }
 
         public override void Enter()
         {
-            _logger.Log("Enter Jump State");
-            _updater.Updated += Update;
         }
 
         public override void Exit()
         {
-            _logger.Log("Exit Jump State");
-            _updater.Updated -= Update;
+        }
+
+        public override Vector3 GetMoveVelocty(float deltaTime)
+        {
+            Vector3 velocity = GetJumpVelocity(deltaTime) + GetHorizontalVelocity(deltaTime);
+            return velocity;
         }
 
         private void SetTotalTime()
@@ -83,16 +78,15 @@ namespace Gameplay.Movement.States.Implementations
             
             if (_currentJumpTime >= _totalJumpTime)
             {
-                Debug.Log("total");
                 _currentJumpTime = 0f;
-                Complete();
+                NotifyMovementPerforemed();
             }
 
             Vector3 velocity = Vector3.up * verticalSpeed * deltaTime;
             return velocity;
         }
 
-        private Vector3 GetHorizontalMoveVelocity(float deltaTime)
+        private Vector3 GetHorizontalVelocity(float deltaTime)
         {
             Vector3 velocity = new();
             

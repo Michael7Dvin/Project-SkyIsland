@@ -4,5 +4,6 @@
     {
         Ground = 0,
         Air = 1,
+        Slope = 2,
     }
 }

@@ -8,20 +8,22 @@ namespace Gameplay.Movement.States.Base
 {
     public abstract class ExitableMovementState : IExitableState
     {
-        protected abstract HashSet<GroundType> AllowedGroundTypes { get; }
+        protected abstract HashSet<GroundType> CanStartWithGroundTypes { get; }
+        protected abstract HashSet<GroundType> CanWorkWithGroundTypes { get; }
 
-        public Vector3 MoveVelocity { get; protected set; }
+        public event Action MovementPerformed;
 
-        public event Action Completed;
-
-        public abstract void Exit();
-        
         public abstract void Dispose();
-        
-        public bool IsWorkableWithBodyEnvironmentType(GroundType type) => 
-            AllowedGroundTypes.Contains(type);
+        public abstract void Exit();
+        public abstract Vector3 GetMoveVelocty(float deltaTime);
 
-        protected void Complete() => 
-            Completed?.Invoke();
+        public bool CanStartWithGroundType(GroundType type) => 
+            CanStartWithGroundTypes.Contains(type);
+        
+        public bool CanWorkWithGroundType(GroundType type) => 
+            CanWorkWithGroundTypes.Contains(type);
+
+        protected void NotifyMovementPerforemed() => 
+            MovementPerformed?.Invoke();
     }
 }

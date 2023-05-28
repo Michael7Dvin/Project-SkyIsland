@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601841d039794a569e4e8b75e2de53ad, type: 3}
   m_Name: Player Movement Config
   m_EditorClassIdentifier: 
-  <JogSpeed>k__BackingField: 5
-  <AntiBumpSpeed>k__BackingField: 4
-  <FallVerticalSpeed>k__BackingField: 6
-  <FallHorizontalSpeed>k__BackingField: 3
-  <JumpCurve>k__BackingField:
+  _jogSpeed: 5
+  _jogAntiBumpSpeed: 4
+  _fallVerticalSpeed: 6
+  _fallHorizontalSpeed: 3
+  _ySpeedToTime:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 7
-      inSlope: -14
-      outSlope: -14
+      value: 6.5
+      inSlope: -13.5
+      outSlope: -13.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: -7
-      inSlope: -14
-      outSlope: -14
+      inSlope: -13.5
+      outSlope: -13.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -40,7 +40,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  <GroundSphereCastingPointPrefab>k__BackingField: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
+  _jumpHorizontalSpeed: 4
+  _slopeSlideSpeed: 5
+  _pointPrefab: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
     type: 3}
-  <GroundSphereCastingSphereRadius>k__BackingField: 0.25
-  <GroundSphereCastingDistance>k__BackingField: 0.75
+  _sphereRadius: 0.25
+  _distance: 0.75
