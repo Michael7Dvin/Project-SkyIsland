@@ -64,7 +64,6 @@ namespace Gameplay.Movement.States.Implementations
             if (_input.HorizontalDirection.Value != Vector3.zero)
             {
                 Vector3 cameraAlignedDirection = AlignDirectionToCameraView(_input.HorizontalDirection.Value);
-                
                 return cameraAlignedDirection * _jogSpeed * deltaTime;
             }
             

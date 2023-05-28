@@ -14,23 +14,23 @@ namespace Gameplay.Player.Movement
 {
     public class PlayerMovementFactory : IPlayerMovementFactory
     {
-        private readonly IUpdater _updater;
-        private readonly IInputService _inputService;
-        private readonly ICustomLogger _logger;
-
         private readonly PlayerMovementConfig _config;
 
         private readonly IGroundSpherecasterFactory _groundSpherecasterFactory;
-
+        
+        private readonly IUpdater _updater;
+        private readonly IInputService _input;
+        private readonly ICustomLogger _logger;
+        
         public PlayerMovementFactory(IConfigProvider configProvider,
             IUpdater updater,
-            IInputService inputService,
+            IInputService input,
             ICustomLogger logger)
         {
             _config = configProvider.GetForPlayer().MovementConfig;
             
             _updater = updater;
-            _inputService = inputService;
+            _input = input;
             _logger = logger;
             
             _groundSpherecasterFactory = new GroundSpherecasterFactory(_updater);
@@ -49,7 +49,8 @@ namespace Gameplay.Player.Movement
                 groundSpherecaster,
                 groundTypeTracker,
                 slopeCalculator,
-                _updater);
+                _updater,
+                _input);
             
             return movement;
         }
@@ -63,26 +64,34 @@ namespace Gameplay.Player.Movement
         private IGroundTypeTracker CreateGroundTypeTracker(IGroundSpherecaster groundSpherecaster) => 
             new GroundTypeTracker(groundSpherecaster);
 
-        private ISlopeCalculator CreateSlopeCalculator(IGroundSpherecaster groundSpherecaster) => 
-            new SlopeCalculator(groundSpherecaster);
-
         private StateMachine<ExitableMovementState> CreateMovementStateMachine(Transform camera)
         {
             StateMachine<ExitableMovementState> movementStateMachine = new();
+
+            JogState jogState = new(_config.JogSpeed, _config.JogAntiBumpSpeed, camera, _updater, _input, _logger);
             
             FallState fallState = new(_config.FallVerticalSpeed,
                 _config.FallHorizontalSpeed,
                 camera,
                 _updater,
-                _inputService,
+                _input,
                 _logger);
             
-            JogState jogState = new(_config.JogSpeed, _config.AntiBumpSpeed, camera, _updater, _inputService, _logger);
+            JumpState jumpState = new(_config.JumpYSpeedToTimeCurve,
+                _config.JumpHorizontalSpeed,
+                camera,
+                _updater,
+                _input,
+                _logger);
             
-            movementStateMachine.AddState(fallState);
             movementStateMachine.AddState(jogState);
+            movementStateMachine.AddState(fallState);
+            movementStateMachine.AddState(jumpState);
             
             return movementStateMachine;
         }
+
+        private ISlopeCalculator CreateSlopeCalculator(IGroundSpherecaster groundSpherecaster) => 
+            new SlopeCalculator(groundSpherecaster);
     }
 }

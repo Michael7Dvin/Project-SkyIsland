@@ -1,3 +1,4 @@
+using System;
 using Common.Observable;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,11 +18,15 @@ namespace Infrastructure.Services.Input
             input.Movement.Horizontal.started += OnHorizontalInput;
             input.Movement.Horizontal.canceled += OnHorizontalInput;
             input.Movement.Horizontal.performed += OnHorizontalInput;
+
+            input.Movement.Jump.performed += context => Jumped?.Invoke();
         }
         
         public IReadOnlyObservable<Vector3> HorizontalDirection => _horizontalDirection;
         public IReadOnlyObservable<float> HorizontalMagnitude => _horizontalMagnitude;
 
+        public event Action Jumped;
+        
         private void OnHorizontalInput(InputAction.CallbackContext context)
         {
             Vector2 direction = context.ReadValue<Vector2>();
