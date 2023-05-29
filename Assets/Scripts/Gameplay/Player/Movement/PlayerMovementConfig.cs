@@ -17,8 +17,9 @@ namespace Gameplay.Player.Movement
         [SerializeField] private AnimationCurve _ySpeedToTime;
         [SerializeField] private float _jumpHorizontalSpeed;
 
-        [Header("Slope Slide State")] 
+        [Header("Slope Sliding")] 
         [SerializeField] private float _slopeSlideSpeed;
+        [SerializeField] private float _minSlopeAngle;
 
         [Header("Ground Sphere Casting")]
         [SerializeField] private GameObject _pointPrefab;
@@ -35,7 +36,8 @@ namespace Gameplay.Player.Movement
          public float JumpHorizontalSpeed => _jumpHorizontalSpeed;
 
          public float SlopeSlideSpeed => _slopeSlideSpeed;
-         
+         public float MinSlopeAngle => _minSlopeAngle;
+
          public GameObject GroundSphereCastingPointPrefab => _pointPrefab;
          public float GroundSphereCastingSphereRadius => _sphereRadius;
          public float GroundSphereCastingDistance => _distance;

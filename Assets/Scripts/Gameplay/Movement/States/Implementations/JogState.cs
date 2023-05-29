@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Movement.GroundTypeTracking;
+using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.States.Base;
 using Infrastructure.Services.Input;
 using UnityEngine;
@@ -10,19 +11,22 @@ namespace Gameplay.Movement.States.Implementations
     {
         private readonly float _jogSpeed;
         private readonly float _antiBumpSpeed;
-
+        
+        private readonly ISlopeSlideMovement _slopeSlideMovement;
         private readonly Transform _camera;
 
         private readonly IInputService _input;
 
         public JogState(float jogSpeed,
             float antiBumpSpeed,
+            ISlopeSlideMovement slopeSlideMovement,
             Transform camera,
             IInputService input)
         {
             _jogSpeed = jogSpeed;
             _antiBumpSpeed = antiBumpSpeed;
-
+            
+            _slopeSlideMovement = slopeSlideMovement;
             _camera = camera;
 
             _input = input;
@@ -53,6 +57,10 @@ namespace Gameplay.Movement.States.Implementations
         public override Vector3 GetMoveVelocty(float deltaTime)
         {
             Vector3 velocity = GetJogVelocity(deltaTime) + GetAntiBumpVelocity(deltaTime);
+            
+            if (_slopeSlideMovement.IsSteepSlope == true)
+                velocity += _slopeSlideMovement.GetSlideDownSlopeVelocity(deltaTime);
+
             return velocity;
         }
  

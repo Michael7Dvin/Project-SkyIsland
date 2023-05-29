@@ -42,7 +42,6 @@ namespace Gameplay.Movement.States.Implementations
         {
             GroundType.Ground,
             GroundType.Air,
-            GroundType.Slope,
         };
 
         public override void Dispose()

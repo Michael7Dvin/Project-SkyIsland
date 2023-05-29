@@ -2,6 +2,7 @@
 using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
+using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.States.Implementations;
 using Infrastructure.Services.Configuration;
 using Infrastructure.Services.Input;
@@ -19,7 +20,7 @@ namespace Gameplay.Player.Movement
         
         private readonly IUpdater _updater;
         private readonly IInputService _input;
-        private ICustomLogger _logger;
+        private readonly ICustomLogger _logger;
 
         public PlayerMovementFactory(IConfigProvider configProvider,
             IUpdater updater,
@@ -40,16 +41,20 @@ namespace Gameplay.Player.Movement
             IGroundSpherecaster groundSpherecaster = CreateGroundSpherecaster(parent);
             ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSpherecaster);
             IGroundTypeTracker groundTypeTracker = 
-                CreateGroundTypeTracker(groundSpherecaster, slopeCalculator, characterController.slopeLimit);
+                CreateGroundTypeTracker(groundSpherecaster);
 
-            MovementStateMachine movementStateMachine = 
-                CreateMovementStateMachine(camera, groundTypeTracker, slopeCalculator);
+            ISlopeSlideMovement slopeSlideMovement =
+                new SlopeSlideMovement(_config.SlopeSlideSpeed, _config.MinSlopeAngle, slopeCalculator);
+            
+            IMovementStateMachine movementStateMachine = 
+                CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement);
 
             PlayerMovement movement = new(movementStateMachine,
                 characterController,
                 groundSpherecaster,
                 groundTypeTracker,
                 slopeCalculator,
+                slopeSlideMovement,
                 _updater,
                 _input);
             
@@ -62,36 +67,27 @@ namespace Gameplay.Player.Movement
                 _config.GroundSphereCastingSphereRadius, _config.GroundSphereCastingDistance);
         }
         
-        private IGroundTypeTracker CreateGroundTypeTracker(IGroundSpherecaster groundSpherecaster,
-            ISlopeCalculator slopeCalculator,
-            float slopeMinAngle)
-        {
-            return new GroundTypeTracker(groundSpherecaster, slopeCalculator, slopeMinAngle);
-        }
+        private IGroundTypeTracker CreateGroundTypeTracker(IGroundSpherecaster groundSpherecaster) => 
+            new GroundTypeTracker(groundSpherecaster);
 
         private MovementStateMachine CreateMovementStateMachine(Transform camera,
-            IGroundTypeTracker groundTypeTracker,
-            ISlopeCalculator slopeCalculator)
+            IGroundTypeTracker groundTypeTracker, ISlopeSlideMovement slopeSlideMovement)
         {
             JogState jogState = 
-                new(_config.JogSpeed, _config.JogAntiBumpSpeed, camera, _input);
+                new(_config.JogSpeed, _config.JogAntiBumpSpeed, slopeSlideMovement, camera, _input);
 
             FallState fallState = 
                 new(_config.FallVerticalSpeed, _config.FallHorizontalSpeed, camera, _input);
 
             JumpState jumpState = 
                 new(_config.JumpYSpeedToTimeCurve, _config.JumpHorizontalSpeed, camera, _input);
-
-            SlopeSlideState slopeSlideState =
-                new(_config.SlopeSlideSpeed, slopeCalculator);
             
             IMovementStateProvider stateProvider = 
-                new MovementStateProvider(jogState, fallState, slopeSlideState, _logger);
+                new MovementStateProvider(jogState, fallState, _logger);
 
             stateProvider.AddState(jogState);
             stateProvider.AddState(fallState);
             stateProvider.AddState(jumpState);
-            stateProvider.AddState(slopeSlideState);
 
             MovementStateMachine movementStateMachine = new(stateProvider, groundTypeTracker);
             

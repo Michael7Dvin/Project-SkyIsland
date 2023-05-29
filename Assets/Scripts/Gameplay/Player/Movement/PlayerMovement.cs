@@ -2,6 +2,7 @@
 using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
+using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.States.Base;
 using Gameplay.Movement.States.Implementations;
 using Infrastructure.Services.Input;
@@ -14,21 +15,23 @@ namespace Gameplay.Player.Movement
     {
         private ExitableMovementState _currentState;
         
-        private readonly MovementStateMachine _movementStateMachine;
+        private readonly IMovementStateMachine _movementStateMachine;
         private readonly CharacterController _characterController;
 
         private readonly IGroundSpherecaster _groundSpherecaster;
         private readonly IGroundTypeTracker _groundTracker;
         private readonly ISlopeCalculator _slopeCalculator;
-        
+        private readonly ISlopeSlideMovement _slopeSlideMovement;
+
         private readonly IUpdater _updater;
         private readonly IInputService _input;
 
-        public PlayerMovement(MovementStateMachine movementStateMachine,
+        public PlayerMovement(IMovementStateMachine movementStateMachine,
             CharacterController characterController,
             IGroundSpherecaster groundSpherecaster,
             IGroundTypeTracker groundTracker,
             ISlopeCalculator slopeCalculator,
+            ISlopeSlideMovement slopeSlideMovement,
             IUpdater updater,
             IInputService input)
         {
@@ -38,13 +41,14 @@ namespace Gameplay.Player.Movement
             _groundSpherecaster = groundSpherecaster;
             _groundTracker = groundTracker;
             _slopeCalculator = slopeCalculator;
+            _slopeSlideMovement = slopeSlideMovement;
             _updater = updater;
             _input = input;
 
             _updater.Updated += Update;
             _input.Jumped += OnJumpedInput;
         }
-
+        
         public void Dispose()
         {
             _movementStateMachine.Dispose();
@@ -60,8 +64,14 @@ namespace Gameplay.Player.Movement
         private void Update(float deltaTime) => 
             Move(deltaTime);
         
-        private void OnJumpedInput() => 
-            _movementStateMachine.EnterState<JumpState>();
+        private void OnJumpedInput()
+        {
+            if (_slopeSlideMovement.IsSteepSlope == false)
+            {
+                _movementStateMachine.EnterState<JumpState>();   
+            }
+        }
+
 
         private void Move(float deltaTime)
         {

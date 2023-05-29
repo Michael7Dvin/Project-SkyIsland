@@ -12,18 +12,16 @@ namespace Gameplay.Movement
         
         private MovementState _defaultStateWhileGround;
         private MovementState _defaultStateWhileAir;
-        private MovementState _defaultStateWhileSlope;
 
         private readonly ICustomLogger _logger;
 
         public MovementStateProvider(MovementState defaultStateWhileGround,
             MovementState defaultStateWhileAir,
-            MovementState defaultStateWhileSlope,
             ICustomLogger logger)
         {
             _logger = logger;
             
-            ValidateAndSetDefaultStates(defaultStateWhileGround, defaultStateWhileAir, defaultStateWhileSlope);
+            ValidateAndSetDefaultStates(defaultStateWhileGround, defaultStateWhileAir);
         }
 
         public void AddState<TState>(TState state) where TState : ExitableMovementState
@@ -69,20 +67,15 @@ namespace Gameplay.Movement
                     return _defaultStateWhileGround;
                 case GroundType.Air:
                     return _defaultStateWhileAir;
-                case GroundType.Slope:
-                    return _defaultStateWhileSlope;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(groundType), groundType, null);
             }
         }
 
-        private void ValidateAndSetDefaultStates(MovementState defaultStateWhileGround,
-            MovementState defaultStateWhileAir,
-            MovementState defaultStateWhileSlope)
+        private void ValidateAndSetDefaultStates(MovementState defaultWhileGround, MovementState defaultWhileAir)
         {
-            ValidateAndSetDefaultState(defaultStateWhileGround, GroundType.Ground, ref _defaultStateWhileGround);
-            ValidateAndSetDefaultState(defaultStateWhileAir, GroundType.Air, ref _defaultStateWhileAir);
-            ValidateAndSetDefaultState(defaultStateWhileSlope, GroundType.Slope, ref _defaultStateWhileSlope);
+            ValidateAndSetDefaultState(defaultWhileGround, GroundType.Ground, ref _defaultStateWhileGround);
+            ValidateAndSetDefaultState(defaultWhileAir, GroundType.Air, ref _defaultStateWhileAir);
         }
 
         private void ValidateAndSetDefaultState(MovementState state,

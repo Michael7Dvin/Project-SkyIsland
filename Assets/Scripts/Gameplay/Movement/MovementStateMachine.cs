@@ -1,11 +1,10 @@
-﻿using System;
-using Common.FSM;
+﻿using Common.FSM;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.States.Base;
 
 namespace Gameplay.Movement
 {
-    public class MovementStateMachine : IDisposable
+    public class MovementStateMachine : IMovementStateMachine
     {
         private readonly StateRunner<ExitableMovementState> _stateRunner = new();
         
@@ -19,7 +18,6 @@ namespace Gameplay.Movement
 
             _groundTypeTracker.CurrentGroundType.Changed += OnGroundTypeChanged;
             _stateRunner.ActiveState.Changed += OnActiveStateChanged;
-            
             EnterDefaultState();
         }
 

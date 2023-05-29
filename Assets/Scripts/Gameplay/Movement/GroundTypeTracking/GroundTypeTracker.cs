@@ -1,26 +1,19 @@
 ﻿using Common.Observable;
 using Gameplay.Movement.GroundSpherecasting;
-using Gameplay.Movement.SlopeCalculation;
 using UnityEngine;
 
 namespace Gameplay.Movement.GroundTypeTracking
 {
-    public class GroundTypeTracker : IGroundTypeTracker 
+    public class GroundTypeTracker : IGroundTypeTracker
     {
         private readonly IGroundSpherecaster _groundSpherecaster;
-        private readonly ISlopeCalculator _slopeCalculator;
-        private readonly float _slopeMinAngle;
 
         private readonly Observable<GroundType> _currentGroundType = new();
 
-        public GroundTypeTracker(IGroundSpherecaster groundSpherecaster,
-            ISlopeCalculator slopeCalculator,
-            float slopeMinAngle)
+        public GroundTypeTracker(IGroundSpherecaster groundSpherecaster)
         {
             _groundSpherecaster = groundSpherecaster;
-            _slopeCalculator = slopeCalculator;
-            _slopeMinAngle = slopeMinAngle;
-
+            
             _groundSpherecaster.SphereCasted += OnSphereCasted;
             _groundSpherecaster.SphereCastMissed += OnSphereCastMissed;
         }
@@ -33,18 +26,11 @@ namespace Gameplay.Movement.GroundTypeTracking
             _groundSpherecaster.SphereCastMissed -= OnSphereCastMissed;
         }
 
-        private void OnSphereCasted(RaycastHit hit)
-        {
-            if (_slopeCalculator.SlopeAngle >= _slopeMinAngle)
-            {
-                _currentGroundType.Value = GroundType.Slope;
-                return;   
-            }
-
+        private void OnSphereCasted(RaycastHit hit) => 
             _currentGroundType.Value = GroundType.Ground;
-        }
 
-        private void OnSphereCastMissed() => 
+        private void OnSphereCastMissed() =>
             _currentGroundType.Value = GroundType.Air;
+
     }
 }
