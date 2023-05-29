@@ -1,6 +1,6 @@
 using Common.FSM;
 
-namespace Gameplay.Movement.States.Base
+namespace Gameplay.Movement.StateMachine.States.Base
 {
     public abstract class MovementStateWithArguments<TArgs> : ExitableMovementState, IStateWithArguments<TArgs>
     {

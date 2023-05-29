@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Gameplay.Movement.GroundTypeTracking;
-using Gameplay.Movement.States.Base;
+using Gameplay.Movement.StateMachine.States.Base;
 using Infrastructure.Services.Logger;
 
-namespace Gameplay.Movement
+namespace Gameplay.Movement.StateMachine
 {
     public class MovementStateProvider : IMovementStateProvider
     {

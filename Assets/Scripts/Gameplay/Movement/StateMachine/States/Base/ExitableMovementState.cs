@@ -4,7 +4,7 @@ using Common.FSM;
 using Gameplay.Movement.GroundTypeTracking;
 using UnityEngine;
 
-namespace Gameplay.Movement.States.Base
+namespace Gameplay.Movement.StateMachine.States.Base
 {
     public abstract class ExitableMovementState : IExitableState
     {
@@ -16,6 +16,9 @@ namespace Gameplay.Movement.States.Base
         public abstract void Dispose();
         public abstract void Exit();
         public abstract Vector3 GetMoveVelocty(float deltaTime);
+
+        public virtual Quaternion GetRotation(Quaternion currentRotation, float deltaTime) => 
+            currentRotation;
 
         public bool CanStartWithGroundType(GroundType type) => 
             CanStartWithGroundTypes.Contains(type);

@@ -3,8 +3,9 @@ using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.SlopeMovement;
-using Gameplay.Movement.States.Base;
-using Gameplay.Movement.States.Implementations;
+using Gameplay.Movement.StateMachine;
+using Gameplay.Movement.StateMachine.States.Base;
+using Gameplay.Movement.StateMachine.States.Implementations;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Updater;
 using UnityEngine;
@@ -77,6 +78,11 @@ namespace Gameplay.Player.Movement
         {
             Vector3 velocity = _movementStateMachine.ActiveState.GetMoveVelocty(deltaTime);
             _characterController.Move(velocity);
+
+            Quaternion rotation =
+                _movementStateMachine.ActiveState.GetRotation(_characterController.transform.rotation, deltaTime);
+
+            _characterController.transform.rotation = rotation;
         }
     }
 }

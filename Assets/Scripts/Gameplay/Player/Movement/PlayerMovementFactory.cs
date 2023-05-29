@@ -1,9 +1,11 @@
 ﻿using Gameplay.Movement;
 using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
+using Gameplay.Movement.Rotator;
 using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.SlopeMovement;
-using Gameplay.Movement.States.Implementations;
+using Gameplay.Movement.StateMachine;
+using Gameplay.Movement.StateMachine.States.Implementations;
 using Infrastructure.Services.Configuration;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Logger;
@@ -45,9 +47,11 @@ namespace Gameplay.Player.Movement
 
             ISlopeSlideMovement slopeSlideMovement =
                 new SlopeSlideMovement(_config.SlopeSlideSpeed, _config.MinSlopeAngle, slopeCalculator);
+
+            IRotator rotator = new Rotator(_config.RotationSpeed); 
             
             IMovementStateMachine movementStateMachine = 
-                CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement);
+                CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
 
             PlayerMovement movement = new(movementStateMachine,
                 characterController,
@@ -71,16 +75,16 @@ namespace Gameplay.Player.Movement
             new GroundTypeTracker(groundSpherecaster);
 
         private MovementStateMachine CreateMovementStateMachine(Transform camera,
-            IGroundTypeTracker groundTypeTracker, ISlopeSlideMovement slopeSlideMovement)
+            IGroundTypeTracker groundTypeTracker, ISlopeSlideMovement slopeSlideMovement, IRotator rotator)
         {
             JogState jogState = 
-                new(_config.JogSpeed, _config.JogAntiBumpSpeed, slopeSlideMovement, camera, _input);
+                new(_config.JogSpeed, _config.JogAntiBumpSpeed, slopeSlideMovement, rotator, camera, _input);
 
             FallState fallState = 
-                new(_config.FallVerticalSpeed, _config.FallHorizontalSpeed, camera, _input);
+                new(_config.FallVerticalSpeed, _config.FallHorizontalSpeed, rotator, camera, _input);
 
             JumpState jumpState = 
-                new(_config.JumpYSpeedToTimeCurve, _config.JumpHorizontalSpeed, camera, _input);
+                new(_config.JumpYSpeedToTimeCurve, _config.JumpHorizontalSpeed, rotator, camera, _input);
             
             IMovementStateProvider stateProvider = 
                 new MovementStateProvider(jogState, fallState, _logger);

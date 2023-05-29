@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Movement.GroundTypeTracking;
+using Gameplay.Movement.Rotator;
 using Gameplay.Movement.SlopeMovement;
-using Gameplay.Movement.States.Base;
+using Gameplay.Movement.StateMachine.States.Base;
 using Infrastructure.Services.Input;
 using UnityEngine;
 
-namespace Gameplay.Movement.States.Implementations
+namespace Gameplay.Movement.StateMachine.States.Implementations
 {
     public class JogState : MovementState
     {
@@ -13,6 +14,7 @@ namespace Gameplay.Movement.States.Implementations
         private readonly float _antiBumpSpeed;
         
         private readonly ISlopeSlideMovement _slopeSlideMovement;
+        private readonly IRotator _rotator;
         private readonly Transform _camera;
 
         private readonly IInputService _input;
@@ -20,6 +22,7 @@ namespace Gameplay.Movement.States.Implementations
         public JogState(float jogSpeed,
             float antiBumpSpeed,
             ISlopeSlideMovement slopeSlideMovement,
+            IRotator rotator,
             Transform camera,
             IInputService input)
         {
@@ -27,6 +30,7 @@ namespace Gameplay.Movement.States.Implementations
             _antiBumpSpeed = antiBumpSpeed;
             
             _slopeSlideMovement = slopeSlideMovement;
+            _rotator = rotator;
             _camera = camera;
 
             _input = input;
@@ -63,7 +67,10 @@ namespace Gameplay.Movement.States.Implementations
 
             return velocity;
         }
- 
+        
+        public override Quaternion GetRotation(Quaternion currentRotation, float deltaTime) => 
+            _rotator.GetRotationToDirection(GetMoveVelocty(deltaTime), currentRotation, deltaTime);
+
         private Vector3 GetJogVelocity(float deltaTime)
         {
             Vector3 velocity = new();

@@ -1,7 +1,7 @@
 ﻿using Gameplay.Movement.GroundTypeTracking;
-using Gameplay.Movement.States.Base;
+using Gameplay.Movement.StateMachine.States.Base;
 
-namespace Gameplay.Movement
+namespace Gameplay.Movement.StateMachine
 {
     public interface IMovementStateProvider
     {

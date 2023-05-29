@@ -21,6 +21,9 @@ namespace Gameplay.Player.Movement
         [SerializeField] private float _slopeSlideSpeed;
         [SerializeField] private float _minSlopeAngle;
 
+        [Header("Rotation")] 
+        [SerializeField] private float _speedInAnglesPerSec;
+        
         [Header("Ground Sphere Casting")]
         [SerializeField] private GameObject _pointPrefab;
         [SerializeField] private float _sphereRadius;
@@ -38,6 +41,8 @@ namespace Gameplay.Player.Movement
          public float SlopeSlideSpeed => _slopeSlideSpeed;
          public float MinSlopeAngle => _minSlopeAngle;
 
+         public float RotationSpeed => _speedInAnglesPerSec;
+         
          public GameObject GroundSphereCastingPointPrefab => _pointPrefab;
          public float GroundSphereCastingSphereRadius => _sphereRadius;
          public float GroundSphereCastingDistance => _distance;
