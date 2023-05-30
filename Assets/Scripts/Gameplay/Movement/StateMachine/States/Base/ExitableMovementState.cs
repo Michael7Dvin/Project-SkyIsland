@@ -8,6 +8,11 @@ namespace Gameplay.Movement.StateMachine.States.Base
 {
     public abstract class ExitableMovementState : IExitableState
     {
+        public abstract MovementStateType Type { get; }
+
+        public abstract float CurrentHorizontalSpeed { get; }
+        public abstract float CurrentVerticalSpeed { get; }
+        
         protected abstract HashSet<GroundType> CanStartWithGroundTypes { get; }
         protected abstract HashSet<GroundType> CanWorkWithGroundTypes { get; }
 

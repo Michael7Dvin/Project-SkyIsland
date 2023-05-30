@@ -32,6 +32,10 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             _input = input;
         }
 
+        public override MovementStateType Type => MovementStateType.Fall;
+        public override float CurrentHorizontalSpeed => _horizontalspeed;
+        public override float CurrentVerticalSpeed => _verticalSpeed;
+
         protected override HashSet<GroundType> CanStartWithGroundTypes { get; } = new()
         {
             GroundType.Air,

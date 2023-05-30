@@ -8,7 +8,6 @@ namespace Infrastructure.Services.Input
     public class InputService : IInputService
     {
         private readonly Observable<Vector3> _horizontalDirection = new();
-        private readonly Observable<float> _horizontalMagnitude = new();
 
         public InputService()
         {
@@ -23,7 +22,6 @@ namespace Infrastructure.Services.Input
         }
         
         public IReadOnlyObservable<Vector3> HorizontalDirection => _horizontalDirection;
-        public IReadOnlyObservable<float> HorizontalMagnitude => _horizontalMagnitude;
 
         public event Action Jumped;
         
@@ -33,8 +31,7 @@ namespace Infrastructure.Services.Input
 
             Vector3 directionToVector3 = new(direction.x, 0f, direction.y);
             
-            _horizontalDirection.Value = directionToVector3;
-            _horizontalMagnitude.Value = directionToVector3.magnitude;
+            _horizontalDirection.Value = directionToVector3.normalized;
         }
     }
 }

@@ -38,7 +38,10 @@ namespace Gameplay.Player.Movement
             _groundSpherecasterFactory = new GroundSpherecasterFactory(_updater);
         }
 
-        public IPlayerMovement Create(Transform parent, CharacterController characterController, Transform camera)
+        public IPlayerMovement Create(Transform parent,
+            Animator animator,
+            CharacterController characterController,
+            Transform camera)
         {
             IGroundSpherecaster groundSpherecaster = CreateGroundSpherecaster(parent);
             ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSpherecaster);
@@ -53,12 +56,15 @@ namespace Gameplay.Player.Movement
             IMovementStateMachine movementStateMachine = 
                 CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
 
+            PlayerAnimator movementAnimator = new(animator, movementStateMachine.ActiveState, characterController, _updater);
+            
             PlayerMovement movement = new(movementStateMachine,
                 characterController,
                 groundSpherecaster,
                 groundTypeTracker,
                 slopeCalculator,
                 slopeSlideMovement,
+                movementAnimator,
                 _updater,
                 _input);
             
@@ -84,7 +90,7 @@ namespace Gameplay.Player.Movement
                 new(_config.FallVerticalSpeed, _config.FallHorizontalSpeed, rotator, camera, _input);
 
             JumpState jumpState = 
-                new(_config.JumpYSpeedToTimeCurve, _config.JumpHorizontalSpeed, rotator, camera, _input);
+                new(_config.JumpYSpeedToTimeCurve, _config.JumpHorizontalSpeed, rotator, camera, groundTypeTracker, _input);
             
             IMovementStateProvider stateProvider = 
                 new MovementStateProvider(jogState, fallState, _logger);

@@ -23,6 +23,7 @@ namespace Gameplay.Player.Movement
         private readonly IGroundTypeTracker _groundTracker;
         private readonly ISlopeCalculator _slopeCalculator;
         private readonly ISlopeSlideMovement _slopeSlideMovement;
+        private readonly PlayerAnimator _animator;
 
         private readonly IUpdater _updater;
         private readonly IInputService _input;
@@ -33,6 +34,7 @@ namespace Gameplay.Player.Movement
             IGroundTypeTracker groundTracker,
             ISlopeCalculator slopeCalculator,
             ISlopeSlideMovement slopeSlideMovement,
+            PlayerAnimator animator,
             IUpdater updater,
             IInputService input)
         {
@@ -43,6 +45,7 @@ namespace Gameplay.Player.Movement
             _groundTracker = groundTracker;
             _slopeCalculator = slopeCalculator;
             _slopeSlideMovement = slopeSlideMovement;
+            _animator = animator;
             _updater = updater;
             _input = input;
 
@@ -57,7 +60,8 @@ namespace Gameplay.Player.Movement
             _groundSpherecaster.Dispose();
             _groundTracker.Dispose();
             _slopeCalculator.Dispose();
-
+            _animator.Dispose();
+            
             _updater.Updated -= Update;
             _input.Jumped -= OnJumpedInput;
         }
@@ -76,11 +80,13 @@ namespace Gameplay.Player.Movement
 
         private void Move(float deltaTime)
         {
-            Vector3 velocity = _movementStateMachine.ActiveState.GetMoveVelocty(deltaTime);
+            ExitableMovementState activeState = _movementStateMachine.ActiveState.Value;
+            
+            Vector3 velocity = activeState.GetMoveVelocty(deltaTime);
             _characterController.Move(velocity);
 
             Quaternion rotation =
-                _movementStateMachine.ActiveState.GetRotation(_characterController.transform.rotation, deltaTime);
+                activeState.GetRotation(_characterController.transform.rotation, deltaTime);
 
             _characterController.transform.rotation = rotation;
         }

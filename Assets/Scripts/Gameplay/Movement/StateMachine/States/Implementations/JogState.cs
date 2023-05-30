@@ -36,6 +36,10 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             _input = input;
         }
 
+        public override MovementStateType Type => MovementStateType.Jog;
+        public override float CurrentHorizontalSpeed => _jogSpeed;
+        public override float CurrentVerticalSpeed => _antiBumpSpeed;
+
         protected override HashSet<GroundType> CanStartWithGroundTypes { get; } = new()
         {
             GroundType.Ground,

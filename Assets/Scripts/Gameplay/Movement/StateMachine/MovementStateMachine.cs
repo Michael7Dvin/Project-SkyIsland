@@ -1,4 +1,5 @@
 ﻿using Common.FSM;
+using Common.Observable;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.StateMachine.States.Base;
 
@@ -17,30 +18,17 @@ namespace Gameplay.Movement.StateMachine
             _groundTypeTracker = groundTypeTracker;
 
             _groundTypeTracker.CurrentGroundType.Changed += OnGroundTypeChanged;
-            _stateRunner.ActiveState.Changed += OnActiveStateChanged;
             EnterDefaultState();
         }
 
-        public ExitableMovementState ActiveState { get; private set; }
+        public IReadOnlyObservable<ExitableMovementState> ActiveState => _stateRunner.ActiveState;
 
         private GroundType CurrentGroundType => _groundTypeTracker.CurrentGroundType.Value;
 
-        public void Dispose()
-        {
+        public void Dispose() => 
             _groundTypeTracker.CurrentGroundType.Changed -= OnGroundTypeChanged;
-            _stateRunner.ActiveState.Changed -= OnActiveStateChanged;
-        }
 
-        private void OnActiveStateChanged(ExitableMovementState state)
-        {
-            if (ActiveState != null) 
-                ActiveState.MovementPerformed -= OnStateMovementPerformed;
-            
-            ActiveState = state;
-            ActiveState.MovementPerformed += OnStateMovementPerformed;
-        }
-
-        private void OnStateMovementPerformed() => 
+        private void OnStatePerformed() => 
             EnterDefaultState();
 
         private void OnGroundTypeChanged(GroundType groundType)
@@ -58,17 +46,31 @@ namespace Gameplay.Movement.StateMachine
         public void EnterState<TState>() where TState : MovementState
         {
             MovementState state = _stateProvider.GetState<TState>();
-            
-            if (state.CanStartWithGroundType(CurrentGroundType)) 
+
+            if (state.CanStartWithGroundType(CurrentGroundType) == true)
+            {
+                if (ActiveState.Value != null) 
+                    ActiveState.Value.MovementPerformed -= OnStatePerformed;
+                
+                state.MovementPerformed += OnStatePerformed;
+                
                 _stateRunner.EnterState(state);
+            }
         }
 
         public void EnterState<TState, TArgs>(TArgs args) where TState : MovementStateWithArguments<TArgs>
         {
             MovementStateWithArguments<TArgs> state = _stateProvider.GetState<TState, TArgs>();
-            
-            if (state.CanStartWithGroundType(CurrentGroundType)) 
+
+            if (state.CanStartWithGroundType(CurrentGroundType) == true)
+            {
+                if (ActiveState.Value != null) 
+                    ActiveState.Value.MovementPerformed -= OnStatePerformed;
+                
+                state.MovementPerformed += OnStatePerformed;
+                
                 _stateRunner.EnterState(state, args);
+            }
         }
     }
 }

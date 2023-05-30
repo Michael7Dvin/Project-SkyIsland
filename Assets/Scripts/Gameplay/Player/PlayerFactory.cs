@@ -34,19 +34,25 @@ namespace Gameplay.Player
 
             GetComponents(player,
                 out CharacterController characterController,
+                out Animator animator,
                 out IGameObjectLifeCycleNotifier playerGameObjectLifeCycleNotifier);
 
-            IPlayerMovement movement = CreatePlayerMovement(player.transform, characterController, camera.transform);
+            IPlayerMovement movement = 
+                CreatePlayerMovement(player.transform, characterController, animator, camera.transform);
             
             return new Player(movement, playerGameObjectLifeCycleNotifier);
         }
 
         private void GetComponents(GameObject player,
             out CharacterController characterController,
+            out Animator animator,
             out IGameObjectLifeCycleNotifier playerGameObjectLifeCycleNotifier)
         {
             if (player.TryGetComponent(out characterController) == false)
                 _logger.LogError($"{nameof(player)} prefab have no {nameof(CharacterController)} attached");
+            
+            if (player.TryGetComponent(out animator) == false)
+                _logger.LogError($"{nameof(player)} prefab have no {nameof(Animator)} attached");
             
             if (player.TryGetComponent(out playerGameObjectLifeCycleNotifier) == false)
                 _logger.LogError($"{nameof(player)} prefab have no {nameof(IGameObjectLifeCycleNotifier)} attached");
@@ -54,9 +60,10 @@ namespace Gameplay.Player
         
         private IPlayerMovement CreatePlayerMovement(Transform parent,
             CharacterController characterController,
+            Animator animator,
             Transform cameraTransform)
         {
-            return _movementFactory.Create(parent, characterController, cameraTransform);
+            return _movementFactory.Create(parent, animator, characterController, cameraTransform);
         }
     }
 }

@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jogSpeed: 5
   _jogAntiBumpSpeed: 4
-  _fallVerticalSpeed: 6
+  _fallVerticalSpeed: 8
   _fallHorizontalSpeed: 3
   _ySpeedToTime:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 6.5
-      inSlope: -13.5
-      outSlope: -13.5
+      value: 4.5
+      inSlope: -9.5
+      outSlope: -9.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: -7
-      inSlope: -13.5
-      outSlope: -13.5
+      value: -5
+      inSlope: -9.5
+      outSlope: -9.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -40,8 +40,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _jumpHorizontalSpeed: 4
+  _jumpHorizontalSpeed: 5
   _slopeSlideSpeed: 5
+  _minSlopeAngle: 40
+  _speedInAnglesPerSec: 200
   _pointPrefab: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
     type: 3}
   _sphereRadius: 0.25

@@ -30,7 +30,7 @@
                 {
                     "name": "left",
                     "id": "bafe9b8a-84c7-4e15-a2eb-830720269521",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
@@ -41,7 +41,7 @@
                 {
                     "name": "right",
                     "id": "7b3f2296-78dd-4ef0-b9a7-4bf0733fef13",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",

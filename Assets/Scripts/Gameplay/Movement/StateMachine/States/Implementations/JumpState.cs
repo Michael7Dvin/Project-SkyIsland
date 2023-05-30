@@ -13,12 +13,15 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         
         private float _currentJumpTime;
         private float _totalJumpTime;
+
+        private bool _isJumped;
         
         private readonly AnimationCurve _jumpCurve;
         private readonly float _horizontalspeed;
         
         private readonly IRotator _rotator;
         private readonly Transform _camera;
+        private readonly IGroundTypeTracker _groundTypeTracker;
 
         private readonly IInputService _input;
 
@@ -26,6 +29,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             float horizontalspeed,
             IRotator rotator,
             Transform camera,
+            IGroundTypeTracker groundTypeTracker,
             IInputService input)
         {
             _jumpCurve = jumpCurve;
@@ -33,11 +37,16 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             _rotator = rotator;
 
             _camera = camera;
+            _groundTypeTracker = groundTypeTracker;
 
             _input = input;
 
             SetTotalTime();
         }
+
+        public override MovementStateType Type => MovementStateType.Jump;
+        public override float CurrentHorizontalSpeed => _horizontalspeed;
+        public override float CurrentVerticalSpeed => _currentVelocity.y;
 
         protected override HashSet<GroundType> CanStartWithGroundTypes { get; } = new()
         {
@@ -50,16 +59,25 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             GroundType.Air,
         };
 
-        public override void Dispose()
-        {
-        }
+        public override void Dispose() => 
+            _groundTypeTracker.CurrentGroundType.Changed -= OnCurrentGroundTypeChanged;
 
-        public override void Enter()
-        {
-        }
+        public override void Enter() => 
+            _groundTypeTracker.CurrentGroundType.Changed += OnCurrentGroundTypeChanged;
 
         public override void Exit()
         {
+            _isJumped = false;
+            _groundTypeTracker.CurrentGroundType.Changed -= OnCurrentGroundTypeChanged;
+        }
+
+        private void OnCurrentGroundTypeChanged(GroundType groundType)
+        {
+            if (groundType == GroundType.Ground & _isJumped == true) 
+                PeformJump();
+
+            if (groundType == GroundType.Air)
+                _isJumped = true;
         }
 
         public override Vector3 GetMoveVelocty(float deltaTime)
@@ -86,12 +104,9 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             float verticalSpeed = _jumpCurve.Evaluate(_currentJumpTime);
 
             _currentJumpTime += deltaTime;
-            
+
             if (_currentJumpTime >= _totalJumpTime)
-            {
-                _currentJumpTime = 0f;
-                NotifyMovementPerforemed();
-            }
+                PeformJump();
 
             Vector3 velocity = Vector3.up * verticalSpeed * deltaTime;
             return velocity;
@@ -112,5 +127,11 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         
         private Vector3 AlignDirectionToCameraView(Vector3 direction) => 
             Quaternion.AngleAxis(_camera.rotation.eulerAngles.y, Vector3.up) * direction;
+
+        private void PeformJump()
+        {
+            _currentJumpTime = 0f;
+            NotifyMovementPerforemed();
+        }
     }
 }
