@@ -10,7 +10,7 @@ namespace Gameplay.Player.PlayerCamera
 
         public PlayerCameraFactory(IConfigProvider configProvider)
         {
-            _config = configProvider.GetForPlayer().CameraConfig;
+            _config = configProvider.GetForPlayer().Camera;
         }
 
         public Camera Create(Transform parent)

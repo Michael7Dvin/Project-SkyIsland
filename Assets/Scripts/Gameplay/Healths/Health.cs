@@ -2,7 +2,7 @@
 using Infrastructure.Services.Logger;
 using UnityEngine;
 
-namespace Gameplay.Health
+namespace Gameplay.Healths
 {
     public class Health : IHealth
     {
@@ -20,7 +20,7 @@ namespace Gameplay.Health
 
         public IReadOnlyObservable<float> CurrentValue => _currentValue;
 
-        public void AcceptDamage(float damage)
+        public void TakeDamage(float damage)
         {
             if (damage <= 0)
             {

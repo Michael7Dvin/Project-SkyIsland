@@ -1,4 +1,6 @@
-﻿using Gameplay.MonoBehaviours;
+﻿using Gameplay.Healths;
+using Gameplay.InjuryProcessing;
+using Gameplay.MonoBehaviours;
 using Gameplay.Player.Movement;
 using Gameplay.Player.PlayerCamera;
 using Infrastructure.Services.Configuration;
@@ -35,17 +37,23 @@ namespace Gameplay.Player
             GetComponents(player,
                 out CharacterController characterController,
                 out Animator animator,
+                out IDamagableNotifier damageNotifier,
                 out IGameObjectLifeCycleNotifier playerGameObjectLifeCycleNotifier);
 
             IPlayerMovement movement = 
                 CreatePlayerMovement(player.transform, characterController, animator, camera.transform);
+
+            IHealth health = CreateHealth(_logger);
+
+            IInjuryProcessor injuryProcessor = CreateInjuryProcessor(health, damageNotifier);
             
-            return new Player(movement, playerGameObjectLifeCycleNotifier);
+            return new Player(movement, injuryProcessor, playerGameObjectLifeCycleNotifier);
         }
 
         private void GetComponents(GameObject player,
             out CharacterController characterController,
             out Animator animator,
+            out IDamagableNotifier damagableNotifier,
             out IGameObjectLifeCycleNotifier playerGameObjectLifeCycleNotifier)
         {
             if (player.TryGetComponent(out characterController) == false)
@@ -53,6 +61,9 @@ namespace Gameplay.Player
             
             if (player.TryGetComponent(out animator) == false)
                 _logger.LogError($"{nameof(player)} prefab have no {nameof(Animator)} attached");
+            
+            if (player.TryGetComponent(out damagableNotifier) == false)
+                _logger.LogError($"{nameof(player)} prefab have no {nameof(IDamagableNotifier)} attached");
             
             if (player.TryGetComponent(out playerGameObjectLifeCycleNotifier) == false)
                 _logger.LogError($"{nameof(player)} prefab have no {nameof(IGameObjectLifeCycleNotifier)} attached");
@@ -65,5 +76,11 @@ namespace Gameplay.Player
         {
             return _movementFactory.Create(parent, animator, characterController, cameraTransform);
         }
+
+        private IInjuryProcessor CreateInjuryProcessor(IHealth health, IDamagableNotifier damagableNotifier) =>
+            new InjuryProcessor(health, damagableNotifier);
+
+        private IHealth CreateHealth(ICustomLogger logger) =>
+            new Health(_config.Stats.CrrentHealth, _config.Stats.MaxHealth, logger);
     }
 }

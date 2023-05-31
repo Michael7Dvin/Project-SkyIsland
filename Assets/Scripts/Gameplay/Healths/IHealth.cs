@@ -1,12 +1,12 @@
 ﻿using Common.Observable;
 
-namespace Gameplay.Health
+namespace Gameplay.Healths
 {
     public interface IHealth
     {
         public IReadOnlyObservable<float> CurrentValue { get; }
 
-        public void AcceptDamage(float damage);
+        public void TakeDamage(float damage);
         public void Heal(float amount);
     }
 }

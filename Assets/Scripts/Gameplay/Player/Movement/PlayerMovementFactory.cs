@@ -28,7 +28,7 @@ namespace Gameplay.Player.Movement
             IInputService input,
             ICustomLogger logger)
         {
-            _config = configProvider.GetForPlayer().MovementConfig;
+            _config = configProvider.GetForPlayer().Movement;
             
             _updater = updater;
             _input = input;

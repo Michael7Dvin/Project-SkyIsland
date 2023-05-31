@@ -9,7 +9,8 @@ namespace Gameplay.Player
     public class PlayerConfig : ScriptableObject
     {
         [field: SerializeField] public GameObjectLifeCycleNotifier PlayerPrefab { get; private set; }
-        [field: SerializeField] public PlayerMovementConfig MovementConfig { get; private set; }
-        [field: SerializeField] public PlayerCameraConfig CameraConfig { get; private set; }
+        [field: SerializeField] public PlayerMovementConfig Movement { get; private set; }
+        [field: SerializeField] public PlayerCameraConfig Camera { get; private set; }
+        [field: SerializeField] public PlayerStatsConfig Stats { get; private set; }
     }
 }

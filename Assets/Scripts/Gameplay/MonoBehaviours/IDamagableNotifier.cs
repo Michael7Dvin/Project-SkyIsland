@@ -2,7 +2,7 @@
 
 namespace Gameplay.MonoBehaviours
 {
-    public interface IDamageNotifier
+    public interface IDamagableNotifier
     {
         public event Action<float> Damaged;
 

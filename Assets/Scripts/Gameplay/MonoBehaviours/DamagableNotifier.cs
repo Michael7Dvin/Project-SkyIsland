@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Gameplay.MonoBehaviours
 {
-    public class DamageNotifier : MonoBehaviour, IDamageNotifier 
+    public class DamagableNotifier : MonoBehaviour, IDamagableNotifier 
     {
         public event Action<float> Damaged;
         
