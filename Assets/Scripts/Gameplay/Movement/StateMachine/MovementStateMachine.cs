@@ -47,7 +47,7 @@ namespace Gameplay.Movement.StateMachine
         {
             MovementState state = _stateProvider.GetState<TState>();
 
-            if (state.CanStartWithGroundType(CurrentGroundType) == true)
+            if (state.CanStart(CurrentGroundType) == true)
             {
                 if (ActiveState.Value != null) 
                     ActiveState.Value.MovementPerformed -= OnStatePerformed;
@@ -62,7 +62,7 @@ namespace Gameplay.Movement.StateMachine
         {
             MovementStateWithArguments<TArgs> state = _stateProvider.GetState<TState, TArgs>();
 
-            if (state.CanStartWithGroundType(CurrentGroundType) == true)
+            if (state.CanStart(CurrentGroundType) == true)
             {
                 if (ActiveState.Value != null) 
                     ActiveState.Value.MovementPerformed -= OnStatePerformed;

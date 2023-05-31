@@ -2,7 +2,6 @@
 using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.SlopeCalculation;
-using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine;
 using Gameplay.Movement.StateMachine.States.Base;
 using Gameplay.Movement.StateMachine.States.Implementations;
@@ -22,7 +21,6 @@ namespace Gameplay.Player.Movement
         private readonly IGroundSpherecaster _groundSpherecaster;
         private readonly IGroundTypeTracker _groundTracker;
         private readonly ISlopeCalculator _slopeCalculator;
-        private readonly ISlopeSlideMovement _slopeSlideMovement;
         private readonly PlayerAnimator _animator;
 
         private readonly IUpdater _updater;
@@ -33,7 +31,6 @@ namespace Gameplay.Player.Movement
             IGroundSpherecaster groundSpherecaster,
             IGroundTypeTracker groundTracker,
             ISlopeCalculator slopeCalculator,
-            ISlopeSlideMovement slopeSlideMovement,
             PlayerAnimator animator,
             IUpdater updater,
             IInputService input)
@@ -44,7 +41,6 @@ namespace Gameplay.Player.Movement
             _groundSpherecaster = groundSpherecaster;
             _groundTracker = groundTracker;
             _slopeCalculator = slopeCalculator;
-            _slopeSlideMovement = slopeSlideMovement;
             _animator = animator;
             _updater = updater;
             _input = input;
@@ -69,14 +65,8 @@ namespace Gameplay.Player.Movement
         private void Update(float deltaTime) => 
             Move(deltaTime);
         
-        private void OnJumpedInput()
-        {
-            if (_slopeSlideMovement.IsSteepSlope == false)
-            {
-                _movementStateMachine.EnterState<JumpState>();   
-            }
-        }
-
+        private void OnJumpedInput() => 
+            _movementStateMachine.EnterState<JumpState>();
 
         private void Move(float deltaTime)
         {

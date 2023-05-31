@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.Rotator;
+using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine.States.Base;
 using Infrastructure.Services.Input;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly IRotator _rotator;
         private readonly Transform _camera;
         private readonly IGroundTypeTracker _groundTypeTracker;
+        private readonly ISlopeSlideMovement _slopeSlideMovement;
 
         private readonly IInputService _input;
 
@@ -30,6 +32,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             IRotator rotator,
             Transform camera,
             IGroundTypeTracker groundTypeTracker,
+            ISlopeSlideMovement slopeSlideMovement,
             IInputService input)
         {
             _jumpCurve = jumpCurve;
@@ -38,6 +41,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
 
             _camera = camera;
             _groundTypeTracker = groundTypeTracker;
+            _slopeSlideMovement = slopeSlideMovement;
 
             _input = input;
 
@@ -69,6 +73,13 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         {
             _isJumped = false;
             _groundTypeTracker.CurrentGroundType.Changed -= OnCurrentGroundTypeChanged;
+        }
+
+        public override bool CanStart(GroundType currentGroundType)
+        {
+            bool canStartBase = base.CanStart(currentGroundType);
+            bool isNotSteepSlope = _slopeSlideMovement.IsSteepSlope == false;
+            return canStartBase & isNotSteepSlope;
         }
 
         private void OnCurrentGroundTypeChanged(GroundType groundType)

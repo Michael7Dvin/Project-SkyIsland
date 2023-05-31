@@ -1,5 +1,4 @@
-﻿using Gameplay.Movement;
-using Gameplay.Movement.GroundSpherecasting;
+﻿using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.Rotator;
 using Gameplay.Movement.SlopeCalculation;
@@ -63,7 +62,6 @@ namespace Gameplay.Player.Movement
                 groundSpherecaster,
                 groundTypeTracker,
                 slopeCalculator,
-                slopeSlideMovement,
                 movementAnimator,
                 _updater,
                 _input);
@@ -89,8 +87,13 @@ namespace Gameplay.Player.Movement
             FallState fallState = 
                 new(_config.FallVerticalSpeed, _config.FallHorizontalSpeed, rotator, camera, _input);
 
-            JumpState jumpState = 
-                new(_config.JumpYSpeedToTimeCurve, _config.JumpHorizontalSpeed, rotator, camera, groundTypeTracker, _input);
+            JumpState jumpState = new(_config.JumpYSpeedToTimeCurve,
+                _config.JumpHorizontalSpeed,
+                rotator,
+                camera,
+                groundTypeTracker,
+                slopeSlideMovement,
+                _input);
             
             IMovementStateProvider stateProvider = 
                 new MovementStateProvider(jogState, fallState, _logger);

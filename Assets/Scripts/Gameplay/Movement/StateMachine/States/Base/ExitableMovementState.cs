@@ -25,8 +25,8 @@ namespace Gameplay.Movement.StateMachine.States.Base
         public virtual Quaternion GetRotation(Quaternion currentRotation, float deltaTime) => 
             currentRotation;
 
-        public bool CanStartWithGroundType(GroundType type) => 
-            CanStartWithGroundTypes.Contains(type);
+        public virtual bool CanStart(GroundType currentGroundType) => 
+            CanStartWithGroundTypes.Contains(currentGroundType);
         
         public bool CanWorkWithGroundType(GroundType type) => 
             CanWorkWithGroundTypes.Contains(type);

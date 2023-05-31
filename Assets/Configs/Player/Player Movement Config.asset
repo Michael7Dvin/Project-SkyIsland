@@ -43,7 +43,7 @@ MonoBehaviour:
   _jumpHorizontalSpeed: 5
   _slopeSlideSpeed: 5
   _minSlopeAngle: 40
-  _speedInAnglesPerSec: 200
+  _speedInAnglesPerSec: 400
   _pointPrefab: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
     type: 3}
   _sphereRadius: 0.25

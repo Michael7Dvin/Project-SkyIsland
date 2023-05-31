@@ -82,7 +82,7 @@ namespace Gameplay.Movement.StateMachine
             GroundType expectedGroundType,
             ref MovementState defaultState)
         {
-            if (state.CanStartWithGroundType(expectedGroundType) && state.CanWorkWithGroundType(expectedGroundType))
+            if (state.CanStart(expectedGroundType) && state.CanWorkWithGroundType(expectedGroundType))
                 defaultState = state;
             else
                 _logger.LogError($"Invalid default state for {expectedGroundType}.");

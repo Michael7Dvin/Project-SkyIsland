@@ -7,11 +7,13 @@ namespace Gameplay.Player
     public class Player : IDisposable
     {
         private readonly IPlayerMovement _movement;
+
         private readonly IGameObjectLifeCycleNotifier _gameObjectLifeCycleNotifier;
 
         public Player(IPlayerMovement movement, IGameObjectLifeCycleNotifier gameObjectLifeCycleNotifier)
         {
             _movement = movement;
+
             _gameObjectLifeCycleNotifier = gameObjectLifeCycleNotifier;
 
             _gameObjectLifeCycleNotifier.Destroyed += Dispose;
