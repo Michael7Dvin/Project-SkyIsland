@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gameplay.MonoBehaviours
@@ -7,7 +6,7 @@ namespace Gameplay.MonoBehaviours
     [RequireComponent(typeof(Collider))]
     public class DamageAreaForDebug : MonoBehaviour
     {
-        [Range(1, 10)]
+        [Range(1, 100)]
         [SerializeField] private float Damage;
         
         private Collider _damageArea;
@@ -35,7 +34,7 @@ namespace Gameplay.MonoBehaviours
         {
             foreach (IDamagableNotifier damageNotifier in _damageNotifiers)
             {
-                damageNotifier.Damage(Damage * Time.deltaTime);
+                damageNotifier.TakeDamage(Damage * Time.deltaTime);
             }
         }
     }

@@ -1,24 +1,20 @@
 ﻿using Common.FSM;
-using Infrastructure.Services;
 using Infrastructure.Services.SceneLoading;
+using Infrastructure.Services.UtilityDataProviding;
 
 namespace Infrastructure.GameFSM.States
 {
     public class BootstrapState : IState
     {
-        private readonly GameStateMachine _gameStateMachine;
-        private readonly UtilityDataProvider _utilityDataProvider;
+        private readonly IGameStateMachine _gameStateMachine;
+        private readonly IUtilityDataProvider _utilityDataProvider;
         
-        public BootstrapState(GameStateMachine gameStateMachine, UtilityDataProvider utilityDataProvider)
+        public BootstrapState(IGameStateMachine gameStateMachine, IUtilityDataProvider utilityDataProvider)
         {
             _gameStateMachine = gameStateMachine;
             _utilityDataProvider = utilityDataProvider;
         }
-
-        public void Dispose()
-        {
-        }
-
+        
         public void Enter()
         {
             SceneLoadRequest request = new(_utilityDataProvider.ScenesInfo.MainMenuSceneName, OnMainMenuLoaded);
@@ -29,9 +25,7 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        private void OnMainMenuLoaded()
-        {
+        private void OnMainMenuLoaded() => 
             _gameStateMachine.EnterState<MainMenuState>();
-        }
     }
 }

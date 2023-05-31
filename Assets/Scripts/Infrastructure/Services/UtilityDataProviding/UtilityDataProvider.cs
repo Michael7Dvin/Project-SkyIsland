@@ -1,14 +1,14 @@
 ﻿using Infrastructure.Services.SceneLoading;
 
-namespace Infrastructure.Services
+namespace Infrastructure.Services.UtilityDataProviding
 {
-    public class UtilityDataProvider
+    public class UtilityDataProvider : IUtilityDataProvider
     {
-        public readonly ScenesInfo ScenesInfo;
-
         public UtilityDataProvider(ScenesInfo scenesInfo)
         {
             ScenesInfo = scenesInfo;
         }
+
+        public ScenesInfo ScenesInfo { get; }
     }
 }

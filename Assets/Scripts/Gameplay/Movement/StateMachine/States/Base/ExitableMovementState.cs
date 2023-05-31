@@ -17,8 +17,7 @@ namespace Gameplay.Movement.StateMachine.States.Base
         protected abstract HashSet<GroundType> CanWorkWithGroundTypes { get; }
 
         public event Action MovementPerformed;
-
-        public abstract void Dispose();
+        
         public abstract void Exit();
         public abstract Vector3 GetMoveVelocty(float deltaTime);
 

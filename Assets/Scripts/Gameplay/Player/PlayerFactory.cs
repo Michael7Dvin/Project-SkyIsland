@@ -1,10 +1,12 @@
-﻿using Gameplay.Healths;
+﻿using Gameplay.Dying;
+using Gameplay.Healths;
 using Gameplay.InjuryProcessing;
 using Gameplay.MonoBehaviours;
 using Gameplay.Player.Movement;
 using Gameplay.Player.PlayerCamera;
 using Infrastructure.Services.Configuration;
 using Infrastructure.Services.Logger;
+using Infrastructure.Services.PlayerDeathService;
 using UnityEngine;
 
 namespace Gameplay.Player
@@ -12,21 +14,24 @@ namespace Gameplay.Player
     public class PlayerFactory : IPlayerFactory
     {
         private readonly PlayerConfig _config;
-
-        private readonly ICustomLogger _logger;
         
         private readonly IPlayerCameraFactory _cameraFactory;
         private readonly IPlayerMovementFactory _movementFactory;
 
+        private readonly IPlayerDeathService _playerDeathService;
+        private readonly ICustomLogger _logger;
+
         public PlayerFactory(IConfigProvider configProvider,
-            ICustomLogger logger,
             IPlayerCameraFactory cameraFactory,
-            IPlayerMovementFactory movementFactory)
+            IPlayerMovementFactory movementFactory,
+            IPlayerDeathService playerDeathService,
+            ICustomLogger logger)
         {
             _config = configProvider.GetForPlayer();
             _logger = logger;
             _cameraFactory = cameraFactory;
             _movementFactory = movementFactory;
+            _playerDeathService = playerDeathService;
         }
 
         public Player Create(Vector3 position, Quaternion rotation)
@@ -46,8 +51,11 @@ namespace Gameplay.Player
             IHealth health = CreateHealth(_logger);
 
             IInjuryProcessor injuryProcessor = CreateInjuryProcessor(health, damageNotifier);
+
+            IDeath death = new Death(health);
+            _playerDeathService.Initialize(death);
             
-            return new Player(movement, injuryProcessor, playerGameObjectLifeCycleNotifier);
+            return new Player(player, movement, injuryProcessor, death, playerGameObjectLifeCycleNotifier);
         }
 
         private void GetComponents(GameObject player,

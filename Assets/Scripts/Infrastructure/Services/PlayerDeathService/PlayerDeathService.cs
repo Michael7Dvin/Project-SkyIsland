@@ -1,39 +1,39 @@
-﻿using Common.FSM;
-using Infrastructure.Services;
+﻿using Gameplay.Dying;
+using Infrastructure.GameFSM;
+using Infrastructure.GameFSM.States;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.UtilityDataProviding;
 
-namespace Infrastructure.GameFSM.States
+namespace Infrastructure.Services.PlayerDeathService
 {
-    public class MainMenuState : IState
+    public class PlayerDeathService : IPlayerDeathService
     {
+        private IDeath _playerDeath;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IUtilityDataProvider _utilityDataProvider;
-        
-        public MainMenuState(IGameStateMachine gameStateMachine, IUtilityDataProvider utilityDataProvider)
+
+        public PlayerDeathService(IGameStateMachine gameStateMachine, IUtilityDataProvider utilityDataProvider)
         {
             _gameStateMachine = gameStateMachine;
             _utilityDataProvider = utilityDataProvider;
         }
 
-        public void Enter()
+        public void Initialize(IDeath playerDeath)
         {
-            StartGame();
+            _playerDeath = playerDeath;
+            _playerDeath.Died += OnPlayerDied;
         }
 
-        public void Exit()
+        private void OnPlayerDied()
         {
-        }
-
-        private void StartGame()
-        {
+            _playerDeath.Died -= OnPlayerDied;
+            _playerDeath = null;
+                
             SceneLoadRequest request = new(_utilityDataProvider.ScenesInfo.IslandSceneName, OnLevelLoaded);
             _gameStateMachine.EnterState<LoadSceneState, SceneLoadRequest>(request);
         }
         
-        public void OnLevelLoaded()
-        {
+        private void OnLevelLoaded() => 
             _gameStateMachine.EnterState<GameplayState>();
-        }
     }
 }

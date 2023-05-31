@@ -13,10 +13,6 @@ namespace Infrastructure.GameFSM.States
             _sceneLoader = sceneLoader;
         }
         
-        public void Dispose()
-        {
-        }
-
         public void Enter(SceneLoadRequest argument)
         {
             string sceneName = argument.SceneName;

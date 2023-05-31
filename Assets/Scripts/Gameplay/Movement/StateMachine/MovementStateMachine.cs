@@ -25,8 +25,11 @@ namespace Gameplay.Movement.StateMachine
 
         private GroundType CurrentGroundType => _groundTypeTracker.CurrentGroundType.Value;
 
-        public void Dispose() => 
+        public void Dispose()
+        {
             _groundTypeTracker.CurrentGroundType.Changed -= OnGroundTypeChanged;
+            _stateRunner.Dispose();
+        }
 
         private void OnStatePerformed() => 
             EnterDefaultState();

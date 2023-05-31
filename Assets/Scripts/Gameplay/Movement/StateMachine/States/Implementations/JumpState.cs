@@ -62,10 +62,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             GroundType.Ground,
             GroundType.Air,
         };
-
-        public override void Dispose() => 
-            _groundTypeTracker.CurrentGroundType.Changed -= OnCurrentGroundTypeChanged;
-
+        
         public override void Enter() => 
             _groundTypeTracker.CurrentGroundType.Changed += OnCurrentGroundTypeChanged;
 

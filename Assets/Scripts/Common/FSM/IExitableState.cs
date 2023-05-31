@@ -2,7 +2,7 @@
 
 namespace Common.FSM
 {
-    public interface IExitableState : IDisposable
+    public interface IExitableState 
     {
         void Exit();
     }

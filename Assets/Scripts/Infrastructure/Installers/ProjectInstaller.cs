@@ -8,6 +8,7 @@ using Infrastructure.Services.Input;
 using Infrastructure.Services.Logger;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.Updater;
+using Infrastructure.Services.UtilityDataProviding;
 using UnityEngine;
 using Zenject;
 
@@ -28,7 +29,7 @@ namespace Infrastructure.Installers
 
         private void BindGameStateMachine()
         {
-            Container.Bind<GameStateMachine>().AsSingle();
+            Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
 
             Container.Bind<BootstrapState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
@@ -46,7 +47,8 @@ namespace Infrastructure.Installers
                 .AsSingle();
             
             Container
-                .Bind<UtilityDataProvider>()
+                .Bind<IUtilityDataProvider>()
+                .To<UtilityDataProvider>()
                 .AsSingle()
                 .WithArguments(_scenesInfo);
 

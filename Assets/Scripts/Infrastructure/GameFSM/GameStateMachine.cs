@@ -3,7 +3,7 @@ using Infrastructure.Services.Logger;
 
 namespace Infrastructure.GameFSM
 {
-    public class GameStateMachine
+    public class GameStateMachine : IGameStateMachine
     {
         private readonly ICustomLogger _logger;
         private readonly StateMachine<IExitableState> _stateMachine;

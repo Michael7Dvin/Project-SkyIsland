@@ -7,10 +7,10 @@ namespace Infrastructure
 {
     public class Bootstrapper : MonoBehaviour, IInitializable
     {
-        private GameStateMachine _gameStateMachine;
+        private IGameStateMachine _gameStateMachine;
 
         [Inject]
-        public void Construct(GameStateMachine gameStateMachine,
+        public void Construct(IGameStateMachine gameStateMachine,
             BootstrapState bootstrapState,
             MainMenuState mainMenuState,
             LoadSceneState loadSceneState,

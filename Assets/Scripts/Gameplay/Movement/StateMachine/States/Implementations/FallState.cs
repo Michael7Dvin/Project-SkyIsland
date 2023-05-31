@@ -46,10 +46,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             GroundType.Air,
         };
 
-        public override void Dispose()
-        {
-        }
-
         public override void Enter()
         {
         }

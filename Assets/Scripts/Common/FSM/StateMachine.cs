@@ -11,11 +11,8 @@ namespace Common.FSM
         
         public IReadOnlyObservable<TBaseState> ActiveState => _activeState;
 
-        public void Dispose()
-        {
-            foreach (KeyValuePair<Type, TBaseState> keyValuePair in _states) 
-                keyValuePair.Value.Dispose();
-        }
+        public void Dispose() => 
+            _activeState.Value?.Exit();
 
         public void EnterState<TState>() where TState : TBaseState, IState
         {

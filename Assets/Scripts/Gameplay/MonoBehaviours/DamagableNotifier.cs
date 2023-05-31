@@ -7,7 +7,7 @@ namespace Gameplay.MonoBehaviours
     {
         public event Action<float> Damaged;
         
-        public void Damage(float damage)
+        public void TakeDamage(float damage)
         {
             Damaged?.Invoke(damage);
         }

@@ -20,16 +20,7 @@ namespace Gameplay.InjuryProcessing
         public void Dispose() => 
             _damagableNotifier.Damaged -= OnDamaged;
 
-        private void OnDamaged(float damage)
-        {
-            LogDamageAndHealthForDebug(damage);
+        private void OnDamaged(float damage) => 
             _health.TakeDamage(damage);
-        }
-
-        private void LogDamageAndHealthForDebug(float damage)
-        {
-            Debug.Log("Health: " + _health.CurrentValue.Value);
-            Debug.Log("Damage: " + damage);
-        }
     }
 }

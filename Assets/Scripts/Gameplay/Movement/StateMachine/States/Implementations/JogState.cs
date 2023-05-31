@@ -49,11 +49,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         {
             GroundType.Ground,
         };
-
-        public override void Dispose()
-        {
-        }
-
+        
         public override void Enter()
         {
         }
