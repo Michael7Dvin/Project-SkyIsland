@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6db68a73bb04c578809389bd5b24433, type: 3}
+  m_Name: Level Config
+  m_EditorClassIdentifier: 
+  <PlayerSpawnPosition>k__BackingField: {x: 18.144077, y: 0.837101, z: -32.166588}
+  <PlayerSpawnRotation>k__BackingField: {x: 0, y: 0, z: 0, w: 0}

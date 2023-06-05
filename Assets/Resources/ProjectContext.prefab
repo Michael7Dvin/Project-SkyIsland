@@ -74,6 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50b8306522f4e069119d6dd6afdfe9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scenesInfo: {fileID: 11400000, guid: 2dfaa30438c2b8c43986cc55b2600435, type: 2}
-  _movementConfig: {fileID: 11400000, guid: 4a5af0f6c648cd543adbdd712f781d27, type: 2}
   _playerConfig: {fileID: 11400000, guid: 18d970801670d9342b0507845021d04f, type: 2}
+  _scenesData: {fileID: 11400000, guid: 2dfaa30438c2b8c43986cc55b2600435, type: 2}
