@@ -6,7 +6,7 @@ using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine;
 using Gameplay.Movement.StateMachine.States.Implementations;
 using Infrastructure.Services.Input;
-using Infrastructure.Services.Logger;
+using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
 using UnityEngine;

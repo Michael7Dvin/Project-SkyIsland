@@ -17,7 +17,7 @@ MonoBehaviour:
   <Controller>k__BackingField: {fileID: 2179092886694071536, guid: 50ac387c723166b428572480ebd34ba0,
     type: 3}
   <FollowPointOffsetFromPlayer>k__BackingField: {x: 0, y: 1.5, z: 0}
-  <EmptyCameraParent>k__BackingField: {fileID: 4447553296280818875, guid: 693af17c7b8cd6946b7d0bb08340edf3,
+  <Root>k__BackingField: {fileID: 4447553296280818875, guid: 693af17c7b8cd6946b7d0bb08340edf3,
     type: 3}
-  <EmptyFollowPoint>k__BackingField: {fileID: 1546973404921165371, guid: 79d989f7e4df6ed49b22f381e939c83c,
+  <FollowPoint>k__BackingField: {fileID: 1546973404921165371, guid: 79d989f7e4df6ed49b22f381e939c83c,
     type: 3}

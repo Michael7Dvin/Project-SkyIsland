@@ -6,7 +6,7 @@ using Gameplay.Player.Movement;
 using Gameplay.Player.PlayerCamera;
 using Gameplay.PlayerDeathService;
 using Infrastructure.Services.Instantiating;
-using Infrastructure.Services.Logger;
+using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using UnityEngine;
 

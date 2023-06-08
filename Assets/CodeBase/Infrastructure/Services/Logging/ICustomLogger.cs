@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Services.Logger
+﻿namespace Infrastructure.Services.Logging
 {
     public interface ICustomLogger
     {

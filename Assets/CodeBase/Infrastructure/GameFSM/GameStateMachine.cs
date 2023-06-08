@@ -1,5 +1,5 @@
 ﻿using Common.FSM;
-using Infrastructure.Services.Logger;
+using Infrastructure.Services.Logging;
 
 namespace Infrastructure.GameFSM
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.StateMachine.States.Base;
-using Infrastructure.Services.Logger;
+using Infrastructure.Services.Logging;
 
 namespace Gameplay.Movement.StateMachine
 {

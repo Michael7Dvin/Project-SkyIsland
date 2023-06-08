@@ -1,39 +1,35 @@
 ﻿using Common.FSM;
-using Gameplay.Levels;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
+using UI.Services.Factory;
 
 namespace Infrastructure.GameFSM.States
 {
     public class MainMenuState : IState
     {
-        private readonly ISceneLoader _sceneLoader;
-        private readonly IGameStateMachine _gameStateMachine;
-
         private readonly ScenesData _scenesData;
         
+        private readonly ISceneLoader _sceneLoader;
+        private readonly IUIFactory _uiFactory;
+        
         public MainMenuState(ISceneLoader sceneLoader,
-            IGameStateMachine gameStateMachine,
+            IUIFactory uiFactory,
             IStaticDataProvider staticDataProvider)
         {
             _sceneLoader = sceneLoader;
-            _gameStateMachine = gameStateMachine;
-
+            _uiFactory = uiFactory;
+            
             _scenesData = staticDataProvider.GetScenesData();
         }
 
         public void Enter() => 
-            _sceneLoader.Load(_scenesData.MainMenuSceneName, null);
+            _sceneLoader.Load(_scenesData.MainMenuSceneName, OnMainMenuLoaded);
 
         public void Exit()
         {
         }
 
-        public void StartGame()
-        {
-            LevelData islandData = new LevelData(LevelType.Island, _scenesData.IslandSceneName);
-            
-            _gameStateMachine.EnterState<LoadLevelState, LevelData>(islandData);
-        }
+        public void OnMainMenuLoaded() => 
+            _uiFactory.CreateMainMenu();
     }
 }

@@ -2,245 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cf148e2-4486-40c1-927c-1e27c26d365e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Levels/IslandWorldObjectsSpawner.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/BootstrapState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/GameplayState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/GameplayState.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/MainMenuState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/MainMenuWindow.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Movement.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Movement/Movement Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Movement/Movement Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Camera Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Camera Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Movement Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Movement Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Stats.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Configs/Player/Player Stats.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Camera Parent.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Camera Parent.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/UI/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/UI/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths/Health.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/GameStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/GameStateMachine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/MainMenuState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/MainMenuState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logging.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/CustomLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logging/CustomLogger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/CustomLogger.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logging/CustomLogger.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/ICustomLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logging/ICustomLogger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/ICustomLogger.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logging/ICustomLogger.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/IMediator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/IMediator.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/MainMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/MainMenu.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/MainMenuWindow.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Mediator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Mediator.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scenes Info.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scenes Info.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/IExitableState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/IExitableState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/IExitableState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/IExitableState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/IState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/IState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/IState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/IState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/IStateWithArguments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/IStateWithArguments.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/IStateWithArguments.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/IStateWithArguments.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/StateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/StateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/StateMachine.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/StateMachine.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/StateRunner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/StateRunner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/FSM/StateRunner.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/FSM/StateRunner.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/Observable.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/Observable.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/Observable/IReadOnlyObservable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/Observable/IReadOnlyObservable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/Observable/IReadOnlyObservable.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/Observable/IReadOnlyObservable.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/Observable/Observable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/Observable/Observable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/Observable/Observable.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Common/Observable/Observable.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dying.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Dying.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dying/Death.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Dying/Death.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dying/Death.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Dying/Death.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dying/IDeath.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Dying/IDeath.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Dying/IDeath.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Dying/IDeath.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Healths.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Healths/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths/Health.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Healths/Health.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths/Health.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Healths/IHealth.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths/IHealth.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Healths/IHealth.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Healths/IHealth.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/InjuryProcessing.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/InjuryProcessing.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/InjuryProcessing/IInjuryProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/InjuryProcessing/IInjuryProcessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/InjuryProcessing/IInjuryProcessor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/InjuryProcessing/IInjuryProcessor.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/InjuryProcessing/InjuryProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/InjuryProcessing/InjuryProcessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/InjuryProcessing/InjuryProcessor.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/InjuryProcessing/InjuryProcessor.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Levels.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Levels.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Levels/IslandWorldObjectsLoader.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Levels/IslandWorldObjectsLoader.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Levels/IslandWorldObjectsSpawner.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/CollisionsNotifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/CollisionsNotifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/CollisionsNotifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/CollisionsNotifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/DamagableNotifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/DamagableNotifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/DamagableNotifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/DamagableNotifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/DamageAreaForDebug.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/DamageAreaForDebug.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/DamageAreaForDebug.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/DamageAreaForDebug.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/GameObjectLifeCycleNotifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/GameObjectLifeCycleNotifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/GameObjectLifeCycleNotifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/GameObjectLifeCycleNotifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/ICollisionNotifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/ICollisionNotifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/ICollisionNotifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/ICollisionNotifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/IDamagableNotifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/IDamagableNotifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/IDamagableNotifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/IDamagableNotifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/IGameObjectLifeCycleNotifier.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/IGameObjectLifeCycleNotifier.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/IGameObjectLifeCycleNotifier.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/IGameObjectLifeCycleNotifier.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/KillZone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/KillZone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/MonoBehaviours/KillZone.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/MonoBehaviours/KillZone.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/GroundSpherecaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/GroundSpherecaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/GroundSpherecaster.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/GroundSpherecaster.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/GroundSpherecasterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/GroundSpherecasterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/GroundSpherecasterFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/GroundSpherecasterFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/IGroundSpherecaster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/IGroundSpherecaster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/IGroundSpherecaster.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/IGroundSpherecaster.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/IGroundSpherecasterFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/IGroundSpherecasterFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundSpherecasting/IGroundSpherecasterFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundSpherecasting/IGroundSpherecasterFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking/GroundType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking/GroundType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking/GroundType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking/GroundType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking/GroundTypeTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking/GroundTypeTracker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking/GroundTypeTracker.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking/GroundTypeTracker.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking/IGroundTypeTracker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking/IGroundTypeTracker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/GroundTypeTracking/IGroundTypeTracker.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/GroundTypeTracking/IGroundTypeTracker.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/MovementConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/MovementConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/Rotator.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/Rotator.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/Rotator/IRotator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/Rotator/IRotator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/Rotator/IRotator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/Rotator/IRotator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/Rotator/Rotator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/Rotator/Rotator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/Rotator/Rotator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/Rotator/Rotator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeCalculation.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeCalculation.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeCalculation/ISlopeCalculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeCalculation/ISlopeCalculator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeCalculation/ISlopeCalculator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeCalculation/ISlopeCalculator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeCalculation/SlopeCalculator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeCalculation/SlopeCalculator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeCalculation/SlopeCalculator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeCalculation/SlopeCalculator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeMovement.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeMovement.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeMovement/ISlopeSlideMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeMovement/ISlopeSlideMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeMovement/ISlopeSlideMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeMovement/ISlopeSlideMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeMovement/SlopeSlideMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeMovement/SlopeSlideMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/SlopeMovement/SlopeSlideMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/SlopeMovement/SlopeSlideMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/IMovementStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/IMovementStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/IMovementStateMachine.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/IMovementStateMachine.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/IMovementStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/IMovementStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/IMovementStateProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/IMovementStateProvider.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/MovementStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/MovementStateMachine.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateMachine.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/MovementStateProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/MovementStateProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateProvider.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base/ExitableMovementState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base/ExitableMovementState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base/ExitableMovementState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base/ExitableMovementState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base/MovementState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base/MovementState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base/MovementState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base/MovementState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base/MovementStateWithArguments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base/MovementStateWithArguments.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Base/MovementStateWithArguments.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Base/MovementStateWithArguments.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations/FallState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/FallState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations/FallState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/FallState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/MovementStateType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/MovementStateType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Movement/StateMachine/States/MovementStateType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/MovementStateType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/IPlayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/IPlayerFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/IPlayerFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/IPlayerFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/IPlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/IPlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/IPlayerMovementFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovementFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/IPlayerMovementFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovementFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/PlayerMovementConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/PlayerMovementConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/PlayerMovementFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Movement/PlayerMovementFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Player.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerAnimator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerAnimator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera/IPlayerCameraFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/IPlayerCameraFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera/IPlayerCameraFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/IPlayerCameraFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera/PlayerCameraConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera/PlayerCameraConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera/PlayerCameraFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerCamera/PlayerCameraFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerStatsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerStatsConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gameplay/Player/PlayerStatsConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerStatsConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Bootstrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Bootstrapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Bootstrapper.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Bootstrapper.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/GameStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/GameStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/GameStateMachine.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/GameStateMachine.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/IGameStateMachine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/IGameStateMachine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/IGameStateMachine.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/IGameStateMachine.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/BootstrapState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/BootstrapState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/BootstrapState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/GamePlayState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/GamePlayState.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/LoadSceneState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/LoadSceneState.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/MainMenuState.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/GameFSM/States/MainMenuState.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/MainMenuState.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers/BootstrapInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/BootstrapInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers/BootstrapInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/BootstrapInstaller.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers/IslandLevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/IslandLevelInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers/IslandLevelInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/IslandLevelInstaller.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers/ProjectInstaller.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Installers/ProjectInstaller.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Configuration.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Configuration/ConfigProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Configuration/ConfigProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Configuration/IConfigProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Configuration/IConfigProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Input.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Input/IInputService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/IInputService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Input/IInputService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/IInputService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Input/InputService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/InputService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Input/InputService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/InputService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Logger.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Logger/CustomLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/CustomLogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Logger/CustomLogger.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/CustomLogger.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Logger/ICustomLogger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/ICustomLogger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Logger/ICustomLogger.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Logger/ICustomLogger.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/PlayerDeathService.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/PlayerDeathService/IPlayerDeathService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/IPlayerDeathService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/PlayerDeathService/IPlayerDeathService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/IPlayerDeathService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/PlayerDeathService/PlayerDeathService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/PlayerDeathService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/PlayerDeathService/PlayerDeathService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/PlayerDeathService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/ISceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/ISceneLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/ISceneLoader.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/ISceneLoader.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/SceneLoadRequest.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/SceneLoadRequest.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/SceneLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/SceneLoader.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/SceneLoader.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/ScenesInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/ScenesData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/SceneLoading/ScenesInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/ScenesData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Updater.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Updater.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Updater/IUpdater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Updater/IUpdater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Updater/IUpdater.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Updater/IUpdater.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Updater/Updater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Updater/Updater.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/Updater/Updater.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Updater/Updater.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/UtilityDataProviding.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/UtilityDataProviding/IUtilityDataProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/UtilityDataProviding/IUtilityDataProvider.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/UtilityDataProviding/UtilityDataProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Infrastructure/Services/UtilityDataProviding/UtilityDataProvider.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Camera Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/Player/Player Camera Config.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
@@ -375,7 +162,11 @@
       <workItem from="1685712416223" duration="12819000" />
       <workItem from="1685782027027" duration="6142000" />
       <workItem from="1685869037094" duration="5658000" />
-      <workItem from="1685968394486" duration="5609000" />
+      <workItem from="1685968394486" duration="9774000" />
+      <workItem from="1686061399714" duration="5482000" />
+      <workItem from="1686071732158" duration="3416000" />
+      <workItem from="1686155575459" duration="5460000" />
+      <workItem from="1686215353748" duration="3638000" />
     </task>
     <servers />
   </component>

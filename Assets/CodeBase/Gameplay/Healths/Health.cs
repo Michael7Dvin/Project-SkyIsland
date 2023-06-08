@@ -1,5 +1,5 @@
 ﻿using Common.Observable;
-using Infrastructure.Services.Logger;
+using Infrastructure.Services.Logging;
 using UnityEngine;
 
 namespace Gameplay.Healths
