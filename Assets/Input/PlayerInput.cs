@@ -691,6 +691,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Utility"",
+            ""id"": ""e0e5d170-4e9b-4ad9-bc07-978d6020f865"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""fc72625a-86be-416c-a983-8036aeabc868"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5d59cb65-9927-4a90-80c5-03578d3c2e55"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse & Keyboard"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -731,6 +759,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Utility
+        m_Utility = asset.FindActionMap("Utility", throwIfNotFound: true);
+        m_Utility_Pause = m_Utility.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1006,6 +1037,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Utility
+    private readonly InputActionMap m_Utility;
+    private List<IUtilityActions> m_UtilityActionsCallbackInterfaces = new List<IUtilityActions>();
+    private readonly InputAction m_Utility_Pause;
+    public struct UtilityActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UtilityActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_Utility_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Utility; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UtilityActions set) { return set.Get(); }
+        public void AddCallbacks(IUtilityActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UtilityActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UtilityActionsCallbackInterfaces.Add(instance);
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
+        }
+
+        private void UnregisterCallbacks(IUtilityActions instance)
+        {
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
+        }
+
+        public void RemoveCallbacks(IUtilityActions instance)
+        {
+            if (m_Wrapper.m_UtilityActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUtilityActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UtilityActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UtilityActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UtilityActions @Utility => new UtilityActions(this);
     private int m_MouseKeyboardSchemeIndex = -1;
     public InputControlScheme MouseKeyboardScheme
     {
@@ -1036,5 +1113,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    public interface IUtilityActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }

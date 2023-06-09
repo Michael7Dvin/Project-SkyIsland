@@ -1,9 +1,10 @@
-﻿using Gameplay.Levels;
-using Gameplay.Player;
+﻿using Gameplay.Hero;
+using Gameplay.Levels;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services.AppClosing;
 using Infrastructure.Services.Input;
+using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.SceneLoading;
@@ -11,6 +12,7 @@ using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
 using UI;
 using UI.Services.Factory;
+using UI.Services.WindowsOperating;
 using UnityEngine;
 using Zenject;
 using IInstantiator = Infrastructure.Services.Instantiating.IInstantiator;
@@ -19,7 +21,7 @@ namespace Infrastructure.Installers
 {
     public class ProjectInstaller : MonoInstaller
     {
-        [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private HeroConfig _heroConfig;
         [SerializeField] private UIConfig _uiConfig;
         [SerializeField] private ScenesData _scenesData;
         
@@ -35,6 +37,7 @@ namespace Infrastructure.Installers
             Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
 
             Container.Bind<BootstrapState>().AsSingle();
+            Container.Bind<InitializationState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
             Container.Bind<LoadLevelState>().AsSingle();
             Container.Bind<GameplayState>().AsSingle();
@@ -47,7 +50,8 @@ namespace Infrastructure.Installers
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             Container.Bind<IInstantiator>().To<Instantiator>().AsSingle();
             Container.Bind<IWorldObjectsSpawnerProvider>().To<WorldObjectsSpawnerProvider>().AsSingle();
-            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
+            Container.Bind<IWindowsService>().To<WindowsService>().AsSingle();
             Container.Bind<IAppCloser>().To<AppCloser>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<Updater>().AsSingle();
@@ -59,7 +63,7 @@ namespace Infrastructure.Installers
                 .Bind<IStaticDataProvider>()
                 .To<StaticDataProvider>()
                 .AsSingle()
-                .WithArguments(_playerConfig, _uiConfig, _scenesData);
+                .WithArguments(_heroConfig, _uiConfig, _scenesData);
         }
     }
 }

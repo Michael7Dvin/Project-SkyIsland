@@ -1,4 +1,4 @@
-﻿using Gameplay.Player;
+﻿using Gameplay.Hero;
 using UnityEngine;
 
 namespace Gameplay.Levels
@@ -6,15 +6,15 @@ namespace Gameplay.Levels
     public class IslandWorldObjectsSpawner : IWorldObjectsSpawner
     {
         private readonly IWorldObjectsSpawnerProvider _worldObjectsSpawnerProvider;
-        private readonly IPlayerFactory _playerFactory;
+        private readonly IHeroFactory _heroFactory;
         private readonly IslandWorldData _islandWorldData;
 
         public IslandWorldObjectsSpawner(IWorldObjectsSpawnerProvider worldObjectsSpawnerProvider,
-            IPlayerFactory playerFactory,
+            IHeroFactory heroFactory,
             IslandWorldData islandWorldData)
         {
             _worldObjectsSpawnerProvider = worldObjectsSpawnerProvider;
-            _playerFactory = playerFactory;
+            _heroFactory = heroFactory;
             _islandWorldData = islandWorldData;
         }
 
@@ -25,8 +25,8 @@ namespace Gameplay.Levels
 
         public void SpawnWorldObjects()
         {
-            Transform playerSpawnPoint = _islandWorldData.PlayerSpawnPoint;
-            _playerFactory.Create(playerSpawnPoint.position, playerSpawnPoint.rotation);
+            Transform heroSpawnPoint = _islandWorldData.PlayerSpawnPoint;
+            _heroFactory.Create(heroSpawnPoint.position, heroSpawnPoint.rotation);
         }
 
         private void SetSelfToProvider() => 

@@ -11,12 +11,12 @@ namespace UI.Windows
         [SerializeField] private Button _optionsButton;
         [SerializeField] private Button _quitButton;
         
-        private IUIFactory _uiFactory;
+        private IWindowFactory _windowFactory;
         private IAppCloser _appCloser;
 
-        public void Construct(IUIFactory uiFactory, IAppCloser appCloser)
+        public void Construct(IWindowFactory windowFactory, IAppCloser appCloser)
         {
-            _uiFactory = uiFactory;
+            _windowFactory = windowFactory;
             _appCloser = appCloser;
         }
 
@@ -35,7 +35,7 @@ namespace UI.Windows
         }
         
         public void OnPlayButtonClick() => 
-            _uiFactory.CreateSaveSelectionWindow();
+            _windowFactory.CreateSaveSelectionWindow();
 
         public void OnOptionsButtonClick()
         {

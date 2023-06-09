@@ -12,7 +12,7 @@ namespace Infrastructure.GameFSM.States
         }
         
         public void Enter() => 
-            _gameStateMachine.EnterState<MainMenuState>();
+            _gameStateMachine.EnterState<InitializationState>();
 
         public void Exit()
         {

@@ -26,7 +26,7 @@ namespace UI.Windows
             
             _optionsButton.onClick.AddListener(OnOptionsButtonClick);
             _saveButton.onClick.AddListener(OnSaveButtonClick);
-            _mainMenuButton.onClick.AddListener(OnQuitButtonClick);
+            _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
         }
 
         protected override void UnsubscribeFromButtons()
@@ -35,7 +35,7 @@ namespace UI.Windows
             
             _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
             _saveButton.onClick.RemoveListener(OnSaveButtonClick);
-            _mainMenuButton.onClick.RemoveListener(OnQuitButtonClick);
+            _mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClick);
         }
         
         public void OnOptionsButtonClick()
@@ -46,7 +46,7 @@ namespace UI.Windows
         {
         }
 
-        public void OnQuitButtonClick() =>
+        public void OnMainMenuButtonClick() =>
             _gameStateMachine.EnterState<MainMenuState>();
     }
 }

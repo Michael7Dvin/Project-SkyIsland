@@ -10,14 +10,14 @@ namespace Infrastructure.GameFSM.States
         private readonly ScenesData _scenesData;
         
         private readonly ISceneLoader _sceneLoader;
-        private readonly IUIFactory _uiFactory;
+        private readonly IWindowFactory _windowFactory;
         
         public MainMenuState(ISceneLoader sceneLoader,
-            IUIFactory uiFactory,
+            IWindowFactory windowFactory,
             IStaticDataProvider staticDataProvider)
         {
             _sceneLoader = sceneLoader;
-            _uiFactory = uiFactory;
+            _windowFactory = windowFactory;
             
             _scenesData = staticDataProvider.GetScenesData();
         }
@@ -30,6 +30,6 @@ namespace Infrastructure.GameFSM.States
         }
 
         public void OnMainMenuLoaded() => 
-            _uiFactory.CreateMainMenu();
+            _windowFactory.CreateMainMenuWindow();
     }
 }

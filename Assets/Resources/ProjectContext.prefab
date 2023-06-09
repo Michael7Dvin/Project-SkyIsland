@@ -74,6 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50b8306522f4e069119d6dd6afdfe9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerConfig: {fileID: 11400000, guid: 18d970801670d9342b0507845021d04f, type: 2}
+  _heroConfig: {fileID: 11400000, guid: 18d970801670d9342b0507845021d04f, type: 2}
   _uiConfig: {fileID: 11400000, guid: 004ea643df1f23e4998e4eb896861f48, type: 2}
   _scenesData: {fileID: 11400000, guid: 2dfaa30438c2b8c43986cc55b2600435, type: 2}

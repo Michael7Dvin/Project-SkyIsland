@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using Common.Observable;
 using Gameplay.Movement.GroundTypeTracking;
 using Gameplay.Movement.Rotator;
 using Gameplay.Movement.StateMachine.States.Base;
-using Infrastructure.Services.Input;
 using UnityEngine;
 
 namespace Gameplay.Movement.StateMachine.States.Implementations
@@ -15,13 +15,13 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly Transform _camera;
         private readonly IRotator _rotator;
 
-        private readonly IInputService _input;
+        private readonly IReadOnlyObservable<Vector3> _moveDirection;
 
         public FallState(float verticalSpeed,
             float horizontalspeed,
             IRotator rotator,
             Transform camera,
-            IInputService input)
+            IReadOnlyObservable<Vector3> moveDirection)
         {
             _verticalSpeed = verticalSpeed;
             _horizontalspeed = horizontalspeed;
@@ -29,7 +29,7 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             _camera = camera;
             _rotator = rotator;
 
-            _input = input;
+            _moveDirection = moveDirection;
         }
 
         public override MovementStateType Type => MovementStateType.Fall;
@@ -70,9 +70,9 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         {
             Vector3 velocity = new();
             
-            if (_input.HorizontalDirection.Value != Vector3.zero)
+            if (_moveDirection.Value != Vector3.zero)
             {
-                Vector3 cameraAlignedDirection = AlignDirectionToCameraView(_input.HorizontalDirection.Value);
+                Vector3 cameraAlignedDirection = AlignDirectionToCameraView(_moveDirection.Value);
                 velocity = cameraAlignedDirection * _horizontalspeed * deltaTime;
             }
             

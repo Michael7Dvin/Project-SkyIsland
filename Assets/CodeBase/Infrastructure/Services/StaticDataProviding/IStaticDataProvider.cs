@@ -1,4 +1,4 @@
-using Gameplay.Player;
+using Gameplay.Hero;
 using Infrastructure.Services.SceneLoading;
 using UI;
 
@@ -6,7 +6,7 @@ namespace Infrastructure.Services.StaticDataProviding
 {
     public interface IStaticDataProvider
     {
-        PlayerConfig GetPlayerConfig();
+        HeroConfig GetPlayerConfig();
         UIConfig GetUIConfig();
         ScenesData GetScenesData();
     }

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601841d039794a569e4e8b75e2de53ad, type: 3}
+  m_Name: Hero Movement Config
+  m_EditorClassIdentifier: 
+  _jogSpeed: 5
+  _jogAntiBumpSpeed: 4
+  _fallVerticalSpeed: 8
+  _fallHorizontalSpeed: 3
+  _ySpeedToTime:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 4.5
+      inSlope: -9.5
+      outSlope: -9.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: -5
+      inSlope: -9.5
+      outSlope: -9.5
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _jumpHorizontalSpeed: 5
+  _slopeSlideSpeed: 5
+  _minSlopeAngle: 40
+  _speedInAnglesPerSec: 400
+  _pointPrefab: {fileID: 6227628060098032188, guid: ed523e03ce05a81488554b24d240a9ae,
+    type: 3}
+  _sphereRadius: 0.25
+  _distance: 0.75

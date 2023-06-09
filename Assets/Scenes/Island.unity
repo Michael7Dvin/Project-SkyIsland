@@ -22487,7 +22487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 656005958}
   m_Layer: 0
-  m_Name: Player Spawn Point
+  m_Name: Hero Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -27876,7 +27876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1b6cde03df4a8e9c91eab2fb86d322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerSpawnPoint: {fileID: 656005958}
+  _heroSpawnPoint: {fileID: 656005958}
 --- !u!114 &806989361
 MonoBehaviour:
   m_ObjectHideFlags: 0

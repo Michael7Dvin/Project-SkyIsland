@@ -12,6 +12,7 @@ namespace Infrastructure
         [Inject]
         public void Construct(IGameStateMachine gameStateMachine,
             BootstrapState bootstrapState,
+            InitializationState initializationState,
             MainMenuState mainMenuState,
             LoadLevelState loadLevelState,
             GameplayState gameplayState)
@@ -19,6 +20,7 @@ namespace Infrastructure
             _gameStateMachine = gameStateMachine;
             
             _gameStateMachine.AddState(bootstrapState);
+            _gameStateMachine.AddState(initializationState);
             _gameStateMachine.AddState(mainMenuState);
             _gameStateMachine.AddState(loadLevelState);
             _gameStateMachine.AddState(gameplayState);
