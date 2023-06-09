@@ -16,7 +16,7 @@ namespace Gameplay.Hero
     {
         private readonly HeroConfig _config;
         
-        private readonly IHeroCameraFactory _cameraFactory;
+        private readonly IPlayerCameraFactory _cameraFactory;
         private readonly IHeroMovementFactory _movementFactory;
 
         private readonly IInstantiator _instantiator;
@@ -24,7 +24,7 @@ namespace Gameplay.Hero
         private readonly ICustomLogger _logger;
 
         public HeroFactory(IStaticDataProvider staticDataProvider,
-            IHeroCameraFactory cameraFactory,
+            IPlayerCameraFactory cameraFactory,
             IHeroMovementFactory movementFactory,
             IInstantiator instantiator,
             IHeroDeathService heroDeathService,
@@ -59,7 +59,7 @@ namespace Gameplay.Hero
             IInjuryProcessor injuryProcessor = CreateInjuryProcessor(health, damageNotifier);
 
             IDeath death = new Death(health);
-            _heroDeathService.Initialize(death);
+            _heroDeathService.Init(death);
             
             return new Hero(player, movement, injuryProcessor, death, playerGameObjectLifeCycleNotifier);
         }

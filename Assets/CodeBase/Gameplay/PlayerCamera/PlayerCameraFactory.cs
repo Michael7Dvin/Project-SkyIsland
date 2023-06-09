@@ -5,24 +5,24 @@ using UnityEngine;
 
 namespace Gameplay.Hero.PlayerCamera
 {
-    public class HeroCameraFactory : IHeroCameraFactory
+    public class PlayerCameraFactory : IPlayerCameraFactory
     {
-        private readonly HeroCameraConfig _config;
+        private readonly PlayerCameraConfig _config;
         private readonly IInstantiator _instantiator;
         
-        public HeroCameraFactory(IStaticDataProvider staticDataProvider, IInstantiator instantiator)
+        public PlayerCameraFactory(IStaticDataProvider staticDataProvider, IInstantiator instantiator)
         {
             _config = staticDataProvider.GetPlayerConfig().Camera;
             _instantiator = instantiator;
         }
 
-        public Camera Create(Transform parent)
+        public Camera Create(Transform hero)
         {
-            GameObject rootGameObject = _instantiator.Instantiate(_config.Root, parent);
+            GameObject rootGameObject = _instantiator.Instantiate(_config.Root);
             Transform root = rootGameObject.transform;
             
             Camera camera = CreateCamera(_config.Camera, root);
-            Transform followPointTransform = CreateFollowPoint(_config.FollowPointOffsetFromPlayer, root).transform;
+            Transform followPointTransform = CreateFollowPoint(_config.FollowPointOffsetFromPlayer, hero).transform;
             CreateCameraController(_config.Controller, followPointTransform, root);
 
             return camera;

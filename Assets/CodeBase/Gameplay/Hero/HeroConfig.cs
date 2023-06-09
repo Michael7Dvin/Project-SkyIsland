@@ -10,7 +10,7 @@ namespace Gameplay.Hero
     {
         [field: SerializeField] public GameObjectLifeCycleNotifier HeroPrefab { get; private set; }
         [field: SerializeField] public HeroMovementConfig Movement { get; private set; }
-        [field: SerializeField] public HeroCameraConfig Camera { get; private set; }
+        [field: SerializeField] public PlayerCameraConfig Camera { get; private set; }
         [field: SerializeField] public HeroStatsConfig Stats { get; private set; }
     }
 }

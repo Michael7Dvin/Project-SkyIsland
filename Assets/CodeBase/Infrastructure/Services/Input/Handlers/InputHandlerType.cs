@@ -3,6 +3,7 @@
     public enum InputHandlerType
     {
         Hero = 0,
-        Utility = 1,
+        Camera = 1,
+        Utility = 2,
     }
 }

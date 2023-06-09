@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Gameplay.Hero.PlayerCamera
 {
-    [CreateAssetMenu(fileName = "Hero Camera Config", menuName = "Configs/Hero/Camera")]
-    public class HeroCameraConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "Player Camera Config", menuName = "Configs/Camera")]
+    public class PlayerCameraConfig : ScriptableObject
     {
         [field: SerializeField] public Camera Camera { get; private set; }
         [field: SerializeField] public CinemachineFreeLook Controller { get; private set; }

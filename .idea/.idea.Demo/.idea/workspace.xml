@@ -2,135 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cf148e2-4486-40c1-927c-1e27c26d365e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroConfig.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/IHeroFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/IHeroMovement.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/IHeroMovementFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero/HeroInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero/HeroInput.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero/IHeroInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero/IHeroInput.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/IInputHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/IInputHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/InputHandlerType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/InputHandlerType.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility/IUtilityInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility/IUtilityInput.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility/UtilityInput.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility/UtilityInput.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/IInputService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/InputService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/HUD.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/HUD/HealthBarHUD.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/IWindowsService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/IWindowsService.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/WindowsService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/WindowsService.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/WindowType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/WindowType.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Levels/IslandWorldObjectsSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Levels/IslandWorldObjectsSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/FallState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/FallState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/IPlayerFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/IPlayerFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/IHeroFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovement.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/IHeroMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovementFactory.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/IPlayerMovementFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/IHeroMovementFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovement.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovement.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovementConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovementConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovementFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Movement/PlayerMovementFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovementFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Hero.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Hero.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerAnimator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroAnimator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/IPlayerCameraFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/IHeroCameraFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/IPlayerCameraFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/IHeroCameraFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerCamera/PlayerCameraFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerStatsConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroStatsConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Player/PlayerStatsConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroStatsConfig.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/IPlayerDeathService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/IHeroDeathService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/IPlayerDeathService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/IHeroDeathService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/PlayerDeathService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/HeroDeathService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerDeathService/PlayerDeathService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/HeroDeathService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/HealthBarHUD.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/HealthBarHUD.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/HUD/HealthBarHUD.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Bootstrapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Bootstrapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/BootstrapState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/BootstrapState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/GameplayState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/GameplayState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/MainMenuState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/MainMenuState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/PlayerCameraConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraConfig.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/PlayerCameraConfig.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/PlayerCameraFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/HeroCameraFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/PlayerCameraFactory.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/IHeroCameraFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/IPlayerCameraFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/PlayerCamera/IHeroCameraFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/IPlayerCameraFactory.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/HeroDeathService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/HeroDeathService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/IHeroDeathService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/HeroDeathService/IHeroDeathService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/IslandLevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/IslandLevelInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/IInputService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/IInputService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/IInputService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/InputService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/InputService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/InputService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneObjectsProviding.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneObjectsProviding/SceneObjectsProvider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneObjectsProviding/SceneObjectsProvider.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/IUIFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/IWindowFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/IUIFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/IWindowFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/UIFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/WindowFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/UIFactory.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/Factory/WindowFactory.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/UIConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/UIConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/DeathWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/DeathWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/MainMenuWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/MainMenuWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/PauseWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/PauseWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/PlayerInput.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/360 Top-Down FreeLook Camera Controller.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/360 Top-Down FreeLook Camera Controller.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Camera Root.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Camera Root.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Camera.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Camera.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Follow Point.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Camera/Follow Point.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Ground Spherecast Point.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Ground Spherecast Point.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Player.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Player.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Island.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Island.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Level Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Level Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Camera Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Camera Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Movement Config.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Movement Config.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Stats.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/Player/Player Stats.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/CurrentMaximizeLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero/HeroInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Hero/HeroInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/IInputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/IInputHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/InputHandlerType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/InputHandlerType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility/UtilityInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Handlers/Utility/UtilityInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/IInputService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/IInputService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/InputService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Input/Service/InputService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/360 Top-Down FreeLook Camera Controller.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/360 Top-Down FreeLook Camera Controller.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/Camera Root.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/Camera Root.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/Camera.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/Camera.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/Follow Point.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hero/Camera/Follow Point.prefab.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,9 +56,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStateProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JogState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/States/Implementations/JumpState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Gameplay/PlayerCamera/PlayerCameraConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/BootstrapInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/SceneLoading/ScenesData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.8.4/Runtime/Intrinsics/v128.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.9.7/Runtime/Helpers/CinemachineInputProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.5.1/InputSystem/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.5.1/InputSystem/Plugins/Switch/SwitchProControllerHID.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.6/Tests/Tests/Shared/TestUtils.cs" root0="SKIP_HIGHLIGHTING" />
@@ -268,7 +169,7 @@
       <workItem from="1686071732158" duration="3416000" />
       <workItem from="1686155575459" duration="5460000" />
       <workItem from="1686215353748" duration="7869000" />
-      <workItem from="1686315871790" duration="9245000" />
+      <workItem from="1686315871790" duration="12876000" />
     </task>
     <servers />
   </component>

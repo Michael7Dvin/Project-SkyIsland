@@ -5,7 +5,6 @@ namespace Infrastructure.Services.Input.Handlers.Utility
 {
     public class UtilityInput : IUtilityInput, IInputHandler
     {
-        private bool _enabled;
         private readonly PlayerInput.UtilityActions _actions;
 
         public UtilityInput(PlayerInput.UtilityActions actions)
@@ -19,16 +18,13 @@ namespace Infrastructure.Services.Input.Handlers.Utility
         public void Init() => 
             _actions.Pause.performed += OnPaused;
 
-        private void OnPaused(InputAction.CallbackContext callbackContext)
-        {
-            if (_enabled == true) 
-                Paused?.Invoke();
-        }
+        private void OnPaused(InputAction.CallbackContext callbackContext) => 
+            Paused?.Invoke();
 
-        public void Enable() => 
-            _enabled = true;
+        public void Enable() =>
+            _actions.Enable();
 
         public void Disable() => 
-            _enabled = false;
+            _actions.Disable();
     }
 }

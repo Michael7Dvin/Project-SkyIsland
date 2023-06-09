@@ -27,7 +27,7 @@ namespace Infrastructure.Installers
 
         private void BindFactories()
         {
-            Container.Bind<IHeroCameraFactory>().To<HeroCameraFactory>().AsSingle();
+            Container.Bind<IPlayerCameraFactory>().To<PlayerCameraFactory>().AsSingle();
             Container.Bind<IHeroMovementFactory>().To<HeroMovementFactory>().AsSingle();
             Container.Bind<IGroundSpherecasterFactory>().To<GroundSpherecasterFactory>().AsSingle();
             Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();

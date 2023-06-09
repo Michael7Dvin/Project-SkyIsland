@@ -1,20 +1,25 @@
 ﻿using Gameplay.Dying;
-using Infrastructure.GameFSM;
-using Infrastructure.GameFSM.States;
+using Infrastructure.Services.Input.Handlers;
+using Infrastructure.Services.Input.Service;
+using UI.Services.WindowsOperating;
+using UI.Windows;
 
 namespace Gameplay.HeroDeathService
 {
     public class HeroDeathService : IHeroDeathService
     {
         private IDeath _playerDeath;
-        private readonly IGameStateMachine _gameStateMachine;
-
-        public HeroDeathService(IGameStateMachine gameStateMachine)
+        
+        private readonly IWindowsService _windowsService;
+        private readonly IInputService _inputService;
+        
+        public HeroDeathService(IWindowsService windowsService, IInputService inputService)
         {
-            _gameStateMachine = gameStateMachine;
+            _windowsService = windowsService;
+            _inputService = inputService;
         }
 
-        public void Initialize(IDeath playerDeath)
+        public void Init(IDeath playerDeath)
         {
             _playerDeath = playerDeath;
             _playerDeath.Died += OnPlayerDied;
@@ -25,7 +30,8 @@ namespace Gameplay.HeroDeathService
             _playerDeath.Died -= OnPlayerDied;
             _playerDeath = null;
 
-            _gameStateMachine.EnterState<MainMenuState>();
+            _inputService.DisableInput(InputHandlerType.Camera); 
+            _windowsService.OpenWindow(WindowType.Death);
         }
     }
 }
