@@ -5,5 +5,6 @@ namespace UI.Services.WindowsOperating
     public interface IWindowsService
     {
         void OpenWindow(WindowType type);
+        void CloseWindow(WindowType type);
     }
 }

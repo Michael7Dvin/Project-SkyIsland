@@ -1,5 +1,7 @@
 ﻿using Gameplay.Hero;
 using Gameplay.Levels;
+using Gameplay.Levels.WorldObjectsSpawning;
+using Gameplay.Services.Pause;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services.AppClosing;
@@ -12,7 +14,9 @@ using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
 using UI;
 using UI.Services.Factory;
+using UI.Services.Mediating;
 using UI.Services.WindowsOperating;
+using UI.Windows.Factory;
 using UnityEngine;
 using Zenject;
 using IInstantiator = Infrastructure.Services.Instantiating.IInstantiator;
@@ -30,6 +34,7 @@ namespace Infrastructure.Installers
             BindServices();
             BindProvidingServices();
             BindGameStateMachine();
+            BindUI();
         }
 
         private void BindGameStateMachine()
@@ -49,10 +54,8 @@ namespace Infrastructure.Installers
             Container.Bind<ICustomLogger>().To<CustomLogger>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             Container.Bind<IInstantiator>().To<Instantiator>().AsSingle();
-            Container.Bind<IWorldObjectsSpawnerProvider>().To<WorldObjectsSpawnerProvider>().AsSingle();
-            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
-            Container.Bind<IWindowsService>().To<WindowsService>().AsSingle();
             Container.Bind<IAppCloser>().To<AppCloser>().AsSingle();
+            Container.Bind<IPauseService>().To<PauseService>().AsCached();
             
             Container.BindInterfacesAndSelfTo<Updater>().AsSingle();
         }
@@ -64,6 +67,16 @@ namespace Infrastructure.Installers
                 .To<StaticDataProvider>()
                 .AsSingle()
                 .WithArguments(_heroConfig, _uiConfig, _scenesData);
+            
+            Container.Bind<IWorldObjectsSpawnerProvider>().To<WorldObjectsSpawnerProvider>().AsSingle();
+        }
+
+        private void BindUI()
+        {
+            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            Container.Bind<IMediator>().To<Mediator>().AsSingle();
+            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
+            Container.Bind<IWindowsService>().To<WindowsService>().AsSingle();
         }
     }
 }

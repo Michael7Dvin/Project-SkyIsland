@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Infrastructure.Services.Input.Handlers.Utility
 {
-    public class UtilityInput : IUtilityInput, IInputHandler
+    public class UtilityInput : IUtilityInput
     {
         private readonly PlayerInput.UtilityActions _actions;
 
@@ -13,8 +13,7 @@ namespace Infrastructure.Services.Input.Handlers.Utility
         }
 
         public event Action Paused;
-        public InputHandlerType Type => InputHandlerType.Utility;
-        
+
         public void Init() => 
             _actions.Pause.performed += OnPaused;
 

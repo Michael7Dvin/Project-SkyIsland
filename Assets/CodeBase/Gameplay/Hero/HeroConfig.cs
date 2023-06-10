@@ -1,6 +1,6 @@
 ﻿using Gameplay.Hero.Movement;
-using Gameplay.Hero.PlayerCamera;
 using Gameplay.MonoBehaviours;
+using Gameplay.PlayerCamera;
 using UnityEngine;
 
 namespace Gameplay.Hero

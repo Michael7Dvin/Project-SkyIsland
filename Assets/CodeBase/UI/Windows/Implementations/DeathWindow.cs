@@ -1,22 +1,25 @@
-﻿using Infrastructure.GameFSM;
-using Infrastructure.GameFSM.States;
+﻿using Infrastructure.GameFSM.States;
+using UI.Services.Mediating;
+using UI.Windows.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Windows
+namespace UI.Windows.Implementations
 {
     public class DeathWindow : BaseWindow
     {
         [SerializeField] private Button _respawnButton;
         [SerializeField] private Button _mainMenuButton;
         
-        private IGameStateMachine _gameStateMachine;
+        private IMediator _mediator;
 
-        public void Construct(IGameStateMachine gameStateMachine)
+        public void Construct(IMediator mediator)
         {
-            _gameStateMachine = gameStateMachine;
+            _mediator = mediator;
         }
-        
+
+        public override WindowType Type => WindowType.Death;
+
         protected override void SubscribeOnButtons()
         {
             _respawnButton.onClick.AddListener(OnRespawnButtonClick);
@@ -34,6 +37,6 @@ namespace UI.Windows
         }
 
         public void OnMainMenuButtonClick() =>
-            _gameStateMachine.EnterState<MainMenuState>();
+            _mediator.EnterGameState<MainMenuState>();
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 
-namespace Gameplay.Levels
+namespace Gameplay.Levels.WorldObjectsSpawning
 {
     public interface IWorldObjectsSpawnerProvider
     {

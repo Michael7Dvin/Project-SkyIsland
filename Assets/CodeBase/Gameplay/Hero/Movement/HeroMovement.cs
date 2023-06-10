@@ -64,7 +64,7 @@ namespace Gameplay.Hero.Movement
 
         private void Update(float deltaTime) => 
             Move(deltaTime);
-        
+
         private void OnJumpedInput() => 
             _movementStateMachine.EnterState<JumpState>();
 

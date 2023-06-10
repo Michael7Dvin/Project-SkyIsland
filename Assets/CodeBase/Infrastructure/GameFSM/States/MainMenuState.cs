@@ -2,6 +2,8 @@
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Factory;
+using UI.Services.WindowsOperating;
+using UI.Windows;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -10,14 +12,17 @@ namespace Infrastructure.GameFSM.States
         private readonly ScenesData _scenesData;
         
         private readonly ISceneLoader _sceneLoader;
-        private readonly IWindowFactory _windowFactory;
+        private readonly IUIFactory _uiFactory;
+        private readonly IWindowsService _windowService;
         
         public MainMenuState(ISceneLoader sceneLoader,
-            IWindowFactory windowFactory,
+            IUIFactory uiFactory,
+            IWindowsService windowService,
             IStaticDataProvider staticDataProvider)
         {
             _sceneLoader = sceneLoader;
-            _windowFactory = windowFactory;
+            _uiFactory = uiFactory;
+            _windowService = windowService;
             
             _scenesData = staticDataProvider.GetScenesData();
         }
@@ -29,7 +34,10 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        public void OnMainMenuLoaded() => 
-            _windowFactory.CreateMainMenuWindow();
+        public void OnMainMenuLoaded()
+        {
+            _uiFactory.RecreateSceneUIObjects();
+            _windowService.OpenWindow(WindowType.MainMenu);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Gameplay.Levels.WorldObjectsSpawning;
 
 namespace Gameplay.Levels
 {

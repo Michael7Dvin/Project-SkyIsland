@@ -1,10 +1,10 @@
 ﻿using Gameplay.Dying;
 using Gameplay.Healths;
 using Gameplay.Hero.Movement;
-using Gameplay.Hero.PlayerCamera;
-using Gameplay.HeroDeathService;
 using Gameplay.InjuryProcessing;
 using Gameplay.MonoBehaviours;
+using Gameplay.PlayerCamera;
+using Gameplay.Services.HeroDeath;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;

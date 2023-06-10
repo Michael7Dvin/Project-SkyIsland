@@ -1,6 +1,8 @@
 ﻿using Common.FSM;
 using Gameplay.Levels;
+using Gameplay.Levels.WorldObjectsSpawning;
 using Infrastructure.Services.SceneLoading;
+using UI.Services.Factory;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -11,12 +13,17 @@ namespace Infrastructure.GameFSM.States
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IWorldObjectsSpawnerProvider _worldObjectsSpawnerProvider;
+        private readonly IUIFactory _uiFactory;
         
-        public LoadLevelState(ISceneLoader sceneLoader, IGameStateMachine gameStateMachine, IWorldObjectsSpawnerProvider worldObjectsSpawnerProvider)
+        public LoadLevelState(ISceneLoader sceneLoader,
+            IGameStateMachine gameStateMachine,
+            IWorldObjectsSpawnerProvider worldObjectsSpawnerProvider,
+            IUIFactory uiFactory)
         {
             _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
             _worldObjectsSpawnerProvider = worldObjectsSpawnerProvider;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(LevelData levelData)
@@ -29,8 +36,11 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        private void OnLevelLoaded() => 
+        private void OnLevelLoaded()
+        {
+            _uiFactory.RecreateSceneUIObjects();
             SpawnWorldObjects();
+        }
 
         private async void SpawnWorldObjects()
         {

@@ -2,8 +2,6 @@
 {
     public interface IInputHandler
     {
-        InputHandlerType Type { get; }
-
         void Enable();
         void Disable();
     }

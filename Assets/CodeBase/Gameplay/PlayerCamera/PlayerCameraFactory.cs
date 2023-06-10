@@ -1,19 +1,23 @@
 ﻿using Cinemachine;
+using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.StaticDataProviding;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-namespace Gameplay.Hero.PlayerCamera
+namespace Gameplay.PlayerCamera
 {
     public class PlayerCameraFactory : IPlayerCameraFactory
     {
         private readonly PlayerCameraConfig _config;
         private readonly IInstantiator _instantiator;
+        private readonly IInputService _inputService;
         
-        public PlayerCameraFactory(IStaticDataProvider staticDataProvider, IInstantiator instantiator)
+        public PlayerCameraFactory(IStaticDataProvider staticDataProvider, IInstantiator instantiator, IInputService inputService)
         {
             _config = staticDataProvider.GetPlayerConfig().Camera;
             _instantiator = instantiator;
+            _inputService = inputService;
         }
 
         public Camera Create(Transform hero)
@@ -43,6 +47,12 @@ namespace Gameplay.Hero.PlayerCamera
             CinemachineFreeLook controller = _instantiator.Instantiate(controllerPrefab, parent);
             controller.Follow = followPoint;
             controller.LookAt = followPoint;
+
+            CinemachineInputProvider inputProvider = controller.GetComponent<CinemachineInputProvider>();
+            InputAction orbitalRotation = _inputService.Camera.OrbitalRotation;
+            
+            inputProvider.XYAxis.Set(orbitalRotation); 
+            inputProvider.ZAxis.Set(orbitalRotation);
 
             return controller;
         }

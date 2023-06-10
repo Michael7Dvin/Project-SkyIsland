@@ -1,16 +1,18 @@
-﻿namespace Infrastructure.Services.Input.Handlers.Camera
+﻿using UnityEngine.InputSystem;
+
+namespace Infrastructure.Services.Input.Handlers.Camera
 {
-    public class CameraInput : ICameraInput, IInputHandler
+    public class CameraInput : ICameraInput
     {
         private readonly PlayerInput.CameraActions _actions;
+
+        public InputAction OrbitalRotation => _actions.OrbitalRotation;
 
         public CameraInput(PlayerInput.CameraActions actions)
         {
             _actions = actions;
         }
 
-        public InputHandlerType Type => InputHandlerType.Camera;
-        
         public void Enable() => 
             _actions.Enable();
 

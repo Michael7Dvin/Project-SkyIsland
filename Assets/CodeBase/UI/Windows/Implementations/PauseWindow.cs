@@ -1,9 +1,10 @@
-﻿using Infrastructure.GameFSM;
-using Infrastructure.GameFSM.States;
+﻿using Infrastructure.GameFSM.States;
+using UI.Services.Mediating;
+using UI.Windows.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Windows
+namespace UI.Windows.Implementations
 {
     public class PauseWindow : BaseWindow
     {
@@ -13,16 +14,18 @@ namespace UI.Windows
         [SerializeField] private Button _saveButton;
         [SerializeField] private Button _mainMenuButton;
 
-        private IGameStateMachine _gameStateMachine;
+        private IMediator _mediator;
 
-        public void Construct(IGameStateMachine gameStateMachine)
+        public void Construct(IMediator mediator)
         {
-            _gameStateMachine = gameStateMachine;
+            _mediator = mediator;
         }
+
+        public override WindowType Type => WindowType.Pause;
 
         protected override void SubscribeOnButtons()
         {
-            _closeButton.onClick.AddListener(CloseWindow);
+            _closeButton.onClick.AddListener(Close);
             
             _optionsButton.onClick.AddListener(OnOptionsButtonClick);
             _saveButton.onClick.AddListener(OnSaveButtonClick);
@@ -31,7 +34,7 @@ namespace UI.Windows
 
         protected override void UnsubscribeFromButtons()
         {
-            _closeButton.onClick.RemoveListener(CloseWindow);
+            _closeButton.onClick.RemoveListener(Close);
             
             _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
             _saveButton.onClick.RemoveListener(OnSaveButtonClick);
@@ -47,6 +50,6 @@ namespace UI.Windows
         }
 
         public void OnMainMenuButtonClick() =>
-            _gameStateMachine.EnterState<MainMenuState>();
+            _mediator.EnterGameState<MainMenuState>();
     }
 }

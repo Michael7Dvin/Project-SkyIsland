@@ -1,6 +1,6 @@
 using Gameplay.Dying;
 
-namespace Gameplay.HeroDeathService
+namespace Gameplay.Services.HeroDeath
 {
     public interface IHeroDeathService
     {

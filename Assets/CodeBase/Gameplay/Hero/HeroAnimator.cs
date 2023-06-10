@@ -2,6 +2,7 @@
 using Common.Observable;
 using Gameplay.Movement.StateMachine.States;
 using Gameplay.Movement.StateMachine.States.Base;
+using Gameplay.Services.Pause;
 using Infrastructure.Services.Updater;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace Gameplay.Hero
     public class HeroAnimator : IDisposable
     {
         private const float IntensitySettingDampTime = 0.3f;
+        private const float AnimatorDefaultSpeed = 1f;
+        private const float AnimatorOnPauseSpeed = 0f;
         
         private readonly int _horizontalMotionIntensityFloat = Animator.StringToHash("HorizontalMotionIntensity");
         private readonly int _verticalMotionIntensityFloat = Animator.StringToHash("VerticalMotionIntensity");
@@ -22,19 +25,22 @@ namespace Gameplay.Hero
         private readonly CharacterController _characterController;
 
         private readonly IUpdater _updater;
-        private IDisposable _disposableImplementation;
+        private readonly IPauseService _pauseService;
 
         public HeroAnimator(Animator animator,
             IReadOnlyObservable<ExitableMovementState> activeMovementState,
             CharacterController characterController,
-            IUpdater updater)
+            IUpdater updater,
+            IPauseService pauseService)
         {
             _animator = animator;
             _activeMovementState = activeMovementState;
             _characterController = characterController;
 
             _updater = updater;
-            
+            _pauseService = pauseService;
+
+            _pauseService.Paused.Changed += OnPaused;
             _updater.Updated += Update;
             _activeMovementState.Changed += OnActiveMovementStateChanged;
         }
@@ -71,10 +77,20 @@ namespace Gameplay.Hero
                 return Mathf.Clamp01(verticalVelocityMagnitude / speed);
             }
         }
-        
+
         public void Dispose()
         {
+            _pauseService.Paused.Changed -= OnPaused;
             _updater.Updated -= Update;
+            _activeMovementState.Changed -= OnActiveMovementStateChanged;
+        }
+
+        private void OnPaused(bool paused)
+        {
+            if (paused == true)
+                _animator.speed = AnimatorOnPauseSpeed;
+            else
+                _animator.speed = AnimatorDefaultSpeed;
         }
 
         private void Update(float deltaTime)
@@ -99,7 +115,7 @@ namespace Gameplay.Hero
                     throw new ArgumentOutOfRangeException();
             }
         }
-        
+
         private void SetMotionIntensity(float deltaTime)
         {
             _animator.SetFloat(_horizontalMotionIntensityFloat,

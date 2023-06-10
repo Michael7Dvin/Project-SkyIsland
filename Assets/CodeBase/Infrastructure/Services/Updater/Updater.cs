@@ -6,17 +6,34 @@ namespace Infrastructure.Services.Updater
 {
     public class Updater : IUpdater, ITickable, IFixedTickable, ILateTickable
     {
+        private bool _isUpdating;
+        
         public event Action<float> Updated;
         public event Action<float> FixedUpdated;
         public event Action<float> LateUpdated;
         
-        public void Tick() => 
-            Updated?.Invoke(Time.deltaTime);
+        public void StartUpdating() => 
+            _isUpdating = true;
 
-        public void FixedTick() => 
-            FixedUpdated?.Invoke(Time.fixedDeltaTime);
+        public void StopUpdating() => 
+            _isUpdating = false;
 
-        public void LateTick() => 
-            LateUpdated?.Invoke(Time.deltaTime);
+        public void Tick()
+        {
+            if (_isUpdating == true)
+                Updated?.Invoke(Time.deltaTime);
+        }
+
+        public void FixedTick()
+        {
+            if (_isUpdating == true)
+                FixedUpdated?.Invoke(Time.fixedDeltaTime);
+        }
+
+        public void LateTick()
+        {
+            if (_isUpdating == true)
+                LateUpdated?.Invoke(Time.deltaTime);
+        }
     }
 }

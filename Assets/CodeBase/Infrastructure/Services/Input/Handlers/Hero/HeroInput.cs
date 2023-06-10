@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace Infrastructure.Services.Input.Handlers.Hero
 {
-    public class HeroInput : IHeroInput, IInputHandler
+    public class HeroInput : IHeroInput
     {
         private readonly Observable<Vector3> _horizontalDirection = new();
         private readonly PlayerInput.MovementActions _movementActions;
@@ -14,9 +14,7 @@ namespace Infrastructure.Services.Input.Handlers.Hero
         {
             _movementActions = movementActions;
         }
-
-        public InputHandlerType Type => InputHandlerType.Hero;
-
+        
         public IReadOnlyObservable<Vector3> HorizontalMoveDirection => _horizontalDirection;
         public event Action Jumped;
         

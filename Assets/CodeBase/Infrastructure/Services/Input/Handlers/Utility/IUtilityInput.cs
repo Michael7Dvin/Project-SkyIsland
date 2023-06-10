@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Services.Input.Handlers.Utility
 {
-    public interface IUtilityInput
+    public interface IUtilityInput : IInputHandler
     {
         event Action Paused;
     }

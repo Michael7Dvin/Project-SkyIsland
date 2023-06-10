@@ -1,7 +1,7 @@
 ﻿using Gameplay.Hero;
 using UnityEngine;
 
-namespace Gameplay.Levels
+namespace Gameplay.Levels.WorldObjectsSpawning
 {
     public class IslandWorldObjectsSpawner : IWorldObjectsSpawner
     {

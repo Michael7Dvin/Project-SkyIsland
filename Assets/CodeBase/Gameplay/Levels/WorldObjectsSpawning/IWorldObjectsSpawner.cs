@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace Gameplay.Levels
+namespace Gameplay.Levels.WorldObjectsSpawning
 {
     public interface IWorldObjectsSpawner : IInitializable
     {

@@ -7,5 +7,8 @@ namespace Infrastructure.Services.Updater
         event Action<float> Updated;
         event Action<float> FixedUpdated;
         event Action<float> LateUpdated;
+
+        void StartUpdating();
+        void StopUpdating();
     }
 }

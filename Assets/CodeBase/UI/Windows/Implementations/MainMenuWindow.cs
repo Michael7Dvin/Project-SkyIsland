@@ -1,24 +1,24 @@
-﻿using Infrastructure.Services.AppClosing;
-using UI.Services.Factory;
+﻿using UI.Services.Mediating;
+using UI.Windows.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Windows
+namespace UI.Windows.Implementations
 {
     public class MainMenuWindow : BaseWindow
     {
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _optionsButton;
         [SerializeField] private Button _quitButton;
-        
-        private IWindowFactory _windowFactory;
-        private IAppCloser _appCloser;
 
-        public void Construct(IWindowFactory windowFactory, IAppCloser appCloser)
+        private IMediator _mediator;
+
+        public void Construct(IMediator mediator)
         {
-            _windowFactory = windowFactory;
-            _appCloser = appCloser;
+            _mediator = mediator;
         }
+
+        public override WindowType Type => WindowType.MainMenu;
 
         protected override void SubscribeOnButtons()
         {
@@ -33,15 +33,15 @@ namespace UI.Windows
             _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
             _quitButton.onClick.RemoveListener(OnQuitButtonClick);
         }
-        
-        public void OnPlayButtonClick() => 
-            _windowFactory.CreateSaveSelectionWindow();
+
+        public void OnPlayButtonClick() =>
+            _mediator.OpenUIWindow(WindowType.SaveSlotSelection);
 
         public void OnOptionsButtonClick()
         {
         }
         
         public void OnQuitButtonClick() => 
-            _appCloser.Close();
+            _mediator.CloseApp();
     }
 }

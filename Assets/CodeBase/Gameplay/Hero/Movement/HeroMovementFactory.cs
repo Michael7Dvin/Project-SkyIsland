@@ -5,6 +5,7 @@ using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine;
 using Gameplay.Movement.StateMachine.States.Implementations;
+using Gameplay.Services.Pause;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
@@ -20,12 +21,14 @@ namespace Gameplay.Hero.Movement
         private readonly IGroundSpherecasterFactory _groundSpherecasterFactory;
         
         private readonly IUpdater _updater;
+        private readonly IPauseService _pauseService;
         private readonly IInputService _input;
         private readonly ICustomLogger _logger;
 
         public HeroMovementFactory(IStaticDataProvider staticDataProvider,
             IGroundSpherecasterFactory groundSpherecasterFactory,
             IUpdater updater,
+            IPauseService pauseService,
             IInputService input,
             ICustomLogger logger)
         {
@@ -34,6 +37,7 @@ namespace Gameplay.Hero.Movement
             _groundSpherecasterFactory = groundSpherecasterFactory;
             
             _updater = updater;
+            _pauseService = pauseService;
             _input = input;
             _logger = logger;
         }
@@ -56,7 +60,8 @@ namespace Gameplay.Hero.Movement
             IMovementStateMachine movementStateMachine = 
                 CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
 
-            HeroAnimator movementAnimator = new(animator, movementStateMachine.ActiveState, characterController, _updater);
+            HeroAnimator movementAnimator =
+                new(animator, movementStateMachine.ActiveState, characterController, _updater, _pauseService);
             
             HeroMovement movement = new(movementStateMachine,
                 characterController,
@@ -65,7 +70,7 @@ namespace Gameplay.Hero.Movement
                 slopeCalculator,
                 movementAnimator,
                 _updater,
-                _input.HeroInput);
+                _input.Hero);
             
             return movement;
         }
@@ -88,14 +93,14 @@ namespace Gameplay.Hero.Movement
                     slopeSlideMovement,
                     rotator,
                     camera,
-                    _input.HeroInput.HorizontalMoveDirection);
+                    _input.Hero.HorizontalMoveDirection);
 
             FallState fallState = 
                 new(_config.FallVerticalSpeed,
                     _config.FallHorizontalSpeed,
                     rotator,
                     camera,
-                    _input.HeroInput.HorizontalMoveDirection);
+                    _input.Hero.HorizontalMoveDirection);
 
             JumpState jumpState = new(_config.JumpYSpeedToTimeCurve,
                 _config.JumpHorizontalSpeed,
@@ -103,7 +108,7 @@ namespace Gameplay.Hero.Movement
                 camera,
                 groundTypeTracker,
                 slopeSlideMovement,
-                _input.HeroInput.HorizontalMoveDirection);
+                _input.Hero.HorizontalMoveDirection);
             
             IMovementStateProvider stateProvider = 
                 new MovementStateProvider(jogState, fallState, _logger);

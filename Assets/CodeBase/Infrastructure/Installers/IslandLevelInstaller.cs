@@ -1,9 +1,11 @@
 ﻿using Gameplay.Hero;
 using Gameplay.Hero.Movement;
-using Gameplay.Hero.PlayerCamera;
-using Gameplay.HeroDeathService;
 using Gameplay.Levels;
+using Gameplay.Levels.WorldObjectsSpawning;
 using Gameplay.Movement.GroundSpherecasting;
+using Gameplay.PlayerCamera;
+using Gameplay.Services.HeroDeath;
+using Gameplay.Services.PlayerPausing;
 using UnityEngine;
 using Zenject;
 
@@ -23,6 +25,7 @@ namespace Infrastructure.Installers
         private void BindServices()
         {
             Container.Bind<IHeroDeathService>().To<HeroDeathService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerPause>().AsSingle();
         }
 
         private void BindFactories()
