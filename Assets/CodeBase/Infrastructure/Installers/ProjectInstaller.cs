@@ -4,7 +4,6 @@ using Gameplay.PlayerCamera;
 using Gameplay.Services.Pause;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using Infrastructure.Services.AppClosing;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Common;
 using Infrastructure.Services.AssetProviding.ForCamera;
@@ -50,6 +49,7 @@ namespace Infrastructure.Installers
             Container.Bind<MainMenuState>().AsSingle();
             Container.Bind<LoadLevelState>().AsSingle();
             Container.Bind<GameplayState>().AsSingle();
+            Container.Bind<QuitState>().AsSingle();
         }
 
         private void BindServices()
@@ -58,7 +58,6 @@ namespace Infrastructure.Installers
             Container.Bind<ICustomLogger>().To<CustomLogger>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             Container.Bind<IInstantiator>().To<Instantiator>().AsSingle();
-            Container.Bind<IAppCloser>().To<AppCloser>().AsSingle();
             Container.Bind<IPauseService>().To<PauseService>().AsCached();
             Container.Bind<IResourcesLoader>().To<ResourcesLoader>().AsSingle();
             

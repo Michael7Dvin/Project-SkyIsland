@@ -15,7 +15,8 @@ namespace Infrastructure
             InitializationState initializationState,
             MainMenuState mainMenuState,
             LoadLevelState loadLevelState,
-            GameplayState gameplayState)
+            GameplayState gameplayState,
+            QuitState quitState)
         {
             _gameStateMachine = gameStateMachine;
             
@@ -24,6 +25,7 @@ namespace Infrastructure
             _gameStateMachine.AddState(mainMenuState);
             _gameStateMachine.AddState(loadLevelState);
             _gameStateMachine.AddState(gameplayState);
+            _gameStateMachine.AddState(quitState);
         }
         
         public void Initialize() => 

@@ -1,4 +1,5 @@
-﻿using UI.Services.Mediating;
+﻿using Infrastructure.GameFSM.States;
+using UI.Services.Mediating;
 using UI.Windows.Base;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,8 +41,8 @@ namespace UI.Windows.Implementations
         public void OnOptionsButtonClick()
         {
         }
-        
-        public void OnQuitButtonClick() => 
-            _mediator.CloseApp();
+
+        public void OnQuitButtonClick() =>
+            _mediator.EnterGameState<QuitState>();
     }
 }

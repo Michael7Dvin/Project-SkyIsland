@@ -36,6 +36,12 @@ namespace Infrastructure.Services.Input.Service
         public IUIInput UI { get; private set; }
         public IUtilityInput Utility { get; private set; }
 
+        public void Dispose()
+        {
+            Hero.Dispose();
+            Utility.Dispose();
+        }
+
         public void EnableAllInput()
         {
             Hero.Enable();

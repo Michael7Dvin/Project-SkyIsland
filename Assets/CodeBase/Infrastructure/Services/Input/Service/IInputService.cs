@@ -1,4 +1,5 @@
-﻿using Infrastructure.Services.Input.Handlers.Camera;
+﻿using System;
+using Infrastructure.Services.Input.Handlers.Camera;
 using Infrastructure.Services.Input.Handlers.Hero;
 using Infrastructure.Services.Input.Handlers.UI;
 using Infrastructure.Services.Input.Handlers.Utility;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Infrastructure.Services.Input.Service
 {
-    public interface IInputService
+    public interface IInputService : IDisposable
     {
         void Init();
         

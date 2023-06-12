@@ -17,7 +17,7 @@ namespace Infrastructure.Services.Input.Handlers.Hero
         
         public IReadOnlyObservable<Vector3> HorizontalMoveDirection => _horizontalDirection;
         public event Action Jumped;
-        
+
         public void Init()
         {
             _movementActions.Horizontal.started += OnHorizontalInput;
@@ -27,12 +27,21 @@ namespace Infrastructure.Services.Input.Handlers.Hero
             _movementActions.Jump.performed += OnJumped;
         }
 
+        public void Dispose()
+        {
+            _movementActions.Horizontal.started -= OnHorizontalInput;
+            _movementActions.Horizontal.canceled -= OnHorizontalInput;
+            _movementActions.Horizontal.performed -= OnHorizontalInput;
+
+            _movementActions.Jump.performed -= OnJumped;
+        }
+
         public void Enable() =>
             _movementActions.Enable();
 
         public void Disable() =>
             _movementActions.Disable();
-        
+
         private void OnHorizontalInput(InputAction.CallbackContext context)
         {
             Vector2 direction = context.ReadValue<Vector2>();

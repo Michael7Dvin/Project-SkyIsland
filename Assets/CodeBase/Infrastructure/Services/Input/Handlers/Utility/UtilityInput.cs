@@ -17,6 +17,9 @@ namespace Infrastructure.Services.Input.Handlers.Utility
         public void Init() => 
             _actions.Pause.performed += OnPaused;
 
+        public void Dispose() => 
+            _actions.Pause.performed -= OnPaused;
+
         private void OnPaused(InputAction.CallbackContext callbackContext) => 
             Paused?.Invoke();
 
