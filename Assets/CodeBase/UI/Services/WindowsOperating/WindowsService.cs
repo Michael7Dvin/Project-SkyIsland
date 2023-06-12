@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Logging;
 using UI.Windows;
 using UI.Windows.Base;
@@ -21,23 +22,23 @@ namespace UI.Services.WindowsOperating
             _windowFactory = windowFactory;
         }
         
-        public void OpenWindow(WindowType type)
+        public async UniTask OpenWindow(WindowType type)
         {
             IWindow window;
             
             switch (type)
             {
                 case WindowType.MainMenu:
-                    window = _windowFactory.CreateMainMenuWindow();
+                    window = await _windowFactory.CreateMainMenuWindow();
                     break;
-                case WindowType.SaveSlotSelection:
-                    window = _windowFactory.CreateSaveSelectionWindow();
+                case WindowType.SaveSelection:
+                    window = await _windowFactory.CreateSaveSelectionWindow();
                     break;
                 case WindowType.Pause:
-                    window = _windowFactory.CreatePauseWindow();
+                    window = await _windowFactory.CreatePauseWindow();
                     break;
                 case WindowType.Death:
-                    window = _windowFactory.CreateDeathWindow();
+                    window = await _windowFactory.CreateDeathWindow();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

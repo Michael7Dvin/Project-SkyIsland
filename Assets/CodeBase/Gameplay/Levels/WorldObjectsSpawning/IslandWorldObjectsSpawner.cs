@@ -1,4 +1,5 @@
-﻿using Gameplay.Hero;
+﻿using Cysharp.Threading.Tasks;
+using Gameplay.Hero;
 using UnityEngine;
 
 namespace Gameplay.Levels.WorldObjectsSpawning
@@ -23,10 +24,10 @@ namespace Gameplay.Levels.WorldObjectsSpawning
         public void Initialize() => 
             SetSelfToProvider();
 
-        public void SpawnWorldObjects()
+        public async UniTask SpawnWorldObjects()
         {
             Transform heroSpawnPoint = _islandWorldData.PlayerSpawnPoint;
-            _heroFactory.Create(heroSpawnPoint.position, heroSpawnPoint.rotation);
+            await _heroFactory.Create(heroSpawnPoint.position, heroSpawnPoint.rotation);
         }
 
         private void SetSelfToProvider() => 

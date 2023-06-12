@@ -6,7 +6,7 @@ namespace Gameplay.Hero.Movement
     public class HeroMovementConfig : ScriptableObject
     {
         [Header("Ground Sphere Casting")]
-        [SerializeField] private GameObject _pointPrefab;
+        [SerializeField] private Vector3 _pointOffset;
         [SerializeField] private float _sphereRadius;
         [SerializeField] private float _distance;
         
@@ -29,7 +29,7 @@ namespace Gameplay.Hero.Movement
         [SerializeField] private AnimationCurve _ySpeedToTime;
         [SerializeField] private float _jumpHorizontalSpeed;
 
-        public GameObject GroundSphereCastingPointPrefab => _pointPrefab;
+        public Vector3 GroundSphereCastingPointOffset => _pointOffset;
         public float GroundSphereCastingSphereRadius => _sphereRadius;
         public float GroundSphereCastingDistance => _distance;
         

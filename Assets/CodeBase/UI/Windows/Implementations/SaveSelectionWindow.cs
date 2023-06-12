@@ -24,7 +24,7 @@ namespace UI.Windows.Implementations
             _mediator = mediator;
         }
 
-        public override WindowType Type => WindowType.SaveSlotSelection;
+        public override WindowType Type => WindowType.SaveSelection;
 
         protected override void SubscribeOnButtons()
         {

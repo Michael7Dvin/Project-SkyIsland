@@ -24,7 +24,7 @@ namespace Infrastructure.GameFSM.States
             _uiFactory = uiFactory;
             _windowService = windowService;
             
-            _scenesData = staticDataProvider.GetScenesData();
+            _scenesData = staticDataProvider.ScenesData;
         }
 
         public void Enter() => 
@@ -34,10 +34,10 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        public void OnMainMenuLoaded()
+        public async void OnMainMenuLoaded()
         {
-            _uiFactory.RecreateSceneUIObjects();
-            _windowService.OpenWindow(WindowType.MainMenu);
+            await _uiFactory.RecreateSceneUIObjects();
+            await _windowService.OpenWindow(WindowType.MainMenu);
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using Infrastructure.Services.Input.Service;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.Services.AssetProviding.UI;
+using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
-using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Mediating;
 using UI.Windows.Factory;
 using UnityEngine;
@@ -11,48 +12,58 @@ namespace UI.Services.Factory
 {
     public class UIFactory : IUIFactory
     {
-        private readonly UIConfig _config;
-        
         private readonly IWindowFactory _windowFactory;
+        private readonly IUIAssetsProvider _uiAssetsProvider;
+        
         private readonly IMediator _mediator;
         private readonly IInstantiator _instantiator;
         private readonly IInputService _inputService;
 
         public UIFactory(IWindowFactory windowFactory,
+            IUIAssetsProvider uiAssetsProvider,
             IMediator mediator,
             IInstantiator instantiator,
-            IInputService inputService,
-            IStaticDataProvider staticDataProvider)
+            IInputService inputService)
         {
             _windowFactory = windowFactory;
+            _uiAssetsProvider = uiAssetsProvider;
+            
             _mediator = mediator;
             _instantiator = instantiator;
             _inputService = inputService;
-
-            _config = staticDataProvider.GetUIConfig();
         }
 
         public void Init() => 
             _windowFactory.Init(_mediator);
 
-        public void RecreateSceneUIObjects()
+        public async UniTask WarmUp()
         {
-            Canvas canvas = CreateCanvas();
-            EventSystem eventSystem = CreateEventSystem();
-            SetUpEventSystemInput(eventSystem);
+            await _uiAssetsProvider.LoadCanvas();
+            await _uiAssetsProvider.LoadEventSystem();
+        }
+
+        public async UniTask RecreateSceneUIObjects()
+        {
+            Canvas canvas = await CreateCanvas();
+            await CreateEventSystem();
             
             _windowFactory.ResetCanvas(canvas);
         }
         
-        private Canvas CreateCanvas()
+        private async UniTask<Canvas> CreateCanvas()
         {
-            Canvas canvas = _instantiator.Instantiate(_config.CanvasPrefab);
+            Canvas prefab = await _uiAssetsProvider.LoadCanvas();
+            Canvas canvas = _instantiator.Instantiate(prefab);
             return canvas;
         }
         
-        private EventSystem CreateEventSystem()
+        private async UniTask<EventSystem> CreateEventSystem()
         {
-            EventSystem eventSystem = _instantiator.Instantiate(_config.UIInputEventSystem);
+            EventSystem prefab = await _uiAssetsProvider.LoadEventSystem();
+            EventSystem eventSystem = _instantiator.Instantiate(prefab);
+            
+            SetUpEventSystemInput(eventSystem);
+
             return eventSystem;
         }
 

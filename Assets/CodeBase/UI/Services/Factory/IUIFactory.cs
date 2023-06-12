@@ -1,8 +1,11 @@
-﻿namespace UI.Services.Factory
+﻿using Cysharp.Threading.Tasks;
+
+namespace UI.Services.Factory
 {
     public interface IUIFactory
     {
         void Init();
-        void RecreateSceneUIObjects();
+        UniTask WarmUp();
+        UniTask RecreateSceneUIObjects();
     }
 }

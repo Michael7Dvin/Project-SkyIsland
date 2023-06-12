@@ -1,9 +1,15 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Gameplay.Hero.Movement
 {
     public interface IHeroMovementFactory
     {
-        IHeroMovement Create(Transform parent, Animator animator, CharacterController characterController, Transform camera);
+        UniTask WarmUp();
+
+        UniTask<IHeroMovement> Create(Transform parent,
+            Animator animator,
+            CharacterController characterController,
+            Transform camera);
     }
 }

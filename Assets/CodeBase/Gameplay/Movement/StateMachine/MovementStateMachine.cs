@@ -9,12 +9,12 @@ namespace Gameplay.Movement.StateMachine
     {
         private readonly StateRunner<ExitableMovementState> _stateRunner = new();
         
-        private readonly IMovementStateProvider _stateProvider;
+        private readonly IMovementStatesProvider _statesProvider;
         private readonly IGroundTypeTracker _groundTypeTracker;
 
-        public MovementStateMachine(IMovementStateProvider stateProvider, IGroundTypeTracker groundTypeTracker)
+        public MovementStateMachine(IMovementStatesProvider statesProvider, IGroundTypeTracker groundTypeTracker)
         {
-            _stateProvider = stateProvider;
+            _statesProvider = statesProvider;
             _groundTypeTracker = groundTypeTracker;
 
             _groundTypeTracker.CurrentGroundType.Changed += OnGroundTypeChanged;
@@ -42,13 +42,13 @@ namespace Gameplay.Movement.StateMachine
 
         private void EnterDefaultState()
         {
-            MovementState defaultState = _stateProvider.GetDefaultStateByGroundType(CurrentGroundType);
+            MovementState defaultState = _statesProvider.GetDefaultStateByGroundType(CurrentGroundType);
             _stateRunner.EnterState(defaultState);
         }
 
         public void EnterState<TState>() where TState : MovementState
         {
-            MovementState state = _stateProvider.GetState<TState>();
+            MovementState state = _statesProvider.GetState<TState>();
 
             if (state.CanStart(CurrentGroundType) == true)
             {
@@ -63,7 +63,7 @@ namespace Gameplay.Movement.StateMachine
 
         public void EnterState<TState, TArgs>(TArgs args) where TState : MovementStateWithArguments<TArgs>
         {
-            MovementStateWithArguments<TArgs> state = _stateProvider.GetState<TState, TArgs>();
+            MovementStateWithArguments<TArgs> state = _statesProvider.GetState<TState, TArgs>();
 
             if (state.CanStart(CurrentGroundType) == true)
             {

@@ -15,24 +15,24 @@ namespace Gameplay.Hero
         private readonly IHeroMovement _movement;
         private readonly IInjuryProcessor _injuryProcessor;
         private readonly IDeath _death;
-        
-        private readonly IGameObjectLifeCycleNotifier _gameObjectLifeCycleNotifier;
+
+        private readonly IDestroyable _destroyable;
 
         public Hero(GameObject gameObject,
             IHeroMovement movement,
             IInjuryProcessor injuryProcessor,
             IDeath death,
-            IGameObjectLifeCycleNotifier gameObjectLifeCycleNotifier)
+            IDestroyable destroyable)
         {
             _gameObject = gameObject;
             _movement = movement;
             _injuryProcessor = injuryProcessor;
             _death = death;
 
-            _gameObjectLifeCycleNotifier = gameObjectLifeCycleNotifier;
+            _destroyable = destroyable;
 
             _death.Died += OnDied;
-            _gameObjectLifeCycleNotifier.Destroyed += Dispose;
+            _destroyable.Destroyed += Dispose;
         }
 
         private void OnDied() =>
@@ -45,7 +45,7 @@ namespace Gameplay.Hero
             _death.Dispose();
 
             _death.Died -= OnDied;
-            _gameObjectLifeCycleNotifier.Destroyed -= Dispose;
+            _destroyable.Destroyed -= Dispose;
         }
     }
 }

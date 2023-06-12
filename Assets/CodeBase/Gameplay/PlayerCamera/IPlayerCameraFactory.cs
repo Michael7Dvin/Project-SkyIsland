@@ -1,9 +1,11 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Gameplay.PlayerCamera
 {
     public interface IPlayerCameraFactory
     {
-        Camera Create(Transform hero);
+        UniTask WarmUp();
+        UniTask<Camera> Create(Transform hero);
     }
 }

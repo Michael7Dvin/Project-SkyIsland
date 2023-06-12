@@ -3,7 +3,7 @@
     public enum WindowType
     {
         MainMenu = 0,
-        SaveSlotSelection = 1,
+        SaveSelection = 1,
         Pause = 2,
         Death = 3,
     }

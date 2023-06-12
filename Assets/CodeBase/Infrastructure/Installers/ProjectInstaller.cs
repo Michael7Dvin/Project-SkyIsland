@@ -1,18 +1,21 @@
 ﻿using Gameplay.Hero;
-using Gameplay.Levels;
 using Gameplay.Levels.WorldObjectsSpawning;
+using Gameplay.PlayerCamera;
 using Gameplay.Services.Pause;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Services.AppClosing;
-using Infrastructure.Services.Input;
+using Infrastructure.Services.AssetProviding.Addresses;
+using Infrastructure.Services.AssetProviding.Common;
+using Infrastructure.Services.AssetProviding.ForCamera;
+using Infrastructure.Services.AssetProviding.UI;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
+using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
-using UI;
 using UI.Services.Factory;
 using UI.Services.Mediating;
 using UI.Services.WindowsOperating;
@@ -26,9 +29,10 @@ namespace Infrastructure.Installers
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private HeroConfig _heroConfig;
-        [SerializeField] private UIConfig _uiConfig;
+        [SerializeField] private PlayerCameraConfig _playerCameraConfig;
         [SerializeField] private ScenesData _scenesData;
-        
+        [SerializeField] private AllAssetsAddresses _allAssetsAddresses;
+
         public override void InstallBindings()
         {
             BindServices();
@@ -56,6 +60,7 @@ namespace Infrastructure.Installers
             Container.Bind<IInstantiator>().To<Instantiator>().AsSingle();
             Container.Bind<IAppCloser>().To<AppCloser>().AsSingle();
             Container.Bind<IPauseService>().To<PauseService>().AsCached();
+            Container.Bind<IResourcesLoader>().To<ResourcesLoader>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<Updater>().AsSingle();
         }
@@ -66,9 +71,13 @@ namespace Infrastructure.Installers
                 .Bind<IStaticDataProvider>()
                 .To<StaticDataProvider>()
                 .AsSingle()
-                .WithArguments(_heroConfig, _uiConfig, _scenesData);
+                .WithArguments(_heroConfig, _playerCameraConfig, _scenesData, _allAssetsAddresses);
             
             Container.Bind<IWorldObjectsSpawnerProvider>().To<WorldObjectsSpawnerProvider>().AsSingle();
+
+            Container.Bind<ICommonAssetsProvider>().To<CommonAssetsProvider>().AsSingle();
+            Container.Bind<ICameraAssetsProvider>().To<CameraAssetsProvider>().AsSingle();
+            Container.Bind<IUIAssetsProvider>().To<UIAssetsProvider>().AsSingle();
         }
 
         private void BindUI()

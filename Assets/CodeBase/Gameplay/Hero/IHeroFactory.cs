@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace Gameplay.Hero
 {
     public interface IHeroFactory
     {
-        Hero Create(Vector3 position, Quaternion rotation);
+        UniTaskVoid WarmUp();
+        UniTask<Hero> Create(Vector3 position, Quaternion rotation);
     }
 }

@@ -1,10 +1,11 @@
-﻿using UI.Windows;
+﻿using Cysharp.Threading.Tasks;
+using UI.Windows;
 
 namespace UI.Services.WindowsOperating
 {
     public interface IWindowsService
     {
-        void OpenWindow(WindowType type);
+        UniTask OpenWindow(WindowType type);
         void CloseWindow(WindowType type);
     }
 }

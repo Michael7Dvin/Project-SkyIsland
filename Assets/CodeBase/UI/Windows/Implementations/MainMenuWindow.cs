@@ -35,7 +35,7 @@ namespace UI.Windows.Implementations
         }
 
         public void OnPlayButtonClick() =>
-            _mediator.OpenUIWindow(WindowType.SaveSlotSelection);
+            _mediator.OpenUIWindow(WindowType.SaveSelection);
 
         public void OnOptionsButtonClick()
         {

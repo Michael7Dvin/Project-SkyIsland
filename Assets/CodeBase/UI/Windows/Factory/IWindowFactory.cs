@@ -1,5 +1,6 @@
+using Cysharp.Threading.Tasks;
 using UI.Services.Mediating;
-using UI.Windows.Base;
+using UI.Windows.Implementations;
 using UnityEngine;
 
 namespace UI.Windows.Factory
@@ -7,11 +8,13 @@ namespace UI.Windows.Factory
     public interface IWindowFactory
     {
         void Init(IMediator mediator);
+        UniTask WarmUp();
+        
         void ResetCanvas(Canvas canvas);
         
-        IWindow CreateMainMenuWindow();
-        IWindow CreateSaveSelectionWindow();
-        IWindow CreatePauseWindow();
-        IWindow CreateDeathWindow();
+        UniTask<MainMenuWindow> CreateMainMenuWindow();
+        UniTask<SaveSelectionWindow> CreateSaveSelectionWindow();
+        UniTask<PauseWindow> CreatePauseWindow();
+        UniTask<DeathWindow> CreateDeathWindow();
     }
 }

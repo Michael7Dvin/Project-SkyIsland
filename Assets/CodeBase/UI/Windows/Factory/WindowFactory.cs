@@ -1,7 +1,7 @@
-﻿using Infrastructure.Services.Instantiating;
-using Infrastructure.Services.StaticDataProviding;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.Services.AssetProviding.UI;
+using Infrastructure.Services.Instantiating;
 using UI.Services.Mediating;
-using UI.Windows.Base;
 using UI.Windows.Implementations;
 using UnityEngine;
 
@@ -10,53 +10,67 @@ namespace UI.Windows.Factory
     public class WindowFactory : IWindowFactory
     {
         private Canvas _canvas;
-        
-        private readonly UIConfig _config;
-        
+
+        private readonly IUIAssetsProvider _uiAssetsProvider;
+
         private readonly IInstantiator _instantiator;
         private IMediator _mediator;
 
-        public WindowFactory(IInstantiator instantiator, IStaticDataProvider staticDataProvider)
+        public WindowFactory(IUIAssetsProvider uiAssetsProvider, IInstantiator instantiator)
         {
+            _uiAssetsProvider = uiAssetsProvider;
             _instantiator = instantiator;
-            _config = staticDataProvider.GetUIConfig();
         }
-
+        
         public void Init(IMediator mediator) => 
             _mediator = mediator;
+
+        public async UniTask WarmUp()
+        {
+            await _uiAssetsProvider.LoadMainMenuWindow();
+            await _uiAssetsProvider.LoadSaveSelectionWindow();
+            await _uiAssetsProvider.LoadPauseWindow();
+            await _uiAssetsProvider.LoadDeathWindow();
+        }
 
         public void ResetCanvas(Canvas canvas) => 
             _canvas = canvas;
 
-        public IWindow CreateMainMenuWindow()
+        public async UniTask<MainMenuWindow> CreateMainMenuWindow()
         {
-            Debug.Log(_canvas);
+            MainMenuWindow prefab = await _uiAssetsProvider.LoadMainMenuWindow();
             
-            MainMenuWindow mainMenuWindow = _instantiator.Instantiate(_config.MainMenuWindowPrefab, _canvas.transform);
+            MainMenuWindow mainMenuWindow = _instantiator.Instantiate(prefab, _canvas.transform);
             mainMenuWindow.Construct(_mediator);
-            
+
             return mainMenuWindow;
         }
 
-        public IWindow CreateSaveSelectionWindow()
+        public async UniTask<SaveSelectionWindow> CreateSaveSelectionWindow()
         {
-            SaveSelectionWindow saveSelectionWindow = _instantiator.Instantiate(_config.SaveSelectionWindowPrefab, _canvas.transform);
+            SaveSelectionWindow prefab = await _uiAssetsProvider.LoadSaveSelectionWindow();
+            
+            SaveSelectionWindow saveSelectionWindow = _instantiator.Instantiate(prefab, _canvas.transform);
             saveSelectionWindow.Construct(_mediator);
 
             return saveSelectionWindow;
         }
 
-        public IWindow CreatePauseWindow()
+        public async UniTask<PauseWindow> CreatePauseWindow()
         {
-            PauseWindow pauseWindow = _instantiator.Instantiate(_config.PauseWindowPrefab, _canvas.transform);
+            PauseWindow prefab = await _uiAssetsProvider.LoadPauseWindow();
+            
+            PauseWindow pauseWindow = _instantiator.Instantiate(prefab, _canvas.transform);
             pauseWindow.Construct(_mediator);
 
             return pauseWindow;
         }
 
-        public IWindow CreateDeathWindow()
+        public async UniTask<DeathWindow> CreateDeathWindow()
         {
-            DeathWindow deathWindow = _instantiator.Instantiate(_config.DeathWindowPrefab, _canvas.transform);
+            DeathWindow prefab = await _uiAssetsProvider.LoadDeathWindow();
+            
+            DeathWindow deathWindow = _instantiator.Instantiate(prefab, _canvas.transform);
             deathWindow.Construct(_mediator);
 
             return deathWindow;

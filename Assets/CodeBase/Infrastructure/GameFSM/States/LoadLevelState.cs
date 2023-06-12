@@ -1,6 +1,8 @@
 ﻿using Common.FSM;
+using Cysharp.Threading.Tasks;
 using Gameplay.Levels;
 using Gameplay.Levels.WorldObjectsSpawning;
+using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
 using UI.Services.Factory;
 
@@ -12,16 +14,19 @@ namespace Infrastructure.GameFSM.States
         
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _gameStateMachine;
+        private readonly IResourcesLoader _resourcesLoader;
         private readonly IWorldObjectsSpawnerProvider _worldObjectsSpawnerProvider;
         private readonly IUIFactory _uiFactory;
-        
+
         public LoadLevelState(ISceneLoader sceneLoader,
             IGameStateMachine gameStateMachine,
+            IResourcesLoader resourcesLoader,
             IWorldObjectsSpawnerProvider worldObjectsSpawnerProvider,
             IUIFactory uiFactory)
         {
             _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
+            _resourcesLoader = resourcesLoader;
             _worldObjectsSpawnerProvider = worldObjectsSpawnerProvider;
             _uiFactory = uiFactory;
         }
@@ -36,17 +41,18 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        private void OnLevelLoaded()
+        private async void OnLevelLoaded()
         {
-            _uiFactory.RecreateSceneUIObjects();
-            SpawnWorldObjects();
+            _resourcesLoader.ClearCache();
+            await _uiFactory.RecreateSceneUIObjects();
+            await SpawnWorldObjects();
+            _gameStateMachine.EnterState<GameplayState>();
         }
 
-        private async void SpawnWorldObjects()
+        private async UniTask SpawnWorldObjects()
         {
             IWorldObjectsSpawner worldObjectsSpawner = await _worldObjectsSpawnerProvider.Get(_currentLevelData.Type);
-            worldObjectsSpawner.SpawnWorldObjects();
-            _gameStateMachine.EnterState<GameplayState>();
+            await worldObjectsSpawner.SpawnWorldObjects();
         }
     }
 }

@@ -1,29 +1,26 @@
 ﻿using Gameplay.Hero;
+using Gameplay.PlayerCamera;
+using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.SceneLoading;
-using UI;
 
 namespace Infrastructure.Services.StaticDataProviding
 {
     public class StaticDataProvider : IStaticDataProvider
     {
-        private readonly HeroConfig _heroConfig;
-        private readonly ScenesData _scenesData;
-        private readonly UIConfig _uiConfig;
-
-        public StaticDataProvider(HeroConfig heroConfig, UIConfig uiConfig, ScenesData scenesData)
+        public StaticDataProvider(HeroConfig heroConfig,
+            PlayerCameraConfig playerCameraConfig,
+            ScenesData scenesData,
+            AllAssetsAddresses allAssetsAddresses)
         {
-            _heroConfig = heroConfig;
-            _uiConfig = uiConfig;
-            _scenesData = scenesData;
+            HeroConfig = heroConfig;
+            PlayerCameraConfig = playerCameraConfig;
+            ScenesData = scenesData;
+            AllAssetsAddresses = allAssetsAddresses;
         }
-
-        public HeroConfig GetPlayerConfig() =>
-            _heroConfig;
-
-        public UIConfig GetUIConfig() =>
-            _uiConfig;
-
-        public ScenesData GetScenesData() => 
-            _scenesData;
+        
+        public HeroConfig HeroConfig { get; }
+        public PlayerCameraConfig PlayerCameraConfig { get; }
+        public ScenesData ScenesData { get; }
+        public AllAssetsAddresses AllAssetsAddresses { get; }
     }
 }

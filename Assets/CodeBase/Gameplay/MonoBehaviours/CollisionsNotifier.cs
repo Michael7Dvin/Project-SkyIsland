@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Gameplay.MonoBehaviours
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CollisionsNotifier : GameObjectLifeCycleNotifier, ICollisionNotifier
+    public class CollisionsNotifier : Destroyable, ICollisionNotifier
     {
         public event Action<Collision> CollisionEntered;
         public event Action<Collision> CollisionStayed;
