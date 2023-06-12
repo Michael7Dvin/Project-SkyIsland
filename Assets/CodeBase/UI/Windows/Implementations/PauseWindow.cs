@@ -49,7 +49,10 @@ namespace UI.Windows.Implementations
         {
         }
 
-        public void OnMainMenuButtonClick() =>
+        public void OnMainMenuButtonClick()
+        {
             _mediator.EnterGameState<MainMenuState>();
+            Close();
+        }
     }
 }

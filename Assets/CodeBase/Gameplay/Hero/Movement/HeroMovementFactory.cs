@@ -64,7 +64,7 @@ namespace Gameplay.Hero.Movement
                 CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
 
             HeroAnimator movementAnimator =
-                new(animator, movementStateMachine.ActiveState, characterController, _updater, _pauseService);
+                new(animator, movementStateMachine.ActiveState, characterController, _updater);
             
             HeroMovement movement = new(movementStateMachine,
                 characterController,

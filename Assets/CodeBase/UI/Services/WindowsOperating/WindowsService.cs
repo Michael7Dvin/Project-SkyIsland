@@ -22,7 +22,7 @@ namespace UI.Services.WindowsOperating
             _windowFactory = windowFactory;
         }
         
-        public async UniTask OpenWindow(WindowType type)
+        public async UniTask<IWindow> OpenWindow(WindowType type)
         {
             IWindow window;
             
@@ -45,6 +45,7 @@ namespace UI.Services.WindowsOperating
             }
             
             AddOpenedWindow(window);
+            return window;
         }
 
         public void CloseWindow(WindowType type)
