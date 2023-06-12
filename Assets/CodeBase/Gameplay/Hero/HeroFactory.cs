@@ -6,7 +6,6 @@ using Gameplay.InjuryProcessing;
 using Gameplay.MonoBehaviours;
 using Gameplay.PlayerCamera;
 using Gameplay.Services.HeroDeath;
-using Infrastructure.Services.AssetProviding;
 using Infrastructure.Services.AssetProviding.Common;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
@@ -46,7 +45,7 @@ namespace Gameplay.Hero
             _logger = logger;
         }
 
-        public async UniTaskVoid WarmUp()
+        public async UniTask WarmUp()
         {
             await _commonAssetsProvider.LoadHero();
             await _movementFactory.WarmUp();

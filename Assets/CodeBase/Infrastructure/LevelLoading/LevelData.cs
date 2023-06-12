@@ -1,4 +1,4 @@
-﻿namespace Gameplay.Levels
+﻿namespace Infrastructure.LevelLoading
 {
     public class LevelData
     {

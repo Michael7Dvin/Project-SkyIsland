@@ -1,7 +1,8 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
-using Gameplay.Levels;
-using Gameplay.Levels.WorldObjectsSpawning;
+using Infrastructure.LevelLoading;
+using Infrastructure.LevelLoading.WarmUpping;
+using Infrastructure.LevelLoading.WorldObjectsSpawning;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
 using UI.Services.Factory;
@@ -15,19 +16,19 @@ namespace Infrastructure.GameFSM.States
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IResourcesLoader _resourcesLoader;
-        private readonly IWorldObjectsSpawnerProvider _worldObjectsSpawnerProvider;
+        private readonly ILevelServicesProvider _levelServicesProvider;
         private readonly IUIFactory _uiFactory;
 
         public LoadLevelState(ISceneLoader sceneLoader,
             IGameStateMachine gameStateMachine,
             IResourcesLoader resourcesLoader,
-            IWorldObjectsSpawnerProvider worldObjectsSpawnerProvider,
+            ILevelServicesProvider levelServicesProvider,
             IUIFactory uiFactory)
         {
             _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
             _resourcesLoader = resourcesLoader;
-            _worldObjectsSpawnerProvider = worldObjectsSpawnerProvider;
+            _levelServicesProvider = levelServicesProvider;
             _uiFactory = uiFactory;
         }
 
@@ -43,15 +44,28 @@ namespace Infrastructure.GameFSM.States
 
         private async void OnLevelLoaded()
         {
-            _resourcesLoader.ClearCache();
+            CleanUp();
+            
+            await WarmUpServices();
             await _uiFactory.RecreateSceneUIObjects();
             await SpawnWorldObjects();
+            
             _gameStateMachine.EnterState<GameplayState>();
         }
 
+        private void CleanUp() => 
+            _resourcesLoader.ClearCache();
+
+        private async UniTask WarmUpServices()
+        {
+            IWarmUpper warmUpper = await _levelServicesProvider.GetWarmUpper(_currentLevelData.Type);
+            await warmUpper.WarmUp();
+        }
+        
         private async UniTask SpawnWorldObjects()
         {
-            IWorldObjectsSpawner worldObjectsSpawner = await _worldObjectsSpawnerProvider.Get(_currentLevelData.Type);
+            IWorldObjectsSpawner worldObjectsSpawner = 
+                await _levelServicesProvider.GetWorldObjectsSpawner(_currentLevelData.Type);
             await worldObjectsSpawner.SpawnWorldObjects();
         }
     }

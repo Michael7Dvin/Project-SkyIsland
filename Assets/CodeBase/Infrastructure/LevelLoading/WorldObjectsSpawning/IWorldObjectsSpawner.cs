@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Zenject;
 
-namespace Gameplay.Levels.WorldObjectsSpawning
+namespace Infrastructure.LevelLoading.WorldObjectsSpawning
 {
     public interface IWorldObjectsSpawner : IInitializable
     {

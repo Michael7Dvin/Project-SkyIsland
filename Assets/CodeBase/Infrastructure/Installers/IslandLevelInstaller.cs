@@ -1,11 +1,12 @@
 ﻿using Gameplay.Hero;
 using Gameplay.Hero.Movement;
-using Gameplay.Levels;
-using Gameplay.Levels.WorldObjectsSpawning;
 using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.PlayerCamera;
 using Gameplay.Services.HeroDeath;
 using Gameplay.Services.PlayerPausing;
+using Infrastructure.LevelLoading;
+using Infrastructure.LevelLoading.WarmUpping;
+using Infrastructure.LevelLoading.WorldObjectsSpawning;
 using UnityEngine;
 using Zenject;
 
@@ -19,7 +20,7 @@ namespace Infrastructure.Installers
         {
             BindServices();
             BindFactories();
-            BindWorldObjectsSpawner();
+            BindLevelLoadingServices();
         }
 
         private void BindServices()
@@ -36,10 +37,11 @@ namespace Infrastructure.Installers
             Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
         }
 
-        private void BindWorldObjectsSpawner()
+        private void BindLevelLoadingServices()
         {
             Container.Bind<IslandWorldData>().AsSingle().WithArguments(_heroSpawnPoint);
             Container.BindInterfacesAndSelfTo<IslandWorldObjectsSpawner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<IslandWarmUpper>().AsSingle();
         }
     }
 }

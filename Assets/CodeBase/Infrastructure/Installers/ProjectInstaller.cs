@@ -1,9 +1,9 @@
 ﻿using Gameplay.Hero;
-using Gameplay.Levels.WorldObjectsSpawning;
 using Gameplay.PlayerCamera;
 using Gameplay.Services.Pause;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
+using Infrastructure.LevelLoading;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Common;
 using Infrastructure.Services.AssetProviding.ForCamera;
@@ -72,7 +72,7 @@ namespace Infrastructure.Installers
                 .AsSingle()
                 .WithArguments(_heroConfig, _playerCameraConfig, _scenesData, _allAssetsAddresses);
             
-            Container.Bind<IWorldObjectsSpawnerProvider>().To<WorldObjectsSpawnerProvider>().AsSingle();
+            Container.Bind<ILevelServicesProvider>().To<LevelServicesProvider>().AsSingle();
 
             Container.Bind<ICommonAssetsProvider>().To<CommonAssetsProvider>().AsSingle();
             Container.Bind<ICameraAssetsProvider>().To<CameraAssetsProvider>().AsSingle();

@@ -2,19 +2,19 @@
 using Gameplay.Hero;
 using UnityEngine;
 
-namespace Gameplay.Levels.WorldObjectsSpawning
+namespace Infrastructure.LevelLoading.WorldObjectsSpawning
 {
     public class IslandWorldObjectsSpawner : IWorldObjectsSpawner
     {
-        private readonly IWorldObjectsSpawnerProvider _worldObjectsSpawnerProvider;
+        private readonly ILevelServicesProvider _levelServicesProvider;
         private readonly IHeroFactory _heroFactory;
         private readonly IslandWorldData _islandWorldData;
 
-        public IslandWorldObjectsSpawner(IWorldObjectsSpawnerProvider worldObjectsSpawnerProvider,
+        public IslandWorldObjectsSpawner(ILevelServicesProvider levelServicesProvider,
             IHeroFactory heroFactory,
             IslandWorldData islandWorldData)
         {
-            _worldObjectsSpawnerProvider = worldObjectsSpawnerProvider;
+            _levelServicesProvider = levelServicesProvider;
             _heroFactory = heroFactory;
             _islandWorldData = islandWorldData;
         }
@@ -31,6 +31,6 @@ namespace Gameplay.Levels.WorldObjectsSpawning
         }
 
         private void SetSelfToProvider() => 
-            _worldObjectsSpawnerProvider.Set(this);
+            _levelServicesProvider.SetWorldObjectsSpawner(this);
     }
 }

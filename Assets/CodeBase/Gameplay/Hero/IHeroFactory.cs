@@ -5,7 +5,7 @@ namespace Gameplay.Hero
 {
     public interface IHeroFactory
     {
-        UniTaskVoid WarmUp();
+        UniTask WarmUp();
         UniTask<Hero> Create(Vector3 position, Quaternion rotation);
     }
 }
