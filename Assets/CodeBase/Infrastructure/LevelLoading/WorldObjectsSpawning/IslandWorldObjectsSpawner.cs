@@ -1,5 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gameplay.Hero;
+using Infrastructure.LevelLoading.Data;
+using Infrastructure.LevelLoading.LevelServicesProviding;
 using UnityEngine;
 
 namespace Infrastructure.LevelLoading.WorldObjectsSpawning

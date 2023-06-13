@@ -25,7 +25,7 @@ namespace UI.Windows.Implementations
 
         protected override void SubscribeOnButtons()
         {
-            _closeButton.onClick.AddListener(Close);
+            _closeButton.onClick.AddListener(Disable);
             
             _optionsButton.onClick.AddListener(OnOptionsButtonClick);
             _saveButton.onClick.AddListener(OnSaveButtonClick);
@@ -34,7 +34,7 @@ namespace UI.Windows.Implementations
 
         protected override void UnsubscribeFromButtons()
         {
-            _closeButton.onClick.RemoveListener(Close);
+            _closeButton.onClick.RemoveListener(Disable);
             
             _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
             _saveButton.onClick.RemoveListener(OnSaveButtonClick);
@@ -52,7 +52,7 @@ namespace UI.Windows.Implementations
         public void OnMainMenuButtonClick()
         {
             _mediator.EnterGameState<MainMenuState>();
-            Close();
+            Disable();
         }
     }
 }

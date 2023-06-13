@@ -6,19 +6,32 @@ namespace UI.Windows.Base
     public abstract class BaseWindow : MonoBehaviour, IWindow
     {
         public abstract WindowType Type { get; }
-        public event Action<IWindow> Closed;
+        public bool IsActive { get; private set; }
+        
+        public event Action<IWindow> Destroyed;
 
-        private void Awake() => 
-            SubscribeOnButtons();
+        private void Awake() =>
+            Enable();
 
         private void OnDestroy()
         {
-            Closed?.Invoke(this);
+            Destroyed?.Invoke(this);
             UnsubscribeFromButtons();
         }
 
-        public void Close() => 
-            Destroy(gameObject);
+        public void Enable()
+        {
+            SubscribeOnButtons();
+            gameObject.SetActive(true);
+            IsActive = true;
+        }
+
+        public void Disable()
+        {
+            UnsubscribeFromButtons();
+            gameObject.SetActive(false);
+            IsActive = false;
+        }
 
         protected abstract void SubscribeOnButtons();
         protected abstract void UnsubscribeFromButtons();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure.LevelLoading
+namespace Infrastructure.LevelLoading.Data
 {
     public class IslandWorldData
     {

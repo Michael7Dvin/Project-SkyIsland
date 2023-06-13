@@ -5,9 +5,11 @@ namespace UI.Windows.Base
     public interface IWindow
     {
         WindowType Type { get; }
-
-        event Action<IWindow> Closed;
+        bool IsActive { get; }
         
-        void Close();
+        event Action<IWindow> Destroyed;
+
+        void Enable();
+        void Disable();
     }
 }

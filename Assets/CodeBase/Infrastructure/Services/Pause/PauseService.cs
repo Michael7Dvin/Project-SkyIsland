@@ -2,7 +2,7 @@
 using Infrastructure.Services.Updater;
 using UnityEngine;
 
-namespace Gameplay.Services.Pause
+namespace Infrastructure.Services.Pause
 {
     public class PauseService : IPauseService
     {

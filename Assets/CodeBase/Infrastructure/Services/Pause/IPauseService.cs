@@ -1,6 +1,6 @@
 ﻿using Common.Observable;
 
-namespace Gameplay.Services.Pause
+namespace Infrastructure.Services.Pause
 {
     public interface IPauseService
     {

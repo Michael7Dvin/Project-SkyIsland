@@ -68,7 +68,8 @@ namespace Gameplay.Movement.StateMachine
                 case GroundType.Air:
                     return _defaultStateWhileAir;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(groundType), groundType, null);
+                    _logger.LogError($"Unsupported {nameof(GroundType)}: '{groundType}'");
+                    return null;
             }
         }
 

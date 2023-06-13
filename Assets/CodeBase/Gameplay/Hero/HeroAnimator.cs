@@ -2,6 +2,7 @@
 using Common.Observable;
 using Gameplay.Movement.StateMachine.States;
 using Gameplay.Movement.StateMachine.States.Base;
+using Infrastructure.Services.Logging;
 using Infrastructure.Services.Updater;
 using UnityEngine;
 
@@ -22,17 +23,20 @@ namespace Gameplay.Hero
         private readonly CharacterController _characterController;
 
         private readonly IUpdater _updater;
+        private readonly ICustomLogger _logger;
 
         public HeroAnimator(Animator animator,
             IReadOnlyObservable<ExitableMovementState> activeMovementState,
             CharacterController characterController,
-            IUpdater updater)
+            IUpdater updater,
+            ICustomLogger logger)
         {
             _animator = animator;
             _activeMovementState = activeMovementState;
             _characterController = characterController;
 
             _updater = updater;
+            _logger = logger;
 
             _updater.Updated += Update;
             _activeMovementState.Changed += OnActiveMovementStateChanged;
@@ -96,7 +100,8 @@ namespace Gameplay.Hero
                     _animator.SetTrigger(_jumpTrigger);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    _logger.LogError($"Unsupported {nameof(MovementStateType)}: '{state.Type}'");
+                    break;
             }
         }
 

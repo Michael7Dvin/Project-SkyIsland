@@ -1,6 +1,7 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
-using Infrastructure.LevelLoading;
+using Infrastructure.LevelLoading.Data;
+using Infrastructure.LevelLoading.LevelServicesProviding;
 using Infrastructure.LevelLoading.WarmUpping;
 using Infrastructure.LevelLoading.WorldObjectsSpawning;
 using Infrastructure.Services.ResourcesLoading;

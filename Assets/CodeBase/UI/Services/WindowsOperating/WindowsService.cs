@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Logging;
@@ -11,7 +10,7 @@ namespace UI.Services.WindowsOperating
 {
     public class WindowsService : IWindowsService
     {
-        private readonly List<IWindow> _openedWindows = new();
+        private readonly List<IWindow> _cachedWindows = new();
 
         private readonly IWindowFactory _windowFactory;
         private readonly ICustomLogger _logger;
@@ -24,7 +23,11 @@ namespace UI.Services.WindowsOperating
         
         public async UniTask<IWindow> OpenWindow(WindowType type)
         {
-            IWindow window;
+            if (TryFindWindowInCache(type, false, out IWindow window))
+            {
+                window.Enable();
+                return window;
+            }
             
             switch (type)
             {
@@ -41,36 +44,40 @@ namespace UI.Services.WindowsOperating
                     window = await _windowFactory.CreateDeathWindow();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    _logger.LogError($"Unsupported {nameof(WindowType)}: '{type}'");
+                    return null;
             }
             
-            AddOpenedWindow(window);
+            AddToCache(window);
             return window;
         }
 
         public void CloseWindow(WindowType type)
         {
-            IWindow window = _openedWindows.FirstOrDefault(window => window.Type == type);
-
-            if (window == null)
-            {
+            if (TryFindWindowInCache(type, true, out IWindow window))
+                window.Disable();
+            else
                 _logger.LogWarning($"{nameof(IWindow)} of {nameof(WindowType)}: '{type}' not found");
-                return;
-            }
-
-            window.Close();
         }
 
-        private void AddOpenedWindow(IWindow window)
+        private bool TryFindWindowInCache(WindowType windowType, bool isWindowActive, out IWindow window)
         {
-            window.Closed += RemoveClosedWindow;
-            _openedWindows.Add(window);
+            window = _cachedWindows.FirstOrDefault(window =>
+                window.Type == windowType && window.IsActive == isWindowActive);
+            
+            return window != null;
         }
 
-        private void RemoveClosedWindow(IWindow window)
+        private void AddToCache(IWindow window)
         {
-            window.Closed -= RemoveClosedWindow;
-            _openedWindows.Remove(window);
+            window.Destroyed += RemoveFromCache;
+            _cachedWindows.Add(window);
+        }
+
+        private void RemoveFromCache(IWindow window)
+        {
+            window.Destroyed -= RemoveFromCache;
+            _cachedWindows.Remove(window);
         }
     }
 }

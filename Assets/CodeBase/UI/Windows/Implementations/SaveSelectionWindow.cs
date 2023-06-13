@@ -1,5 +1,6 @@
 using Infrastructure.GameFSM.States;
 using Infrastructure.LevelLoading;
+using Infrastructure.LevelLoading.Data;
 using UI.Services.Mediating;
 using UI.Windows.Base;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace UI.Windows.Implementations
 
         protected override void SubscribeOnButtons()
         {
-            _closeButton.onClick.AddListener(Close);   
+            _closeButton.onClick.AddListener(Disable);   
             
             _saveSlot1Button.onClick.AddListener(StartNewGame);
             _saveSlot2Button.onClick.AddListener(StartNewGame);
@@ -37,7 +38,7 @@ namespace UI.Windows.Implementations
 
         protected override void UnsubscribeFromButtons()
         {
-            _closeButton.onClick.RemoveListener(Close);
+            _closeButton.onClick.RemoveListener(Disable);
             
             _saveSlot1Button.onClick.RemoveListener(StartNewGame);
             _saveSlot2Button.onClick.RemoveListener(StartNewGame);

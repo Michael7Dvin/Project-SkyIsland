@@ -1,9 +1,9 @@
 ﻿using Gameplay.Hero;
 using Gameplay.PlayerCamera;
-using Gameplay.Services.Pause;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.LevelLoading;
+using Infrastructure.LevelLoading.LevelServicesProviding;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Common;
 using Infrastructure.Services.AssetProviding.ForCamera;
@@ -11,6 +11,7 @@ using Infrastructure.Services.AssetProviding.UI;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
+using Infrastructure.Services.Pause;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;

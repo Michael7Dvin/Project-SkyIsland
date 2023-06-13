@@ -6,9 +6,9 @@ using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine;
 using Gameplay.Movement.StateMachine.States.Implementations;
-using Gameplay.Services.Pause;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Logging;
+using Infrastructure.Services.Pause;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
 using UnityEngine;
@@ -64,7 +64,7 @@ namespace Gameplay.Hero.Movement
                 CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
 
             HeroAnimator movementAnimator =
-                new(animator, movementStateMachine.ActiveState, characterController, _updater);
+                new(animator, movementStateMachine.ActiveState, characterController, _updater, _logger);
             
             HeroMovement movement = new(movementStateMachine,
                 characterController,

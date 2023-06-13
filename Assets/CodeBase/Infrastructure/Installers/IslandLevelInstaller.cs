@@ -5,6 +5,7 @@ using Gameplay.PlayerCamera;
 using Gameplay.Services.HeroDeath;
 using Gameplay.Services.PlayerPausing;
 using Infrastructure.LevelLoading;
+using Infrastructure.LevelLoading.Data;
 using Infrastructure.LevelLoading.WarmUpping;
 using Infrastructure.LevelLoading.WorldObjectsSpawning;
 using UnityEngine;

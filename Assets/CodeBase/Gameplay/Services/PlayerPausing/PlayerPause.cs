@@ -1,5 +1,5 @@
-﻿using Gameplay.Services.Pause;
-using Infrastructure.Services.Input.Service;
+﻿using Infrastructure.Services.Input.Service;
+using Infrastructure.Services.Pause;
 using UI.Services.WindowsOperating;
 using UI.Windows;
 using UI.Windows.Base;
@@ -29,7 +29,7 @@ namespace Gameplay.Services.PlayerPausing
             _inputService.Utility.Paused -= OnPausedInput;
 
             if (_currentPauseWindow != null) 
-                _currentPauseWindow.Closed -= OnPauseWindowClosed;
+                _currentPauseWindow.Destroyed -= OnPauseWindowClosed;
         }
 
         private void OnPausedInput()
@@ -53,13 +53,13 @@ namespace Gameplay.Services.PlayerPausing
             _inputService.Camera.Disable();
             _currentPauseWindow = await _windowsService.OpenWindow(WindowType.Pause);
 
-            _currentPauseWindow.Closed += OnPauseWindowClosed;
+            _currentPauseWindow.Destroyed += OnPauseWindowClosed;
         }
 
         private void OnPauseWindowClosed(IWindow pauseWindow)
         {
             _currentPauseWindow = null;
-            pauseWindow.Closed -= OnPauseWindowClosed;
+            pauseWindow.Destroyed -= OnPauseWindowClosed;
             _pauseService.Resume();
             _inputService.Camera.Enable();
         }

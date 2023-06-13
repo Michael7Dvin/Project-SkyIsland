@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.LevelLoading
+﻿namespace Infrastructure.LevelLoading.Data
 {
     public class LevelData
     {
