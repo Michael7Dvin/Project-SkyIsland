@@ -4,6 +4,10 @@ using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.StaticDataProviding;
 using UI.HUD;
 using UI.Windows.Implementations;
+using UI.Windows.Implementations.DeathWindow;
+using UI.Windows.Implementations.MainMenu;
+using UI.Windows.Implementations.PauseWindow;
+using UI.Windows.Implementations.SaveSelection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -36,17 +40,17 @@ namespace Infrastructure.Services.AssetProviding.UI
         public async UniTask<EventSystem> LoadEventSystem() => 
             await _resourcesLoader.Load<EventSystem>(_eventSystemAddress);
         
-        public async UniTask<MainMenuWindow> LoadMainMenuWindow() => 
-            await _resourcesLoader.Load<MainMenuWindow>(_mainMenuWindowAddress);
+        public async UniTask<MainMenuWindowView> LoadMainMenuWindow() => 
+            await _resourcesLoader.Load<MainMenuWindowView>(_mainMenuWindowAddress);
 
-        public async UniTask<SaveSelectionWindow> LoadSaveSelectionWindow() => 
-            await _resourcesLoader.Load<SaveSelectionWindow>(_saveSelectionWindowAddress);
+        public async UniTask<SaveSelectionWindowView> LoadSaveSelectionWindow() => 
+            await _resourcesLoader.Load<SaveSelectionWindowView>(_saveSelectionWindowAddress);
 
-        public async UniTask<PauseWindow> LoadPauseWindow() => 
-            await _resourcesLoader.Load<PauseWindow>(_pauseWindowAddress);
+        public async UniTask<PauseWindowView> LoadPauseWindow() => 
+            await _resourcesLoader.Load<PauseWindowView>(_pauseWindowAddress);
 
-        public async UniTask<DeathWindow> LoadDeathWindow() => 
-            await _resourcesLoader.Load<DeathWindow>(_deathWindowAddress);
+        public async UniTask<DeathWindowView> LoadDeathWindow() => 
+            await _resourcesLoader.Load<DeathWindowView>(_deathWindowAddress);
 
         public async UniTask<HealthBar> LoadHealthBar() => 
             await _resourcesLoader.Load<HealthBar>(_healthBarAddress);

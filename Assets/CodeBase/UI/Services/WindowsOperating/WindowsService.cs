@@ -3,7 +3,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Logging;
 using UI.Windows;
-using UI.Windows.Base;
+using UI.Windows.Base.Window;
 using UI.Windows.Factory;
 
 namespace UI.Services.WindowsOperating
@@ -25,7 +25,7 @@ namespace UI.Services.WindowsOperating
         {
             if (TryFindWindowInCache(type, false, out IWindow window))
             {
-                window.Enable();
+                window.Open();
                 return window;
             }
             
@@ -48,6 +48,7 @@ namespace UI.Services.WindowsOperating
                     return null;
             }
             
+            window.Open();
             AddToCache(window);
             return window;
         }
@@ -55,29 +56,29 @@ namespace UI.Services.WindowsOperating
         public void CloseWindow(WindowType type)
         {
             if (TryFindWindowInCache(type, true, out IWindow window))
-                window.Disable();
+                window.Close();
             else
                 _logger.LogWarning($"{nameof(IWindow)} of {nameof(WindowType)}: '{type}' not found");
         }
 
-        private bool TryFindWindowInCache(WindowType windowType, bool isWindowActive, out IWindow window)
+        private bool TryFindWindowInCache(WindowType windowType, bool isWindowOpen, out IWindow window)
         {
             window = _cachedWindows.FirstOrDefault(window =>
-                window.Type == windowType && window.IsActive == isWindowActive);
+                window.Type == windowType && window.IsOpen.Value == isWindowOpen);
             
             return window != null;
         }
 
         private void AddToCache(IWindow window)
         {
-            window.Destroyed += RemoveFromCache;
+            window.Destroyed += Remove;
             _cachedWindows.Add(window);
-        }
 
-        private void RemoveFromCache(IWindow window)
-        {
-            window.Destroyed -= RemoveFromCache;
-            _cachedWindows.Remove(window);
+            void Remove()
+            {
+                window.Destroyed -= Remove;
+                _cachedWindows.Remove(window);
+            }
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using Infrastructure.Services.Input.Service;
+using Infrastructure.Services.Logging;
 using Infrastructure.Services.Pause;
 using UI.Services.WindowsOperating;
 using UI.Windows;
-using UI.Windows.Base;
+using UI.Windows.Base.Window;
 
 namespace Gameplay.Services.PlayerPausing
 {
@@ -12,25 +13,27 @@ namespace Gameplay.Services.PlayerPausing
         
         private readonly IInputService _inputService;
         private readonly IPauseService _pauseService;
+        
         private readonly IWindowsService _windowsService;
-
-        public PlayerPause(IInputService inputService, IPauseService pauseService, IWindowsService windowsService)
+        private readonly ICustomLogger _logger;
+        
+        public PlayerPause(IInputService inputService,
+            IPauseService pauseService,
+            IWindowsService windowsService,
+            ICustomLogger logger)
         {
             _inputService = inputService;
             _pauseService = pauseService;
+            
             _windowsService = windowsService;
+            _logger = logger;
         }
 
         public void Initialize() => 
             _inputService.Utility.Paused += OnPausedInput;
 
-        public void Dispose()
-        {
+        public void Dispose() => 
             _inputService.Utility.Paused -= OnPausedInput;
-
-            if (_currentPauseWindow != null) 
-                _currentPauseWindow.Destroyed -= OnPauseWindowClosed;
-        }
 
         private void OnPausedInput()
         {
@@ -42,26 +45,31 @@ namespace Gameplay.Services.PlayerPausing
 
         private void Resume()
         {
+            _logger.Log("Game Resumed");
             _pauseService.Resume();
             _inputService.Camera.Enable();
+            _currentPauseWindow.IsOpen.Changed -= OnPauseWindowIsOpenChanged;
             _windowsService.CloseWindow(WindowType.Pause);
         }
 
         private async void Pause()
         {
+            _logger.Log("Game Paused");
             _pauseService.Pause();
             _inputService.Camera.Disable();
             _currentPauseWindow = await _windowsService.OpenWindow(WindowType.Pause);
-
-            _currentPauseWindow.Destroyed += OnPauseWindowClosed;
+            _currentPauseWindow.IsOpen.Changed += OnPauseWindowIsOpenChanged;
         }
 
-        private void OnPauseWindowClosed(IWindow pauseWindow)
+        private void OnPauseWindowIsOpenChanged(bool isOpen)
         {
-            _currentPauseWindow = null;
-            pauseWindow.Destroyed -= OnPauseWindowClosed;
-            _pauseService.Resume();
-            _inputService.Camera.Enable();
+            if (isOpen == false)
+            {
+                _logger.Log("Game Resumed");
+                _currentPauseWindow.IsOpen.Changed -= OnPauseWindowIsOpenChanged;
+                _pauseService.Resume();
+                _inputService.Camera.Enable();
+            }
         }
     }
 }

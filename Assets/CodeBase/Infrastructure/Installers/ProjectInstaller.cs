@@ -2,7 +2,6 @@
 using Gameplay.PlayerCamera;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using Infrastructure.LevelLoading;
 using Infrastructure.LevelLoading.LevelServicesProviding;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Common;
@@ -16,6 +15,7 @@ using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
+using UI;
 using UI.Services.Factory;
 using UI.Services.Mediating;
 using UI.Services.WindowsOperating;
@@ -28,10 +28,12 @@ namespace Infrastructure.Installers
 {
     public class ProjectInstaller : MonoInstaller
     {
+        [SerializeField] private AllAssetsAddresses _allAssetsAddresses;
+        [SerializeField] private ScenesData _scenesData;
+        
         [SerializeField] private HeroConfig _heroConfig;
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
-        [SerializeField] private ScenesData _scenesData;
-        [SerializeField] private AllAssetsAddresses _allAssetsAddresses;
+        [SerializeField] private UIConfig _uiConfig;
 
         public override void InstallBindings()
         {
@@ -71,7 +73,7 @@ namespace Infrastructure.Installers
                 .Bind<IStaticDataProvider>()
                 .To<StaticDataProvider>()
                 .AsSingle()
-                .WithArguments(_heroConfig, _playerCameraConfig, _scenesData, _allAssetsAddresses);
+                .WithArguments(_allAssetsAddresses, _scenesData, _heroConfig, _uiConfig, _playerCameraConfig);
             
             Container.Bind<ILevelServicesProvider>().To<LevelServicesProvider>().AsSingle();
 

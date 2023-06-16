@@ -1,8 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.UI;
 using Infrastructure.Services.Instantiating;
+using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Mediating;
-using UI.Windows.Implementations;
+using UI.Windows.Implementations.DeathWindow;
+using UI.Windows.Implementations.MainMenu;
+using UI.Windows.Implementations.PauseWindow;
+using UI.Windows.Implementations.SaveSelection;
 using UnityEngine;
 
 namespace UI.Windows.Factory
@@ -14,12 +18,17 @@ namespace UI.Windows.Factory
         private readonly IUIAssetsProvider _uiAssetsProvider;
 
         private readonly IInstantiator _instantiator;
+        private readonly UIConfig _uiConfig;
+        
         private IMediator _mediator;
 
-        public WindowFactory(IUIAssetsProvider uiAssetsProvider, IInstantiator instantiator)
+        public WindowFactory(IUIAssetsProvider uiAssetsProvider,
+            IInstantiator instantiator,
+            IStaticDataProvider staticDataProvider)
         {
             _uiAssetsProvider = uiAssetsProvider;
             _instantiator = instantiator;
+            _uiConfig = staticDataProvider.UIConfig;
         }
         
         public void Init(IMediator mediator) => 
@@ -38,42 +47,51 @@ namespace UI.Windows.Factory
 
         public async UniTask<MainMenuWindow> CreateMainMenuWindow()
         {
-            MainMenuWindow prefab = await _uiAssetsProvider.LoadMainMenuWindow();
+            MainMenuWindowView viewPrefab = await _uiAssetsProvider.LoadMainMenuWindow();
             
-            MainMenuWindow mainMenuWindow = _instantiator.Instantiate(prefab, _canvas.transform);
-            mainMenuWindow.Construct(_mediator);
+            MainMenuWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            
+            MainMenuWindowLogic logic = new(_mediator);
+            MainMenuWindow window = new(view, logic);
 
-            return mainMenuWindow;
+            return window;
         }
 
         public async UniTask<SaveSelectionWindow> CreateSaveSelectionWindow()
         {
-            SaveSelectionWindow prefab = await _uiAssetsProvider.LoadSaveSelectionWindow();
+            SaveSelectionWindowView viewPrefab = await _uiAssetsProvider.LoadSaveSelectionWindow();
             
-            SaveSelectionWindow saveSelectionWindow = _instantiator.Instantiate(prefab, _canvas.transform);
-            saveSelectionWindow.Construct(_mediator);
+            SaveSelectionWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            view.Construct(_uiConfig.SaveSelectionWindowConfig);
+            
+            SaveSelectionWindowLogic logic = new(_mediator);
+            SaveSelectionWindow window = new(view, logic);
 
-            return saveSelectionWindow;
+            return window;
         }
 
         public async UniTask<PauseWindow> CreatePauseWindow()
         {
-            PauseWindow prefab = await _uiAssetsProvider.LoadPauseWindow();
+            PauseWindowView viewPrefab = await _uiAssetsProvider.LoadPauseWindow();
             
-            PauseWindow pauseWindow = _instantiator.Instantiate(prefab, _canvas.transform);
-            pauseWindow.Construct(_mediator);
+            PauseWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            
+            PauseWindowLogic logic = new(_mediator);
+            PauseWindow window = new(view, logic);
 
-            return pauseWindow;
+            return window;
         }
 
         public async UniTask<DeathWindow> CreateDeathWindow()
         {
-            DeathWindow prefab = await _uiAssetsProvider.LoadDeathWindow();
+            DeathWindowView viewPrefab = await _uiAssetsProvider.LoadDeathWindow();
             
-            DeathWindow deathWindow = _instantiator.Instantiate(prefab, _canvas.transform);
-            deathWindow.Construct(_mediator);
+            DeathWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            
+            DeathWindowLogic logic = new(_mediator);
+            DeathWindow window = new(view, logic);
 
-            return deathWindow;
+            return window;
         }
     }
 }

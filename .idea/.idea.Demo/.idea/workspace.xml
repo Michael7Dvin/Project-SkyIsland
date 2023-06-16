@@ -2,34 +2,97 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cf148e2-4486-40c1-927c-1e27c26d365e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/AnimatedButton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/AnimatedButton.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/AnimatedButtonConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/AnimatedButtonConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/AnimatedCanvasGroupConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/AnimatedCanvasGroupConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/FadingCanvasGroup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/AnimatedElements/FadingCanvasGroup.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/UIConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/UIConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/Window.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/Window/BaseWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/Window/BaseWindow.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/Window/IWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/WindowView.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/WindowView/BaseWindowView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/WindowView/BaseWindowView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/WindowView/IWindowView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/WindowView/IWindowView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowLogic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowLogic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu/MainMenuWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu/MainMenuWindowLogic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu/MainMenuWindowLogic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu/MainMenuWindowView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu/MainMenuWindowView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowLogic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowLogic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowView.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindow.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindow.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowLogic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowLogic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Animated Button Config.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Animated Button Config.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Animated Canvas Group Config.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Animated Canvas Group Config.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/UI Config.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/UI Config.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection/Save Selection Window Config.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection/Save Selection Window Config.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/HeroAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovementFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Hero/Movement/HeroMovementFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStatesProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Movement/StateMachine/MovementStatesProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/Pause.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Pause.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/Pause/IPauseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Pause/IPauseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/Pause/IPauseService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Pause/IPauseService.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/Pause/PauseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Pause/PauseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/Pause/PauseService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/Pause/PauseService.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/PlayerPausing/PlayerPause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Gameplay/Services/PlayerPausing/PlayerPause.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/LoadLevelState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/GameFSM/States/LoadLevelState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/IslandLevelInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/IslandLevelInstaller.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Installers/ProjectInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/ILevelServicesProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelServicesProviding/ILevelServicesProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/ILevelServicesProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelServicesProviding/ILevelServicesProvider.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/IslandWorldData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/Data/IslandWorldData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/IslandWorldData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/Data/IslandWorldData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/Data/LevelData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/Data/LevelData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelServicesProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelServicesProviding/LevelServicesProvider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelServicesProvider.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/LevelServicesProviding/LevelServicesProvider.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/WarmUpping/IslandWarmUpper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/WarmUpping/IslandWarmUpper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/WorldObjectsSpawning/IslandWorldObjectsSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/LevelLoading/WorldObjectsSpawning/IslandWorldObjectsSpawner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/AssetProviding/UI/IUIAssetsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/AssetProviding/UI/IUIAssetsProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/AssetProviding/UI/UIAssetsProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/AssetProviding/UI/UIAssetsProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/ResourcesLoading/ResourcesLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/ResourcesLoading/ResourcesLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/IStaticDataProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Infrastructure/Services/StaticDataProviding/StaticDataProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/IWindowsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/IWindowsService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/WindowsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Services/WindowsOperating/WindowsService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/BaseWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/BaseWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/IWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/IWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelectionWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelectionWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/BaseWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/BaseWindow.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/IWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/IWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Base/Window/IWindow.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Factory/IWindowFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Factory/IWindowFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Factory/WindowFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Factory/WindowFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindow.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenuWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenuWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/MainMenu/MainMenuWindow.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindow.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelectionWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelectionWindow.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowView.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/DOTween.dll.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Demigiant/DOTween/DOTween.dll.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Death Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Death Window.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Main Menu Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Main Menu Window.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Pause Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Pause Window.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Save Selection Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Save Selection Window.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/ProjectContext.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +103,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4b906d02b0924e4baa06919bc2e92fd61fe00/dd/8fa3e73a/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/9e/4a954c5e/IDisposable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5ddb5fa70dfe40d2818192400111b9ec2aa00/d8/bfe36c90/TweenExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6c9b376c3fca40b787e8c1a2133bf243171a00/89/ee7f13b2/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b0fc6facff52490f8c5788181f70c5cc16f000/1d/abc5e0df/Debug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/b0fc6facff52490f8c5788181f70c5cc16f000/30/abc99511/Component.cs" root0="SKIP_HIGHLIGHTING" />
@@ -95,7 +159,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -183,7 +247,10 @@
       <workItem from="1686479372639" duration="18126000" />
       <workItem from="1686557161149" duration="24831000" />
       <workItem from="1686587418036" duration="4383000" />
-      <workItem from="1686649162882" duration="7982000" />
+      <workItem from="1686649162882" duration="12849000" />
+      <workItem from="1686739833431" duration="13426000" />
+      <workItem from="1686819719475" duration="12775000" />
+      <workItem from="1686907016949" duration="24437000" />
     </task>
     <servers />
   </component>

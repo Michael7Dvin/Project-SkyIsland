@@ -1,6 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
 using UI.HUD;
-using UI.Windows.Implementations;
+using UI.Windows.Implementations.DeathWindow;
+using UI.Windows.Implementations.MainMenu;
+using UI.Windows.Implementations.PauseWindow;
+using UI.Windows.Implementations.SaveSelection;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,9 +15,9 @@ namespace Infrastructure.Services.AssetProviding.UI
         UniTask<EventSystem> LoadEventSystem();
         UniTask<HealthBar> LoadHealthBar();
         
-        UniTask<MainMenuWindow> LoadMainMenuWindow();
-        UniTask<SaveSelectionWindow> LoadSaveSelectionWindow();
-        UniTask<PauseWindow> LoadPauseWindow();
-        UniTask<DeathWindow> LoadDeathWindow();
+        UniTask<MainMenuWindowView> LoadMainMenuWindow();
+        UniTask<SaveSelectionWindowView> LoadSaveSelectionWindow();
+        UniTask<PauseWindowView> LoadPauseWindow();
+        UniTask<DeathWindowView> LoadDeathWindow();
     }
 }
