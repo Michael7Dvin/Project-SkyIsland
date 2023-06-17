@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a0571dc2a9a48c39f2c36ea886a3856, type: 3}
+  m_Name: Main Menu
+  m_EditorClassIdentifier: 
+  <PlayButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}
+  <OptionsButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}
+  <QuitButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}

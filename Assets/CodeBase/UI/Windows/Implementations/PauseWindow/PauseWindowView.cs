@@ -1,17 +1,26 @@
 ﻿using System;
+using UI.Elements.Buttons.Close;
+using UI.Elements.Buttons.Selectable;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Windows.Implementations.PauseWindow
 {
     public class PauseWindowView : BaseWindowView
     {
-        [SerializeField] private Button _closeButton;
-        [SerializeField] private Button _optionsButton;
-        [SerializeField] private Button _saveButton;
-        [SerializeField] private Button _mainMenuButton;
+        [SerializeField] private CloseButton _closeButton;
+        [SerializeField] private SelectableButton _optionsButton;
+        [SerializeField] private SelectableButton _saveButton;
+        [SerializeField] private SelectableButton _mainMenuButton;
 
+        public void Construct(PauseWindowConfig config)
+        {
+            _closeButton.Construct(config.CloseButtonConfig);
+            _optionsButton.Construct(config.OptionsButtonConfig);
+            _saveButton.Construct(config.SaveButtonConfig);
+            _mainMenuButton.Construct(config.MainMenuButtonConfig);
+        }
+        
         public event Action CloseButtonClicked;
         public event Action OptionsButtonClicked;
         public event Action SaveButtonClicked;
@@ -19,18 +28,18 @@ namespace UI.Windows.Implementations.PauseWindow
 
         protected override void SubscribeControls()
         {
-            _closeButton.onClick.AddListener(OnCloseButtonClick);
-            _optionsButton.onClick.AddListener(OnOptionsButtonClick);
-            _saveButton.onClick.AddListener(OnSaveButtonClick);
-            _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
+            _closeButton.Cliked += OnCloseButtonClick;
+            _optionsButton.Cliked += OnOptionsButtonClick;
+            _saveButton.Cliked += OnSaveButtonClick;
+            _mainMenuButton.Cliked += OnMainMenuButtonClick;
         }
 
         protected override void UnsubscribeControls()
         {
-            _closeButton.onClick.RemoveListener(OnCloseButtonClick);
-            _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
-            _saveButton.onClick.RemoveListener(OnSaveButtonClick);
-            _mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClick);
+            _closeButton.Cliked -= OnCloseButtonClick;
+            _optionsButton.Cliked -= OnOptionsButtonClick;
+            _saveButton.Cliked -= OnSaveButtonClick;
+            _mainMenuButton.Cliked -= OnMainMenuButtonClick;
         }
         
         private void OnCloseButtonClick() => 

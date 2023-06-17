@@ -1,28 +1,34 @@
 ﻿using System;
+using UI.Elements.Buttons.Selectable;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Windows.Implementations.DeathWindow
 {
     public class DeathWindowView : BaseWindowView
     {
-        [SerializeField] private Button _respawnButton;
-        [SerializeField] private Button _mainMenuButton;
+        [SerializeField] private SelectableButton _respawnButton;
+        [SerializeField] private SelectableButton _mainMenuButton;
 
+        public void Construct(DeathWindowConfig config)
+        {
+            _respawnButton.Construct(config.RespawnButtonConfig);
+            _mainMenuButton.Construct(config.MainMenuButtonConfig);
+        }
+        
         public event Action RespawnButtonClicked;
         public event Action MainMenuButtonClicked;
 
         protected override void SubscribeControls()
         {
-            _respawnButton.onClick.AddListener(OnRespawnButtonClick);
-            _mainMenuButton.onClick.AddListener(OnMainMenuButtonClick);
+            _respawnButton.Cliked += OnRespawnButtonClick;
+            _mainMenuButton.Cliked += OnMainMenuButtonClick;
         }
 
         protected override void UnsubscribeControls()
         {
-            _respawnButton.onClick.RemoveListener(OnRespawnButtonClick);
-            _mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClick);
+            _respawnButton.Cliked -= OnRespawnButtonClick;
+            _mainMenuButton.Cliked -= OnMainMenuButtonClick;
         }
         
         private void OnRespawnButtonClick() => 

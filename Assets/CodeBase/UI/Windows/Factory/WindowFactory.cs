@@ -18,7 +18,7 @@ namespace UI.Windows.Factory
         private readonly IUIAssetsProvider _uiAssetsProvider;
 
         private readonly IInstantiator _instantiator;
-        private readonly UIConfig _uiConfig;
+        private readonly AllUIConfigs _allUIConfigs;
         
         private IMediator _mediator;
 
@@ -28,7 +28,7 @@ namespace UI.Windows.Factory
         {
             _uiAssetsProvider = uiAssetsProvider;
             _instantiator = instantiator;
-            _uiConfig = staticDataProvider.UIConfig;
+            _allUIConfigs = staticDataProvider.AllUIConfigs;
         }
         
         public void Init(IMediator mediator) => 
@@ -50,6 +50,7 @@ namespace UI.Windows.Factory
             MainMenuWindowView viewPrefab = await _uiAssetsProvider.LoadMainMenuWindow();
             
             MainMenuWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            view.Construct(_allUIConfigs.MainMenu);
             
             MainMenuWindowLogic logic = new(_mediator);
             MainMenuWindow window = new(view, logic);
@@ -62,7 +63,7 @@ namespace UI.Windows.Factory
             SaveSelectionWindowView viewPrefab = await _uiAssetsProvider.LoadSaveSelectionWindow();
             
             SaveSelectionWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
-            view.Construct(_uiConfig.SaveSelectionWindowConfig);
+            view.Construct(_allUIConfigs.SaveSelection);
             
             SaveSelectionWindowLogic logic = new(_mediator);
             SaveSelectionWindow window = new(view, logic);
@@ -75,6 +76,7 @@ namespace UI.Windows.Factory
             PauseWindowView viewPrefab = await _uiAssetsProvider.LoadPauseWindow();
             
             PauseWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            view.Construct(_allUIConfigs.Pause);
             
             PauseWindowLogic logic = new(_mediator);
             PauseWindow window = new(view, logic);
@@ -87,6 +89,7 @@ namespace UI.Windows.Factory
             DeathWindowView viewPrefab = await _uiAssetsProvider.LoadDeathWindow();
             
             DeathWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
+            view.Construct(_allUIConfigs.Death);
             
             DeathWindowLogic logic = new(_mediator);
             DeathWindow window = new(view, logic);

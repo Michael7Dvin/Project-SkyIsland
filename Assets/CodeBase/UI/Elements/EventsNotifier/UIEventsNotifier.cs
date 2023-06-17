@@ -25,5 +25,7 @@ namespace UI.Elements.EventsNotifier
 
         public override void OnPointerClick(PointerEventData eventData) => 
             PointerClicked?.Invoke(eventData);
+        
+        
     }
 }

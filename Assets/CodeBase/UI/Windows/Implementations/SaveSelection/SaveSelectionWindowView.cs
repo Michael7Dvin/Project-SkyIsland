@@ -1,22 +1,23 @@
 using System;
-using UI.Elements.Animated;
+using UI.Elements;
+using UI.Elements.Buttons.Close;
+using UI.Elements.Buttons.SaveSlot;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace UI.Windows.Implementations.SaveSelection
 {
     public class SaveSelectionWindowView : BaseWindowView
     {
-        [SerializeField] private AnimatedCanvasGroup _canvasGroup;
-        [SerializeField] private AnimatedButton _closeButton;
-        [SerializeField] private AnimatedButton _saveSlot1;
-        [SerializeField] private AnimatedButton _saveSlot2;
-        [SerializeField] private AnimatedButton _saveSlot3;
+        [SerializeField] private FadingCanvasGroup _canvasGroup;
+        [SerializeField] private CloseButton _closeButton;
+        [SerializeField] private SaveSlotButton _saveSlot1;
+        [SerializeField] private SaveSlotButton _saveSlot2;
+        [SerializeField] private SaveSlotButton _saveSlot3;
 
         public void Construct(SaveSelectionWindowConfig config)
         {
-            _canvasGroup.Construct(config.AnimatedCanvasGroupConfig);
+            _canvasGroup.Construct(config.FadingCanvasGroupConfig);
             
             _closeButton.Construct(config.CloseButtonConfig);
             

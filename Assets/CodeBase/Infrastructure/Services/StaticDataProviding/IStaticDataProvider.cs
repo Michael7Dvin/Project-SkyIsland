@@ -12,7 +12,7 @@ namespace Infrastructure.Services.StaticDataProviding
         
         HeroConfig HeroConfig { get; }
         PlayerCameraConfig PlayerCameraConfig { get; }
-        UIConfig UIConfig { get; }
+        AllUIConfigs AllUIConfigs { get; }
         ScenesData ScenesData { get; }
     }
 }

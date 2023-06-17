@@ -33,7 +33,7 @@ namespace Infrastructure.Installers
         
         [SerializeField] private HeroConfig _heroConfig;
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
-        [SerializeField] private UIConfig _uiConfig;
+        [SerializeField] private AllUIConfigs _allUIConfigs;
 
         public override void InstallBindings()
         {
@@ -73,7 +73,7 @@ namespace Infrastructure.Installers
                 .Bind<IStaticDataProvider>()
                 .To<StaticDataProvider>()
                 .AsSingle()
-                .WithArguments(_allAssetsAddresses, _scenesData, _heroConfig, _uiConfig, _playerCameraConfig);
+                .WithArguments(_allAssetsAddresses, _scenesData, _heroConfig, _allUIConfigs, _playerCameraConfig);
             
             Container.Bind<ILevelServicesProvider>().To<LevelServicesProvider>().AsSingle();
 

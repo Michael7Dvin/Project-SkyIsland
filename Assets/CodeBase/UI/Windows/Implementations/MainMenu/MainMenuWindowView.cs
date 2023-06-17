@@ -1,32 +1,39 @@
 ﻿using System;
+using UI.Elements.Buttons.Selectable;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UI.Windows.Implementations.MainMenu
 {
     public class MainMenuWindowView : BaseWindowView
     {
-        [SerializeField] private Button _playButton;
-        [SerializeField] private Button _optionsButton;
-        [SerializeField] private Button _quitButton;
+        [SerializeField] private SelectableButton _playButton;
+        [SerializeField] private SelectableButton _optionsButton;
+        [SerializeField] private SelectableButton _quitButton;
         
         public event Action PlayButtonClicked;
         public event Action OptionsButtonClicked;
         public event Action QuitButtonClicked;
+
+        public void Construct(MainMenuWindowConfig config)
+        {
+            _playButton.Construct(config.PlayButtonConfig);
+            _optionsButton.Construct(config.OptionsButtonConfig);
+            _quitButton.Construct(config.QuitButtonConfig);
+        }
         
         protected override void SubscribeControls()
         {
-            _playButton.onClick.AddListener(OnPlayButtonClick);
-            _optionsButton.onClick.AddListener(OnOptionsButtonClick);
-            _quitButton.onClick.AddListener(OnQuitButtonClick);
+            _playButton.Cliked += OnPlayButtonClick;
+            _optionsButton.Cliked += OnOptionsButtonClick;
+            _quitButton.Cliked += OnQuitButtonClick;
         }
 
         protected override void UnsubscribeControls()
         {
-            _playButton.onClick.RemoveListener(OnPlayButtonClick);
-            _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
-            _quitButton.onClick.RemoveListener(OnQuitButtonClick);
+            _playButton.Cliked -= OnPlayButtonClick;
+            _optionsButton.Cliked -= OnOptionsButtonClick;
+            _quitButton.Cliked -= OnQuitButtonClick;
         }
 
         private void OnPlayButtonClick() => 
