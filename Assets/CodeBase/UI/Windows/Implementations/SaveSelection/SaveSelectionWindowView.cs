@@ -1,7 +1,8 @@
 using System;
-using UI.AnimatedElements;
+using UI.Elements.Animated;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI.Windows.Implementations.SaveSelection
 {
@@ -16,10 +17,12 @@ namespace UI.Windows.Implementations.SaveSelection
         public void Construct(SaveSelectionWindowConfig config)
         {
             _canvasGroup.Construct(config.AnimatedCanvasGroupConfig);
-            _closeButton.Construct(config.AnimatedButtonConfig);
-            _saveSlot1.Construct(config.AnimatedButtonConfig);
-            _saveSlot2.Construct(config.AnimatedButtonConfig);
-            _saveSlot3.Construct(config.AnimatedButtonConfig);
+            
+            _closeButton.Construct(config.CloseButtonConfig);
+            
+            _saveSlot1.Construct(config.SaveSlotButtonConfig);
+            _saveSlot2.Construct(config.SaveSlotButtonConfig);
+            _saveSlot3.Construct(config.SaveSlotButtonConfig);
         }
 
         public event Action CloseButtonClicked;

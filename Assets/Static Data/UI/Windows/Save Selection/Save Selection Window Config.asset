@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <AnimatedCanvasGroupConfig>k__BackingField: {fileID: 11400000, guid: 701b7612807131d4db6da6a6ef366112,
     type: 2}
-  <AnimatedButtonConfig>k__BackingField: {fileID: 11400000, guid: 0d72196f771adfb488be78cdb5952af3,
+  <CloseButtonConfig>k__BackingField: {fileID: 11400000, guid: 0d72196f771adfb488be78cdb5952af3,
+    type: 2}
+  <SaveSlotButtonConfig>k__BackingField: {fileID: 11400000, guid: 48f64b403acf7e648a83d9e42c9b7c25,
     type: 2}

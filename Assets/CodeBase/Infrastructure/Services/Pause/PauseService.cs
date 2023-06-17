@@ -22,16 +22,16 @@ namespace Infrastructure.Services.Pause
 
         public void Pause()
         {
-            _paused.Value = true;
-            Time.timeScale = PausedTimeScale;
             _updater.StopUpdating();
+            Time.timeScale = PausedTimeScale;
+            _paused.Value = true;
         }
 
         public void Resume()
         {
-            _paused.Value = false;
-            Time.timeScale = NotPausedTimeScale;
             _updater.StartUpdating();
+            Time.timeScale = NotPausedTimeScale;
+            _paused.Value = false;
         }
     }
 }

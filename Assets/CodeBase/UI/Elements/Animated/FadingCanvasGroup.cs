@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace UI.AnimatedElements
+namespace UI.Elements.Animated
 {
     public class AnimatedCanvasGroup : MonoBehaviour
     {

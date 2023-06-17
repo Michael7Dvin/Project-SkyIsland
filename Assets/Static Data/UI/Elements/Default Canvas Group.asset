@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf6f881527c46759ab60dde46efb9ee, type: 3}
-  m_Name: Animated Button Config
+  m_Script: {fileID: 11500000, guid: 3851230f24504d838f89acf8791d213a, type: 3}
+  m_Name: Default Canvas Group
   m_EditorClassIdentifier: 
-  <BumpScale>k__BackingField: 1.05
-  <BumpDuration>k__BackingField: 0.2
-  <BumpEase>k__BackingField: 4
-  <BumpLoopType>k__BackingField: 1
+  <FadeDuration>k__BackingField: 0.1
