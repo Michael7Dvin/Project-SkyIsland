@@ -2,46 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cf148e2-4486-40c1-927c-1e27c26d365e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/IUIAnimator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/OnClickScaler/OnClickScaler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/TweenAnimations.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/TweenAnimations/ScalingConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/TweenAnimations/ScalingConfig.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/BumpOnClick.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/BumpOnClick.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/OnClickScaler/OnClickScaler.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/ChangeColorOnSelect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/ChangeColorOnSelect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/ChangeColorOnSelect.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/ChangeColorOnSelect.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/ChangeTextOnSelect.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/ChangeTextOnSelect.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/ChangeTextOnSelect.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/ChangeTextOnSelect.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/IUIAnimation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Animations/IUIAnimation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/IUIAnimator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Close/CloseButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Close/CloseButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Close/CloseButtonConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Close/CloseButtonConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/SaveSlot/SaveSlotButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/SaveSlot/SaveSlotButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/SaveSlot/SaveSlotButtonConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/SaveSlot/SaveSlotButtonConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Selectable/SelectableButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Selectable/SelectableButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Selectable/SelectableButtonConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/Buttons/Selectable/SelectableButtonConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/FadingCanvasGroup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/FadingCanvasGroup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/FadingCanvasGroupConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Elements/FadingCanvasGroupConfig.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/OnClickScaler/OnClickScaler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/OnClickScaler/OnClickScaler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/OnClickScaler/OnClickScalerConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Animators/OnClickScaler/OnClickScalerConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/DeathWindow/DeathWindowView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/PauseWindow/PauseWindowView.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/UI/Windows/Implementations/SaveSelection/SaveSelectionWindowView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Save Selection Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Save Selection Window.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/All UI.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/All UI.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Animations.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Animations/Down.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Animations/Down.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Animations/Up.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Animations/Up.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Death Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Death Window.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Pause Window.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Prefabs/UI/Windows/Pause Window.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Buttons/Close Button.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Buttons/Close Button.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Buttons/Save Slot Button.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Buttons/Save Slot Button.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Death.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Death.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Pause.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Pause.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Buttons/Selectable.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Static Data/UI/Elements/Buttons/Selectable.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Tween Animators.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Tween Animators/On Click Scaler.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Tween Animators/On Click Scaler.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Death.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Death.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Pause.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Pause.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Static Data/UI/Windows/Save Selection.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +186,7 @@
       <workItem from="1686907016949" duration="25743000" />
       <workItem from="1686993560587" duration="20572000" />
       <workItem from="1687020679051" duration="2946000" />
-      <workItem from="1687057072716" duration="5330000" />
+      <workItem from="1687057072716" duration="16880000" />
     </task>
     <servers />
   </component>

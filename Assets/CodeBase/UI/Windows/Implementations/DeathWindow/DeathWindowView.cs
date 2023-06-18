@@ -1,4 +1,5 @@
 ﻿using System;
+using UI.Animators.WindowScaler;
 using UI.Elements.Buttons.Selectable;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
@@ -10,10 +11,26 @@ namespace UI.Windows.Implementations.DeathWindow
         [SerializeField] private SelectableButton _respawnButton;
         [SerializeField] private SelectableButton _mainMenuButton;
 
+        private WindowScaler _windowScaler;
+        
         public void Construct(DeathWindowConfig config)
         {
             _respawnButton.Construct(config.RespawnButtonConfig);
             _mainMenuButton.Construct(config.MainMenuButtonConfig);
+            
+            _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
+        }
+        
+        public override async void Open()
+        {
+            base.Open();
+            await _windowScaler.ScaleOnWinodwOpen();
+        }
+
+        public override async void Close()
+        {
+            await _windowScaler.ScaleOnWindowClosed();
+            base.Close();
         }
         
         public event Action RespawnButtonClicked;

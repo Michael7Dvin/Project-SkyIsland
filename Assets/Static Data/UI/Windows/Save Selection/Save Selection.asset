@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237d2036f4dc487ca2ad41382ecc7c01, type: 3}
   m_Name: Save Selection
   m_EditorClassIdentifier: 
-  <FadingCanvasGroupConfig>k__BackingField: {fileID: 11400000, guid: 701b7612807131d4db6da6a6ef366112,
+  <WindowScalerConfig>k__BackingField: {fileID: 11400000, guid: 94b306ed4396644439b9e23982da0bc9,
+    type: 2}
+  <WindowMoverConfig>k__BackingField: {fileID: 11400000, guid: 9ccf4b0640b82ef439cc3346b5274714,
     type: 2}
   <CloseButtonConfig>k__BackingField: {fileID: 11400000, guid: a7f566b0553597c40a6ae37c0900eded,
     type: 2}

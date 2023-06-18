@@ -1,4 +1,7 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
+using UI.Animators.WindowMover;
+using UI.Animators.WindowScaler;
 using UI.Elements.Buttons.Close;
 using UI.Elements.Buttons.Selectable;
 using UI.Windows.Base.WindowView;
@@ -6,6 +9,7 @@ using UnityEngine;
 
 namespace UI.Windows.Implementations.PauseWindow
 {
+    [RequireComponent(typeof(RectTransform))]
     public class PauseWindowView : BaseWindowView
     {
         [SerializeField] private CloseButton _closeButton;
@@ -13,12 +17,21 @@ namespace UI.Windows.Implementations.PauseWindow
         [SerializeField] private SelectableButton _saveButton;
         [SerializeField] private SelectableButton _mainMenuButton;
 
+        private WindowScaler _windowScaler;
+        private WindowMover _windowMover;
+        
         public void Construct(PauseWindowConfig config)
         {
             _closeButton.Construct(config.CloseButtonConfig);
+            
             _optionsButton.Construct(config.OptionsButtonConfig);
             _saveButton.Construct(config.SaveButtonConfig);
             _mainMenuButton.Construct(config.MainMenuButtonConfig);
+            
+            RectTransform rectTransform = GetComponent<RectTransform>();
+
+            _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
+            _windowMover = new WindowMover(rectTransform, config.WindowMoverConfig);
         }
         
         public event Action CloseButtonClicked;
@@ -26,6 +39,24 @@ namespace UI.Windows.Implementations.PauseWindow
         public event Action SaveButtonClicked;
         public event Action MainMenuButtonClicked;
 
+        public override async void Open()
+        {
+            base.Open();
+     
+            UniTask windowScaleAnimation = _windowScaler.ScaleOnWinodwOpen();
+            UniTask windowMoveAnimation = _windowMover.MoveOnWindowOpen();
+            await UniTask.WhenAll(windowScaleAnimation, windowMoveAnimation);
+        }
+
+        public override async void Close()
+        {
+            UniTask windowScaleAnimation = _windowScaler.ScaleOnWindowClosed();
+            UniTask windowMoveAnimation = _windowMover.MoveOnWindowClosed();
+            await UniTask.WhenAll(windowScaleAnimation, windowMoveAnimation);
+            
+            base.Close();
+        }
+        
         protected override void SubscribeControls()
         {
             _closeButton.Cliked += OnCloseButtonClick;

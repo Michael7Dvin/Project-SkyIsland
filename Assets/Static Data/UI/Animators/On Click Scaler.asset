@@ -12,14 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0e33f2926b4e7d8f36d21c001a82ef, type: 3}
   m_Name: On Click Scaler
   m_EditorClassIdentifier: 
-  _onDownEndScale: {x: 0, y: 0, z: 0}
-  _onDownDuration: 0
-  _onDownEase: 0
-  _onDownLoopsCount: 0
-  _onDownLoopType: 0
-  _onUpEndScale: {x: 0, y: 0, z: 0}
-  _onUpDuration: 0
-  _onUpEase: 0
-  _onUpLoopsCount: 0
-  _onUpLoopType: 0
-  <DefaultScale>k__BackingField: {x: 0, y: 0, z: 0}
+  _onDownEndScale: {x: 0.9, y: 0.9, z: 0.9}
+  _onDownDuration: 0.1
+  _onDownEase: 4
+  _onUpEndScale: {x: 1, y: 1, z: 1}
+  _onUpDuration: 0.1
+  _onUpEase: 4

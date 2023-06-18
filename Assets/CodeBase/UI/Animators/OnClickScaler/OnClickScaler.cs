@@ -45,12 +45,10 @@ namespace UI.Animators.OnClickScaler
         private void ScaleOnPointerDown()
         {
             _currentScaleTween?.Kill();
-            
+
             Tween scaleAnimation = GetScale(_config.OnDownEndScale,
                 _config.OnDownDuration,
-                _config.OnDownEase,
-                _config.OnDownLoopsCount,
-                _config.OnDownLoopType);
+                _config.OnDownEase);
 
             _currentScaleTween = scaleAnimation;
             _currentScaleTween.Play();
@@ -59,23 +57,20 @@ namespace UI.Animators.OnClickScaler
         private void ScaleOnPointerUp()
         {
             _currentScaleTween?.Kill();
-            
+
             Tween scaleAnimation = GetScale(_config.OnUpEndScale,
                 _config.OnUpDuration,
-                _config.OnUpEase,
-                _config.OnUpLoopsCount,
-                _config.OnUpLoopType);
+                _config.OnUpEase);
 
             _currentScaleTween = scaleAnimation;
             _currentScaleTween.Play();
         }
 
-        private Tween GetScale(Vector3 endScale, float duration, Ease ease, int loopsCount, LoopType loopType)
+        private Tween GetScale(Vector3 endScale, float duration, Ease ease)
         {
             Tween scale = _transform
                 .DOScale(endScale, duration)
                 .SetEase(ease)
-                .SetLoops(loopsCount, loopType)
                 .SetUpdate(true);
 
             return scale;

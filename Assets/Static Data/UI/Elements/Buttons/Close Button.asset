@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d29121d5a0148568cfccf6291225cd6, type: 3}
   m_Name: Close Button
   m_EditorClassIdentifier: 
-  <OnButtonDownScalingConfig>k__BackingField: {fileID: 11400000, guid: 8ffa69257fe8a9a4eb63e2bcc4d4b73b,
-    type: 2}
-  <OnButtonUpScalingConfig>k__BackingField: {fileID: 11400000, guid: ac1f8885cb4d3b545b7567c2954e33f3,
+  <OnClickScalerConfig>k__BackingField: {fileID: 11400000, guid: ff0c5bfce7c0ad9408584489de9aa7ae,
     type: 2}
