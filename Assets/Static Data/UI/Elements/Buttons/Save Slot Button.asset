@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8d5454c46a495c94bcafb760d1a0a1, type: 3}
   m_Name: Save Slot Button
   m_EditorClassIdentifier: 
-  <OnSelectedText>k__BackingField: 
-  <OnUnelectedText>k__BackingField: 
-  <SelectedColorGradient>k__BackingField: {fileID: 0}
-  <UnselectedColorGradient>k__BackingField: {fileID: 0}
-  <OnButtonDownScalingConfig>k__BackingField: {fileID: 0}
-  <OnButtonUpScalingConfig>k__BackingField: {fileID: 0}
+  <OnSelectedText>k__BackingField: Start New Game!
+  <OnUnelectedText>k__BackingField: Empty
+  <SelectedColorGradient>k__BackingField: {fileID: 11400000, guid: f4729749ee5bbb54eb933cf4d1ec3bb4,
+    type: 2}
+  <UnselectedColorGradient>k__BackingField: {fileID: 11400000, guid: 1e65874e6c98edc44b85df3ae9434005,
+    type: 2}
+  <OnButtonDownScalingConfig>k__BackingField: {fileID: 11400000, guid: 8ffa69257fe8a9a4eb63e2bcc4d4b73b,
+    type: 2}
+  <OnButtonUpScalingConfig>k__BackingField: {fileID: 11400000, guid: ac1f8885cb4d3b545b7567c2954e33f3,
+    type: 2}

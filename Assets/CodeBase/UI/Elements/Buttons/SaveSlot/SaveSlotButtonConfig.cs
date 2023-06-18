@@ -1,5 +1,5 @@
 ﻿using TMPro;
-using TweenAnimations;
+using UI.Animators.OnClickScaler;
 using UnityEngine;
 
 namespace UI.Elements.Buttons.SaveSlot
@@ -9,9 +9,8 @@ namespace UI.Elements.Buttons.SaveSlot
     {
         [field: SerializeField] public string OnSelectedText { get; private set; }
         [field: SerializeField] public string OnUnelectedText { get; private set; }
+        [field: SerializeField] public OnClickScalerConfig OnClickScalerConfig { get; private set; }
         [field: SerializeField] public TMP_ColorGradient SelectedColorGradient { get; private set; }
         [field: SerializeField] public TMP_ColorGradient UnselectedColorGradient { get; private set; }
-        [field: SerializeField] public ScalingConfig OnButtonDownScalingConfig { get; private set; }
-        [field: SerializeField] public ScalingConfig OnButtonUpScalingConfig { get; private set; }
     }
 }

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c0b0cff0e74b1e9313721b8633d22a, type: 3}
   m_Name: Pause
   m_EditorClassIdentifier: 
-  <CloseButtonConfig>k__BackingField: {fileID: 0}
-  <OptionsButtonConfig>k__BackingField: {fileID: 0}
-  <SaveButtonConfig>k__BackingField: {fileID: 0}
-  <MainMenuButtonConfig>k__BackingField: {fileID: 0}
+  <CloseButtonConfig>k__BackingField: {fileID: 11400000, guid: a7f566b0553597c40a6ae37c0900eded,
+    type: 2}
+  <OptionsButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}
+  <SaveButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}
+  <MainMenuButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}

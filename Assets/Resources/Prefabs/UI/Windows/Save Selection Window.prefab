@@ -581,7 +581,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1551530414318536760}
   - component: {fileID: -153680153226975114}
-  - component: {fileID: 1194066288933900618}
   - component: {fileID: 7541847446687165348}
   m_Layer: 5
   m_Name: Save Selection Window
@@ -623,19 +622,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1194066288933900618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2650381396043675510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66255be612ba4ed6baaa0389ec256da8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: -153680153226975114}
 --- !u!114 &7541847446687165348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -648,7 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec9b591f87c47439bd54962fef768f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canvasGroup: {fileID: 1194066288933900618}
   _closeButton: {fileID: 3053871247746319353}
   _saveSlot1: {fileID: 7595937627651981325}
   _saveSlot2: {fileID: 2756867032133073359}

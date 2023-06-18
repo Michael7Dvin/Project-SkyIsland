@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eaa0e56cfe4422da408c608b2a13b1e, type: 3}
   m_Name: Death
   m_EditorClassIdentifier: 
-  <RespawnButtonConfig>k__BackingField: {fileID: 0}
-  <MainMenuButtonConfig>k__BackingField: {fileID: 0}
+  <RespawnButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}
+  <MainMenuButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}

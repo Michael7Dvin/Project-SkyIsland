@@ -1,5 +1,6 @@
 ﻿using TMPro;
-using UI.Elements.Animations;
+using UI.Animators;
+using UI.Animators.OnClickScaler;
 using UnityEngine;
 
 namespace UI.Elements.Buttons.Selectable
@@ -8,32 +9,29 @@ namespace UI.Elements.Buttons.Selectable
     {
         [SerializeField] private TextMeshProUGUI _text;
         
-        private BumpOnClick _bumpOnClickAnimation;
+        private OnClickScaler _onClickScalerAnimation;
         private ChangeColorOnSelect _changeColorOnSelectAnimation;
         
         public void Construct(SelectableButtonConfig config)
         {
-            _bumpOnClickAnimation = new BumpOnClick(transform,
-                Events,
-                config.OnButtonDownScalingConfig,
-                config.OnButtonUpScalingConfig);
+            _onClickScalerAnimation = new OnClickScaler(transform, Events, config.OnClickScalerConfig);
 
             _changeColorOnSelectAnimation = new ChangeColorOnSelect(_text,
                 Events,
                 config.SelectedColorGradient,
                 config.UnselectedColorGradient);
             
-            _bumpOnClickAnimation.Enable();
+            _onClickScalerAnimation.Enable();
             _changeColorOnSelectAnimation.Enable();
         }
 
-        private bool IsAnimationsCreated => _bumpOnClickAnimation != null && _changeColorOnSelectAnimation != null;
+        private bool IsTweenAnimatorsCreated => _onClickScalerAnimation != null && _changeColorOnSelectAnimation != null;
         
         protected override void OnEnable()
         {
-            if (IsAnimationsCreated == true)
+            if (IsTweenAnimatorsCreated == true)
             {
-                _bumpOnClickAnimation.Enable();
+                _onClickScalerAnimation.Enable();
                 _changeColorOnSelectAnimation.Enable();   
             }
             
@@ -42,7 +40,7 @@ namespace UI.Elements.Buttons.Selectable
 
         protected override void OnDisable()
         {
-            _bumpOnClickAnimation.Disable();
+            _onClickScalerAnimation.Disable();
             _changeColorOnSelectAnimation.Disable();
             base.OnDisable();
         }

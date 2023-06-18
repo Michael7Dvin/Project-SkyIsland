@@ -1,34 +1,31 @@
-﻿using UI.Elements.Animations;
+﻿using UI.Animators.OnClickScaler;
 
 namespace UI.Elements.Buttons.Close
 {
     public class CloseButton : BaseButton
     {
-        private BumpOnClick _bumpOnClickAnimation;
+        private OnClickScaler _onClickScalerAnimation;
 
         public void Construct(CloseButtonConfig config)
         {
-            _bumpOnClickAnimation = new BumpOnClick(transform,
-                Events,
-                config.OnButtonDownScalingConfig,
-                config.OnButtonUpScalingConfig);
+            _onClickScalerAnimation = new OnClickScaler(transform, Events, config.OnClickScalerConfig);
             
-            _bumpOnClickAnimation.Enable();
+            _onClickScalerAnimation.Enable();
         }
 
-        private bool IsAnimationsCreated => _bumpOnClickAnimation != null;
+        private bool IsAnimationsCreated => _onClickScalerAnimation != null;
         
         protected override void OnEnable()
         {
             if (IsAnimationsCreated == true) 
-                _bumpOnClickAnimation.Enable();
+                _onClickScalerAnimation.Enable();
             
             base.OnEnable();
         }
 
         protected override void OnDisable()
         {
-            _bumpOnClickAnimation.Disable();
+            _onClickScalerAnimation.Disable();
             base.OnDisable();
         }
     }

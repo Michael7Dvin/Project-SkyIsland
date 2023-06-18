@@ -2,9 +2,9 @@
 using UI.Elements.EventsNotifier;
 using UnityEngine.EventSystems;
 
-namespace UI.Elements.Animations
+namespace UI.Animators
 {
-    public class ChangeTextOnSelect : IUIAnimation
+    public class ChangeTextOnSelect : IUIAnimator
     {
         private readonly TextMeshProUGUI _text;
         private readonly IUIElementEventsNotifier _events;

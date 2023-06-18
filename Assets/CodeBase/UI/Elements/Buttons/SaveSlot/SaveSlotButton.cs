@@ -1,5 +1,6 @@
 ﻿using TMPro;
-using UI.Elements.Animations;
+using UI.Animators;
+using UI.Animators.OnClickScaler;
 using UnityEngine;
 
 namespace UI.Elements.Buttons.SaveSlot
@@ -8,16 +9,13 @@ namespace UI.Elements.Buttons.SaveSlot
     {
         [SerializeField] private TextMeshProUGUI _text;
         
-        private BumpOnClick _bumpOnClickAnimation;
+        private OnClickScaler _onClickScalerAnimation;
         private ChangeTextOnSelect _changeTextOnSelectAnimation;
         private ChangeColorOnSelect _changeColorOnSelectAnimation;
         
         public void Construct(SaveSlotButtonConfig config)
         {
-            _bumpOnClickAnimation = new BumpOnClick(transform,
-                Events,
-                config.OnButtonDownScalingConfig,
-                config.OnButtonUpScalingConfig);
+            _onClickScalerAnimation = new OnClickScaler(transform, Events, config.OnClickScalerConfig);
 
             _changeTextOnSelectAnimation = new ChangeTextOnSelect(_text,
                 Events,
@@ -29,12 +27,12 @@ namespace UI.Elements.Buttons.SaveSlot
                 config.SelectedColorGradient,
                 config.UnselectedColorGradient);
             
-            _bumpOnClickAnimation.Enable();
+            _onClickScalerAnimation.Enable();
             _changeTextOnSelectAnimation.Enable();
             _changeColorOnSelectAnimation.Enable();
         }
 
-        private bool IsAnimationsCreated => _bumpOnClickAnimation != null 
+        private bool IsAnimationsCreated => _onClickScalerAnimation != null 
             && _changeTextOnSelectAnimation != null 
             && _changeColorOnSelectAnimation != null;
 
@@ -42,7 +40,7 @@ namespace UI.Elements.Buttons.SaveSlot
         {
             if (IsAnimationsCreated == true)
             {
-                _bumpOnClickAnimation.Enable();
+                _onClickScalerAnimation.Enable();
                 _changeTextOnSelectAnimation.Enable();
                 _changeColorOnSelectAnimation.Enable();                
             }
@@ -52,7 +50,7 @@ namespace UI.Elements.Buttons.SaveSlot
 
         protected override void OnDisable()
         {
-            _bumpOnClickAnimation.Disable();
+            _onClickScalerAnimation.Disable();
             _changeTextOnSelectAnimation.Enable();
             _changeColorOnSelectAnimation.Disable();
             base.OnDisable();

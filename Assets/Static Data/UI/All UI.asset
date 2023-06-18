@@ -18,4 +18,5 @@ MonoBehaviour:
     type: 2}
   <Pause>k__BackingField: {fileID: 11400000, guid: f721611510eb73b4bac8f6d5e49a0def,
     type: 2}
-  <Death>k__BackingField: {fileID: 0}
+  <Death>k__BackingField: {fileID: 11400000, guid: f5b06e3a200a40949b9edd39c8bb730e,
+    type: 2}
