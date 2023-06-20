@@ -36,6 +36,14 @@ namespace UI.Windows.Implementations.MainMenu
             _quitButton.Cliked -= OnQuitButtonClick;
         }
 
+        protected override void EnableAnimators()
+        {
+        }
+
+        protected override void DisableAnimators()
+        {
+        }
+
         private void OnPlayButtonClick() => 
             PlayButtonClicked?.Invoke();
 

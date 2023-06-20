@@ -1,9 +1,6 @@
 using Cysharp.Threading.Tasks;
 using UI.Services.Mediating;
-using UI.Windows.Implementations.DeathWindow;
-using UI.Windows.Implementations.MainMenu;
-using UI.Windows.Implementations.PauseWindow;
-using UI.Windows.Implementations.SaveSelection;
+using UI.Windows.Base.Window;
 using UnityEngine;
 
 namespace UI.Windows.Factory
@@ -14,10 +11,7 @@ namespace UI.Windows.Factory
         UniTask WarmUp();
         
         void ResetCanvas(Canvas canvas);
-        
-        UniTask<MainMenuWindow> CreateMainMenuWindow();
-        UniTask<SaveSelectionWindow> CreateSaveSelectionWindow();
-        UniTask<PauseWindow> CreatePauseWindow();
-        UniTask<DeathWindow> CreateDeathWindow();
+
+        UniTask<IWindow> Create(WindowType type);
     }
 }

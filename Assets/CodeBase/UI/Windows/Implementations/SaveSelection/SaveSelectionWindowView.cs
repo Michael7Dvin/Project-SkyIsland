@@ -1,5 +1,7 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using TMPro.EditorUtilities;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Elements.Buttons.Close;
@@ -17,6 +19,8 @@ namespace UI.Windows.Implementations.SaveSelection
         [SerializeField] private SaveSlotButton _saveSlot2;
         [SerializeField] private SaveSlotButton _saveSlot3;
         
+        private bool _isWindowClosing;
+
         private WindowScaler _windowScaler;
         private WindowMover _windowMover;
         
@@ -32,6 +36,8 @@ namespace UI.Windows.Implementations.SaveSelection
 
             _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
             _windowMover = new WindowMover(rectTransform, config.WindowMoverConfig);
+            
+            EnableAnimators();
         }
 
         public event Action CloseButtonClicked;
@@ -39,20 +45,27 @@ namespace UI.Windows.Implementations.SaveSelection
 
         public override async void Open()
         {
+            _isWindowClosing = false;
             base.Open();
      
-            UniTask windowScaleAnimation = _windowScaler.ScaleOnWinodwOpen();
+            UniTask windowScaleAnimation = _windowScaler.ScaleOnWindowOpen();
             UniTask windowMoveAnimation = _windowMover.MoveOnWindowOpen();
             await UniTask.WhenAll(windowScaleAnimation, windowMoveAnimation);
         }
 
         public override async void Close()
         {
+            _isWindowClosing = true;
+            
             UniTask windowScaleAnimation = _windowScaler.ScaleOnWindowClosed();
             UniTask windowMoveAnimation = _windowMover.MoveOnWindowClosed();
             await UniTask.WhenAll(windowScaleAnimation, windowMoveAnimation);
             
-            base.Close();
+            if (_isWindowClosing == true)
+            {
+                base.Close();
+                _isWindowClosing = false;
+            }
         }
         
         protected override void SubscribeControls()
@@ -69,6 +82,18 @@ namespace UI.Windows.Implementations.SaveSelection
             _saveSlot1.Cliked -= OnSaveSlotButtonClick;
             _saveSlot2.Cliked -= OnSaveSlotButtonClick;
             _saveSlot3.Cliked -= OnSaveSlotButtonClick;
+        }
+
+        protected override void EnableAnimators()
+        {
+            _windowMover?.Enable();
+            _windowScaler?.Enable();
+        }
+
+        protected override void DisableAnimators()
+        {
+            _windowMover?.Disable();
+            _windowScaler?.Disable();
         }
 
         private void OnCloseSlotButtonClick() => 

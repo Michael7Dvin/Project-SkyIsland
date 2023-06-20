@@ -14,7 +14,8 @@ namespace UI.Windows.Implementations.SaveSelection
         }
 
         public override WindowType Type => WindowType.SaveSelection;
-        
+        public override int MaxOpenedInstances => 3;
+
         protected override void SubscribeLogic()
         {
             _view.CloseButtonClicked += Close;

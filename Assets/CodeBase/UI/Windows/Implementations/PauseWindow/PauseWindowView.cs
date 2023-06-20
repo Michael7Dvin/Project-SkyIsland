@@ -17,6 +17,8 @@ namespace UI.Windows.Implementations.PauseWindow
         [SerializeField] private SelectableButton _saveButton;
         [SerializeField] private SelectableButton _mainMenuButton;
 
+        private bool _isWindowClosing;
+
         private WindowScaler _windowScaler;
         private WindowMover _windowMover;
         
@@ -32,6 +34,8 @@ namespace UI.Windows.Implementations.PauseWindow
 
             _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
             _windowMover = new WindowMover(rectTransform, config.WindowMoverConfig);
+            
+            EnableAnimators();
         }
         
         public event Action CloseButtonClicked;
@@ -41,20 +45,27 @@ namespace UI.Windows.Implementations.PauseWindow
 
         public override async void Open()
         {
+            _isWindowClosing = false;
             base.Open();
-     
-            UniTask windowScaleAnimation = _windowScaler.ScaleOnWinodwOpen();
+
+            UniTask windowScaleAnimation = _windowScaler.ScaleOnWindowOpen();
             UniTask windowMoveAnimation = _windowMover.MoveOnWindowOpen();
             await UniTask.WhenAll(windowScaleAnimation, windowMoveAnimation);
         }
 
         public override async void Close()
         {
+            _isWindowClosing = true;
+
             UniTask windowScaleAnimation = _windowScaler.ScaleOnWindowClosed();
             UniTask windowMoveAnimation = _windowMover.MoveOnWindowClosed();
             await UniTask.WhenAll(windowScaleAnimation, windowMoveAnimation);
-            
-            base.Close();
+
+            if (_isWindowClosing == true)
+            {
+                base.Close();
+                _isWindowClosing = false;
+            }
         }
         
         protected override void SubscribeControls()
@@ -72,7 +83,19 @@ namespace UI.Windows.Implementations.PauseWindow
             _saveButton.Cliked -= OnSaveButtonClick;
             _mainMenuButton.Cliked -= OnMainMenuButtonClick;
         }
-        
+
+        protected override void EnableAnimators()
+        {
+            _windowMover?.Enable();
+            _windowScaler?.Enable();
+        }
+
+        protected override void DisableAnimators()
+        {
+            _windowMover?.Disable();
+            _windowScaler?.Disable();
+        }
+
         private void OnCloseButtonClick() => 
             CloseButtonClicked?.Invoke();
         

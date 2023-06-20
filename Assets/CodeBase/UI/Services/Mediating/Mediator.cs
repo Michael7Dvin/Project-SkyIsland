@@ -7,17 +7,17 @@ namespace UI.Services.Mediating
 {
     public class Mediator : IMediator
     {
-        private readonly IWindowsService _windowsService;
+        private readonly IWindowsOperator _windowsOperator;
         private readonly IGameStateMachine _gameStateMachine;
 
-        public Mediator(IWindowsService windowsService, IGameStateMachine gameStateMachine)
+        public Mediator(IWindowsOperator windowsOperator, IGameStateMachine gameStateMachine)
         {
-            _windowsService = windowsService;
+            _windowsOperator = windowsOperator;
             _gameStateMachine = gameStateMachine;
         }
 
         public void OpenUIWindow(WindowType type) => 
-            _windowsService.OpenWindow(type);
+            _windowsOperator.OpenWindow(type);
         
         public void EnterGameState<TState>() where TState : IState => 
             _gameStateMachine.EnterState<TState>();

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7c0b0cff0e74b1e9313721b8633d22a, type: 3}
   m_Name: Pause
   m_EditorClassIdentifier: 
-  <WindowScalerConfig>k__BackingField: {fileID: 11400000, guid: da24a996699d3ec47ba765ed10474551,
+  <WindowScalerConfig>k__BackingField: {fileID: 11400000, guid: f834e3666808f3e49a19abbd3f07bc9c,
     type: 2}
-  <WindowMoverConfig>k__BackingField: {fileID: 11400000, guid: 3f8f88a25b8f97341b09c38fb5b6738a,
+  <WindowMoverConfig>k__BackingField: {fileID: 11400000, guid: 8cdf464c9014fac4182f7a4282d64067,
     type: 2}
   <CloseButtonConfig>k__BackingField: {fileID: 11400000, guid: a7f566b0553597c40a6ae37c0900eded,
     type: 2}

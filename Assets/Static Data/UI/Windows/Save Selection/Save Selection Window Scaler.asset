@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e12a41729aa423abf65219ec8523f24, type: 3}
   m_Name: Save Selection Window Scaler
   m_EditorClassIdentifier: 
-  <DefaultScale>k__BackingField: {x: 1, y: 1, z: 1}
-  _onOpenDelay: 0.2
+  _onOpenedDelay: 0.15
   _onOpenedStartScale: {x: 0.5, y: 0.5, z: 0.5}
-  _onOpenedEndScale: {x: 1, y: 1, z: 1}
-  _onOpenedDuration: 0.2
+  _onOpenedDuration: 0.15
   _onOpenedEase: 27
-  _onCloseDelay: 0
+  _onClosedDelay: 0
   _onClosedEndScale: {x: 0.5, y: 0.5, z: 0.5}
-  _onClosedDuration: 0.2
+  _onClosedDuration: 0.15
   _onClosedEase: 26

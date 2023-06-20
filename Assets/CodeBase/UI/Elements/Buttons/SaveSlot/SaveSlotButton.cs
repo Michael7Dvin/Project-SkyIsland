@@ -11,7 +11,7 @@ namespace UI.Elements.Buttons.SaveSlot
         
         private OnClickScaler _onClickScalerAnimation;
         private ChangeTextOnSelect _changeTextOnSelectAnimation;
-        private ChangeColorOnSelect _changeColorOnSelectAnimation;
+        private OnSelectColorChanger _onSelectColorChangerAnimation;
         
         public void Construct(SaveSlotButtonConfig config)
         {
@@ -22,19 +22,19 @@ namespace UI.Elements.Buttons.SaveSlot
                 config.OnSelectedText, 
                 config.OnUnelectedText);
             
-            _changeColorOnSelectAnimation = new ChangeColorOnSelect(_text,
+            _onSelectColorChangerAnimation = new OnSelectColorChanger(_text,
                 Events,
                 config.SelectedColorGradient,
                 config.UnselectedColorGradient);
             
             _onClickScalerAnimation.Enable();
             _changeTextOnSelectAnimation.Enable();
-            _changeColorOnSelectAnimation.Enable();
+            _onSelectColorChangerAnimation.Enable();
         }
 
         private bool IsAnimationsCreated => _onClickScalerAnimation != null 
             && _changeTextOnSelectAnimation != null 
-            && _changeColorOnSelectAnimation != null;
+            && _onSelectColorChangerAnimation != null;
 
         protected override void OnEnable()
         {
@@ -42,7 +42,7 @@ namespace UI.Elements.Buttons.SaveSlot
             {
                 _onClickScalerAnimation.Enable();
                 _changeTextOnSelectAnimation.Enable();
-                _changeColorOnSelectAnimation.Enable();                
+                _onSelectColorChangerAnimation.Enable();                
             }
 
             base.OnEnable();
@@ -52,7 +52,7 @@ namespace UI.Elements.Buttons.SaveSlot
         {
             _onClickScalerAnimation.Disable();
             _changeTextOnSelectAnimation.Enable();
-            _changeColorOnSelectAnimation.Disable();
+            _onSelectColorChangerAnimation.Disable();
             base.OnDisable();
         }
     }

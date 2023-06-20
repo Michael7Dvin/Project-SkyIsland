@@ -14,7 +14,8 @@ namespace UI.Windows.Implementations.MainMenu
         }
 
         public override WindowType Type => WindowType.MainMenu;
-        
+        public override int MaxOpenedInstances => 1;
+
         protected override void SubscribeLogic()
         {
             _view.PlayButtonClicked += _logic.OpenSaveSlotSelection;

@@ -8,11 +8,11 @@ namespace Gameplay.Services.HeroDeath
     {
         private IDeath _playerDeath;
         
-        private readonly IWindowsService _windowsService;
+        private readonly IWindowsOperator _windowsOperator;
 
-        public HeroDeathService(IWindowsService windowsService)
+        public HeroDeathService(IWindowsOperator windowsOperator)
         {
-            _windowsService = windowsService;
+            _windowsOperator = windowsOperator;
         }
 
         public void Init(IDeath playerDeath)
@@ -25,7 +25,7 @@ namespace Gameplay.Services.HeroDeath
         {
             _playerDeath.Died -= OnPlayerDied;
             _playerDeath = null;
-            _windowsService.OpenWindow(WindowType.Death);
+            _windowsOperator.OpenWindow(WindowType.Death);
         }
     }
 }

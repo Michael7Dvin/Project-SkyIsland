@@ -13,16 +13,16 @@ namespace Infrastructure.GameFSM.States
         
         private readonly ISceneLoader _sceneLoader;
         private readonly IUIFactory _uiFactory;
-        private readonly IWindowsService _windowService;
+        private readonly IWindowsOperator _windowOperator;
         
         public MainMenuState(ISceneLoader sceneLoader,
             IUIFactory uiFactory,
-            IWindowsService windowService,
+            IWindowsOperator windowOperator,
             IStaticDataProvider staticDataProvider)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
-            _windowService = windowService;
+            _windowOperator = windowOperator;
             
             _scenesData = staticDataProvider.ScenesData;
         }
@@ -37,7 +37,7 @@ namespace Infrastructure.GameFSM.States
         public async void OnMainMenuLoaded()
         {
             await _uiFactory.RecreateSceneUIObjects();
-            await _windowService.OpenWindow(WindowType.MainMenu);
+            await _windowOperator.OpenWindow(WindowType.MainMenu);
         }
     }
 }

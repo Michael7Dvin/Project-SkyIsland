@@ -1,8 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.UI;
 using Infrastructure.Services.Instantiating;
+using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Mediating;
+using UI.Windows.Base.Window;
 using UI.Windows.Implementations.DeathWindow;
 using UI.Windows.Implementations.MainMenu;
 using UI.Windows.Implementations.PauseWindow;
@@ -15,20 +17,22 @@ namespace UI.Windows.Factory
     {
         private Canvas _canvas;
 
-        private readonly IUIAssetsProvider _uiAssetsProvider;
-
-        private readonly IInstantiator _instantiator;
         private readonly AllUIConfigs _allUIConfigs;
-        
+        private readonly IUIAssetsProvider _uiAssetsProvider;
+        private readonly IInstantiator _instantiator;
+        private readonly ICustomLogger _logger;
+
         private IMediator _mediator;
 
-        public WindowFactory(IUIAssetsProvider uiAssetsProvider,
+        public WindowFactory(IStaticDataProvider staticDataProvider,
+            IUIAssetsProvider uiAssetsProvider,
             IInstantiator instantiator,
-            IStaticDataProvider staticDataProvider)
+            ICustomLogger logger)
         {
+            _allUIConfigs = staticDataProvider.AllUIConfigs;
             _uiAssetsProvider = uiAssetsProvider;
             _instantiator = instantiator;
-            _allUIConfigs = staticDataProvider.AllUIConfigs;
+            _logger = logger;
         }
         
         public void Init(IMediator mediator) => 
@@ -45,10 +49,35 @@ namespace UI.Windows.Factory
         public void ResetCanvas(Canvas canvas) => 
             _canvas = canvas;
 
-        public async UniTask<MainMenuWindow> CreateMainMenuWindow()
+        public async UniTask<IWindow> Create(WindowType type)
+        {
+            IWindow window;
+            switch (type)
+            {
+                case WindowType.MainMenu:
+                    window = await CreateMainMenu();
+                    break;
+                case WindowType.SaveSelection:
+                    window = await CreateSaveSelection();
+                    break;
+                case WindowType.Pause:
+                    window = await CreatePause();
+                    break;
+                case WindowType.Death:
+                    window = await CreateDeath();
+                    break;
+                default:
+                    _logger.LogError($"Unsupported {nameof(WindowType)}: '{type}'");
+                    return null;
+            }
+
+            return window;
+        }
+        
+        private async UniTask<MainMenuWindow> CreateMainMenu()
         {
             MainMenuWindowView viewPrefab = await _uiAssetsProvider.LoadMainMenuWindow();
-            
+
             MainMenuWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
             view.Construct(_allUIConfigs.MainMenu);
             
@@ -58,7 +87,7 @@ namespace UI.Windows.Factory
             return window;
         }
 
-        public async UniTask<SaveSelectionWindow> CreateSaveSelectionWindow()
+        private async UniTask<SaveSelectionWindow> CreateSaveSelection()
         {
             SaveSelectionWindowView viewPrefab = await _uiAssetsProvider.LoadSaveSelectionWindow();
             
@@ -71,7 +100,7 @@ namespace UI.Windows.Factory
             return window;
         }
 
-        public async UniTask<PauseWindow> CreatePauseWindow()
+        private async UniTask<PauseWindow> CreatePause()
         {
             PauseWindowView viewPrefab = await _uiAssetsProvider.LoadPauseWindow();
             
@@ -84,7 +113,7 @@ namespace UI.Windows.Factory
             return window;
         }
 
-        public async UniTask<DeathWindow> CreateDeathWindow()
+        private async UniTask<DeathWindow> CreateDeath()
         {
             DeathWindowView viewPrefab = await _uiAssetsProvider.LoadDeathWindow();
             

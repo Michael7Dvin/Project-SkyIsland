@@ -14,18 +14,18 @@ namespace Gameplay.Services.PlayerPausing
         private readonly IInputService _inputService;
         private readonly IPauseService _pauseService;
         
-        private readonly IWindowsService _windowsService;
+        private readonly IWindowsOperator _windowsOperator;
         private readonly ICustomLogger _logger;
         
         public PlayerPause(IInputService inputService,
             IPauseService pauseService,
-            IWindowsService windowsService,
+            IWindowsOperator windowsOperator,
             ICustomLogger logger)
         {
             _inputService = inputService;
             _pauseService = pauseService;
             
-            _windowsService = windowsService;
+            _windowsOperator = windowsOperator;
             _logger = logger;
         }
 
@@ -49,7 +49,7 @@ namespace Gameplay.Services.PlayerPausing
             _pauseService.Resume();
             _inputService.Camera.Enable();
             _currentPauseWindow.IsOpen.Changed -= OnPauseWindowIsOpenChanged;
-            _windowsService.CloseWindow(WindowType.Pause);
+            _windowsOperator.CloseWindow(WindowType.Pause);
         }
 
         private async void Pause()
@@ -57,7 +57,7 @@ namespace Gameplay.Services.PlayerPausing
             _logger.Log("Game Paused");
             _pauseService.Pause();
             _inputService.Camera.Disable();
-            _currentPauseWindow = await _windowsService.OpenWindow(WindowType.Pause);
+            _currentPauseWindow = await _windowsOperator.OpenWindow(WindowType.Pause);
             _currentPauseWindow.IsOpen.Changed += OnPauseWindowIsOpenChanged;
         }
 

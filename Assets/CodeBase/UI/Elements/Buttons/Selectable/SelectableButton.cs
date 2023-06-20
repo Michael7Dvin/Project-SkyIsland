@@ -9,30 +9,30 @@ namespace UI.Elements.Buttons.Selectable
     {
         [SerializeField] private TextMeshProUGUI _text;
         
-        private OnClickScaler _onClickScalerAnimation;
-        private ChangeColorOnSelect _changeColorOnSelectAnimation;
+        private OnClickScaler _onClickScaler;
+        private OnSelectColorChanger _onSelectColorChangerAnimation;
         
         public void Construct(SelectableButtonConfig config)
         {
-            _onClickScalerAnimation = new OnClickScaler(transform, Events, config.OnClickScalerConfig);
+            _onClickScaler = new OnClickScaler(transform, Events, config.OnClickScalerConfig);
 
-            _changeColorOnSelectAnimation = new ChangeColorOnSelect(_text,
+            _onSelectColorChangerAnimation = new OnSelectColorChanger(_text,
                 Events,
                 config.SelectedColorGradient,
                 config.UnselectedColorGradient);
             
-            _onClickScalerAnimation.Enable();
-            _changeColorOnSelectAnimation.Enable();
+            _onClickScaler.Enable();
+            _onSelectColorChangerAnimation.Enable();
         }
 
-        private bool IsTweenAnimatorsCreated => _onClickScalerAnimation != null && _changeColorOnSelectAnimation != null;
+        private bool IsTweenAnimatorsCreated => _onClickScaler != null && _onSelectColorChangerAnimation != null;
         
         protected override void OnEnable()
         {
             if (IsTweenAnimatorsCreated == true)
             {
-                _onClickScalerAnimation.Enable();
-                _changeColorOnSelectAnimation.Enable();   
+                _onClickScaler.Enable();
+                _onSelectColorChangerAnimation.Enable();   
             }
             
             base.OnEnable();
@@ -40,8 +40,8 @@ namespace UI.Elements.Buttons.Selectable
 
         protected override void OnDisable()
         {
-            _onClickScalerAnimation.Disable();
-            _changeColorOnSelectAnimation.Disable();
+            _onClickScaler.Disable();
+            _onSelectColorChangerAnimation.Disable();
             base.OnDisable();
         }
     }

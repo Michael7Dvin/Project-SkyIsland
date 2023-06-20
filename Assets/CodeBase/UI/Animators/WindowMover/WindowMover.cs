@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace UI.Animators.WindowMover
 {
     public class WindowMover : IUIAnimator
     {
-        private Tween _currentMoveTween;
+        private Tweener _currentMoveTween;
 
         private readonly Vector2 _defaultAnchoredPosition;
         
@@ -36,15 +35,14 @@ namespace UI.Animators.WindowMover
         {
             _currentMoveTween?.Kill();
 
-            _rectTransform.anchoredPosition = _config.OnOpenStartPosition;
+            _rectTransform.anchoredPosition = _config.OnOpenedStartPosition;
 
-            Tween move = GetAnchorPositionMove(_defaultAnchoredPosition,
-                _config.OnOpenDuration,
-                _config.OnOpenEase);
+            Tweener move = GetAnchorPositionMove(_config.OnOpenedDelay,
+                _defaultAnchoredPosition,
+                _config.OnOpenedDuration,
+                _config.OnOpenedEase);
 
             _currentMoveTween = move;
-            
-            await UniTask.Delay(TimeSpan.FromSeconds(_config.OnOpenDelay), DelayType.UnscaledDeltaTime);
             await _currentMoveTween.Play();
         }
         
@@ -52,20 +50,20 @@ namespace UI.Animators.WindowMover
         {
             _currentMoveTween?.Kill();
 
-            Tween move = GetAnchorPositionMove(_config.OnClosedEndPosition,
+            Tweener move = GetAnchorPositionMove(_config.OnClosedDelay,
+                _config.OnClosedEndPosition,
                 _config.OnClosedDuration,
                 _config.OnClosedEase);
 
             _currentMoveTween = move;
-            
-            await UniTask.Delay(TimeSpan.FromSeconds(_config.OnCloseDelay), DelayType.UnscaledDeltaTime);
             await _currentMoveTween.Play();
         }
-        
-        private Tween GetAnchorPositionMove(Vector2 endPosition, float duration, Ease ease)
+
+        private Tweener GetAnchorPositionMove(float delay, Vector2 endPosition, float duration, Ease ease)
         {
-            Tween move = _rectTransform
+            Tweener move = _rectTransform
                 .DOAnchorPos(endPosition, duration)
+                .SetDelay(delay)
                 .SetEase(ease)
                 .SetUpdate(true);
 

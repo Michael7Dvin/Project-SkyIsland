@@ -1,4 +1,5 @@
 ﻿using Common.FSM;
+using DG.Tweening;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Updater;
 using UI.Services.Factory;
@@ -28,6 +29,7 @@ namespace Infrastructure.GameFSM.States
         {
             _inputService.Init();
             _uiFactory.Init();
+            DOTween.Init();
 
             _updater.StartUpdating();
             

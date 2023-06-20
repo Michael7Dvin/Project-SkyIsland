@@ -19,12 +19,14 @@ namespace UI.Windows.Implementations.DeathWindow
             _mainMenuButton.Construct(config.MainMenuButtonConfig);
             
             _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
+            
+            EnableAnimators();
         }
         
         public override async void Open()
         {
             base.Open();
-            await _windowScaler.ScaleOnWinodwOpen();
+            await _windowScaler.ScaleOnWindowOpen();
         }
 
         public override async void Close()
@@ -47,7 +49,13 @@ namespace UI.Windows.Implementations.DeathWindow
             _respawnButton.Cliked -= OnRespawnButtonClick;
             _mainMenuButton.Cliked -= OnMainMenuButtonClick;
         }
-        
+
+        protected override void EnableAnimators() => 
+            _windowScaler?.Enable();
+
+        protected override void DisableAnimators() => 
+            _windowScaler?.Disable();
+
         private void OnRespawnButtonClick() => 
             RespawnButtonClicked?.Invoke();
 

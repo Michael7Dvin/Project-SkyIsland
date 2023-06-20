@@ -14,7 +14,8 @@ namespace UI.Windows.Implementations.DeathWindow
         }
 
         public override WindowType Type => WindowType.Death;
-        
+        public override int MaxOpenedInstances => 1;
+
         protected override void SubscribeLogic()
         {
             _view.RespawnButtonClicked += _logic.Respawn;

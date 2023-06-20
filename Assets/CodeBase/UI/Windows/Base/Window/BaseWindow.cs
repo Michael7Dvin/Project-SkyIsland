@@ -17,6 +17,7 @@ namespace UI.Windows.Base.Window
         }
 
         public abstract WindowType Type { get; }
+        public abstract int MaxOpenedInstances { get; }
         public IReadOnlyObservable<bool> IsOpen => _isOpen;
         
         public event Action Destroyed

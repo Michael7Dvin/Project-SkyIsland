@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using UnityEngine;
 
 namespace UI.Windows.Base.WindowView
@@ -7,11 +8,17 @@ namespace UI.Windows.Base.WindowView
     {
         public event Action Destroyed;
 
-        private void OnEnable() => 
+        private void OnEnable()
+        {
+            EnableAnimators();
             SubscribeControls();
+        }
 
-        private void OnDisable() => 
+        private void OnDisable()
+        {
+            DisableAnimators();
             UnsubscribeControls();
+        }
 
         private void OnDestroy() => 
             Destroyed?.Invoke();
@@ -24,5 +31,8 @@ namespace UI.Windows.Base.WindowView
 
         protected abstract void SubscribeControls();
         protected abstract void UnsubscribeControls();
+
+        protected abstract void EnableAnimators();
+        protected abstract void DisableAnimators();
     }
 }

@@ -4,14 +4,14 @@ using UnityEngine.EventSystems;
 
 namespace UI.Animators
 {
-    public class ChangeColorOnSelect : IUIAnimator
+    public class OnSelectColorChanger : IUIAnimator
     {
         private readonly TextMeshProUGUI _text;
         private readonly IUIElementEventsNotifier _events;
         private readonly TMP_ColorGradient _selectedColorGradient;
         private readonly TMP_ColorGradient _unselectedColorGradient;
 
-        public ChangeColorOnSelect(TextMeshProUGUI text,
+        public OnSelectColorChanger(TextMeshProUGUI text,
             IUIElementEventsNotifier events,
             TMP_ColorGradient selectedColorGradient,
             TMP_ColorGradient unselectedColorGradient)

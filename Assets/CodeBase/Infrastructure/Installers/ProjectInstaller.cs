@@ -87,7 +87,7 @@ namespace Infrastructure.Installers
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             Container.Bind<IMediator>().To<Mediator>().AsSingle();
             Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
-            Container.Bind<IWindowsService>().To<WindowsService>().AsSingle();
+            Container.Bind<IWindowsOperator>().To<WindowsOperator>().AsSingle();
         }
     }
 }

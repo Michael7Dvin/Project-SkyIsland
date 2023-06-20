@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a0d0af079934e02bae06db9aea43a0a, type: 3}
   m_Name: Pause Window Mover
   m_EditorClassIdentifier: 
-  _onOpenDelay: 0
-  _onOpenStartPosition: {x: 0, y: -500}
-  _onOpenDuration: 0.4
-  _onOpenEase: 4
-  _onCloseDelay: 0
-  _onClosedEndPosition: {x: 0, y: -500}
-  _onClosedDuration: 0.4
+  _onOpenedDelay: 0
+  _onOpenedStartPosition: {x: 0, y: 900}
+  _onOpenedDuration: 0.15
+  _onOpenedEase: 4
+  _onClosedDelay: 0.15
+  _onClosedEndPosition: {x: 0, y: 900}
+  _onClosedDuration: 0.15
   _onClosedEase: 4
