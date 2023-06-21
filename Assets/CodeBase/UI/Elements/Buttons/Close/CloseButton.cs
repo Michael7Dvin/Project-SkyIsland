@@ -1,31 +1,37 @@
 ﻿using UI.Animators.OnClickScaler;
+using UI.Animators.OnSelectScaler;
+using UnityEngine;
 
 namespace UI.Elements.Buttons.Close
 {
     public class CloseButton : BaseButton
     {
-        private OnClickScaler _onClickScalerAnimation;
+        private OnSelectScaler _onSelectScaler;
+        private OnClickScaler _onClickScaler;
 
         public void Construct(CloseButtonConfig config)
         {
-            _onClickScalerAnimation = new OnClickScaler(transform, Events, config.OnClickScalerConfig);
+            Transform selfTransform = transform;
             
-            _onClickScalerAnimation.Enable();
+            _onSelectScaler = new OnSelectScaler(selfTransform, Events, config.OnSelectScalerConfig);
+            _onClickScaler = new OnClickScaler(selfTransform, Events, config.OnClickScalerConfig);
+            
+            _onSelectScaler.Enable();
+            _onClickScaler.Enable();
         }
 
-        private bool IsAnimationsCreated => _onClickScalerAnimation != null;
-        
         protected override void OnEnable()
         {
-            if (IsAnimationsCreated == true) 
-                _onClickScalerAnimation.Enable();
+            _onSelectScaler?.Enable();
+            _onClickScaler?.Enable();
             
             base.OnEnable();
         }
 
         protected override void OnDisable()
         {
-            _onClickScalerAnimation.Disable();
+            _onSelectScaler.Disable();
+            _onClickScaler.Disable();
             base.OnDisable();
         }
     }

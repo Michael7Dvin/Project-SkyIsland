@@ -12,21 +12,21 @@ namespace Infrastructure.Services.StaticDataProviding
             ScenesData scenesData,
             HeroConfig heroConfig,
             PlayerCameraConfig playerCameraConfig,
-            AllUIConfigs allUIConfigs)
+            WindowsConfigs windowsConfigs)
         {
-            AllAssetsAddresses = allAssetsAddresses;
+            AssetsAddresses = allAssetsAddresses;
             ScenesData = scenesData;
 
             HeroConfig = heroConfig;
             PlayerCameraConfig = playerCameraConfig;
-            AllUIConfigs = allUIConfigs;
+            WindowsConfigs = windowsConfigs;
         }
 
-        public AllAssetsAddresses AllAssetsAddresses { get; }
+        public AllAssetsAddresses AssetsAddresses { get; }
         public ScenesData ScenesData { get; }
 
         public HeroConfig HeroConfig { get; }
-        public AllUIConfigs AllUIConfigs { get; }
+        public WindowsConfigs WindowsConfigs { get; }
         public PlayerCameraConfig PlayerCameraConfig { get; }
     }
 }

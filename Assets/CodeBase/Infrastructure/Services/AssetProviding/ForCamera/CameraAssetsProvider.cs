@@ -18,7 +18,7 @@ namespace Infrastructure.Services.AssetProviding.ForCamera
         {
             _resourcesLoader = resourcesLoader;
 
-            AllAssetsAddresses addresses = staticDataProvider.AllAssetsAddresses;
+            AllAssetsAddresses addresses = staticDataProvider.AssetsAddresses;
             SetAddresses(addresses);
         }
 
@@ -30,8 +30,8 @@ namespace Infrastructure.Services.AssetProviding.ForCamera
 
         private void SetAddresses(AllAssetsAddresses addresses)
         {
-            _cameraAddress = addresses.CameraAssets.Camera;
-            _freeLookControllerAddress = addresses.CameraAssets.FreeLookController;
+            _cameraAddress = addresses.Camera.Camera;
+            _freeLookControllerAddress = addresses.Camera.FreeLookController;
         }
     }
 }

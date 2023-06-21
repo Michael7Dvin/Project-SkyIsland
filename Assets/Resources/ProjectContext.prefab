@@ -80,4 +80,4 @@ MonoBehaviour:
   _heroConfig: {fileID: 11400000, guid: 18d970801670d9342b0507845021d04f, type: 2}
   _playerCameraConfig: {fileID: 11400000, guid: 4b97f4861d04fc74dba6ec0f65ff4c0c,
     type: 2}
-  _allUIConfigs: {fileID: 11400000, guid: 97ed40fde8417994d891680d7f7d0bbf, type: 2}
+  _windowsConfigs: {fileID: 11400000, guid: 97ed40fde8417994d891680d7f7d0bbf, type: 2}

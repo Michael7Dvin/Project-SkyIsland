@@ -9,7 +9,6 @@ namespace UI.Windows.Factory
     {
         void Init(IMediator mediator);
         UniTask WarmUp();
-        
         void ResetCanvas(Canvas canvas);
 
         UniTask<IWindow> Create(WindowType type);

@@ -7,7 +7,7 @@ namespace UI.Animators.OnClickScaler
 {
     public class OnClickScaler : IUIAnimator
     {
-        private Tween _currentScaleTween;
+        private Tweener _currentScaleTween;
         
         private readonly Transform _transform;
         private readonly IUIElementEventsNotifier _events;
@@ -46,7 +46,7 @@ namespace UI.Animators.OnClickScaler
         {
             _currentScaleTween?.Kill();
 
-            Tween scaleAnimation = GetScale(_config.OnDownEndScale,
+            Tweener scaleAnimation = GetScale(_config.OnDownEndScale,
                 _config.OnDownDuration,
                 _config.OnDownEase);
 
@@ -58,7 +58,7 @@ namespace UI.Animators.OnClickScaler
         {
             _currentScaleTween?.Kill();
 
-            Tween scaleAnimation = GetScale(_config.OnUpEndScale,
+            Tweener scaleAnimation = GetScale(_config.OnUpEndScale,
                 _config.OnUpDuration,
                 _config.OnUpEase);
 
@@ -66,9 +66,9 @@ namespace UI.Animators.OnClickScaler
             _currentScaleTween.Play();
         }
 
-        private Tween GetScale(Vector3 endScale, float duration, Ease ease)
+        private Tweener GetScale(Vector3 endScale, float duration, Ease ease)
         {
-            Tween scale = _transform
+            Tweener scale = _transform
                 .DOScale(endScale, duration)
                 .SetEase(ease)
                 .SetUpdate(true);

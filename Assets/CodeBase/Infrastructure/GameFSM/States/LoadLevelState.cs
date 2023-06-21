@@ -6,7 +6,7 @@ using Infrastructure.LevelLoading.WarmUpping;
 using Infrastructure.LevelLoading.WorldObjectsSpawning;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
-using UI.Services.Factory;
+using UI.Services.UIFactory;
 
 namespace Infrastructure.GameFSM.States
 {

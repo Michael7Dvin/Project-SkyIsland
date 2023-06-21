@@ -1,5 +1,6 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
+using TMPro;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Elements.Buttons.Close;
@@ -19,10 +20,11 @@ namespace UI.Windows.Implementations.PauseWindow
 
         private bool _isWindowClosing;
 
+        private GameObject _background;
         private WindowScaler _windowScaler;
         private WindowMover _windowMover;
         
-        public void Construct(PauseWindowConfig config)
+        public void Construct(PauseWindowConfig config, GameObject background)
         {
             _closeButton.Construct(config.CloseButtonConfig);
             
@@ -35,6 +37,7 @@ namespace UI.Windows.Implementations.PauseWindow
             _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
             _windowMover = new WindowMover(rectTransform, config.WindowMoverConfig);
             
+            _background = background;
             EnableAnimators();
         }
         
@@ -45,6 +48,7 @@ namespace UI.Windows.Implementations.PauseWindow
 
         public override async void Open()
         {
+            _background.SetActive(true);
             _isWindowClosing = false;
             base.Open();
 
@@ -55,6 +59,7 @@ namespace UI.Windows.Implementations.PauseWindow
 
         public override async void Close()
         {
+            _background.SetActive(false);
             _isWindowClosing = true;
 
             UniTask windowScaleAnimation = _windowScaler.ScaleOnWindowClosed();

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f1d30a82f34a1bbce122899e2e9844, type: 3}
   m_Name: All Assets Addresses
   m_EditorClassIdentifier: 
-  <CommonAssets>k__BackingField: {fileID: 11400000, guid: 3b213f781162ceb4aaa706fb0ffb2e4f,
+  <Common>k__BackingField: {fileID: 11400000, guid: 3b213f781162ceb4aaa706fb0ffb2e4f,
     type: 2}
-  <UIAssets>k__BackingField: {fileID: 11400000, guid: 56a13007ab8f2cf459c173c4c91e1fb6,
+  <UI>k__BackingField: {fileID: 11400000, guid: 56a13007ab8f2cf459c173c4c91e1fb6,
     type: 2}
-  <CameraAssets>k__BackingField: {fileID: 11400000, guid: a231723da9d9c3947b95e95c22a8f81e,
+  <Camera>k__BackingField: {fileID: 11400000, guid: a231723da9d9c3947b95e95c22a8f81e,
     type: 2}

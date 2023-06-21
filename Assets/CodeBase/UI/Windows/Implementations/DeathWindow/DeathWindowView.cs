@@ -11,20 +11,23 @@ namespace UI.Windows.Implementations.DeathWindow
         [SerializeField] private SelectableButton _respawnButton;
         [SerializeField] private SelectableButton _mainMenuButton;
 
+        private GameObject _background;
         private WindowScaler _windowScaler;
         
-        public void Construct(DeathWindowConfig config)
+        public void Construct(DeathWindowConfig config, GameObject background)
         {
             _respawnButton.Construct(config.RespawnButtonConfig);
             _mainMenuButton.Construct(config.MainMenuButtonConfig);
             
             _windowScaler = new WindowScaler(transform, config.WindowScalerConfig);
             
+            _background = background;
             EnableAnimators();
         }
         
         public override async void Open()
         {
+            _background.SetActive(true);
             base.Open();
             await _windowScaler.ScaleOnWindowOpen();
         }
@@ -32,6 +35,7 @@ namespace UI.Windows.Implementations.DeathWindow
         public override async void Close()
         {
             await _windowScaler.ScaleOnWindowClosed();
+            _background.SetActive(false);
             base.Close();
         }
         

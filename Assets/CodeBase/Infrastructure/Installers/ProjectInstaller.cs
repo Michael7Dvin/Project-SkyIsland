@@ -7,6 +7,10 @@ using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Common;
 using Infrastructure.Services.AssetProviding.ForCamera;
 using Infrastructure.Services.AssetProviding.UI;
+using Infrastructure.Services.AssetProviding.UI.All;
+using Infrastructure.Services.AssetProviding.UI.Backgrounds;
+using Infrastructure.Services.AssetProviding.UI.HUD;
+using Infrastructure.Services.AssetProviding.UI.Windows;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
@@ -16,8 +20,9 @@ using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
 using UI;
-using UI.Services.Factory;
+using UI.Services.BackgroundFactory;
 using UI.Services.Mediating;
+using UI.Services.UIFactory;
 using UI.Services.WindowsOperating;
 using UI.Windows.Factory;
 using UnityEngine;
@@ -33,7 +38,7 @@ namespace Infrastructure.Installers
         
         [SerializeField] private HeroConfig _heroConfig;
         [SerializeField] private PlayerCameraConfig _playerCameraConfig;
-        [SerializeField] private AllUIConfigs _allUIConfigs;
+        [SerializeField] private WindowsConfigs _windowsConfigs;
 
         public override void InstallBindings()
         {
@@ -73,21 +78,27 @@ namespace Infrastructure.Installers
                 .Bind<IStaticDataProvider>()
                 .To<StaticDataProvider>()
                 .AsSingle()
-                .WithArguments(_allAssetsAddresses, _scenesData, _heroConfig, _allUIConfigs, _playerCameraConfig);
+                .WithArguments(_allAssetsAddresses, _scenesData, _heroConfig, _windowsConfigs, _playerCameraConfig);
             
             Container.Bind<ILevelServicesProvider>().To<LevelServicesProvider>().AsSingle();
 
             Container.Bind<ICommonAssetsProvider>().To<CommonAssetsProvider>().AsSingle();
             Container.Bind<ICameraAssetsProvider>().To<CameraAssetsProvider>().AsSingle();
-            Container.Bind<IUIAssetsProvider>().To<UIAssetsProvider>().AsSingle();
         }
 
         private void BindUI()
         {
-            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             Container.Bind<IMediator>().To<Mediator>().AsSingle();
-            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
             Container.Bind<IWindowsOperator>().To<WindowsOperator>().AsSingle();
+            
+            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
+            Container.Bind<IBackgroundFactory>().To<BackgroundFactory>().AsSingle();
+            
+            Container.Bind<IUIAssetsProvider>().To<UIAssetsProvider>().AsSingle();
+            Container.Bind<IWindowsAssetsProvider>().To<WindowsAssetsProvider>().AsSingle();
+            Container.Bind<IBackgroundsAssetsProvider>().To<BackgroundsAssetsProvider>().AsSingle();
+            Container.Bind<IHUDAssetsProvider>().To<HUDAssetsProvider>().AsSingle();
         }
     }
 }

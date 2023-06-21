@@ -2,7 +2,7 @@
 using DG.Tweening;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Updater;
-using UI.Services.Factory;
+using UI.Services.UIFactory;
 
 namespace Infrastructure.GameFSM.States
 {

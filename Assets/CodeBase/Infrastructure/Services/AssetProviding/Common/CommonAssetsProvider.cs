@@ -18,7 +18,7 @@ namespace Infrastructure.Services.AssetProviding.Common
         {
             _resourcesLoader = resourcesLoader;
             
-            AllAssetsAddresses addresses = staticDataProvider.AllAssetsAddresses;
+            AllAssetsAddresses addresses = staticDataProvider.AssetsAddresses;
             SetAddresses(addresses);
         }
 
@@ -30,8 +30,8 @@ namespace Infrastructure.Services.AssetProviding.Common
 
         private void SetAddresses(AllAssetsAddresses addresses)
         {
-            _emptyGameObjectAddress = addresses.CommonAssets.EmptyGameObject;
-            _heroAddress = addresses.CommonAssets.Hero;
+            _emptyGameObjectAddress = addresses.Common.EmptyGameObject;
+            _heroAddress = addresses.Common.Hero;
         }
     }
 }

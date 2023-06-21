@@ -1,8 +1,11 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.UI;
+using Infrastructure.Services.AssetProviding.UI.All;
+using Infrastructure.Services.AssetProviding.UI.Windows;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
+using UI.Services.BackgroundFactory;
 using UI.Services.Mediating;
 using UI.Windows.Base.Window;
 using UI.Windows.Implementations.DeathWindow;
@@ -17,33 +20,38 @@ namespace UI.Windows.Factory
     {
         private Canvas _canvas;
 
-        private readonly AllUIConfigs _allUIConfigs;
-        private readonly IUIAssetsProvider _uiAssetsProvider;
-        private readonly IInstantiator _instantiator;
+        private readonly WindowsConfigs _windowsConfigs;
+        private readonly IWindowsAssetsProvider _assetsProvider;
         private readonly ICustomLogger _logger;
+        private readonly IBackgroundFactory _backgroundFactory; 
+        private readonly IInstantiator _instantiator;
 
         private IMediator _mediator;
 
         public WindowFactory(IStaticDataProvider staticDataProvider,
-            IUIAssetsProvider uiAssetsProvider,
-            IInstantiator instantiator,
-            ICustomLogger logger)
+            IWindowsAssetsProvider assetsProvider,
+            ICustomLogger logger,
+            IBackgroundFactory backgroundFactory,
+            IInstantiator instantiator)
         {
-            _allUIConfigs = staticDataProvider.AllUIConfigs;
-            _uiAssetsProvider = uiAssetsProvider;
-            _instantiator = instantiator;
+            _windowsConfigs = staticDataProvider.WindowsConfigs;
+            _assetsProvider = assetsProvider;
             _logger = logger;
+            _backgroundFactory = backgroundFactory;
+            _instantiator = instantiator;
         }
-        
+
         public void Init(IMediator mediator) => 
             _mediator = mediator;
 
         public async UniTask WarmUp()
         {
-            await _uiAssetsProvider.LoadMainMenuWindow();
-            await _uiAssetsProvider.LoadSaveSelectionWindow();
-            await _uiAssetsProvider.LoadPauseWindow();
-            await _uiAssetsProvider.LoadDeathWindow();
+            await _backgroundFactory.WarmUp();
+            
+            await _assetsProvider.LoadMainMenuWindow();
+            await _assetsProvider.LoadSaveSelectionWindow();
+            await _assetsProvider.LoadPauseWindow();
+            await _assetsProvider.LoadDeathWindow();
         }
 
         public void ResetCanvas(Canvas canvas) => 
@@ -76,10 +84,11 @@ namespace UI.Windows.Factory
         
         private async UniTask<MainMenuWindow> CreateMainMenu()
         {
-            MainMenuWindowView viewPrefab = await _uiAssetsProvider.LoadMainMenuWindow();
+            MainMenuWindowView viewPrefab = await _assetsProvider.LoadMainMenuWindow();
 
             MainMenuWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
-            view.Construct(_allUIConfigs.MainMenu);
+            GameObject background = await _backgroundFactory.CreateMainMenu();
+            view.Construct(_windowsConfigs.MainMenu, background);
             
             MainMenuWindowLogic logic = new(_mediator);
             MainMenuWindow window = new(view, logic);
@@ -89,10 +98,10 @@ namespace UI.Windows.Factory
 
         private async UniTask<SaveSelectionWindow> CreateSaveSelection()
         {
-            SaveSelectionWindowView viewPrefab = await _uiAssetsProvider.LoadSaveSelectionWindow();
+            SaveSelectionWindowView viewPrefab = await _assetsProvider.LoadSaveSelectionWindow();
             
             SaveSelectionWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
-            view.Construct(_allUIConfigs.SaveSelection);
+            view.Construct(_windowsConfigs.SaveSelection);
             
             SaveSelectionWindowLogic logic = new(_mediator);
             SaveSelectionWindow window = new(view, logic);
@@ -102,10 +111,11 @@ namespace UI.Windows.Factory
 
         private async UniTask<PauseWindow> CreatePause()
         {
-            PauseWindowView viewPrefab = await _uiAssetsProvider.LoadPauseWindow();
+            PauseWindowView viewPrefab = await _assetsProvider.LoadPauseWindow();
             
             PauseWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
-            view.Construct(_allUIConfigs.Pause);
+            GameObject background = await _backgroundFactory.CreatePause();
+            view.Construct(_windowsConfigs.Pause, background);
             
             PauseWindowLogic logic = new(_mediator);
             PauseWindow window = new(view, logic);
@@ -115,10 +125,11 @@ namespace UI.Windows.Factory
 
         private async UniTask<DeathWindow> CreateDeath()
         {
-            DeathWindowView viewPrefab = await _uiAssetsProvider.LoadDeathWindow();
+            DeathWindowView viewPrefab = await _assetsProvider.LoadDeathWindow();
             
             DeathWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
-            view.Construct(_allUIConfigs.Death);
+            GameObject background = await _backgroundFactory.CreateDeath();
+            view.Construct(_windowsConfigs.Death, background);
             
             DeathWindowLogic logic = new(_mediator);
             DeathWindow window = new(view, logic);

@@ -8,11 +8,11 @@ namespace Infrastructure.Services.StaticDataProviding
 {
     public interface IStaticDataProvider
     {
-        AllAssetsAddresses AllAssetsAddresses { get; }
+        AllAssetsAddresses AssetsAddresses { get; }
         
         HeroConfig HeroConfig { get; }
         PlayerCameraConfig PlayerCameraConfig { get; }
-        AllUIConfigs AllUIConfigs { get; }
+        WindowsConfigs WindowsConfigs { get; }
         ScenesData ScenesData { get; }
     }
 }
