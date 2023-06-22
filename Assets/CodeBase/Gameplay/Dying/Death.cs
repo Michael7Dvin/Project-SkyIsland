@@ -11,7 +11,7 @@ namespace Gameplay.Dying
         {
             _health = health;
 
-            _health.CurrentValue.Changed += OnHealthChanged;
+            _health.Current.Changed += OnHealthChanged;
         }
 
         private void OnHealthChanged(float health)
@@ -23,6 +23,6 @@ namespace Gameplay.Dying
         public event Action Died;
         
         public void Dispose() => 
-            _health.CurrentValue.Changed -= OnHealthChanged;
+            _health.Current.Changed -= OnHealthChanged;
     }
 }

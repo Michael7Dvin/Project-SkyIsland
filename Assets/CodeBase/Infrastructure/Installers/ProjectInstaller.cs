@@ -20,6 +20,7 @@ using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updater;
 using UI;
+using UI.HUD.Factory;
 using UI.Services.BackgroundFactory;
 using UI.Services.Mediating;
 using UI.Services.UIFactory;
@@ -94,6 +95,7 @@ namespace Infrastructure.Installers
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
             Container.Bind<IBackgroundFactory>().To<BackgroundFactory>().AsSingle();
+            Container.Bind<IHUDFactory>().To<HUDFactory>().AsSingle();
             
             Container.Bind<IUIAssetsProvider>().To<UIAssetsProvider>().AsSingle();
             Container.Bind<IWindowsAssetsProvider>().To<WindowsAssetsProvider>().AsSingle();

@@ -10,6 +10,8 @@ using Infrastructure.Services.AssetProviding.Common;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
+using UI.HUD;
+using UI.HUD.Factory;
 using UnityEngine;
 
 namespace Gameplay.Hero
@@ -20,7 +22,8 @@ namespace Gameplay.Hero
 
         private readonly IHeroMovementFactory _movementFactory;
         private readonly IPlayerCameraFactory _cameraFactory;
-
+        private readonly IHUDFactory _hudFactory;
+        
         private readonly ICommonAssetsProvider _commonAssetsProvider;
         private readonly IInstantiator _instantiator;
         private readonly IHeroDeathService _heroDeathService;
@@ -29,6 +32,7 @@ namespace Gameplay.Hero
         public HeroFactory(IStaticDataProvider staticDataProvider,
             IHeroMovementFactory movementFactory,
             IPlayerCameraFactory cameraFactory,
+            IHUDFactory hudFactory,
             ICommonAssetsProvider commonAssetsProvider,
             IInstantiator instantiator,
             IHeroDeathService heroDeathService,
@@ -38,6 +42,7 @@ namespace Gameplay.Hero
 
             _movementFactory = movementFactory;
             _cameraFactory = cameraFactory;
+            _hudFactory = hudFactory;
 
             _commonAssetsProvider = commonAssetsProvider;
             _instantiator = instantiator;
@@ -50,6 +55,7 @@ namespace Gameplay.Hero
             await _commonAssetsProvider.LoadHero();
             await _movementFactory.WarmUp();
             await _cameraFactory.WarmUp();
+            await _hudFactory.WarmUp();
         }
 
         public async UniTask<Hero> Create(Vector3 position, Quaternion rotation)
@@ -60,7 +66,7 @@ namespace Gameplay.Hero
             GameObject heroGameObject = heroDestroyable.gameObject;
             
             Camera camera = await _cameraFactory.Create(heroDestroyable.transform);
-
+            
             GetComponents(heroGameObject,
                 out CharacterController characterController,
                 out Animator animator,
@@ -72,6 +78,7 @@ namespace Gameplay.Hero
                 camera.transform);
 
             IHealth health = CreateHealth(_logger);
+            await _hudFactory.CreateHealthBar(health);
 
             IInjuryProcessor injuryProcessor = CreateInjuryProcessor(health, damageNotifier);
 

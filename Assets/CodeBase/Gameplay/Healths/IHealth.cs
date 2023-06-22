@@ -4,9 +4,10 @@ namespace Gameplay.Healths
 {
     public interface IHealth
     {
-        public IReadOnlyObservable<float> CurrentValue { get; }
-
-        public void TakeDamage(float damage);
-        public void Heal(float amount);
+        float Max { get; }
+        IReadOnlyObservable<float> Current { get; }
+        
+        void TakeDamage(float damage);
+        void Heal(float amount);
     }
 }

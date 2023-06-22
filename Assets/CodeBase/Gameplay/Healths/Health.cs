@@ -7,7 +7,6 @@ namespace Gameplay.Healths
     public class Health : IHealth
     {
         private const float MinValue = 0f;
-        private float _maxValue;
         private readonly Observable<float> _currentValue = new();
 
         private readonly ICustomLogger _logger;
@@ -18,7 +17,8 @@ namespace Gameplay.Healths
             _logger = logger;
         }
 
-        public IReadOnlyObservable<float> CurrentValue => _currentValue;
+        public float Max { get; private set; }
+        public IReadOnlyObservable<float> Current => _currentValue;
 
         public void TakeDamage(float damage)
         {
@@ -43,7 +43,7 @@ namespace Gameplay.Healths
         }
 
         private void SetCurrent(float newValue) => 
-            _currentValue.Value = Mathf.Clamp(newValue, MinValue, _maxValue);
+            _currentValue.Value = Mathf.Clamp(newValue, MinValue, Max);
 
         private void ValidateAndSetInitialValues(float initialCurrentValue, float initialMaxValue)
         {
@@ -65,7 +65,7 @@ namespace Gameplay.Healths
                 return;
             }
 
-            _maxValue = initialMaxValue;
+            Max = initialMaxValue;
             _currentValue.Value = initialCurrentValue;
         }
     }

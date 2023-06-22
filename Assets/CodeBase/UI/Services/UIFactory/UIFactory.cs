@@ -3,6 +3,7 @@ using Infrastructure.Services.AssetProviding.UI;
 using Infrastructure.Services.AssetProviding.UI.All;
 using Infrastructure.Services.Input.Service;
 using Infrastructure.Services.Instantiating;
+using UI.HUD.Factory;
 using UI.Services.BackgroundFactory;
 using UI.Services.Mediating;
 using UI.Windows.Factory;
@@ -16,6 +17,7 @@ namespace UI.Services.UIFactory
     {
         private readonly IWindowFactory _windowFactory;
         private readonly IBackgroundFactory _backgroundFactory;
+        private readonly IHUDFactory _hudFactory;
         private readonly IUIAssetsProvider _uiAssetsProvider;
         
         private readonly IMediator _mediator;
@@ -24,6 +26,7 @@ namespace UI.Services.UIFactory
 
         public UIFactory(IWindowFactory windowFactory,
             IBackgroundFactory backgroundFactory,
+            IHUDFactory hudFactory,
             IUIAssetsProvider uiAssetsProvider,
             IMediator mediator,
             IInstantiator instantiator,
@@ -31,6 +34,8 @@ namespace UI.Services.UIFactory
         {
             _windowFactory = windowFactory;
             _backgroundFactory = backgroundFactory;
+            _hudFactory = hudFactory;
+            
             _uiAssetsProvider = uiAssetsProvider;
             _mediator = mediator;
             _instantiator = instantiator;
@@ -53,6 +58,7 @@ namespace UI.Services.UIFactory
 
             _windowFactory.ResetCanvas(canvas);
             _backgroundFactory.ResetCanvas(canvas);
+            _hudFactory.ResetCanvas(canvas);
         }
         
         private async UniTask<Canvas> CreateCanvas()
