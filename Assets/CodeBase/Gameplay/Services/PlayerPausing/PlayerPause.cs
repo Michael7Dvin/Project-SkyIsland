@@ -1,7 +1,7 @@
-﻿using Infrastructure.Services.Input.Service;
+﻿using Infrastructure.Services.Input;
 using Infrastructure.Services.Logging;
-using Infrastructure.Services.Pause;
-using UI.Services.WindowsOperating;
+using Infrastructure.Services.Pausing;
+using UI.Services.Operating;
 using UI.Windows;
 using UI.Windows.Base.Window;
 

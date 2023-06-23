@@ -4,8 +4,8 @@ using Cysharp.Threading.Tasks;
 using TMPro.EditorUtilities;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
-using UI.Elements.Buttons.Close;
-using UI.Elements.Buttons.SaveSlot;
+using UI.Controls.Buttons.Close;
+using UI.Controls.Buttons.SaveSlot;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
 

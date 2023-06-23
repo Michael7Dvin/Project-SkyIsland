@@ -1,6 +1,6 @@
 ﻿using Common.FSM;
 using Infrastructure.GameFSM;
-using UI.Services.WindowsOperating;
+using UI.Services.Operating;
 using UI.Windows;
 
 namespace UI.Services.Mediating

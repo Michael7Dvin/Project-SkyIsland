@@ -1,7 +1,7 @@
 ﻿using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
-using UI.Elements.Buttons.Close;
-using UI.Elements.Buttons.Selectable;
+using UI.Controls.Buttons.Close;
+using UI.Controls.Buttons.Selectable;
 using UnityEngine;
 
 namespace UI.Windows.Implementations.PauseWindow

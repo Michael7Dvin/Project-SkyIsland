@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using UI.Elements.EventsNotifier;
+using UI.Controls.Events;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,11 +10,11 @@ namespace UI.Animators.OnClickScaler
         private Tweener _currentScaleTween;
         
         private readonly Transform _transform;
-        private readonly IUIElementEventsNotifier _events;
+        private readonly IControlEvents _events;
         
         private readonly OnClickScalerConfig _config;
         
-        public OnClickScaler(Transform transform, IUIElementEventsNotifier events, OnClickScalerConfig config)
+        public OnClickScaler(Transform transform, IControlEvents events, OnClickScalerConfig config)
         {
             _transform = transform;
             _events = events;

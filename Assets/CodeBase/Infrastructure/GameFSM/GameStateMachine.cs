@@ -15,7 +15,7 @@ namespace Infrastructure.GameFSM
         
         public void EnterState<TState>() where TState : IState
         {
-            _logger.Log(typeof(TState).ToString());
+            _logger.Log($"Entered: {typeof(TState).Name}");
             _stateMachine.EnterState<TState>();
         }
 

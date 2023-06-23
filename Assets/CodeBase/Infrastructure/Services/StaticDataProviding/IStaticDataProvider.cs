@@ -1,8 +1,9 @@
-using Gameplay.Hero;
-using Gameplay.PlayerCamera;
+using Gameplay.Services.Factories.HeroFactory;
+using Gameplay.Services.Factories.PlayerCamera;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.SceneLoading;
 using UI;
+using UI.Services.Factories.Window;
 
 namespace Infrastructure.Services.StaticDataProviding
 {

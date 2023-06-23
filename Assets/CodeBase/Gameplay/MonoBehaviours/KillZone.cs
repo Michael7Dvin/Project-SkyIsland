@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.MonoBehaviours.Damagable;
+using UnityEngine;
 
 namespace Gameplay.MonoBehaviours
 {
@@ -14,7 +15,7 @@ namespace Gameplay.MonoBehaviours
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IDamagableNotifier damagableNotifier))
+            if (other.TryGetComponent(out IDamagable damagableNotifier))
                 damagableNotifier.TakeDamage(float.MaxValue);
         }
     }

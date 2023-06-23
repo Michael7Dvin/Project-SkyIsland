@@ -1,12 +1,12 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
-using Infrastructure.LevelLoading.Data;
-using Infrastructure.LevelLoading.LevelServicesProviding;
-using Infrastructure.LevelLoading.WarmUpping;
-using Infrastructure.LevelLoading.WorldObjectsSpawning;
+using Infrastructure.Services.LevelLoading.Data;
+using Infrastructure.Services.LevelLoading.LevelServicesProviding;
+using Infrastructure.Services.LevelLoading.WarmUpping;
+using Infrastructure.Services.LevelLoading.WorldObjectsSpawning;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
-using UI.Services.UIFactory;
+using UI.Services.Factories.UI;
 
 namespace Infrastructure.GameFSM.States
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using Infrastructure.Services.Updater;
+using Infrastructure.Services.Updating;
 using UnityEngine;
 
 namespace Gameplay.Movement.GroundSpherecasting

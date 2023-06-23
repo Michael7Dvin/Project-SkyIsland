@@ -1,13 +1,13 @@
-﻿using Gameplay.Hero;
-using Gameplay.Hero.Movement;
-using Gameplay.Movement.GroundSpherecasting;
-using Gameplay.PlayerCamera;
+﻿using Gameplay.Movement.GroundSpherecasting;
+using Gameplay.Services.Factories.GroundSpherecaster;
+using Gameplay.Services.Factories.HeroFactory;
+using Gameplay.Services.Factories.HeroMovement;
+using Gameplay.Services.Factories.PlayerCamera;
 using Gameplay.Services.HeroDeath;
 using Gameplay.Services.PlayerPausing;
-using Infrastructure.LevelLoading;
-using Infrastructure.LevelLoading.Data;
-using Infrastructure.LevelLoading.WarmUpping;
-using Infrastructure.LevelLoading.WorldObjectsSpawning;
+using Infrastructure.Services.LevelLoading.Data;
+using Infrastructure.Services.LevelLoading.WarmUpping;
+using Infrastructure.Services.LevelLoading.WorldObjectsSpawning;
 using UnityEngine;
 using Zenject;
 

@@ -1,8 +1,8 @@
 ﻿using Common.FSM;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
-using UI.Services.UIFactory;
-using UI.Services.WindowsOperating;
+using UI.Services.Factories.UI;
+using UI.Services.Operating;
 using UI.Windows;
 
 namespace Infrastructure.GameFSM.States

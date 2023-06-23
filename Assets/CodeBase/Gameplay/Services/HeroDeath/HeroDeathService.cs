@@ -1,6 +1,6 @@
 ﻿using Gameplay.Dying;
 using Infrastructure.Services.Logging;
-using UI.Services.WindowsOperating;
+using UI.Services.Operating;
 using UI.Windows;
 
 namespace Gameplay.Services.HeroDeath

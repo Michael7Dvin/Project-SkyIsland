@@ -1,6 +1,6 @@
 ﻿using System;
 using UI.Animators.WindowScaler;
-using UI.Elements.Buttons.Selectable;
+using UI.Controls.Buttons.Selectable;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
 

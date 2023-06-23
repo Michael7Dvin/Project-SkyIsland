@@ -1,8 +1,8 @@
 ﻿using Common.FSM;
 using DG.Tweening;
-using Infrastructure.Services.Input.Service;
-using Infrastructure.Services.Updater;
-using UI.Services.UIFactory;
+using Infrastructure.Services.Input;
+using Infrastructure.Services.Updating;
+using UI.Services.Factories.UI;
 
 namespace Infrastructure.GameFSM.States
 {

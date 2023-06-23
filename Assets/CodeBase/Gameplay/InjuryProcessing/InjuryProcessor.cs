@@ -1,5 +1,6 @@
 ﻿using Gameplay.Healths;
 using Gameplay.MonoBehaviours;
+using Gameplay.MonoBehaviours.Damagable;
 using UnityEngine;
 
 namespace Gameplay.InjuryProcessing
@@ -7,18 +8,18 @@ namespace Gameplay.InjuryProcessing
     public class InjuryProcessor : IInjuryProcessor
     {
         private readonly IHealth _health;
-        private readonly IDamagableNotifier _damagableNotifier;
+        private readonly IDamagable _damagable;
 
-        public InjuryProcessor(IHealth health, IDamagableNotifier damagableNotifier)
+        public InjuryProcessor(IHealth health, IDamagable damagable)
         {
             _health = health;
-            _damagableNotifier = damagableNotifier;
+            _damagable = damagable;
 
-            _damagableNotifier.Damaged += OnDamaged;
+            _damagable.Damaged += OnDamaged;
         }
 
         public void Dispose() => 
-            _damagableNotifier.Damaged -= OnDamaged;
+            _damagable.Damaged -= OnDamaged;
 
         private void OnDamaged(float damage) => 
             _health.TakeDamage(damage);

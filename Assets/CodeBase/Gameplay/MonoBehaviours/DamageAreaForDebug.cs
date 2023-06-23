@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gameplay.MonoBehaviours.Damagable;
 using UnityEngine;
 
 namespace Gameplay.MonoBehaviours
@@ -10,7 +11,7 @@ namespace Gameplay.MonoBehaviours
         [SerializeField] private float Damage;
         
         private Collider _damageArea;
-        private readonly List<IDamagableNotifier> _damageNotifiers = new();
+        private readonly List<IDamagable> _damageNotifiers = new();
         
         private void Awake()
         {
@@ -20,19 +21,19 @@ namespace Gameplay.MonoBehaviours
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out IDamagableNotifier damageNotifier))
+            if (other.TryGetComponent(out IDamagable damageNotifier))
                 _damageNotifiers.Add(damageNotifier);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out IDamagableNotifier damageNotifier))
+            if (other.TryGetComponent(out IDamagable damageNotifier))
                 _damageNotifiers.Remove(damageNotifier);
         }
 
         private void Update()
         {
-            foreach (IDamagableNotifier damageNotifier in _damageNotifiers)
+            foreach (IDamagable damageNotifier in _damageNotifiers)
             {
                 damageNotifier.TakeDamage(Damage * Time.deltaTime);
             }

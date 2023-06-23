@@ -1,5 +1,5 @@
 ﻿using TMPro;
-using UI.Elements.EventsNotifier;
+using UI.Controls.Events;
 using UnityEngine.EventSystems;
 
 namespace UI.Animators
@@ -7,12 +7,12 @@ namespace UI.Animators
     public class OnSelectTextChanger : IUIAnimator
     {
         private readonly TextMeshProUGUI _text;
-        private readonly IUIElementEventsNotifier _events;
+        private readonly IControlEvents _events;
         private readonly string _selectedText;
         private readonly string _unselectedText;
 
         public OnSelectTextChanger(TextMeshProUGUI text,
-            IUIElementEventsNotifier events,
+            IControlEvents events,
             string selectedText,
             string unselectedText)
         {

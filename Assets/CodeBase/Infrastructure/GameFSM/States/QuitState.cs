@@ -1,5 +1,5 @@
 ﻿using Common.FSM;
-using Infrastructure.Services.Input.Service;
+using Infrastructure.Services.Input;
 using Infrastructure.Services.ResourcesLoading;
 using UnityEditor;
 

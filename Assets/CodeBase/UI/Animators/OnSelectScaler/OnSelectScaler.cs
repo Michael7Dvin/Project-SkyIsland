@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using UI.Elements.EventsNotifier;
+using UI.Controls.Events;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,11 +10,11 @@ namespace UI.Animators.OnSelectScaler
         private Tweener _currentScaleTweener;
         
         private readonly Transform _transform;
-        private readonly IUIElementEventsNotifier _events;
+        private readonly IControlEvents _events;
         
         private readonly OnSelectScalerConfig _config;
         
-        public OnSelectScaler(Transform transform, IUIElementEventsNotifier events, OnSelectScalerConfig config)
+        public OnSelectScaler(Transform transform, IControlEvents events, OnSelectScalerConfig config)
         {
             _transform = transform;
             _events = events;

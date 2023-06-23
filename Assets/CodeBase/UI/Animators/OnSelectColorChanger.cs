@@ -1,5 +1,5 @@
 ﻿using TMPro;
-using UI.Elements.EventsNotifier;
+using UI.Controls.Events;
 using UnityEngine.EventSystems;
 
 namespace UI.Animators
@@ -7,12 +7,12 @@ namespace UI.Animators
     public class OnSelectColorChanger : IUIAnimator
     {
         private readonly TextMeshProUGUI _text;
-        private readonly IUIElementEventsNotifier _events;
+        private readonly IControlEvents _events;
         private readonly TMP_ColorGradient _selectedColorGradient;
         private readonly TMP_ColorGradient _unselectedColorGradient;
 
         public OnSelectColorChanger(TextMeshProUGUI text,
-            IUIElementEventsNotifier events,
+            IControlEvents events,
             TMP_ColorGradient selectedColorGradient,
             TMP_ColorGradient unselectedColorGradient)
         {
