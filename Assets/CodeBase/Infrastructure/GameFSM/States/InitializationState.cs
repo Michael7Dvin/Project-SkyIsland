@@ -3,6 +3,7 @@ using DG.Tweening;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Updating;
 using UI.Services.Factories.UI;
+using UnityEngine.AddressableAssets;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -25,11 +26,13 @@ namespace Infrastructure.GameFSM.States
             _uiFactory = uiFactory;
         }
 
-        public void Enter()
+        public async void Enter()
         {
+            await Addressables.InitializeAsync().Task;
+            DOTween.Init();
+
             _inputService.Init();
             _uiFactory.Init();
-            DOTween.Init();
 
             _updater.StartUpdating();
             

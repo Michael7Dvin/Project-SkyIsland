@@ -42,7 +42,7 @@ namespace Infrastructure.Installers
         public override void InstallBindings()
         {
             BindServices();
-            BindProvidingServices();
+            BindProviders();
             BindGameStateMachine();
             BindUI();
         }
@@ -66,12 +66,12 @@ namespace Infrastructure.Installers
             Container.Bind<IInputService>().To<InputService>().AsSingle();
             Container.Bind<IInstantiator>().To<Instantiator>().AsSingle();
             Container.Bind<IPauseService>().To<PauseService>().AsCached();
-            Container.Bind<IResourcesLoader>().To<ResourcesLoader>().AsSingle();
+            Container.Bind<IAddressablesLoader>().To<AddressablesLoader>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<Updater>().AsSingle();
         }
 
-        private void BindProvidingServices()
+        private void BindProviders()
         {
             Container
                 .Bind<IStaticDataProvider>()

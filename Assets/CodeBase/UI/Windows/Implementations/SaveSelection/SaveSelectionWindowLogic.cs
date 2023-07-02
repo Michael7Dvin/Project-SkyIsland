@@ -1,13 +1,14 @@
 ﻿using Infrastructure.GameFSM.States;
 using Infrastructure.Services.LevelLoading;
 using Infrastructure.Services.LevelLoading.Data;
+using Infrastructure.Services.SceneLoading;
 using UI.Services.Mediating;
 
 namespace UI.Windows.Implementations.SaveSelection
 {
     public class SaveSelectionWindowLogic
     {
-        private readonly LevelData _replaceWithProgressServiceNewGameData = new(LevelType.Island, "Island");
+        private readonly LevelData _replaceWithProgressServiceNewGameData = new(LevelType.Island, SceneType.Island);
         private readonly IMediator _mediator;
 
         public SaveSelectionWindowLogic(IMediator mediator)

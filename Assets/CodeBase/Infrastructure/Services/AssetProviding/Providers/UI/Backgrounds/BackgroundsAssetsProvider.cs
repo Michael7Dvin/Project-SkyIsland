@@ -8,33 +8,22 @@ namespace Infrastructure.Services.AssetProviding.Providers.UI.Backgrounds
 {
     public class BackgroundsAssetsProvider : IBackgroundsAssetsProvider
     {
-        private string _mainMenuBackgroundAddress;
-        private string _pauseBackgroundAddress;
-        private string _deathBackgroundAddress;
+        private readonly BackgroundsAssetsAddresses _addresses;
+        private readonly IAddressablesLoader _addressablesLoader;
 
-        private readonly IResourcesLoader _resourcesLoader;
-
-        public BackgroundsAssetsProvider(IStaticDataProvider staticDataProvider, IResourcesLoader resourcesLoader)
+        public BackgroundsAssetsProvider(IStaticDataProvider staticDataProvider, IAddressablesLoader addressablesLoader)
         {
-            BackgroundsAssetsAddresses addresses = staticDataProvider.AssetsAddresses.UI.Backgrounds;
-            _resourcesLoader = resourcesLoader;
-            SetAddresses(addresses);
+            _addresses = staticDataProvider.AssetsAddresses.UI.Backgrounds;
+            _addressablesLoader = addressablesLoader;
         }
         
         public async UniTask<GameObject> LoadMainMenu() => 
-            await _resourcesLoader.Load<GameObject>(_mainMenuBackgroundAddress);
+            await _addressablesLoader.LoadGameObject(_addresses.MainMenuBackground);
 
         public async UniTask<GameObject> LoadPause() => 
-            await _resourcesLoader.Load<GameObject>(_pauseBackgroundAddress);
+            await _addressablesLoader.LoadGameObject(_addresses.PauseBackground);
         
         public async UniTask<GameObject> LoadDeath() => 
-            await _resourcesLoader.Load<GameObject>(_deathBackgroundAddress);
-        
-        private void SetAddresses(BackgroundsAssetsAddresses addresses)
-        {
-            _mainMenuBackgroundAddress = addresses.MainMenuBackground;
-            _pauseBackgroundAddress = addresses.PauseBackground;
-            _deathBackgroundAddress = addresses.DeathBackground;
-        }
+            await _addressablesLoader.LoadGameObject(_addresses.DeathBackground);
     }
 }

@@ -9,29 +9,19 @@ namespace Infrastructure.Services.AssetProviding.Providers.Common
 {
     public class CommonAssetsProvider : ICommonAssetsProvider
     {
-        private string _emptyGameObjectAddress;
-        private string _heroAddress;
-        
-        private readonly IResourcesLoader _resourcesLoader;
+        private readonly CommonAssetsAddresses _addresses;
+        private readonly IAddressablesLoader _addressablesLoader;
 
-        public CommonAssetsProvider(IResourcesLoader resourcesLoader, IStaticDataProvider staticDataProvider)
+        public CommonAssetsProvider(IStaticDataProvider staticDataProvider, IAddressablesLoader addressablesLoader)
         {
-            _resourcesLoader = resourcesLoader;
-            
-            AllAssetsAddresses addresses = staticDataProvider.AssetsAddresses;
-            SetAddresses(addresses);
+            _addresses = staticDataProvider.AssetsAddresses.Common;
+            _addressablesLoader = addressablesLoader;
         }
 
         public async UniTask<GameObject> LoadEmptyGameObject() => 
-            await _resourcesLoader.Load<GameObject>(_emptyGameObjectAddress);
+            await _addressablesLoader.LoadGameObject(_addresses.EmptyGameObject);
 
         public async UniTask<Destroyable> LoadHero() => 
-            await _resourcesLoader.Load<Destroyable>(_heroAddress);
-
-        private void SetAddresses(AllAssetsAddresses addresses)
-        {
-            _emptyGameObjectAddress = addresses.Common.EmptyGameObject;
-            _heroAddress = addresses.Common.Hero;
-        }
+            await _addressablesLoader.LoadComponent<Destroyable>(_addresses.Hero);
     }
 }

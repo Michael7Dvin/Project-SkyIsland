@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513a6b547d3f43fc802827862e225e30, type: 3}
   m_Name: Scenes Data
   m_EditorClassIdentifier: 
-  _mainMenu: {fileID: 102900000, guid: 107784c9103223f4aad7f3e17e04a3db, type: 3}
-  _island: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+  <MainMenu>k__BackingField:
+    m_AssetGUID: 107784c9103223f4aad7f3e17e04a3db
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Island>k__BackingField:
+    m_AssetGUID: 99c9720ab356a0642a771bea13969a05
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

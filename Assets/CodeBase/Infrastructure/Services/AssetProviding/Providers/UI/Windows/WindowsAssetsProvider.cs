@@ -9,40 +9,27 @@ using UI.Windows.Implementations.SaveSelection;
 
 namespace Infrastructure.Services.AssetProviding.Providers.UI.Windows
 {
-    public class WindowsAssetsProvider : IWindowsAssetsProvider 
+    public class WindowsAssetsProvider : IWindowsAssetsProvider
     {
-        private string _mainMenuWindowAddress;
-        private string _saveSelectionWindowAddress;
-        private string _pauseWindowAddress;
-        private string _deathWindowAddress;
-        
-        private readonly IResourcesLoader _resourcesLoader;
+        private readonly WindowsAssetsAddresses _addresses;
+        private readonly IAddressablesLoader _addressablesLoader;
 
-        public WindowsAssetsProvider(IStaticDataProvider staticDataProvider, IResourcesLoader resourcesLoader)
+        public WindowsAssetsProvider(IStaticDataProvider staticDataProvider, IAddressablesLoader addressablesLoader)
         {
-            WindowsAssetsAddresses addresses = staticDataProvider.AssetsAddresses.UI.Windows;
-            _resourcesLoader = resourcesLoader;
-            SetAddresses(addresses);
+            _addresses = staticDataProvider.AssetsAddresses.UI.Windows;
+            _addressablesLoader = addressablesLoader;
         }
 
-        public async UniTask<MainMenuWindowView> LoadMainMenuWindow() => 
-            await _resourcesLoader.Load<MainMenuWindowView>(_mainMenuWindowAddress);
+        public async UniTask<MainMenuWindowView> LoadMainMenuWindow() =>
+            await _addressablesLoader.LoadComponent<MainMenuWindowView>(_addresses.MainMenuWindowView);
 
-        public async UniTask<SaveSelectionWindowView> LoadSaveSelectionWindow() => 
-            await _resourcesLoader.Load<SaveSelectionWindowView>(_saveSelectionWindowAddress);
+        public async UniTask<SaveSelectionWindowView> LoadSaveSelectionWindow() =>
+            await _addressablesLoader.LoadComponent<SaveSelectionWindowView>(_addresses.SaveSelectionWindowView);
 
-        public async UniTask<PauseWindowView> LoadPauseWindow() => 
-            await _resourcesLoader.Load<PauseWindowView>(_pauseWindowAddress);
+        public async UniTask<PauseWindowView> LoadPauseWindow() =>
+            await _addressablesLoader.LoadComponent<PauseWindowView>(_addresses.PauseWindowView);
 
-        public async UniTask<DeathWindowView> LoadDeathWindow() => 
-            await _resourcesLoader.Load<DeathWindowView>(_deathWindowAddress);
-        
-        private void SetAddresses(WindowsAssetsAddresses addresses)
-        {
-            _mainMenuWindowAddress = addresses.MainMenuWindow;
-            _saveSelectionWindowAddress = addresses.SaveSelectionWindow;
-            _pauseWindowAddress = addresses.PauseWindow;
-            _deathWindowAddress = addresses.DeathWindow;
-        }
+        public async UniTask<DeathWindowView> LoadDeathWindow() =>
+            await _addressablesLoader.LoadComponent<DeathWindowView>(_addresses.DeathWindowView);
     }
 }

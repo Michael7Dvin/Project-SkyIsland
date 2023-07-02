@@ -1,7 +1,5 @@
 using System;
-using System.Threading;
 using Cysharp.Threading.Tasks;
-using TMPro.EditorUtilities;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Controls.Buttons.Close;

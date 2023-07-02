@@ -16,35 +16,28 @@ namespace Infrastructure.GameFSM.States
         
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _gameStateMachine;
-        private readonly IResourcesLoader _resourcesLoader;
+        private readonly IAddressablesLoader _addressablesLoader;
         private readonly ILevelServicesProvider _levelServicesProvider;
         private readonly IUIFactory _uiFactory;
 
         public LoadLevelState(ISceneLoader sceneLoader,
             IGameStateMachine gameStateMachine,
-            IResourcesLoader resourcesLoader,
+            IAddressablesLoader addressablesLoader,
             ILevelServicesProvider levelServicesProvider,
             IUIFactory uiFactory)
         {
             _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
-            _resourcesLoader = resourcesLoader;
+            _addressablesLoader = addressablesLoader;
             _levelServicesProvider = levelServicesProvider;
             _uiFactory = uiFactory;
         }
 
-        public void Enter(LevelData levelData)
+        public async void Enter(LevelData levelData)
         {
             _currentLevelData = levelData;
-            _sceneLoader.Load(_currentLevelData.SceneName, OnLevelLoaded);
-        }
-
-        public void Exit()
-        {
-        }
-
-        private async void OnLevelLoaded()
-        {
+            await _sceneLoader.Load(_currentLevelData.Scene);
+            
             CleanUp();
             
             await WarmUpServices();
@@ -54,8 +47,12 @@ namespace Infrastructure.GameFSM.States
             _gameStateMachine.EnterState<GameplayState>();
         }
 
+        public void Exit()
+        {
+        }
+        
         private void CleanUp() => 
-            _resourcesLoader.ClearCache();
+            _addressablesLoader.ClearCache();
 
         private async UniTask WarmUpServices()
         {

@@ -1,15 +1,43 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
-using UnityEngine.SceneManagement;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.Services.Logging;
+using Infrastructure.Services.StaticDataProviding;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 
 namespace Infrastructure.Services.SceneLoading
 {
     public class SceneLoader : ISceneLoader
     {
-        public async void Load(string sceneName, Action onLoaded)
+        private readonly ScenesData _scenes;
+        private readonly ICustomLogger _logger;
+
+        public SceneLoader(IStaticDataProvider staticDataProvider, ICustomLogger logger)
         {
-            await SceneManager.LoadSceneAsync(sceneName);
-            onLoaded?.Invoke();
+            _scenes = staticDataProvider.ScenesData;
+            _logger = logger;
+        }
+
+        public async UniTask Load(SceneType type)
+        {
+            switch (type)
+            {
+                case SceneType.MainMenu:
+                    await Load(_scenes.MainMenu);
+                    break;
+                case SceneType.Island:
+                    await Load(_scenes.Island);
+                    break;
+                default:
+                    _logger.LogError($"Unsupported {nameof(SceneType)}: '{type}'");
+                    break;
+            }    
+        }
+
+        private async UniTask Load(AssetReference sceneReference)
+        {
+            AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(sceneReference);
+            await handle.Task;
         }
     }
 }

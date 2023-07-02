@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0997fdbb1bd243c38477bfe78381d75f, type: 3}
   m_Name: Camera Assets Addresses
   m_EditorClassIdentifier: 
-  <Camera>k__BackingField: Prefabs/Player Camera/Camera
-  <FreeLookController>k__BackingField: Prefabs/Player Camera/360 Top-Down FreeLook
-    Camera Controller
+  <Camera>k__BackingField:
+    m_AssetGUID: 5ad04a7a597a3974bb10d71774f33d18
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <FreeLookController>k__BackingField:
+    m_AssetGUID: ad8da1945341aa94d89303fdf58cbcd5
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

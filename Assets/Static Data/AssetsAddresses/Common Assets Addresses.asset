@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cf5fdf163a451fbe1ea4b760b89a55, type: 3}
   m_Name: Common Assets Addresses
   m_EditorClassIdentifier: 
-  <EmptyGameObject>k__BackingField: Prefabs/EmptyGameObject
-  <Hero>k__BackingField: Prefabs/Hero/Hero
+  <EmptyGameObject>k__BackingField:
+    m_AssetGUID: 265ab7d3e83e45b4b8819066b4752516
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <Hero>k__BackingField:
+    m_AssetGUID: cae7364372fc9784f9c05313785e79c3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

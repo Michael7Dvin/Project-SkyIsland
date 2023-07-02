@@ -8,12 +8,12 @@ namespace Infrastructure.GameFSM.States
     public class QuitState : IState
     {
         private readonly IInputService _inputService;
-        private readonly IResourcesLoader _resourcesLoader;
+        private readonly IAddressablesLoader _addressablesLoader;
 
-        public QuitState(IInputService inputService, IResourcesLoader resourcesLoader)
+        public QuitState(IInputService inputService, IAddressablesLoader addressablesLoader)
         {
             _inputService = inputService;
-            _resourcesLoader = resourcesLoader;
+            _addressablesLoader = addressablesLoader;
         }
 
         public void Enter()
@@ -29,15 +29,16 @@ namespace Infrastructure.GameFSM.States
         private void CleanUp()
         {
             _inputService.Dispose();
-            _resourcesLoader.ClearCache();
+            _addressablesLoader.ClearCache();
         }
 
         private void CloseApp()
         {
+            
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #else
-            Application.Quit();
+            UnityEngine.Application.Quit();
 #endif
         }
     }

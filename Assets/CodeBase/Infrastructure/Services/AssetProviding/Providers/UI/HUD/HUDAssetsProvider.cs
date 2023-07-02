@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using Infrastructure.Services.AssetProviding.Addresses;
+using Infrastructure.Services.AssetProviding.Addresses.UI;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.StaticDataProviding;
 using UI.HUD;
@@ -8,21 +8,16 @@ namespace Infrastructure.Services.AssetProviding.Providers.UI.HUD
 {
     public class HUDAssetsProvider : IHUDAssetsProvider
     {
-        private string _healthBarAddress;
-        
-        private readonly IResourcesLoader _resourcesLoader;
+        private readonly HUDAssetsAddresses _addresses;
+        private readonly IAddressablesLoader _addressablesLoader;
 
-        public HUDAssetsProvider(IStaticDataProvider staticDataProvider, IResourcesLoader resourcesLoader)
+        public HUDAssetsProvider(IStaticDataProvider staticDataProvider, IAddressablesLoader addressablesLoader)
         {
-            AllAssetsAddresses addresses = staticDataProvider.AssetsAddresses;
-            _resourcesLoader = resourcesLoader;
-            SetAddresses(addresses);
+            _addresses = staticDataProvider.AssetsAddresses.UI.HUD;
+            _addressablesLoader = addressablesLoader;
         }
         
-        public async UniTask<HealthBar> LoadHealthBar() => 
-            await _resourcesLoader.Load<HealthBar>(_healthBarAddress);
-        
-        private void SetAddresses(AllAssetsAddresses addresses) => 
-            _healthBarAddress = addresses.UI.HUD.HealthBar;
+        public async UniTask<HealthBar> LoadHealthBar() =>
+            await _addressablesLoader.LoadComponent<HealthBar>(_addresses.HealthBar);
     }
 }

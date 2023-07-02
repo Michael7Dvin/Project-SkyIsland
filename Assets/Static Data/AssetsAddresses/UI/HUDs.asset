@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb932863c1074df8b36b833301aa595b, type: 3}
   m_Name: HUDs
   m_EditorClassIdentifier: 
-  <HealthBar>k__BackingField: Prefabs/UI/HUD/Health Bar
+  <HealthBar>k__BackingField:
+    m_AssetGUID: e0dd6f9c6887e1b40891e83c34e2d131
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0

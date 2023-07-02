@@ -104,7 +104,7 @@ namespace UI.Services.Factories.Window
             
             SaveSelectionWindowLogic logic = new(_mediator);
             SaveSelectionWindow window = new(view, logic);
-
+            
             return window;
         }
 

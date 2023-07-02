@@ -6,7 +6,7 @@ namespace Infrastructure.Services.AssetProviding.Providers.ForCamera
 {
     public interface ICameraAssetsProvider
     {
-        public UniTask<Camera> LoadCamera();
-        public UniTask<CinemachineFreeLook> LoadFreeLookController();
+        UniTask<Camera> LoadCamera();
+        UniTask<CinemachineFreeLook> LoadFreeLookController();
     }
 }

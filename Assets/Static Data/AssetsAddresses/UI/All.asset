@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d2701e6eb242b9b52b208fbdce15a0, type: 3}
   m_Name: All
   m_EditorClassIdentifier: 
-  <Canvas>k__BackingField: Prefabs/UI/Canvas
-  <EventSystem>k__BackingField: Prefabs/UI/UI Input Event System
+  <Canvas>k__BackingField:
+    m_AssetGUID: 2754e00856796d2449dd005473782f69
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  <EventSystem>k__BackingField:
+    m_AssetGUID: 31434f537cd6b4b45bdfed551e8aad83
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   <Windows>k__BackingField: {fileID: 11400000, guid: 15137e7f11ee9f449a42ff189433cb9e,
     type: 2}
   <HUD>k__BackingField: {fileID: 11400000, guid: d32d805ce418b114e9806263c7cde32f,
