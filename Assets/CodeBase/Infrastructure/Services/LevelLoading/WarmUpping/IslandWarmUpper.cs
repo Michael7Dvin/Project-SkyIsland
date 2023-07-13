@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
-using Gameplay.Services.Factories.HeroFactory;
-using Gameplay.Services.Factories.PlayerCamera;
+using Gameplay.Services.Creation.Heros;
+using Gameplay.Services.Creation.Heros.Factory;
+using Gameplay.Services.Creation.PlayerCamera;
 using Infrastructure.Services.LevelLoading.LevelServicesProviding;
 using UI.Services.Factories.UI;
 using UI.Services.Factories.Window;

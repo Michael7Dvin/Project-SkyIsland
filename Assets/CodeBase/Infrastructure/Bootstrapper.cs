@@ -11,24 +11,22 @@ namespace Infrastructure
 
         [Inject]
         public void Construct(IGameStateMachine gameStateMachine,
-            BootstrapState bootstrapState,
             InitializationState initializationState,
             MainMenuState mainMenuState,
-            LoadLevelState loadLevelState,
+            LevelLoadingState levelLoadingState,
             GameplayState gameplayState,
             QuitState quitState)
         {
             _gameStateMachine = gameStateMachine;
             
-            _gameStateMachine.AddState(bootstrapState);
             _gameStateMachine.AddState(initializationState);
             _gameStateMachine.AddState(mainMenuState);
-            _gameStateMachine.AddState(loadLevelState);
+            _gameStateMachine.AddState(levelLoadingState);
             _gameStateMachine.AddState(gameplayState);
             _gameStateMachine.AddState(quitState);
         }
         
         public void Initialize() => 
-            _gameStateMachine.EnterState<BootstrapState>();
+            _gameStateMachine.EnterState<InitializationState>();
     }
 }

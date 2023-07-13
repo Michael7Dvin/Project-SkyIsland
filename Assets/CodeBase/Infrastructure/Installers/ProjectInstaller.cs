@@ -1,7 +1,8 @@
-﻿using Gameplay.Services.Factories.HeroFactory;
-using Gameplay.Services.Factories.PlayerCamera;
+﻿using Gameplay.Services.Creation.Heros.Factory;
+using Gameplay.Services.Creation.PlayerCamera;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
+using Infrastructure.Progress;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.AssetProviding.Providers.ForCamera;
@@ -15,6 +16,7 @@ using Infrastructure.Services.LevelLoading.LevelServicesProviding;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Pausing;
 using Infrastructure.Services.ResourcesLoading;
+using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.SceneLoading;
 using Infrastructure.Services.StaticDataProviding;
 using Infrastructure.Services.Updating;
@@ -22,7 +24,6 @@ using UI.Services.Factories.Background;
 using UI.Services.Factories.HUD;
 using UI.Services.Factories.UI;
 using UI.Services.Factories.Window;
-using UI.Services.Mediating;
 using UI.Services.Operating;
 using UnityEngine;
 using Zenject;
@@ -45,16 +46,16 @@ namespace Infrastructure.Installers
             BindProviders();
             BindGameStateMachine();
             BindUI();
+            BindProgress();
         }
 
         private void BindGameStateMachine()
         {
             Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
 
-            Container.Bind<BootstrapState>().AsSingle();
             Container.Bind<InitializationState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
-            Container.Bind<LoadLevelState>().AsSingle();
+            Container.Bind<LevelLoadingState>().AsSingle();
             Container.Bind<GameplayState>().AsSingle();
             Container.Bind<QuitState>().AsSingle();
         }
@@ -87,7 +88,6 @@ namespace Infrastructure.Installers
 
         private void BindUI()
         {
-            Container.Bind<IMediator>().To<Mediator>().AsSingle();
             Container.Bind<IWindowsOperator>().To<WindowsOperator>().AsSingle();
             
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
@@ -99,6 +99,12 @@ namespace Infrastructure.Installers
             Container.Bind<IWindowsAssetsProvider>().To<WindowsAssetsProvider>().AsSingle();
             Container.Bind<IBackgroundsAssetsProvider>().To<BackgroundsAssetsProvider>().AsSingle();
             Container.Bind<IHUDAssetsProvider>().To<HUDAssetsProvider>().AsSingle();
+        }
+
+        private void BindProgress()
+        {
+            Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
+            Container.Bind<IGameProgressService>().To<GameProgressService>().AsSingle();
         }
     }
 }

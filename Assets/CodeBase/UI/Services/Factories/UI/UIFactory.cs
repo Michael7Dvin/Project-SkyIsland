@@ -5,7 +5,7 @@ using Infrastructure.Services.Instantiating;
 using UI.Services.Factories.Background;
 using UI.Services.Factories.HUD;
 using UI.Services.Factories.Window;
-using UI.Services.Mediating;
+using UI.Services.Operating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -19,7 +19,7 @@ namespace UI.Services.Factories.UI
         private readonly IHUDFactory _hudFactory;
         private readonly IUIAssetsProvider _uiAssetsProvider;
         
-        private readonly IMediator _mediator;
+        private readonly IWindowsOperator _windowsOperator;
         private readonly IInstantiator _instantiator;
         private readonly IInputService _inputService;
 
@@ -27,7 +27,7 @@ namespace UI.Services.Factories.UI
             IBackgroundFactory backgroundFactory,
             IHUDFactory hudFactory,
             IUIAssetsProvider uiAssetsProvider,
-            IMediator mediator,
+            IWindowsOperator windowsOperator,
             IInstantiator instantiator,
             IInputService inputService)
         {
@@ -36,13 +36,13 @@ namespace UI.Services.Factories.UI
             _hudFactory = hudFactory;
             
             _uiAssetsProvider = uiAssetsProvider;
-            _mediator = mediator;
+            _windowsOperator = windowsOperator;
             _instantiator = instantiator;
             _inputService = inputService;
         }
 
         public void Init() => 
-            _windowFactory.Init(_mediator);
+            _windowFactory.Init(_windowsOperator);
 
         public async UniTask WarmUp()
         {

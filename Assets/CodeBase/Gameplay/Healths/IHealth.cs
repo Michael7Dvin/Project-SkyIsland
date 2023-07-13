@@ -9,5 +9,6 @@ namespace Gameplay.Healths
         
         void TakeDamage(float damage);
         void Heal(float amount);
+        void SetCurrent(float value);
     }
 }

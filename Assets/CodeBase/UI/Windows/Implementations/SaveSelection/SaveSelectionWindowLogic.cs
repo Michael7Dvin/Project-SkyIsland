@@ -1,22 +1,40 @@
-﻿using Infrastructure.GameFSM.States;
-using Infrastructure.Services.LevelLoading;
+﻿using Infrastructure.GameFSM;
+using Infrastructure.GameFSM.States;
+using Infrastructure.Progress;
 using Infrastructure.Services.LevelLoading.Data;
-using Infrastructure.Services.SceneLoading;
-using UI.Services.Mediating;
+using Infrastructure.Services.SaveLoadService;
 
 namespace UI.Windows.Implementations.SaveSelection
 {
     public class SaveSelectionWindowLogic
     {
-        private readonly LevelData _replaceWithProgressServiceNewGameData = new(LevelType.Island, SceneType.Island);
-        private readonly IMediator _mediator;
+        private readonly ISaveLoadService _saveLoadService;
+        private readonly IGameProgressService _gameProgressService;
+        private readonly IGameStateMachine _gameStateMachine;
 
-        public SaveSelectionWindowLogic(IMediator mediator)
+        public SaveSelectionWindowLogic(ISaveLoadService saveLoadService, IGameProgressService gameProgressService, IGameStateMachine gameStateMachine)
         {
-            _mediator = mediator;
+            _saveLoadService = saveLoadService;
+            _gameProgressService = gameProgressService;
+            _gameStateMachine = gameStateMachine;
         }
 
-        public void StartNewGame() => 
-            _mediator.EnterGameState<LoadLevelState, LevelData>(_replaceWithProgressServiceNewGameData);
+        public void StartGame(SaveSlot saveSlot)
+        {
+            SetCurrentProgress(saveSlot);
+            LevelData currentLevel = _gameProgressService.CurrentProgress.CurrentLevel;
+            
+            _gameStateMachine.EnterState<LevelLoadingState, LevelData>(currentLevel);
+        }
+
+        private void SetCurrentProgress(SaveSlot saveSlot)
+        {
+            if (_saveLoadService.TryLoad(saveSlot, out AllProgress progress) == false)
+            {
+                progress = new AllProgress(saveSlot);
+            }
+
+            _gameProgressService.SetCurrentProgress(progress);
+        }
     }
 }

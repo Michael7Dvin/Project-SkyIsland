@@ -1,15 +1,15 @@
-﻿using Infrastructure.GameFSM.States;
-using UI.Services.Mediating;
+﻿using Infrastructure.GameFSM;
+using Infrastructure.GameFSM.States;
 
 namespace UI.Windows.Implementations.DeathWindow
 {
     public class DeathWindowLogic
     {
-        private readonly IMediator _mediator;
+        private readonly IGameStateMachine _gameStateMachine;
 
-        public DeathWindowLogic(IMediator mediator)
+        public DeathWindowLogic(IGameStateMachine gameStateMachine)
         {
-            _mediator = mediator;
+            _gameStateMachine = gameStateMachine;
         }
 
         public void Respawn()
@@ -17,6 +17,6 @@ namespace UI.Windows.Implementations.DeathWindow
         }
         
         public void ReturnToMainMenu() => 
-            _mediator.EnterGameState<MainMenuState>();
+            _gameStateMachine.EnterState<MainMenuState>();
     }
 }

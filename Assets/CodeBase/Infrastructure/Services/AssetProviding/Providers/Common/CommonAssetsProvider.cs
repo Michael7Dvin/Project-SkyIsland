@@ -21,7 +21,7 @@ namespace Infrastructure.Services.AssetProviding.Providers.Common
         public async UniTask<GameObject> LoadEmptyGameObject() => 
             await _addressablesLoader.LoadGameObject(_addresses.EmptyGameObject);
 
-        public async UniTask<Destroyable> LoadHero() => 
-            await _addressablesLoader.LoadComponent<Destroyable>(_addresses.Hero);
+        public async UniTask<GameObject> LoadHero() => 
+            await _addressablesLoader.LoadGameObject(_addresses.Hero);
     }
 }

@@ -1,10 +1,12 @@
-﻿using Gameplay.Movement.GroundSpherecasting;
-using Gameplay.Services.Factories.GroundSpherecaster;
-using Gameplay.Services.Factories.HeroFactory;
-using Gameplay.Services.Factories.HeroMovement;
-using Gameplay.Services.Factories.PlayerCamera;
+﻿using Gameplay.Services.Creation.GroundSpherecasting;
+using Gameplay.Services.Creation.HeroMoving;
+using Gameplay.Services.Creation.Heros.Factory;
+using Gameplay.Services.Creation.PlayerCamera;
 using Gameplay.Services.HeroDeath;
 using Gameplay.Services.PlayerPausing;
+using Infrastructure.Progress.Handling.Heros;
+using Infrastructure.Progress.Handling.IslandLevel;
+using Infrastructure.Progress.LevelProgressLoading;
 using Infrastructure.Services.LevelLoading.Data;
 using Infrastructure.Services.LevelLoading.WarmUpping;
 using Infrastructure.Services.LevelLoading.WorldObjectsSpawning;
@@ -28,6 +30,8 @@ namespace Infrastructure.Installers
         {
             Container.Bind<IHeroDeathService>().To<HeroDeathService>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerPause>().AsSingle();
+            Container.Bind<HeroProgressHandler>().AsSingle();
+            Container.Bind<IslandLevelProgressHandler>().AsSingle();
         }
 
         private void BindFactories()
@@ -41,8 +45,9 @@ namespace Infrastructure.Installers
         private void BindLevelLoadingServices()
         {
             Container.Bind<IslandWorldData>().AsSingle().WithArguments(_heroSpawnPoint);
-            Container.BindInterfacesAndSelfTo<IslandWorldObjectsSpawner>().AsSingle();
+            Container.BindInterfacesAndSelfTo<IslandProgressLoader>().AsSingle();
             Container.BindInterfacesAndSelfTo<IslandWarmUpper>().AsSingle();
+            Container.BindInterfacesAndSelfTo<IslandWorldObjectsSpawner>().AsSingle();
         }
     }
 }

@@ -4,11 +4,11 @@ namespace Infrastructure.Services.LevelLoading.Data
 {
     public class IslandWorldData
     {
-        public IslandWorldData(Transform playerSpawnPoint)
+        public IslandWorldData(Transform heroSpawnPoint)
         {
-            PlayerSpawnPoint = playerSpawnPoint;
+            HeroSpawnPoint = heroSpawnPoint;
         }
 
-        public readonly Transform PlayerSpawnPoint;
+        public readonly Transform HeroSpawnPoint;
     }
 }

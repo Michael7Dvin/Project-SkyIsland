@@ -1,9 +1,10 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Services.SaveLoadService;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Controls.Buttons.Close;
-using UI.Controls.Buttons.SaveSlot;
+using UI.Controls.Buttons.SaveSlots;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
 
@@ -39,7 +40,7 @@ namespace UI.Windows.Implementations.SaveSelection
         }
 
         public event Action CloseButtonClicked;
-        public event Action SaveSlotButtonClicked;
+        public event Action<SaveSlot> SaveSlotButtonClicked;
 
         public override async void Open()
         {
@@ -69,17 +70,18 @@ namespace UI.Windows.Implementations.SaveSelection
         protected override void SubscribeControls()
         {
             _closeButton.Cliked += OnCloseSlotButtonClick;
-            _saveSlot1.Cliked += OnSaveSlotButtonClick;
-            _saveSlot2.Cliked += OnSaveSlotButtonClick;
-            _saveSlot3.Cliked += OnSaveSlotButtonClick;
+            
+            _saveSlot1.Cliked += OnFirstSaveSlotButtonClick;
+            _saveSlot2.Cliked += OnSecondSaveSlotButtonClick;
+            _saveSlot3.Cliked += OnThirdSaveSlotButtonClick;
         }
 
         protected override void UnsubscribeControls()
         {
             _closeButton.Cliked -= OnCloseSlotButtonClick;
-            _saveSlot1.Cliked -= OnSaveSlotButtonClick;
-            _saveSlot2.Cliked -= OnSaveSlotButtonClick;
-            _saveSlot3.Cliked -= OnSaveSlotButtonClick;
+            _saveSlot1.Cliked -= OnFirstSaveSlotButtonClick;
+            _saveSlot2.Cliked -= OnSecondSaveSlotButtonClick;
+            _saveSlot3.Cliked -= OnThirdSaveSlotButtonClick;
         }
 
         protected override void EnableAnimators()
@@ -97,7 +99,11 @@ namespace UI.Windows.Implementations.SaveSelection
         private void OnCloseSlotButtonClick() => 
             CloseButtonClicked?.Invoke();
         
-        private void OnSaveSlotButtonClick() => 
-            SaveSlotButtonClicked?.Invoke();
+        private void OnFirstSaveSlotButtonClick() => 
+            SaveSlotButtonClicked?.Invoke(SaveSlot.First);
+        private void OnSecondSaveSlotButtonClick() => 
+            SaveSlotButtonClicked?.Invoke(SaveSlot.Second);
+        private void OnThirdSaveSlotButtonClick() => 
+            SaveSlotButtonClicked?.Invoke(SaveSlot.Third);
     }
 }

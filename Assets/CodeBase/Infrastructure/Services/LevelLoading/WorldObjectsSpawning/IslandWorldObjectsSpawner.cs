@@ -1,5 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
-using Gameplay.Services.Factories.HeroFactory;
+using Gameplay.Heros;
+using Gameplay.Services.Creation.Heros.Factory;
+using Infrastructure.Progress.Handling.Heros;
+using Infrastructure.Progress.Handling.IslandLevel;
 using Infrastructure.Services.LevelLoading.Data;
 using Infrastructure.Services.LevelLoading.LevelServicesProviding;
 using UnityEngine;
@@ -9,16 +12,22 @@ namespace Infrastructure.Services.LevelLoading.WorldObjectsSpawning
     public class IslandWorldObjectsSpawner : IWorldObjectsSpawner
     {
         private readonly ILevelServicesProvider _levelServicesProvider;
+        private readonly IslandWorldData _worldData;
         private readonly IHeroFactory _heroFactory;
-        private readonly IslandWorldData _islandWorldData;
+        private readonly HeroProgressHandler _heroProgressHandler;
+        private readonly IslandLevelProgressHandler _islandLevelProgressHandler;
 
         public IslandWorldObjectsSpawner(ILevelServicesProvider levelServicesProvider,
+            IslandWorldData worldData,
             IHeroFactory heroFactory,
-            IslandWorldData islandWorldData)
+            HeroProgressHandler heroProgressHandler,
+            IslandLevelProgressHandler islandLevelProgressHandler)
         {
             _levelServicesProvider = levelServicesProvider;
+            _worldData = worldData;
             _heroFactory = heroFactory;
-            _islandWorldData = islandWorldData;
+            _heroProgressHandler = heroProgressHandler;
+            _islandLevelProgressHandler = islandLevelProgressHandler;
         }
 
         public LevelType LevelType => LevelType.Island;
@@ -28,8 +37,20 @@ namespace Infrastructure.Services.LevelLoading.WorldObjectsSpawning
 
         public async UniTask SpawnWorldObjects()
         {
-            Transform heroSpawnPoint = _islandWorldData.PlayerSpawnPoint;
-            await _heroFactory.Create(heroSpawnPoint.position, heroSpawnPoint.rotation);
+            await SpawnHero();
+        }
+
+        private async UniTask SpawnHero()
+        {
+            if (_heroProgressHandler.Hero == null)
+            {
+                Vector3 position = _worldData.HeroSpawnPoint.position;
+                Quaternion rotation = _worldData.HeroSpawnPoint.rotation;
+                Hero hero = await _heroFactory.Create(position, rotation);
+                
+                _heroProgressHandler.RegisterHero(hero);
+                _islandLevelProgressHandler.RegisterHero(hero);
+            }
         }
 
         private void SetSelfToProvider() => 

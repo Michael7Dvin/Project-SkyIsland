@@ -14,18 +14,18 @@ namespace UI.Windows.Implementations.SaveSelection
         }
 
         public override WindowType Type => WindowType.SaveSelection;
-        public override int MaxOpenedInstances => 3;
+        public override int MaxOpenedInstances => 1;
 
         protected override void SubscribeLogic()
         {
             _view.CloseButtonClicked += Close;
-            _view.SaveSlotButtonClicked += _logic.StartNewGame;
+            _view.SaveSlotButtonClicked += _logic.StartGame;
         }
 
         protected override void UnSubscribeLogic()
         {
             _view.CloseButtonClicked -= Close;
-            _view.SaveSlotButtonClicked -= _logic.StartNewGame;
+            _view.SaveSlotButtonClicked -= _logic.StartGame;
         }
     }
 }

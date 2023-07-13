@@ -1,7 +1,5 @@
 ﻿using Gameplay.Healths;
-using Gameplay.MonoBehaviours;
 using Gameplay.MonoBehaviours.Damagable;
-using UnityEngine;
 
 namespace Gameplay.InjuryProcessing
 {

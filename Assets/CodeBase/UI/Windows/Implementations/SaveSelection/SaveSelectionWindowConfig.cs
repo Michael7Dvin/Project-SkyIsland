@@ -1,7 +1,7 @@
 ﻿using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Controls.Buttons.Close;
-using UI.Controls.Buttons.SaveSlot;
+using UI.Controls.Buttons.SaveSlots;
 using UnityEngine;
 
 namespace UI.Windows.Implementations.SaveSelection

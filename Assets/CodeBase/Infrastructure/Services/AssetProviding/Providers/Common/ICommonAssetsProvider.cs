@@ -8,6 +8,6 @@ namespace Infrastructure.Services.AssetProviding.Providers.Common
     public interface ICommonAssetsProvider
     {
         UniTask<GameObject> LoadEmptyGameObject();
-        UniTask<Destroyable> LoadHero();
+        UniTask<GameObject> LoadHero();
     }
 }

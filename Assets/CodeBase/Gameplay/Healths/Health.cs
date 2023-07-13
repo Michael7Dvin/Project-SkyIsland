@@ -20,6 +20,9 @@ namespace Gameplay.Healths
         public float Max { get; private set; }
         public IReadOnlyObservable<float> Current => _currentValue;
 
+        public void SetCurrent(float newValue) => 
+            _currentValue.Value = Mathf.Clamp(newValue, MinValue, Max);
+
         public void TakeDamage(float damage)
         {
             if (damage <= 0)
@@ -41,9 +44,6 @@ namespace Gameplay.Healths
 
             SetCurrent(_currentValue.Value + amount);
         }
-
-        private void SetCurrent(float newValue) => 
-            _currentValue.Value = Mathf.Clamp(newValue, MinValue, Max);
 
         private void ValidateAndSetInitialValues(float initialCurrentValue, float initialMaxValue)
         {

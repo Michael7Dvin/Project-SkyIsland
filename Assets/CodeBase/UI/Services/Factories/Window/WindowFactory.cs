@@ -1,10 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
+using Infrastructure.GameFSM;
+using Infrastructure.Progress;
 using Infrastructure.Services.AssetProviding.Providers.UI.Windows;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
+using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Factories.Background;
-using UI.Services.Mediating;
+using UI.Services.Operating;
 using UI.Windows;
 using UI.Windows.Base.Window;
 using UI.Windows.Implementations.DeathWindow;
@@ -24,25 +27,35 @@ namespace UI.Services.Factories.Window
         private readonly ICustomLogger _logger;
         private readonly IBackgroundFactory _backgroundFactory; 
         private readonly IInstantiator _instantiator;
-
-        private IMediator _mediator;
+        private readonly IGameStateMachine _gameStateMachine;
+        private readonly ISaveLoadService _saveLoadService;
+        private readonly IGameProgressService _gameProgressService;
+        
+        private IWindowsOperator _windowsOperator;
 
         public WindowFactory(IStaticDataProvider staticDataProvider,
             IWindowsAssetsProvider assetsProvider,
             ICustomLogger logger,
             IBackgroundFactory backgroundFactory,
-            IInstantiator instantiator)
+            IInstantiator instantiator,
+            IGameStateMachine gameStateMachine,
+            ISaveLoadService saveLoadService,
+            IGameProgressService gameProgressService)
         {
             _windowsConfigs = staticDataProvider.WindowsConfigs;
+            
             _assetsProvider = assetsProvider;
             _logger = logger;
             _backgroundFactory = backgroundFactory;
             _instantiator = instantiator;
+            _gameStateMachine = gameStateMachine;
+            _saveLoadService = saveLoadService;
+            _gameProgressService = gameProgressService;
         }
 
-        public void Init(IMediator mediator) => 
-            _mediator = mediator;
-
+        public void Init(IWindowsOperator windowsOperator) => 
+            _windowsOperator = windowsOperator;  
+        
         public async UniTask WarmUp()
         {
             await _backgroundFactory.WarmUp();
@@ -89,7 +102,7 @@ namespace UI.Services.Factories.Window
             GameObject background = await _backgroundFactory.CreateMainMenu();
             view.Construct(_windowsConfigs.MainMenu, background);
             
-            MainMenuWindowLogic logic = new(_mediator);
+            MainMenuWindowLogic logic = new(_gameStateMachine, _windowsOperator);
             MainMenuWindow window = new(view, logic);
 
             return window;
@@ -102,7 +115,7 @@ namespace UI.Services.Factories.Window
             SaveSelectionWindowView view = _instantiator.Instantiate(viewPrefab, _canvas.transform);
             view.Construct(_windowsConfigs.SaveSelection);
             
-            SaveSelectionWindowLogic logic = new(_mediator);
+            SaveSelectionWindowLogic logic = new(_saveLoadService, _gameProgressService, _gameStateMachine);
             SaveSelectionWindow window = new(view, logic);
             
             return window;
@@ -116,7 +129,7 @@ namespace UI.Services.Factories.Window
             GameObject background = await _backgroundFactory.CreatePause();
             view.Construct(_windowsConfigs.Pause, background);
             
-            PauseWindowLogic logic = new(_mediator);
+            PauseWindowLogic logic = new(_gameProgressService, _gameStateMachine);
             PauseWindow window = new(view, logic);
 
             return window;
@@ -130,7 +143,7 @@ namespace UI.Services.Factories.Window
             GameObject background = await _backgroundFactory.CreateDeath();
             view.Construct(_windowsConfigs.Death, background);
             
-            DeathWindowLogic logic = new(_mediator);
+            DeathWindowLogic logic = new(_gameStateMachine);
             DeathWindow window = new(view, logic);
 
             return window;
