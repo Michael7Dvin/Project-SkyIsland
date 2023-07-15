@@ -1,7 +1,9 @@
-﻿using Infrastructure.LevelLoading.LevelServicesProviding;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.LevelLoading.LevelServicesProviding;
 using Infrastructure.Progress.Handling.Heros;
 using Infrastructure.Progress.Handling.IslandLevel;
 using Infrastructure.Services.SaveLoadService;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Progress.Services
@@ -15,7 +17,7 @@ namespace Infrastructure.Progress.Services
         
         private readonly ILevelServicesProvider _levelServicesProvider;
         private readonly ISaveLoadService _saveLoadService;
-
+        
         public IslandLevelProgressService(IHeroProgressHandler heroProgressHandler,
             IIslandWorldProgressHandler worldProgressHandler,
             ILevelServicesProvider levelServicesProvider,
@@ -34,12 +36,12 @@ namespace Infrastructure.Progress.Services
         public void SetCurrentProgress(AllProgress progress) => 
             _currentProgress = progress;
 
-        public void SaveCurrentProgress()
+        public async UniTask SaveCurrentProgress()
         {
             _heroProgressHandler.WriteProgress(_currentProgress.HeroProgress);
             _worldProgressHandler.WriteProgress(_currentProgress.IslandWorldProgress);
-            
-            _saveLoadService.Save(_currentProgress);
+
+            await _saveLoadService.Save(_currentProgress);
         }
 
         public void LoadCurrentProgress()

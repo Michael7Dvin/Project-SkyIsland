@@ -1,5 +1,6 @@
 ﻿using System;
 using Common.Observable;
+using Gameplay.PlayerCameras;
 using UnityEngine;
 
 namespace Infrastructure.Services.Input.Handlers.Hero
@@ -8,5 +9,6 @@ namespace Infrastructure.Services.Input.Handlers.Hero
     {
         IReadOnlyObservable<Vector3> HorizontalMoveDirection { get; }
         event Action Jumped;
+        void SetHorizontalDirectionAligningCamera(PlayerCamera playerCamera);
     }
 }

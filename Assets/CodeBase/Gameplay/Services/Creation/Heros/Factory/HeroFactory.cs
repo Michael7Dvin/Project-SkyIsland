@@ -7,7 +7,7 @@ using Gameplay.InjuryProcessing;
 using Gameplay.MonoBehaviours.Damagable;
 using Gameplay.MonoBehaviours.Destroyable;
 using Gameplay.Services.Creation.HeroMoving;
-using Gameplay.Services.Creation.PlayerCamera;
+using Gameplay.Services.Creation.PlayerCameras;
 using Gameplay.Services.HeroDeath;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.Destroying;
@@ -63,8 +63,6 @@ namespace Gameplay.Services.Creation.Heros.Factory
             GameObject prefab = await _commonAssetsProvider.LoadHero();
             GameObject heroGameObject = _instantiator.InstantiatePrefab(prefab, position, rotation);
             
-            Camera camera = await _cameraFactory.Create(heroGameObject.transform);
-            
             GetComponents(heroGameObject,
                 out CharacterController characterController,
                 out Animator animator,
@@ -73,8 +71,7 @@ namespace Gameplay.Services.Creation.Heros.Factory
 
             IMovement movement = await CreateMovement(heroGameObject.transform,
                 characterController,
-                animator,
-                camera.transform);
+                animator);
 
             IHealth health = CreateHealth(_logger);
             await _hudFactory.CreateHealthBar(health);
@@ -87,10 +84,9 @@ namespace Gameplay.Services.Creation.Heros.Factory
             IHeroProgressDataProvider heroProgressDataProvider =
                 new HeroProgressDataProvider(heroGameObject.transform, movement, health);
             
-            return new Hero(heroGameObject,
-                movement,
-                health,
+            return new Hero(movement,
                 injuryProcessor,
+                heroGameObject,
                 death,
                 destroyable,
                 heroProgressDataProvider);
@@ -117,10 +113,9 @@ namespace Gameplay.Services.Creation.Heros.Factory
         
         private async UniTask<IMovement> CreateMovement(Transform parent,
             CharacterController characterController,
-            Animator animator,
-            Transform cameraTransform)
+            Animator animator)
         {
-            return await _movementFactory.Create(parent, animator, characterController, cameraTransform);
+            return await _movementFactory.Create(parent, animator, characterController);
         }
 
         private IInjuryProcessor CreateInjuryProcessor(IHealth health, IDamagable damagable) =>

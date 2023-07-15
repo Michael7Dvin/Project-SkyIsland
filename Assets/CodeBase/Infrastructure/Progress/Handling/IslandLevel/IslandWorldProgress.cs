@@ -10,5 +10,8 @@ namespace Infrastructure.Progress.Handling.IslandLevel
         
         public Vector3 HeroPosition;
         public Quaternion HeroRotation;
+        
+        public float CameraXAxisValue;
+        public float CameraYAxisValue;
     }
 }

@@ -15,7 +15,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         
         private readonly ISlopeSlideMovement _slopeSlideMovement;
         private readonly IRotator _rotator;
-        private readonly Transform _camera;
 
         private readonly IReadOnlyObservable<Vector3> _moveDirection;
 
@@ -23,7 +22,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             float antiBumpSpeed,
             ISlopeSlideMovement slopeSlideMovement,
             IRotator rotator,
-            Transform camera,
             IReadOnlyObservable<Vector3> moveDirection)
         {
             _jogSpeed = jogSpeed;
@@ -31,7 +29,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             
             _slopeSlideMovement = slopeSlideMovement;
             _rotator = rotator;
-            _camera = camera;
 
             _moveDirection = moveDirection;
         }
@@ -75,19 +72,15 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         {
             Vector3 velocity = new();
             
-            if (_moveDirection.Value != Vector3.zero)
-            {
-                Vector3 cameraAlignedDirection = AlignDirectionToCameraView(_moveDirection.Value);
-                velocity = cameraAlignedDirection * _jogSpeed * deltaTime;
-            }
-            
+            if (_moveDirection.Value != Vector3.zero) 
+                velocity = _moveDirection.Value * _jogSpeed * deltaTime;
+
             return velocity;
         }
 
         private Vector3 GetAntiBumpVelocity(float deltaTime) => 
             Vector3.down * _antiBumpSpeed * deltaTime;
 
-        private Vector3 AlignDirectionToCameraView(Vector3 direction) => 
-            Quaternion.AngleAxis(_camera.rotation.eulerAngles.y, Vector3.up) * direction;
+        
     }
 }

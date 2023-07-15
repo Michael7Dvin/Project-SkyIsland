@@ -1,10 +1,11 @@
+using Cysharp.Threading.Tasks;
 using Infrastructure.Progress;
 
 namespace Infrastructure.Services.SaveLoadService
 {
     public interface ISaveLoadService
     {
-        void Save(AllProgress progress);
-        bool TryLoad(SaveSlot saveSlot, out AllProgress result);
+        UniTask Save(AllProgress progress);
+        UniTask<(bool isSuccessful, AllProgress result)> TryLoad(SaveSlot saveSlot);
     }
 }

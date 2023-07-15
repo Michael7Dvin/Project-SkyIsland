@@ -1,5 +1,5 @@
 ﻿using Gameplay.Services.Creation.Heros.Factory;
-using Gameplay.Services.Creation.PlayerCamera;
+using Gameplay.Services.Creation.PlayerCameras;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.LevelLoading.LevelServicesProviding;

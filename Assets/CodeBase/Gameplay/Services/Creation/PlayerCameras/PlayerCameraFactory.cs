@@ -1,14 +1,17 @@
 ﻿using Cinemachine;
 using Cysharp.Threading.Tasks;
+using Gameplay.MonoBehaviours.Destroyable;
+using Gameplay.PlayerCameras;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.AssetProviding.Providers.ForCamera;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Instantiating;
+using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Gameplay.Services.Creation.PlayerCamera
+namespace Gameplay.Services.Creation.PlayerCameras
 {
     public class PlayerCameraFactory : IPlayerCameraFactory
     {
@@ -22,12 +25,14 @@ namespace Gameplay.Services.Creation.PlayerCamera
         
         private readonly IInstantiator _instantiator;
         private readonly IInputService _inputService;
+        private readonly ICustomLogger _logger;
 
         public PlayerCameraFactory(IStaticDataProvider staticDataProvider,
             ICameraAssetsProvider cameraAssetsProvider,
             ICommonAssetsProvider commonAssetsProvider,
             IInstantiator instantiator,
-            IInputService inputService)
+            IInputService inputService,
+            ICustomLogger logger)
         {
             _config = staticDataProvider.PlayerCameraConfig;
             
@@ -35,6 +40,7 @@ namespace Gameplay.Services.Creation.PlayerCamera
             _commonAssetsProvider = commonAssetsProvider;
             _instantiator = instantiator;
             _inputService = inputService;
+            _logger = logger;
         }
 
         public async UniTask WarmUp()
@@ -44,15 +50,25 @@ namespace Gameplay.Services.Creation.PlayerCamera
             await _cameraAssetsProvider.LoadFreeLookController();
         }
 
-        public async UniTask<Camera> Create(Transform hero)
+        public async UniTask<PlayerCamera> Create(Transform hero)
         {
             GameObject root = await CreateCameraRoot();
-            Camera camera = await CreateCamera(root.transform);
             GameObject followPoint = await CreateFollowPoint(_config.FollowPointOffsetFromPlayer, hero);
             
-            await CreateFreeLookController(followPoint.transform, root.transform);
+            GameObject cameraGameObject = await CreateCamera(root.transform);
 
-            return camera;
+            GetComponents(cameraGameObject, out Camera camera, out IDestroyable destroyable);
+            
+            CinemachineFreeLook freeLookController = 
+                await CreateFreeLookController(followPoint.transform, root.transform);
+
+            PlayerCameraProgressDataProvider progressDataProvider = new(freeLookController);
+            
+            PlayerCameraController controller = _instantiator.Instantiate<PlayerCameraController>();
+            controller.Construct(freeLookController);
+            
+            PlayerCamera playerCamera = new PlayerCamera(camera, controller, destroyable, progressDataProvider);
+            return playerCamera;
         }
 
         private async UniTask<GameObject> CreateCameraRoot()
@@ -65,12 +81,6 @@ namespace Gameplay.Services.Creation.PlayerCamera
             return cameraRoot;
         }
 
-        private async UniTask<Camera> CreateCamera(Transform parent)
-        {
-            Camera cameraPrefab = await _cameraAssetsProvider.LoadCamera();
-            return _instantiator.InstantiatePrefabForComponent(cameraPrefab, parent);
-        }
-
         private async UniTask<GameObject> CreateFollowPoint(Vector3 offset, Transform parent)
         {
             GameObject emptyPrefab = await _commonAssetsProvider.LoadEmptyGameObject();
@@ -81,6 +91,22 @@ namespace Gameplay.Services.Creation.PlayerCamera
             
             return followPoint;
         }
+
+        private async UniTask<GameObject> CreateCamera(Transform parent)
+        {
+            GameObject prefab = await _cameraAssetsProvider.LoadCamera();
+            return _instantiator.InstantiatePrefab(prefab, parent);
+        }
+
+        private void GetComponents(GameObject cameraGameObject, out Camera camera, out IDestroyable destroyable)
+        {
+            if (cameraGameObject.TryGetComponent(out camera) == false)
+                _logger.LogError($"{nameof(camera)} prefab have no {nameof(Camera)} attached");
+            
+            if (cameraGameObject.TryGetComponent(out destroyable) == false)
+                _logger.LogError($"{nameof(camera)} prefab have no {nameof(IDestroyable)} attached");
+        }
+        
 
         private async UniTask<CinemachineFreeLook> CreateFreeLookController(Transform followPoint, Transform parent)
         {

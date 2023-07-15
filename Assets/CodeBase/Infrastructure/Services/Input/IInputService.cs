@@ -1,5 +1,5 @@
 ﻿using System;
-using Infrastructure.Services.Input.Handlers.Camera;
+using Infrastructure.Services.Input.Handlers.Cameras;
 using Infrastructure.Services.Input.Handlers.Hero;
 using Infrastructure.Services.Input.Handlers.UI;
 using Infrastructure.Services.Input.Handlers.Utility;
@@ -19,5 +19,6 @@ namespace Infrastructure.Services.Input
         IUtilityInput Utility { get; }
 
         void EnableAllInput();
+        void DisableAllInput();
     }
 }

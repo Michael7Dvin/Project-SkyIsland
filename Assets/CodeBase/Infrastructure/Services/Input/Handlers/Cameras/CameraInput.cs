@@ -1,6 +1,6 @@
 ﻿using UnityEngine.InputSystem;
 
-namespace Infrastructure.Services.Input.Handlers.Camera
+namespace Infrastructure.Services.Input.Handlers.Cameras
 {
     public class CameraInput : ICameraInput
     {

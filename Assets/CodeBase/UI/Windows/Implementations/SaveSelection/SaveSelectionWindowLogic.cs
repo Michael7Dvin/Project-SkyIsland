@@ -1,4 +1,5 @@
-﻿using Infrastructure.GameFSM;
+﻿using Cysharp.Threading.Tasks;
+using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.LevelLoading.Data;
 using Infrastructure.Progress;
@@ -17,9 +18,9 @@ namespace UI.Windows.Implementations.SaveSelection
             _gameStateMachine = gameStateMachine;
         }
 
-        public void StartGame(SaveSlot saveSlot)
+        public async void StartGame(SaveSlot saveSlot)
         {
-            AllProgress currentProgress = GetAllProgress(saveSlot);
+            AllProgress currentProgress = await GetAllProgress(saveSlot);
 
             LevelData currentLevelData = currentProgress.CurrentLevel;
             LevelLoadingRequest levelLoadingRequest = new LevelLoadingRequest(currentLevelData, currentProgress);
@@ -27,10 +28,12 @@ namespace UI.Windows.Implementations.SaveSelection
             _gameStateMachine.EnterState<LevelLoadingState, LevelLoadingRequest>(levelLoadingRequest);
         }
 
-        private AllProgress GetAllProgress(SaveSlot saveSlot)
+        private async UniTask<AllProgress> GetAllProgress(SaveSlot saveSlot)
         {
-            if (_saveLoadService.TryLoad(saveSlot, out AllProgress progress) == true)
-                return progress;
+            (bool isSuccessful, AllProgress result) progressLoading = await _saveLoadService.TryLoad(saveSlot);
+
+            if (progressLoading.isSuccessful == true)
+                return progressLoading.result;
 
             return new AllProgress(saveSlot);
         }

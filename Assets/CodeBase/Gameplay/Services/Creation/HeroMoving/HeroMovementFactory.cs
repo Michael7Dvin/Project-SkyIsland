@@ -43,8 +43,7 @@ namespace Gameplay.Services.Creation.HeroMoving
 
         public async UniTask<IMovement> Create(Transform parent,
             Animator animator,
-            CharacterController characterController,
-            Transform camera)
+            CharacterController characterController)
         {
             IGroundSphereCaster groundSphereCaster = await CreateGroundSpherecaster(parent);
             ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSphereCaster);
@@ -56,7 +55,7 @@ namespace Gameplay.Services.Creation.HeroMoving
             IRotator rotator = new Rotator(_config.RotationSpeed); 
             
             IMovementStateMachine movementStateMachine = 
-                CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
+                CreateMovementStateMachine(groundTypeTracker, slopeSlideMovement, rotator);
             
             HeroAnimator movementAnimator = _instantiator.Instantiate<HeroAnimator>();
             movementAnimator.Construct(animator, movementStateMachine.ActiveState, characterController);
@@ -83,28 +82,26 @@ namespace Gameplay.Services.Creation.HeroMoving
         private IGroundTypeTracker CreateGroundTypeTracker(IGroundSphereCaster groundSphereCaster) => 
             new GroundTypeTracker(groundSphereCaster);
 
-        private MovementStateMachine CreateMovementStateMachine(Transform camera,
-            IGroundTypeTracker groundTypeTracker, ISlopeSlideMovement slopeSlideMovement, IRotator rotator)
+        private MovementStateMachine CreateMovementStateMachine(IGroundTypeTracker groundTypeTracker,
+            ISlopeSlideMovement slopeSlideMovement,
+            IRotator rotator)
         {
             JogState jogState = 
                 new(_config.JogSpeed,
                     _config.JogAntiBumpSpeed,
                     slopeSlideMovement,
                     rotator,
-                    camera,
                     _inputService.Hero.HorizontalMoveDirection);
 
             FallState fallState = 
                 new(_config.FallVerticalSpeed,
                     _config.FallHorizontalSpeed,
                     rotator,
-                    camera,
                     _inputService.Hero.HorizontalMoveDirection);
 
             JumpState jumpState = new(_config.JumpYSpeedToTimeCurve,
                 _config.JumpHorizontalSpeed,
                 rotator,
-                camera,
                 groundTypeTracker,
                 slopeSlideMovement,
                 _inputService.Hero.HorizontalMoveDirection);

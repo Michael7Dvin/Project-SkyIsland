@@ -12,6 +12,8 @@ namespace Infrastructure.Services.Updating
         public event Action<float> FixedUpdated;
         public event Action<float> LateUpdated;
         
+        public event Action<float> NotPausingUpdated;
+
         public void StartUpdating() => 
             _isUpdating = true;
 
@@ -22,6 +24,8 @@ namespace Infrastructure.Services.Updating
         {
             if (_isUpdating == true)
                 Updated?.Invoke(Time.deltaTime);
+            
+            NotPausingUpdated?.Invoke(Time.deltaTime);
         }
 
         public void FixedTick()

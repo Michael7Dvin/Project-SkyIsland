@@ -12,7 +12,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly float _verticalSpeed;
         private readonly float _horizontalspeed;
         
-        private readonly Transform _camera;
         private readonly IRotator _rotator;
 
         private readonly IReadOnlyObservable<Vector3> _moveDirection;
@@ -20,13 +19,11 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         public FallState(float verticalSpeed,
             float horizontalspeed,
             IRotator rotator,
-            Transform camera,
             IReadOnlyObservable<Vector3> moveDirection)
         {
             _verticalSpeed = verticalSpeed;
             _horizontalspeed = horizontalspeed;
             
-            _camera = camera;
             _rotator = rotator;
 
             _moveDirection = moveDirection;
@@ -70,16 +67,10 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         {
             Vector3 velocity = new();
             
-            if (_moveDirection.Value != Vector3.zero)
-            {
-                Vector3 cameraAlignedDirection = AlignDirectionToCameraView(_moveDirection.Value);
-                velocity = cameraAlignedDirection * _horizontalspeed * deltaTime;
-            }
-            
+            if (_moveDirection.Value != Vector3.zero) 
+                velocity = _moveDirection.Value * _horizontalspeed * deltaTime;
+
             return velocity;
         }
-
-        private Vector3 AlignDirectionToCameraView(Vector3 direction) => 
-            Quaternion.AngleAxis(_camera.rotation.eulerAngles.y, Vector3.up) * direction;
     }
 }

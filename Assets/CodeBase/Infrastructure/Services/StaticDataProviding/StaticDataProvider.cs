@@ -1,6 +1,6 @@
 ﻿using Gameplay.Services.Creation.Heros;
 using Gameplay.Services.Creation.Heros.Factory;
-using Gameplay.Services.Creation.PlayerCamera;
+using Gameplay.Services.Creation.PlayerCameras;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.SceneLoading;
 using UI;

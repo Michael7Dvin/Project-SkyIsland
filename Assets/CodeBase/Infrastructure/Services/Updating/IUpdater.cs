@@ -8,6 +8,8 @@ namespace Infrastructure.Services.Updating
         event Action<float> FixedUpdated;
         event Action<float> LateUpdated;
 
+        event Action<float> NotPausingUpdated;
+        
         void StartUpdating();
         void StopUpdating();
     }

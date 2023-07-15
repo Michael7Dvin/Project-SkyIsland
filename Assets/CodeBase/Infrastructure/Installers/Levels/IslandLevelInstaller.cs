@@ -1,10 +1,11 @@
 ﻿using Gameplay.Services.Creation.GroundSpherecasting;
 using Gameplay.Services.Creation.HeroMoving;
 using Gameplay.Services.Creation.Heros.Factory;
-using Gameplay.Services.Creation.PlayerCamera;
+using Gameplay.Services.Creation.PlayerCameras;
 using Gameplay.Services.HeroDeath;
-using Gameplay.Services.HeroProviding;
 using Gameplay.Services.PlayerPausing;
+using Gameplay.Services.Providing.HeroProviding;
+using Gameplay.Services.Providing.PlayerCameraProviding;
 using Infrastructure.LevelLoading.Data;
 using Infrastructure.LevelLoading.WarmUpping;
 using Infrastructure.LevelLoading.WorldObjectsSpawning;
@@ -26,6 +27,8 @@ namespace Infrastructure.Installers.Levels
         {
             BindServices();
             BindFactories();
+            BindProviders();
+            BindProgressHandlers();
             BindLevelLoadingServices();
         }
 
@@ -33,17 +36,26 @@ namespace Infrastructure.Installers.Levels
         {
             Container.Bind<IHeroDeathService>().To<HeroDeathService>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerPause>().AsSingle();
-            Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
-            Container.Bind<IIslandWorldProgressHandler>().To<IslandWorldProgressHandler>().AsSingle();
-            Container.Bind<IHeroProgressHandler>().To<HeroProgressHandler>().AsSingle();
         }
 
         private void BindFactories()
         {
+            Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
             Container.Bind<IPlayerCameraFactory>().To<PlayerCameraFactory>().AsSingle();
             Container.Bind<IHeroMovementFactory>().To<HeroMovementFactory>().AsSingle();
             Container.Bind<IGroundSpherecasterFactory>().To<GroundSpherecasterFactory>().AsSingle();
-            Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();
+        }
+
+        private void BindProviders()
+        {
+            Container.Bind<IHeroProvider>().To<HeroProvider>().AsSingle();
+            Container.Bind<IPlayerCameraProvider>().To<PlayerCameraProvider>().AsSingle();
+        }
+
+        private void BindProgressHandlers()
+        {
+            Container.Bind<IIslandWorldProgressHandler>().To<IslandWorldProgressHandler>().AsSingle();
+            Container.Bind<IHeroProgressHandler>().To<HeroProgressHandler>().AsSingle();
         }
 
         private void BindLevelLoadingServices()

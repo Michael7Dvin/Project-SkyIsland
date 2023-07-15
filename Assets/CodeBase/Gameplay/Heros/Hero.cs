@@ -1,6 +1,5 @@
 ﻿using System;
 using Gameplay.Dying;
-using Gameplay.Healths;
 using Gameplay.Heros.Movement;
 using Gameplay.InjuryProcessing;
 using Gameplay.MonoBehaviours.Destroyable;
@@ -10,42 +9,39 @@ namespace Gameplay.Heros
 {
     public class Hero : IDisposable
     {
-        private readonly GameObject _gameObject;
-        private readonly IHealth _health;
         private readonly IMovement _movement;
         private readonly IInjuryProcessor _injuryProcessor;
 
-        public Hero(GameObject gameObject,
-            IMovement movement,
-            IHealth health,
+        public Hero(IMovement movement,
             IInjuryProcessor injuryProcessor,
+            GameObject gameObject,
             IDeath death,
             IDestroyable destroyable,
-            IHeroProgressDataProvider heroProgressDataProvider)
+            IHeroProgressDataProvider progressDataProvider)
         {
-            _gameObject = gameObject;
             _movement = movement;
-            _health = health;
             _injuryProcessor = injuryProcessor;
+
+            GameObject = gameObject;
             Death = death;
-            
             Destroyable = destroyable;
-            HeroProgressDataProvider = heroProgressDataProvider;
+            ProgressDataProvider = progressDataProvider;
 
             Destroyable.Destroyed += Dispose;
         }
 
-        public IDeath Death { get; set; }
+        public GameObject GameObject { get; }
+        public IDeath Death { get; }
         public IDestroyable Destroyable { get; }
-        public IHeroProgressDataProvider HeroProgressDataProvider { get; }
+        public IHeroProgressDataProvider ProgressDataProvider { get; }
 
         public void Dispose()
         {
+            Destroyable.Destroyed -= Dispose;
+            
             _movement.Dispose();
             _injuryProcessor.Dispose();
             Death.Dispose();
-
-            Destroyable.Destroyed -= Dispose;
         }
     }
 }

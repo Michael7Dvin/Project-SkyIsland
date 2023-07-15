@@ -1,4 +1,4 @@
-using Infrastructure.Services.Input.Handlers.Camera;
+using Infrastructure.Services.Input.Handlers.Cameras;
 using Infrastructure.Services.Input.Handlers.Hero;
 using Infrastructure.Services.Input.Handlers.UI;
 using Infrastructure.Services.Input.Handlers.Utility;
@@ -19,7 +19,7 @@ namespace Infrastructure.Services.Input
             CameraInput camera = new CameraInput(_input.Camera);
             UIInput ui = new UIInput(_input.UI);
             UtilityInput utility = new UtilityInput(_input.Utility);
-            
+
             hero.Init();
             utility.Init();
 
@@ -48,6 +48,14 @@ namespace Infrastructure.Services.Input
             Camera.Enable();
             UI.Enable();
             Utility.Enable();
+        }
+
+        public void DisableAllInput()
+        {
+            Hero.Disable();
+            Camera.Disable();
+            UI.Disable();
+            Utility.Disable();
         }
     }
 }

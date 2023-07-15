@@ -1,5 +1,5 @@
 ﻿using Gameplay.Heros;
-using Gameplay.Services.HeroProviding;
+using Gameplay.Services.Providing.HeroProviding;
 using Infrastructure.Services.Logging;
 
 namespace Infrastructure.Progress.Handling.Heros
@@ -16,7 +16,7 @@ namespace Infrastructure.Progress.Handling.Heros
         }
 
         private IHeroProgressDataProvider HeroProgressDataProvider =>
-            _heroProvider.Hero.HeroProgressDataProvider;
+            _heroProvider.Hero.Value.ProgressDataProvider;
 
         public void WriteProgress(HeroProgress progress)
         {

@@ -21,7 +21,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly float _horizontalspeed;
         
         private readonly IRotator _rotator;
-        private readonly Transform _camera;
         private readonly IGroundTypeTracker _groundTypeTracker;
         private readonly ISlopeSlideMovement _slopeSlideMovement;
 
@@ -30,7 +29,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         public JumpState(AnimationCurve jumpCurve,
             float horizontalspeed,
             IRotator rotator,
-            Transform camera,
             IGroundTypeTracker groundTypeTracker,
             ISlopeSlideMovement slopeSlideMovement,
             IReadOnlyObservable<Vector3> moveDirection)
@@ -39,7 +37,6 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
             _horizontalspeed = horizontalspeed;
             _rotator = rotator;
 
-            _camera = camera;
             _groundTypeTracker = groundTypeTracker;
             _slopeSlideMovement = slopeSlideMovement;
 
@@ -124,18 +121,12 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         {
             Vector3 velocity = new();
             
-            if (_moveDirection.Value != Vector3.zero)
-            {
-                Vector3 cameraAlignedDirection = AlignDirectionToCameraView(_moveDirection.Value);
-                velocity = cameraAlignedDirection * _horizontalspeed * deltaTime;
-            }
+            if (_moveDirection.Value != Vector3.zero) 
+                velocity = _moveDirection.Value * _horizontalspeed * deltaTime;
 
             return velocity;
         }
         
-        private Vector3 AlignDirectionToCameraView(Vector3 direction) => 
-            Quaternion.AngleAxis(_camera.rotation.eulerAngles.y, Vector3.up) * direction;
-
         private void PeformJump()
         {
             _currentJumpTime = 0f;

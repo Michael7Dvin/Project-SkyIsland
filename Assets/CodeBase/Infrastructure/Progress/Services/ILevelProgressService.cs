@@ -1,10 +1,12 @@
-﻿namespace Infrastructure.Progress.Services
+﻿using Cysharp.Threading.Tasks;
+
+namespace Infrastructure.Progress.Services
 {
     public interface ILevelProgressService
     {
         void SetCurrentProgress(AllProgress progress);
 
-        void SaveCurrentProgress();
+        UniTask SaveCurrentProgress();
         void LoadCurrentProgress();
     }
 }

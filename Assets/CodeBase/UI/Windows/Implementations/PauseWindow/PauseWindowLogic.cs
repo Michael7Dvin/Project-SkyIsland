@@ -1,7 +1,7 @@
 ﻿using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using Infrastructure.Progress;
 using Infrastructure.Progress.Services;
+using UnityEngine;
 
 namespace UI.Windows.Implementations.PauseWindow
 {

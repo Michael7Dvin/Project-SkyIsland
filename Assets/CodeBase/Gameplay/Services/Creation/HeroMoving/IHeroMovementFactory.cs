@@ -10,7 +10,6 @@ namespace Gameplay.Services.Creation.HeroMoving
 
         UniTask<IMovement> Create(Transform parent,
             Animator animator,
-            CharacterController characterController,
-            Transform camera);
+            CharacterController characterController);
     }
 }

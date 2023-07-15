@@ -28,7 +28,8 @@ namespace Infrastructure.GameFSM.States
             DOTween.Init();
 
             _inputService.Init();
-
+            _inputService.DisableAllInput();
+            
             _updater.StartUpdating();
             
             _gameStateMachine.EnterState<MainMenuState>();
