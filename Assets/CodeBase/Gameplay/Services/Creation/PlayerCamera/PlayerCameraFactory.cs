@@ -22,7 +22,7 @@ namespace Gameplay.Services.Creation.PlayerCamera
         
         private readonly IInstantiator _instantiator;
         private readonly IInputService _inputService;
-        
+
         public PlayerCameraFactory(IStaticDataProvider staticDataProvider,
             ICameraAssetsProvider cameraAssetsProvider,
             ICommonAssetsProvider commonAssetsProvider,
@@ -59,7 +59,7 @@ namespace Gameplay.Services.Creation.PlayerCamera
         {
             GameObject emptyPrefab = await _commonAssetsProvider.LoadEmptyGameObject();
             
-            GameObject cameraRoot = _instantiator.Instantiate(emptyPrefab);
+            GameObject cameraRoot = _instantiator.InstantiatePrefab(emptyPrefab);
             cameraRoot.name = CameraRootName;
 
             return cameraRoot;
@@ -68,14 +68,14 @@ namespace Gameplay.Services.Creation.PlayerCamera
         private async UniTask<Camera> CreateCamera(Transform parent)
         {
             Camera cameraPrefab = await _cameraAssetsProvider.LoadCamera();
-            return _instantiator.Instantiate(cameraPrefab, parent);
+            return _instantiator.InstantiatePrefabForComponent(cameraPrefab, parent);
         }
 
         private async UniTask<GameObject> CreateFollowPoint(Vector3 offset, Transform parent)
         {
             GameObject emptyPrefab = await _commonAssetsProvider.LoadEmptyGameObject();
             
-            GameObject followPoint = _instantiator.Instantiate(emptyPrefab, parent);
+            GameObject followPoint = _instantiator.InstantiatePrefab(emptyPrefab, parent);
             followPoint.name = FollowPointName;
             followPoint.transform.localPosition = offset;
             
@@ -86,7 +86,7 @@ namespace Gameplay.Services.Creation.PlayerCamera
         {
             CinemachineFreeLook prefab = await _cameraAssetsProvider.LoadFreeLookController();
             
-            CinemachineFreeLook controller = _instantiator.Instantiate(prefab, parent);
+            CinemachineFreeLook controller = _instantiator.InstantiatePrefabForComponent(prefab, parent);
             controller.Follow = followPoint;
             controller.LookAt = followPoint;
 

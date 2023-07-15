@@ -10,6 +10,7 @@ using Gameplay.Services.Creation.HeroMoving;
 using Gameplay.Services.Creation.PlayerCamera;
 using Gameplay.Services.HeroDeath;
 using Infrastructure.Services.AssetProviding.Providers.Common;
+using Infrastructure.Services.Destroying;
 using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
@@ -28,7 +29,6 @@ namespace Gameplay.Services.Creation.Heros.Factory
         
         private readonly ICommonAssetsProvider _commonAssetsProvider;
         private readonly IInstantiator _instantiator;
-        private readonly IHeroDeathService _heroDeathService;
         private readonly ICustomLogger _logger;
 
         public HeroFactory(IStaticDataProvider staticDataProvider,
@@ -37,7 +37,6 @@ namespace Gameplay.Services.Creation.Heros.Factory
             IHUDFactory hudFactory,
             ICommonAssetsProvider commonAssetsProvider,
             IInstantiator instantiator,
-            IHeroDeathService heroDeathService,
             ICustomLogger logger)
         {
             _config = staticDataProvider.HeroConfig;
@@ -48,7 +47,6 @@ namespace Gameplay.Services.Creation.Heros.Factory
 
             _commonAssetsProvider = commonAssetsProvider;
             _instantiator = instantiator;
-            _heroDeathService = heroDeathService;
             _logger = logger;
         }
 
@@ -63,11 +61,9 @@ namespace Gameplay.Services.Creation.Heros.Factory
         public async UniTask<Hero> Create(Vector3 position, Quaternion rotation)
         {
             GameObject prefab = await _commonAssetsProvider.LoadHero();
+            GameObject heroGameObject = _instantiator.InstantiatePrefab(prefab, position, rotation);
             
-            GameObject hero = _instantiator.Instantiate(prefab, position, rotation);
-            GameObject heroGameObject = hero.gameObject;
-            
-            Camera camera = await _cameraFactory.Create(hero.transform);
+            Camera camera = await _cameraFactory.Create(heroGameObject.transform);
             
             GetComponents(heroGameObject,
                 out CharacterController characterController,
@@ -75,7 +71,7 @@ namespace Gameplay.Services.Creation.Heros.Factory
                 out IDamagable damageNotifier,
                 out IDestroyable destroyable);
 
-            IHeroMovement movement = await CreateMovement(hero.transform,
+            IMovement movement = await CreateMovement(heroGameObject.transform,
                 characterController,
                 animator,
                 camera.transform);
@@ -84,11 +80,20 @@ namespace Gameplay.Services.Creation.Heros.Factory
             await _hudFactory.CreateHealthBar(health);
 
             IInjuryProcessor injuryProcessor = CreateInjuryProcessor(health, damageNotifier);
-
-            IDeath death = new Death(health);
-            _heroDeathService.Init(death);
             
-            return new Hero(heroGameObject, characterController, movement, health, injuryProcessor, death, destroyable);
+            Death death = _instantiator.Instantiate<Death>();
+            death.Construct(health, heroGameObject);
+
+            IHeroProgressDataProvider heroProgressDataProvider =
+                new HeroProgressDataProvider(heroGameObject.transform, movement, health);
+            
+            return new Hero(heroGameObject,
+                movement,
+                health,
+                injuryProcessor,
+                death,
+                destroyable,
+                heroProgressDataProvider);
         }
 
         private void GetComponents(GameObject hero,
@@ -110,7 +115,7 @@ namespace Gameplay.Services.Creation.Heros.Factory
                 _logger.LogError($"{nameof(hero)} prefab have no {nameof(IDestroyable)} attached");
         }
         
-        private async UniTask<IHeroMovement> CreateMovement(Transform parent,
+        private async UniTask<IMovement> CreateMovement(Transform parent,
             CharacterController characterController,
             Animator animator,
             Transform cameraTransform)

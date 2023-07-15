@@ -1,17 +1,18 @@
 ﻿using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Progress;
+using Infrastructure.Progress.Services;
 
 namespace UI.Windows.Implementations.PauseWindow
 {
     public class PauseWindowLogic
     {
-        private readonly IGameProgressService _gameProgressService;
+        private readonly ILevelProgressService _levelProgressService;
         private readonly IGameStateMachine _gameStateMachine;
 
-        public PauseWindowLogic(IGameProgressService gameProgressService, IGameStateMachine gameStateMachine)
+        public PauseWindowLogic(ILevelProgressService levelProgressService, IGameStateMachine gameStateMachine)
         {
-            _gameProgressService = gameProgressService;
+            _levelProgressService = levelProgressService;
             _gameStateMachine = gameStateMachine;
         }
 
@@ -20,7 +21,7 @@ namespace UI.Windows.Implementations.PauseWindow
         }
 
         public void SaveProgess() => 
-            _gameProgressService.SaveCurrentProgress();
+            _levelProgressService.SaveCurrentProgress();
 
         public void ReturnToMainMenu() => 
          _gameStateMachine.EnterState<MainMenuState>();

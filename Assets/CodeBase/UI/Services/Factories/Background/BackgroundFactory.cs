@@ -32,7 +32,7 @@ namespace UI.Services.Factories.Background
         public async UniTask<GameObject> CreateMainMenu()
         {
             GameObject prefab = await _assetsProvider.LoadMainMenu();
-            GameObject background = _instantiator.Instantiate(prefab, _canvas.transform);
+            GameObject background = _instantiator.InstantiatePrefab(prefab, _canvas.transform);
             MakeFirstInCanvasHierarchy(background);
             return background;
         }
@@ -40,7 +40,7 @@ namespace UI.Services.Factories.Background
         public async UniTask<GameObject> CreatePause()
         {
             GameObject prefab = await _assetsProvider.LoadPause();
-            GameObject background = _instantiator.Instantiate(prefab, _canvas.transform);
+            GameObject background = _instantiator.InstantiatePrefab(prefab, _canvas.transform);
             MakeFirstInCanvasHierarchy(background);
             return background;
         }
@@ -48,7 +48,7 @@ namespace UI.Services.Factories.Background
         public async UniTask<GameObject> CreateDeath()
         {
             GameObject prefab = await _assetsProvider.LoadDeath();
-            GameObject background = _instantiator.Instantiate(prefab, _canvas.transform);
+            GameObject background = _instantiator.InstantiatePrefab(prefab, _canvas.transform);
             MakeFirstInCanvasHierarchy(background);
             return background;
         }

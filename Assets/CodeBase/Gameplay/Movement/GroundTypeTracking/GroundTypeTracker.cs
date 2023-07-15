@@ -6,24 +6,24 @@ namespace Gameplay.Movement.GroundTypeTracking
 {
     public class GroundTypeTracker : IGroundTypeTracker
     {
-        private readonly IGroundSpherecaster _groundSpherecaster;
+        private readonly IGroundSphereCaster _groundSphereCaster;
 
         private readonly Observable<GroundType> _currentGroundType = new();
 
-        public GroundTypeTracker(IGroundSpherecaster groundSpherecaster)
+        public GroundTypeTracker(IGroundSphereCaster groundSphereCaster)
         {
-            _groundSpherecaster = groundSpherecaster;
+            _groundSphereCaster = groundSphereCaster;
             
-            _groundSpherecaster.SphereCasted += OnSphereCasted;
-            _groundSpherecaster.SphereCastMissed += OnSphereCastMissed;
+            _groundSphereCaster.SphereCasted += OnSphereCasted;
+            _groundSphereCaster.SphereCastMissed += OnSphereCastMissed;
         }
 
         public IReadOnlyObservable<GroundType> CurrentGroundType => _currentGroundType;
 
         public void Dispose()
         {
-            _groundSpherecaster.SphereCasted -= OnSphereCasted;
-            _groundSpherecaster.SphereCastMissed -= OnSphereCastMissed;
+            _groundSphereCaster.SphereCasted -= OnSphereCasted;
+            _groundSphereCaster.SphereCastMissed -= OnSphereCastMissed;
         }
 
         private void OnSphereCasted(RaycastHit hit) => 

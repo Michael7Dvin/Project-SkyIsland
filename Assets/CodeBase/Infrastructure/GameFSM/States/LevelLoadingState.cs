@@ -1,50 +1,44 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
+using Infrastructure.LevelLoading.LevelServicesProviding;
+using Infrastructure.LevelLoading.WarmUpping;
+using Infrastructure.LevelLoading.WorldObjectsSpawning;
 using Infrastructure.Progress;
-using Infrastructure.Progress.LevelProgressLoading;
-using Infrastructure.Services.LevelLoading;
-using Infrastructure.Services.LevelLoading.Data;
-using Infrastructure.Services.LevelLoading.LevelServicesProviding;
-using Infrastructure.Services.LevelLoading.WarmUpping;
-using Infrastructure.Services.LevelLoading.WorldObjectsSpawning;
+using Infrastructure.Progress.Services;
 using Infrastructure.Services.SceneLoading;
 using UI.Services.Factories.UI;
 
 namespace Infrastructure.GameFSM.States
 {
-    public class LevelLoadingState : IStateWithArguments<LevelData>
+    public class LevelLoadingState : IStateWithArguments<LevelLoadingRequest>
     {
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _gameStateMachine;
         private readonly ILevelServicesProvider _levelServicesProvider;
         private readonly IUIFactory _uiFactory;
-        private readonly IGameProgressService _gameProgressService;
 
         public LevelLoadingState(ISceneLoader sceneLoader,
             IGameStateMachine gameStateMachine,
             ILevelServicesProvider levelServicesProvider,
-            IUIFactory uiFactory,
-            IGameProgressService gameProgressService)
+            IUIFactory uiFactory)
         {
             _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
             _levelServicesProvider = levelServicesProvider;
             _uiFactory = uiFactory;
-            _gameProgressService = gameProgressService;
         }
 
-        public async void Enter(LevelData levelData)
+        public async void Enter(LevelLoadingRequest request)
         {
-            await _sceneLoader.Load(levelData.Scene);
-            
-            await InitializeProgress(levelData);
-            
-            await WarmUpServices(levelData.Type);
-            await _uiFactory.RecreateSceneUIObjects();
-            await SpawnWorldObjects(levelData.Type);
+            await _sceneLoader.Load(request.LevelData.Scene);
 
-            _gameProgressService.LoadCurrentProgress();
+            await SetCurrentProgress(request.Progress);
+
+            await WarmUpServices();
+            await _uiFactory.RecreateSceneUIObjects();
+            await SpawnWorldObjects();
             
+            await LoadProgress();
             _gameStateMachine.EnterState<GameplayState>();
         }
 
@@ -52,25 +46,28 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        private async UniTask InitializeProgress(LevelData levelData)
+        private async UniTask SetCurrentProgress(AllProgress progress)
         {
-            IProgressLoader progressLoader 
-                = await _levelServicesProvider.GetProgressInitializer(levelData.Type);
-
-            progressLoader.InitializeProgressHandlers(levelData);
-            progressLoader.RegisterProgressHandlers();
+            ILevelProgressService levelProgressService = await _levelServicesProvider.GetProgressService();
+            levelProgressService.SetCurrentProgress(progress);
         }
 
-        private async UniTask WarmUpServices(LevelType levelType)
+        private async UniTask WarmUpServices()
         {
-            IWarmUpper warmUpper = await _levelServicesProvider.GetWarmUpper(levelType);
+            IWarmUpper warmUpper = await _levelServicesProvider.GetWarmUpper();
             await warmUpper.WarmUp();
         }
 
-        private async UniTask SpawnWorldObjects(LevelType levelType)
+        private async UniTask SpawnWorldObjects()
         {
-            IWorldObjectsSpawner worldObjectsSpawner = await _levelServicesProvider.GetWorldObjectsSpawner(levelType);
+            IWorldObjectsSpawner worldObjectsSpawner = await _levelServicesProvider.GetWorldObjectsSpawner();
             await worldObjectsSpawner.SpawnWorldObjects();
+        }
+
+        private async UniTask LoadProgress()
+        {
+            ILevelProgressService levelProgressService = await _levelServicesProvider.GetProgressService();
+            levelProgressService.LoadCurrentProgress();
         }
     }
 }

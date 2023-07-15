@@ -7,7 +7,7 @@ namespace Gameplay.Services.Creation.GroundSpherecasting
     public interface IGroundSpherecasterFactory
     {
         UniTask WarmUp();
-        UniTask<IGroundSpherecaster> Create(Transform parent,
+        UniTask<IGroundSphereCaster> Create(Transform parent,
             Vector3 sphereCastPointOffset,
             float sphereCastRadius,
             float sphereCastDistance);

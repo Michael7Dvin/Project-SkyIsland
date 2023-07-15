@@ -29,7 +29,7 @@ namespace UI.Services.Factories.HUD
         public async UniTask<HealthBar> CreateHealthBar(IHealth health)
         {
             HealthBar prefab = await _assetsProvider.LoadHealthBar();
-            HealthBar healthBar = _instantiator.Instantiate(prefab, _canvas.transform);
+            HealthBar healthBar = _instantiator.InstantiatePrefabForComponent(prefab, _canvas.transform);
             healthBar.Construct(health);
             return healthBar;
         }

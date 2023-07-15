@@ -4,7 +4,7 @@ namespace Infrastructure.Services.SaveLoadService
 {
     public interface ISaveLoadService
     {
-        void Save(SaveSlot saveSlot, AllProgress progress);
+        void Save(AllProgress progress);
         bool TryLoad(SaveSlot saveSlot, out AllProgress result);
     }
 }

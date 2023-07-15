@@ -4,21 +4,25 @@ using UnityEngine;
 
 namespace Gameplay.Movement.GroundSpherecasting
 {
-    public class GroundSpherecaster : IGroundSpherecaster
+    public class GroundSphereCaster : IGroundSphereCaster
     {
+        private Transform _castPoint;
+        private float _sphereRadius;
+        private float _castDistance;
+        
         private readonly IUpdater _updater;
         
-        private readonly Transform _castPoint;
-        private readonly float _sphereRadius;
-        private readonly float _castDistance;
-        
-        public GroundSpherecaster(IUpdater updater, Transform castPoint, float sphereRadius, float castDistance)
+        public GroundSphereCaster(IUpdater updater)
         {
             _updater = updater;
+        }
+
+        public void Construct(Transform castPoint, float sphereRadius, float castDistance)
+        {
             _castPoint = castPoint;
             _sphereRadius = sphereRadius;
             _castDistance = castDistance;
-
+            
             _updater.FixedUpdated += FixedUpdate;
         }
 

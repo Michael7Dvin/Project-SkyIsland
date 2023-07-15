@@ -11,52 +11,44 @@ using Gameplay.Movement.StateMachine.States.Implementations;
 using Gameplay.Services.Creation.GroundSpherecasting;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Logging;
-using Infrastructure.Services.Pausing;
 using Infrastructure.Services.StaticDataProviding;
-using Infrastructure.Services.Updating;
 using UnityEngine;
+using IInstantiator = Infrastructure.Services.Instantiating.IInstantiator;
 
 namespace Gameplay.Services.Creation.HeroMoving
 {
     public class HeroMovementFactory : IHeroMovementFactory
     {
         private readonly HeroMovementConfig _config;
-        
         private readonly IGroundSpherecasterFactory _groundSpherecasterFactory;
-
-        private readonly IUpdater _updater;
-        private readonly IPauseService _pauseService;
-        private readonly IInputService _input;
+        private readonly IInstantiator _instantiator;
+        private readonly IInputService _inputService;
         private readonly ICustomLogger _logger;
 
         public HeroMovementFactory(IStaticDataProvider staticDataProvider,
             IGroundSpherecasterFactory groundSpherecasterFactory,
-            IUpdater updater,
-            IPauseService pauseService,
-            IInputService input,
+            IInstantiator instantiator,
+            IInputService inputService,
             ICustomLogger logger)
         {
             _config = staticDataProvider.HeroConfig.Movement;
-            
             _groundSpherecasterFactory = groundSpherecasterFactory;
-            
-            _updater = updater;
-            _pauseService = pauseService;
-            _input = input;
+            _instantiator = instantiator;
+            _inputService = inputService;
             _logger = logger;
         }
 
         public async UniTask WarmUp() => 
             await _groundSpherecasterFactory.WarmUp();
 
-        public async UniTask<IHeroMovement> Create(Transform parent,
+        public async UniTask<IMovement> Create(Transform parent,
             Animator animator,
             CharacterController characterController,
             Transform camera)
         {
-            IGroundSpherecaster groundSpherecaster = await CreateGroundSpherecaster(parent);
-            ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSpherecaster);
-            IGroundTypeTracker groundTypeTracker = CreateGroundTypeTracker(groundSpherecaster);
+            IGroundSphereCaster groundSphereCaster = await CreateGroundSpherecaster(parent);
+            ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSphereCaster);
+            IGroundTypeTracker groundTypeTracker = CreateGroundTypeTracker(groundSphereCaster);
 
             ISlopeSlideMovement slopeSlideMovement =
                 new SlopeSlideMovement(_config.SlopeSlideSpeed, _config.MinSlopeAngle, slopeCalculator);
@@ -65,23 +57,22 @@ namespace Gameplay.Services.Creation.HeroMoving
             
             IMovementStateMachine movementStateMachine = 
                 CreateMovementStateMachine(camera, groundTypeTracker, slopeSlideMovement, rotator);
-
-            HeroAnimator movementAnimator =
-                new(animator, movementStateMachine.ActiveState, characterController, _updater, _logger);
             
-            HeroMovement movement = new(movementStateMachine,
+            HeroAnimator movementAnimator = _instantiator.Instantiate<HeroAnimator>();
+            movementAnimator.Construct(animator, movementStateMachine.ActiveState, characterController);
+
+            HeroMovement heroMovement = _instantiator.Instantiate<HeroMovement>();
+            heroMovement.Construct(movementStateMachine,
                 characterController,
-                groundSpherecaster,
+                groundSphereCaster,
                 groundTypeTracker,
                 slopeCalculator,
-                movementAnimator,
-                _updater,
-                _input.Hero);
+                movementAnimator);
             
-            return movement;
+            return heroMovement;
         }
 
-        private async UniTask<IGroundSpherecaster> CreateGroundSpherecaster(Transform parent)
+        private async UniTask<IGroundSphereCaster> CreateGroundSpherecaster(Transform parent)
         {
             return await _groundSpherecasterFactory.Create(parent,
                 _config.GroundSphereCastingPointOffset,
@@ -89,8 +80,8 @@ namespace Gameplay.Services.Creation.HeroMoving
                 _config.GroundSphereCastingDistance);
         }
         
-        private IGroundTypeTracker CreateGroundTypeTracker(IGroundSpherecaster groundSpherecaster) => 
-            new GroundTypeTracker(groundSpherecaster);
+        private IGroundTypeTracker CreateGroundTypeTracker(IGroundSphereCaster groundSphereCaster) => 
+            new GroundTypeTracker(groundSphereCaster);
 
         private MovementStateMachine CreateMovementStateMachine(Transform camera,
             IGroundTypeTracker groundTypeTracker, ISlopeSlideMovement slopeSlideMovement, IRotator rotator)
@@ -101,14 +92,14 @@ namespace Gameplay.Services.Creation.HeroMoving
                     slopeSlideMovement,
                     rotator,
                     camera,
-                    _input.Hero.HorizontalMoveDirection);
+                    _inputService.Hero.HorizontalMoveDirection);
 
             FallState fallState = 
                 new(_config.FallVerticalSpeed,
                     _config.FallHorizontalSpeed,
                     rotator,
                     camera,
-                    _input.Hero.HorizontalMoveDirection);
+                    _inputService.Hero.HorizontalMoveDirection);
 
             JumpState jumpState = new(_config.JumpYSpeedToTimeCurve,
                 _config.JumpHorizontalSpeed,
@@ -116,7 +107,7 @@ namespace Gameplay.Services.Creation.HeroMoving
                 camera,
                 groundTypeTracker,
                 slopeSlideMovement,
-                _input.Hero.HorizontalMoveDirection);
+                _inputService.Hero.HorizontalMoveDirection);
             
             IMovementStatesProvider statesProvider = 
                 new MovementStatesProvider(jogState, fallState, _logger);
@@ -130,7 +121,7 @@ namespace Gameplay.Services.Creation.HeroMoving
             return movementStateMachine;
         }
 
-        private ISlopeCalculator CreateSlopeCalculator(IGroundSpherecaster groundSpherecaster) => 
-            new SlopeCalculator(groundSpherecaster);
+        private ISlopeCalculator CreateSlopeCalculator(IGroundSphereCaster groundSphereCaster) => 
+            new SlopeCalculator(groundSphereCaster);
     }
 }

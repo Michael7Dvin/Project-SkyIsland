@@ -4,6 +4,7 @@ using Infrastructure.Services.StaticDataProviding;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
+using UnityEngine.SceneManagement;
 
 namespace Infrastructure.Services.SceneLoading
 {
@@ -17,6 +18,8 @@ namespace Infrastructure.Services.SceneLoading
             _scenes = staticDataProvider.ScenesData;
             _logger = logger;
         }
+
+        public Scene CurrentScene { get; private set; }
 
         public async UniTask Load(SceneType type)
         {
@@ -38,6 +41,7 @@ namespace Infrastructure.Services.SceneLoading
         {
             AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(sceneReference);
             await handle.Task;
+            CurrentScene = handle.Result.Scene;
         }
     }
 }

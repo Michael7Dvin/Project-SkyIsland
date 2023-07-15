@@ -5,7 +5,6 @@ using Infrastructure.Services.Instantiating;
 using UI.Services.Factories.Background;
 using UI.Services.Factories.HUD;
 using UI.Services.Factories.Window;
-using UI.Services.Operating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
@@ -19,7 +18,6 @@ namespace UI.Services.Factories.UI
         private readonly IHUDFactory _hudFactory;
         private readonly IUIAssetsProvider _uiAssetsProvider;
         
-        private readonly IWindowsOperator _windowsOperator;
         private readonly IInstantiator _instantiator;
         private readonly IInputService _inputService;
 
@@ -27,7 +25,6 @@ namespace UI.Services.Factories.UI
             IBackgroundFactory backgroundFactory,
             IHUDFactory hudFactory,
             IUIAssetsProvider uiAssetsProvider,
-            IWindowsOperator windowsOperator,
             IInstantiator instantiator,
             IInputService inputService)
         {
@@ -36,14 +33,10 @@ namespace UI.Services.Factories.UI
             _hudFactory = hudFactory;
             
             _uiAssetsProvider = uiAssetsProvider;
-            _windowsOperator = windowsOperator;
             _instantiator = instantiator;
             _inputService = inputService;
         }
-
-        public void Init() => 
-            _windowFactory.Init(_windowsOperator);
-
+        
         public async UniTask WarmUp()
         {
             await _uiAssetsProvider.LoadCanvas();
@@ -63,14 +56,14 @@ namespace UI.Services.Factories.UI
         private async UniTask<Canvas> CreateCanvas()
         {
             Canvas prefab = await _uiAssetsProvider.LoadCanvas();
-            Canvas canvas = _instantiator.Instantiate(prefab);
+            Canvas canvas = _instantiator.InstantiatePrefabForComponent(prefab);
             return canvas;
         }
         
         private async UniTask<EventSystem> CreateEventSystem()
         {
             EventSystem prefab = await _uiAssetsProvider.LoadEventSystem();
-            EventSystem eventSystem = _instantiator.Instantiate(prefab);
+            EventSystem eventSystem = _instantiator.InstantiatePrefabForComponent(prefab);
             
             SetUpEventSystemInput(eventSystem);
 

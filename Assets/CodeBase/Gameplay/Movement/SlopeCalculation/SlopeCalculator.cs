@@ -5,14 +5,14 @@ namespace Gameplay.Movement.SlopeCalculation
 {
     public class SlopeCalculator : ISlopeCalculator
     {
-        private readonly IGroundSpherecaster _groundSpherecaster;
+        private readonly IGroundSphereCaster _groundSphereCaster;
 
-        public SlopeCalculator(IGroundSpherecaster groundSpherecaster)
+        public SlopeCalculator(IGroundSphereCaster groundSphereCaster)
         {
-            _groundSpherecaster = groundSpherecaster;
+            _groundSphereCaster = groundSphereCaster;
             
-            _groundSpherecaster.SphereCasted += OnSphereCasted;
-            _groundSpherecaster.SphereCastMissed += OnSphereCastMissed;
+            _groundSphereCaster.SphereCasted += OnSphereCasted;
+            _groundSphereCaster.SphereCastMissed += OnSphereCastMissed;
         }
 
         public Vector3 SlopeDirection { get; private set; }
@@ -20,8 +20,8 @@ namespace Gameplay.Movement.SlopeCalculation
 
         public void Dispose()
         {
-            _groundSpherecaster.SphereCasted -= OnSphereCasted;
-            _groundSpherecaster.SphereCastMissed -= OnSphereCastMissed;
+            _groundSphereCaster.SphereCasted -= OnSphereCasted;
+            _groundSphereCaster.SphereCastMissed -= OnSphereCastMissed;
         }
 
         private void OnSphereCasted(RaycastHit hit)

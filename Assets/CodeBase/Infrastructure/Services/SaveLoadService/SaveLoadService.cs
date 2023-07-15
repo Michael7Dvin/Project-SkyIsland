@@ -8,8 +8,10 @@ namespace Infrastructure.Services.SaveLoadService
     {
         private readonly string _savesDrectory = Application.persistentDataPath;
         
-        public void Save(SaveSlot saveSlot, AllProgress progress)
+        public void Save(AllProgress progress)
         {
+            SaveSlot saveSlot = progress.SaveSlot;
+            
             string filePath = GetSaveFilePath(saveSlot);
             string json = JsonUtility.ToJson(progress);
             

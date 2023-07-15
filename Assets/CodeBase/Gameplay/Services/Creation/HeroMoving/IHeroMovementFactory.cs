@@ -8,7 +8,7 @@ namespace Gameplay.Services.Creation.HeroMoving
     {
         UniTask WarmUp();
 
-        UniTask<IHeroMovement> Create(Transform parent,
+        UniTask<IMovement> Create(Transform parent,
             Animator animator,
             CharacterController characterController,
             Transform camera);

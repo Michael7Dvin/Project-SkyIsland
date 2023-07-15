@@ -21,7 +21,7 @@ namespace Infrastructure.GameFSM
 
         public void EnterState<TState, TArgs>(TArgs args) where TState : IStateWithArguments<TArgs>
         {
-            _logger.Log(typeof(TState).ToString());
+            _logger.Log(typeof(TState).Name);
             _stateMachine.EnterState<TState, TArgs>(args);
         }
 

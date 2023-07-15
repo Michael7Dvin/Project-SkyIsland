@@ -2,7 +2,6 @@
 using DG.Tweening;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Updating;
-using UI.Services.Factories.UI;
 using UnityEngine.AddressableAssets;
 
 namespace Infrastructure.GameFSM.States
@@ -13,17 +12,14 @@ namespace Infrastructure.GameFSM.States
         
         private readonly IInputService _inputService;
         private readonly IUpdater _updater;
-        private readonly IUIFactory _uiFactory;
-        
+
         public InitializationState(IGameStateMachine gameStateMachine,
             IInputService inputService,
-            IUpdater updater,
-            IUIFactory uiFactory)
+            IUpdater updater)
         {
             _gameStateMachine = gameStateMachine;
             _inputService = inputService;
             _updater = updater;
-            _uiFactory = uiFactory;
         }
 
         public async void Enter()
@@ -32,7 +28,6 @@ namespace Infrastructure.GameFSM.States
             DOTween.Init();
 
             _inputService.Init();
-            _uiFactory.Init();
 
             _updater.StartUpdating();
             

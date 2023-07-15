@@ -2,7 +2,7 @@
 using Gameplay.Services.Creation.PlayerCamera;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using Infrastructure.Progress;
+using Infrastructure.LevelLoading.LevelServicesProviding;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.AssetProviding.Providers.ForCamera;
@@ -10,9 +10,9 @@ using Infrastructure.Services.AssetProviding.Providers.UI.All;
 using Infrastructure.Services.AssetProviding.Providers.UI.Backgrounds;
 using Infrastructure.Services.AssetProviding.Providers.UI.HUD;
 using Infrastructure.Services.AssetProviding.Providers.UI.Windows;
+using Infrastructure.Services.Destroying;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.Instantiating;
-using Infrastructure.Services.LevelLoading.LevelServicesProviding;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.Pausing;
 using Infrastructure.Services.ResourcesLoading;
@@ -46,7 +46,6 @@ namespace Infrastructure.Installers
             BindProviders();
             BindGameStateMachine();
             BindUI();
-            BindProgress();
         }
 
         private void BindGameStateMachine()
@@ -65,9 +64,11 @@ namespace Infrastructure.Installers
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
             Container.Bind<ICustomLogger>().To<CustomLogger>().AsSingle();
             Container.Bind<IInputService>().To<InputService>().AsSingle();
-            Container.Bind<IInstantiator>().To<Instantiator>().AsSingle();
             Container.Bind<IPauseService>().To<PauseService>().AsCached();
+            Container.Bind<IInstantiator>().To<Instantiator>().AsCached();
             Container.Bind<IAddressablesLoader>().To<AddressablesLoader>().AsSingle();
+            Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
+            Container.Bind<IDestroyer>().To<Destroyer>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<Updater>().AsSingle();
         }
@@ -99,12 +100,6 @@ namespace Infrastructure.Installers
             Container.Bind<IWindowsAssetsProvider>().To<WindowsAssetsProvider>().AsSingle();
             Container.Bind<IBackgroundsAssetsProvider>().To<BackgroundsAssetsProvider>().AsSingle();
             Container.Bind<IHUDAssetsProvider>().To<HUDAssetsProvider>().AsSingle();
-        }
-
-        private void BindProgress()
-        {
-            Container.Bind<ISaveLoadService>().To<SaveLoadService>().AsSingle();
-            Container.Bind<IGameProgressService>().To<GameProgressService>().AsSingle();
         }
     }
 }

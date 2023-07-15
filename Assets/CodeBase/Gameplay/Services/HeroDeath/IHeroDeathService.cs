@@ -4,6 +4,6 @@ namespace Gameplay.Services.HeroDeath
 {
     public interface IHeroDeathService
     {
-        void Init(IDeath playerDeath);
+        void Init(IDeath heroDeath);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Common.FSM;
+using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
 using UI.Services.Factories.UI;
 using UI.Services.Operating;
@@ -11,14 +12,17 @@ namespace Infrastructure.GameFSM.States
         private readonly ISceneLoader _sceneLoader;
         private readonly IUIFactory _uiFactory;
         private readonly IWindowsOperator _windowOperator;
+        private readonly IAddressablesLoader _addressablesLoader;
         
         public MainMenuState(ISceneLoader sceneLoader,
             IUIFactory uiFactory,
-            IWindowsOperator windowOperator)
+            IWindowsOperator windowOperator,
+            IAddressablesLoader addressablesLoader)
         {
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
             _windowOperator = windowOperator;
+            _addressablesLoader = addressablesLoader;
         }
 
         public async void Enter()
@@ -28,8 +32,7 @@ namespace Infrastructure.GameFSM.States
             await _windowOperator.OpenWindow(WindowType.MainMenu);
         }
 
-        public void Exit()
-        {
-        }
+        public void Exit() => 
+            _addressablesLoader.ClearCache();
     }
 }

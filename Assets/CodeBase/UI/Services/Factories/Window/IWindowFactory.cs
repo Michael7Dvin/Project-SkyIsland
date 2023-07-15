@@ -8,7 +8,6 @@ namespace UI.Services.Factories.Window
 {
     public interface IWindowFactory
     {
-        void Init(IWindowsOperator windowsOperator);
         UniTask WarmUp();
         void ResetCanvas(Canvas canvas);
 

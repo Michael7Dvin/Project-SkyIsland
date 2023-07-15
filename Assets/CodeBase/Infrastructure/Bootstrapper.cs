@@ -10,7 +10,7 @@ namespace Infrastructure
         private IGameStateMachine _gameStateMachine;
 
         [Inject]
-        public void Construct(IGameStateMachine gameStateMachine,
+        public void InjectDependencies(IGameStateMachine gameStateMachine,
             InitializationState initializationState,
             MainMenuState mainMenuState,
             LevelLoadingState levelLoadingState,

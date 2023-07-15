@@ -44,7 +44,7 @@ namespace Infrastructure.Services.ResourcesLoading
             if (gameObject.TryGetComponent(out T component))
                 return component;
 
-            _logger.LogError($"AssetReference: '{assetReference}' has no required component: '{typeof(T).Name}' attached");
+            _logger.LogError($"AssetReference: '{assetReference}' has no required component: '{nameof(T)}' attached");
             return null;
         }
 

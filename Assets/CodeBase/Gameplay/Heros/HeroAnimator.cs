@@ -10,6 +10,10 @@ namespace Gameplay.Heros
 {
     public class HeroAnimator : IDisposable
     {
+        private Animator _animator;
+        private IReadOnlyObservable<ExitableMovementState> _activeMovementState;
+        private CharacterController _characterController;
+
         private const float IntensitySettingDampTime = 0.3f;
 
         private readonly int _horizontalMotionIntensityFloat = Animator.StringToHash("HorizontalMotionIntensity");
@@ -17,31 +21,28 @@ namespace Gameplay.Heros
         private readonly int _groundTrigger = Animator.StringToHash("Ground");
         private readonly int _fallTrigger = Animator.StringToHash("Fall");
         private readonly int _jumpTrigger = Animator.StringToHash("Jump");
-
-        private readonly Animator _animator;
-        private readonly IReadOnlyObservable<ExitableMovementState> _activeMovementState;
-        private readonly CharacterController _characterController;
-
+        
         private readonly IUpdater _updater;
         private readonly ICustomLogger _logger;
 
-        public HeroAnimator(Animator animator,
+        public HeroAnimator(IUpdater updater, ICustomLogger logger)
+        {
+            _updater = updater;
+            _logger = logger;
+        }
+
+        public void Construct(Animator animator,
             IReadOnlyObservable<ExitableMovementState> activeMovementState,
-            CharacterController characterController,
-            IUpdater updater,
-            ICustomLogger logger)
+            CharacterController characterController)
         {
             _animator = animator;
             _activeMovementState = activeMovementState;
             _characterController = characterController;
-
-            _updater = updater;
-            _logger = logger;
-
+            
             _updater.Updated += Update;
             _activeMovementState.Changed += OnActiveMovementStateChanged;
         }
-
+        
         private float HorizontalMotionIntensity
         {
             get

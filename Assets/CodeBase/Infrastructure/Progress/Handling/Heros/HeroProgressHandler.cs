@@ -1,28 +1,45 @@
 ﻿using Gameplay.Heros;
+using Gameplay.Services.HeroProviding;
+using Infrastructure.Services.Logging;
 
 namespace Infrastructure.Progress.Handling.Heros
 {
-    public class HeroProgressHandler : IProgressHandler
+    public class HeroProgressHandler : IHeroProgressHandler
     {
-        public ISavableHero Hero { get; private set; }
-        private HeroProgress _progress;
+        private readonly IHeroProvider _heroProvider;
+        private readonly ICustomLogger _logger;
 
-        public void Init(HeroProgress progress) => 
-            _progress = progress;
-
-        public void RegisterHero(ISavableHero hero) => 
-            Hero = hero;
-
-        public void SetValuesFromProgress()
+        public HeroProgressHandler(IHeroProvider heroProvider, ICustomLogger logger)
         {
-            if (_progress.IsEmpty == false) 
-                Hero.Health = _progress.CurrentHealth;
+            _heroProvider = heroProvider;
+            _logger = logger;
         }
 
-        public void WriteValuesToProgress()
+        private IHeroProgressDataProvider HeroProgressDataProvider =>
+            _heroProvider.Hero.HeroProgressDataProvider;
+
+        public void WriteProgress(HeroProgress progress)
         {
-            _progress.IsEmpty = false;
-            _progress.CurrentHealth = Hero.Health;
+            if (_heroProvider.Hero == null)
+            {
+                _logger.LogError($"Can't write values. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
+                return;
+            }
+
+            progress.CurrentHealth = HeroProgressDataProvider.Health;
+            progress.IsEmpty = false;
+        }
+        
+        public void LoadProgress(HeroProgress progress)
+        {
+            if (_heroProvider.Hero == null)
+            {
+                _logger.LogError($"Can't set values. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
+                return;
+            }
+
+            if (progress.IsEmpty == false)
+                HeroProgressDataProvider.Health = progress.CurrentHealth;
         }
     }
 }
