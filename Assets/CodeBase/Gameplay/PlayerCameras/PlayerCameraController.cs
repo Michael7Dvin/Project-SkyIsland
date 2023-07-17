@@ -2,6 +2,7 @@
 using Cinemachine;
 using Common.Observable;
 using Infrastructure.Services.Updating;
+using UnityEngine;
 
 namespace Gameplay.PlayerCameras
 {
@@ -10,7 +11,7 @@ namespace Gameplay.PlayerCameras
         private readonly IUpdater _updater;
         private CinemachineFreeLook _freeLookController;
 
-        private Observable<float> _xAxisValue = new();
+        private readonly Observable<float> _xAxisValue = new();
         private IDisposable _disposableImplementation;
 
         public PlayerCameraController(IUpdater updater)
@@ -29,6 +30,12 @@ namespace Gameplay.PlayerCameras
         public void Dispose() => 
             _updater.NotPausingUpdated -= UpdateXAxisValue;
 
+        public void SetFollowPoint(Transform followPoint)
+        {
+            _freeLookController.Follow = followPoint;
+            _freeLookController.LookAt = followPoint;
+        }
+        
         private void UpdateXAxisValue(float deltaTime)
         {
             if (_freeLookController.m_XAxis.Value == _xAxisValue.Value)

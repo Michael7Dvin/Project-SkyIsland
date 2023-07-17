@@ -9,8 +9,6 @@ namespace UI.Services.Factories.Window
     public interface IWindowFactory
     {
         UniTask WarmUp();
-        void ResetCanvas(Canvas canvas);
-
         UniTask<IWindow> Create(WindowType type);
     }
 }

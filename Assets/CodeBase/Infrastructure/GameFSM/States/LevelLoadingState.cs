@@ -1,12 +1,12 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
-using Infrastructure.LevelLoading.LevelServicesProviding;
-using Infrastructure.LevelLoading.WarmUpping;
-using Infrastructure.LevelLoading.WorldObjectsSpawning;
+using Infrastructure.LevelLoading.SceneServices.ProgressServices;
+using Infrastructure.LevelLoading.SceneServices.SceneServicesProviding;
+using Infrastructure.LevelLoading.SceneServices.WarmUppers;
+using Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners;
 using Infrastructure.Progress;
-using Infrastructure.Progress.Services;
 using Infrastructure.Services.SceneLoading;
-using UI.Services.Factories.UI;
+using UnityEngine;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -14,31 +14,28 @@ namespace Infrastructure.GameFSM.States
     {
         private readonly ISceneLoader _sceneLoader;
         private readonly IGameStateMachine _gameStateMachine;
-        private readonly ILevelServicesProvider _levelServicesProvider;
-        private readonly IUIFactory _uiFactory;
+        private readonly ISceneServicesProvider _sceneServicesProvider;
 
         public LevelLoadingState(ISceneLoader sceneLoader,
             IGameStateMachine gameStateMachine,
-            ILevelServicesProvider levelServicesProvider,
-            IUIFactory uiFactory)
+            ISceneServicesProvider sceneServicesProvider)
         {
             _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
-            _levelServicesProvider = levelServicesProvider;
-            _uiFactory = uiFactory;
+            _sceneServicesProvider = sceneServicesProvider;
         }
 
         public async void Enter(LevelLoadingRequest request)
         {
-            await _sceneLoader.Load(request.LevelData.Scene);
+            await LoadScene(request.SceneType);
 
             await SetCurrentProgress(request.Progress);
 
             await WarmUpServices();
-            await _uiFactory.RecreateSceneUIObjects();
             await SpawnWorldObjects();
             
             await LoadProgress();
+            
             _gameStateMachine.EnterState<GameplayState>();
         }
 
@@ -46,27 +43,36 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
+        private async UniTask LoadScene(SceneType sceneType)
+        {
+            if (_sceneLoader.CurrentSceneType == sceneType)
+                return;
+            
+            Debug.Log("load scene");
+            await _sceneLoader.Load(sceneType);
+        }
+
         private async UniTask SetCurrentProgress(AllProgress progress)
         {
-            ILevelProgressService levelProgressService = await _levelServicesProvider.GetProgressService();
+            ILevelProgressService levelProgressService = await _sceneServicesProvider.GetProgressService();
             levelProgressService.SetCurrentProgress(progress);
         }
 
         private async UniTask WarmUpServices()
         {
-            IWarmUpper warmUpper = await _levelServicesProvider.GetWarmUpper();
+            IWarmUpper warmUpper = await _sceneServicesProvider.GetWarmUpper();
             await warmUpper.WarmUp();
         }
 
         private async UniTask SpawnWorldObjects()
         {
-            IWorldObjectsSpawner worldObjectsSpawner = await _levelServicesProvider.GetWorldObjectsSpawner();
+            IWorldObjectsSpawner worldObjectsSpawner = await _sceneServicesProvider.GetWorldObjectsSpawner();
             await worldObjectsSpawner.SpawnWorldObjects();
         }
 
         private async UniTask LoadProgress()
         {
-            ILevelProgressService levelProgressService = await _levelServicesProvider.GetProgressService();
+            ILevelProgressService levelProgressService = await _sceneServicesProvider.GetProgressService();
             levelProgressService.LoadCurrentProgress();
         }
     }

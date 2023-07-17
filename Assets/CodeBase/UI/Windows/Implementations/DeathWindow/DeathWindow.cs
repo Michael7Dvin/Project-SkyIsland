@@ -18,13 +18,13 @@ namespace UI.Windows.Implementations.DeathWindow
 
         protected override void SubscribeLogic()
         {
-            _view.RespawnButtonClicked += _logic.Respawn;
+            _view.RespawnButtonClicked += _logic.LoadLastSavedProgress;
             _view.MainMenuButtonClicked += _logic.ReturnToMainMenu;
         }
 
         protected override void UnSubscribeLogic()
         {
-            _view.RespawnButtonClicked -= _logic.Respawn;
+            _view.RespawnButtonClicked -= _logic.LoadLastSavedProgress;
             _view.MainMenuButtonClicked -= _logic.ReturnToMainMenu;
         }
     }

@@ -20,6 +20,7 @@ namespace UI.Windows.Implementations.PauseWindow
         {
             _view.CloseButtonClicked += Close;
             _view.OptionsButtonClicked += _logic.OpenOptions;
+            _view.LoadButtonClicked += _logic.LoadLastSavedProgress;
             _view.SaveButtonClicked += _logic.SaveProgess;
             _view.MainMenuButtonClicked += _logic.ReturnToMainMenu;
         }
@@ -28,6 +29,7 @@ namespace UI.Windows.Implementations.PauseWindow
         {
             _view.CloseButtonClicked -= Close;
             _view.OptionsButtonClicked -= _logic.OpenOptions;
+            _view.LoadButtonClicked -= _logic.LoadLastSavedProgress;
             _view.SaveButtonClicked -= _logic.SaveProgess;
             _view.MainMenuButtonClicked -= _logic.ReturnToMainMenu;
         }

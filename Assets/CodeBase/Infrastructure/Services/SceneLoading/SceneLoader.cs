@@ -20,16 +20,17 @@ namespace Infrastructure.Services.SceneLoading
         }
 
         public Scene CurrentScene { get; private set; }
+        public SceneType CurrentSceneType { get; private set; }
 
         public async UniTask Load(SceneType type)
         {
             switch (type)
             {
                 case SceneType.MainMenu:
-                    await Load(_scenes.MainMenu);
+                    await Load(_scenes.MainMenu, SceneType.MainMenu);
                     break;
                 case SceneType.Island:
-                    await Load(_scenes.Island);
+                    await Load(_scenes.Island, SceneType.Island);
                     break;
                 default:
                     _logger.LogError($"Unsupported {nameof(SceneType)}: '{type}'");
@@ -37,11 +38,12 @@ namespace Infrastructure.Services.SceneLoading
             }    
         }
 
-        private async UniTask Load(AssetReference sceneReference)
+        private async UniTask Load(AssetReference sceneReference, SceneType type)
         {
             AsyncOperationHandle<SceneInstance> handle = Addressables.LoadSceneAsync(sceneReference);
             await handle.Task;
             CurrentScene = handle.Result.Scene;
+            CurrentSceneType = type;
         }
     }
 }

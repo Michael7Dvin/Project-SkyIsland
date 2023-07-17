@@ -1,17 +1,19 @@
-﻿using Gameplay.Services.Creation.GroundSpherecasting;
-using Gameplay.Services.Creation.HeroMoving;
-using Gameplay.Services.Creation.Heros.Factory;
-using Gameplay.Services.Creation.PlayerCameras;
+﻿using Gameplay.Services.Factories.GroundSpherecasting;
+using Gameplay.Services.Factories.Heros;
+using Gameplay.Services.Factories.Heros.Moving;
+using Gameplay.Services.Factories.PlayerCameras;
 using Gameplay.Services.HeroDeath;
 using Gameplay.Services.PlayerPausing;
-using Gameplay.Services.Providing.HeroProviding;
-using Gameplay.Services.Providing.PlayerCameraProviding;
-using Infrastructure.LevelLoading.Data;
-using Infrastructure.LevelLoading.WarmUpping;
-using Infrastructure.LevelLoading.WorldObjectsSpawning;
+using Gameplay.Services.Providers.HeroProviding;
+using Gameplay.Services.Providers.PlayerCameraProviding;
+using Gameplay.Services.Spawners.Heros;
+using Gameplay.Services.Spawners.PlayerCameras;
+using Infrastructure.LevelLoading.SceneServices.ProgressServices;
+using Infrastructure.LevelLoading.SceneServices.WarmUppers.Island;
+using Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners.Island;
+using Infrastructure.LevelLoading.WorldData;
 using Infrastructure.Progress.Handling.Heros;
 using Infrastructure.Progress.Handling.IslandLevel;
-using Infrastructure.Progress.Services;
 using Infrastructure.Services.Instantiating;
 using UnityEngine;
 using Zenject;
@@ -26,6 +28,7 @@ namespace Infrastructure.Installers.Levels
         public override void InstallBindings()
         {
             BindServices();
+            BindSpawners();
             BindFactories();
             BindProviders();
             BindProgressHandlers();
@@ -38,6 +41,12 @@ namespace Infrastructure.Installers.Levels
             Container.BindInterfacesAndSelfTo<PlayerPause>().AsSingle();
         }
 
+        private void BindSpawners()
+        {
+            Container.Bind<IHeroSpawner>().To<HeroSpawner>().AsSingle();
+            Container.Bind<IPlayerCameraSpawner>().To<PlayerCameraSpawner>().AsSingle();
+        }
+        
         private void BindFactories()
         {
             Container.Bind<IHeroFactory>().To<HeroFactory>().AsSingle();

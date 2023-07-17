@@ -15,6 +15,7 @@ namespace Gameplay.Heros
         public Hero(IMovement movement,
             IInjuryProcessor injuryProcessor,
             GameObject gameObject,
+            Transform cameraFollowPoint,
             IDeath death,
             IDestroyable destroyable,
             IHeroProgressDataProvider progressDataProvider)
@@ -23,6 +24,7 @@ namespace Gameplay.Heros
             _injuryProcessor = injuryProcessor;
 
             GameObject = gameObject;
+            CameraFollowPoint = cameraFollowPoint;
             Death = death;
             Destroyable = destroyable;
             ProgressDataProvider = progressDataProvider;
@@ -31,6 +33,7 @@ namespace Gameplay.Heros
         }
 
         public GameObject GameObject { get; }
+        public Transform CameraFollowPoint { get; }
         public IDeath Death { get; }
         public IDestroyable Destroyable { get; }
         public IHeroProgressDataProvider ProgressDataProvider { get; }

@@ -1,23 +1,28 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.Providers.UI.Backgrounds;
 using Infrastructure.Services.Instantiating;
+using UI.Services.Providing.Utilities;
 using UnityEngine;
 
 namespace UI.Services.Factories.Background
 {
     public class BackgroundFactory : IBackgroundFactory
     {
-        private Canvas _canvas;
-
         private readonly IBackgroundsAssetsProvider _assetsProvider;
+        private readonly IInstantiator _instantiator;
+        private readonly IUiUtilitiesProvider _uiUtilitiesProvider;
 
-        public BackgroundFactory(IBackgroundsAssetsProvider assetsProvider, IInstantiator instantiator)
+        public BackgroundFactory(IBackgroundsAssetsProvider assetsProvider,
+            IInstantiator instantiator,
+            IUiUtilitiesProvider uiUtilitiesProvider)
         {
             _assetsProvider = assetsProvider;
             _instantiator = instantiator;
+            _uiUtilitiesProvider = uiUtilitiesProvider;
         }
 
-        private readonly IInstantiator _instantiator;
+        private Transform Canvas =>
+            _uiUtilitiesProvider.Canvas.Value.transform;
 
         public async UniTask WarmUp()
         {
@@ -25,14 +30,11 @@ namespace UI.Services.Factories.Background
             await _assetsProvider.LoadPause();
             await _assetsProvider.LoadDeath();
         }
-
-        public void ResetCanvas(Canvas canvas) => 
-            _canvas = canvas;
-
+        
         public async UniTask<GameObject> CreateMainMenu()
         {
             GameObject prefab = await _assetsProvider.LoadMainMenu();
-            GameObject background = _instantiator.InstantiatePrefab(prefab, _canvas.transform);
+            GameObject background = _instantiator.InstantiatePrefab(prefab, Canvas);
             MakeFirstInCanvasHierarchy(background);
             return background;
         }
@@ -40,7 +42,7 @@ namespace UI.Services.Factories.Background
         public async UniTask<GameObject> CreatePause()
         {
             GameObject prefab = await _assetsProvider.LoadPause();
-            GameObject background = _instantiator.InstantiatePrefab(prefab, _canvas.transform);
+            GameObject background = _instantiator.InstantiatePrefab(prefab, Canvas);
             MakeFirstInCanvasHierarchy(background);
             return background;
         }
@@ -48,7 +50,7 @@ namespace UI.Services.Factories.Background
         public async UniTask<GameObject> CreateDeath()
         {
             GameObject prefab = await _assetsProvider.LoadDeath();
-            GameObject background = _instantiator.InstantiatePrefab(prefab, _canvas.transform);
+            GameObject background = _instantiator.InstantiatePrefab(prefab, Canvas);
             MakeFirstInCanvasHierarchy(background);
             return background;
         }

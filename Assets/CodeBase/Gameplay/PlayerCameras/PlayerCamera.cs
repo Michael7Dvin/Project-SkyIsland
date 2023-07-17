@@ -23,7 +23,7 @@ namespace Gameplay.PlayerCameras
         public PlayerCameraController PlayerCameraController { get; }
         public IDestroyable Destroyable { get; }
         public PlayerCameraProgressDataProvider ProgressDataDataProvider { get; }
-        
+
         public void Dispose()
         {
             Destroyable.Destroyed -= Dispose;

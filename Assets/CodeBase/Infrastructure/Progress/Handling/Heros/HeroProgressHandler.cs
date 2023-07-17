@@ -1,5 +1,5 @@
 ﻿using Gameplay.Heros;
-using Gameplay.Services.Providing.HeroProviding;
+using Gameplay.Services.Providers.HeroProviding;
 using Infrastructure.Services.Logging;
 
 namespace Infrastructure.Progress.Handling.Heros

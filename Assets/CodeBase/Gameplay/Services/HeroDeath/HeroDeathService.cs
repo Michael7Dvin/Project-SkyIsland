@@ -18,9 +18,12 @@ namespace Gameplay.Services.HeroDeath
             _logger = logger;
         }
 
-        public void Init(IDeath playerDeath)
+        public void Reinitialize(IDeath heroDeath)
         {
-            _playerDeath = playerDeath;
+            if (_playerDeath != null)
+                _playerDeath.Died -= OnPlayerDied;
+            
+            _playerDeath = heroDeath;
             _playerDeath.Died += OnPlayerDied;
         }
 

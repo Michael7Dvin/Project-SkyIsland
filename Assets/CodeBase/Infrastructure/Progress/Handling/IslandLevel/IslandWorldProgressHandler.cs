@@ -1,7 +1,7 @@
 ﻿using Gameplay.Heros;
 using Gameplay.PlayerCameras;
-using Gameplay.Services.Providing.HeroProviding;
-using Gameplay.Services.Providing.PlayerCameraProviding;
+using Gameplay.Services.Providers.HeroProviding;
+using Gameplay.Services.Providers.PlayerCameraProviding;
 using Infrastructure.Services.Logging;
 using UnityEngine;
 

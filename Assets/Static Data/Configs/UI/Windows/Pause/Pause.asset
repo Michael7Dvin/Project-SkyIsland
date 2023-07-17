@@ -20,6 +20,8 @@ MonoBehaviour:
     type: 2}
   <OptionsButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
     type: 2}
+  <LoadButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
+    type: 2}
   <SaveButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,
     type: 2}
   <MainMenuButtonConfig>k__BackingField: {fileID: 11400000, guid: 27e1c30b49989cc41b24693b2515d012,

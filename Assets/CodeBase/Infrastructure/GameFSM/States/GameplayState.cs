@@ -1,17 +1,14 @@
 ﻿using Common.FSM;
 using Infrastructure.Services.Input;
-using Infrastructure.Services.ResourcesLoading;
 
 namespace Infrastructure.GameFSM.States
 {
     public class GameplayState : IState
     {
-        private readonly IAddressablesLoader _addressablesLoader;
         private readonly IInputService _inputService;
 
-        public GameplayState(IAddressablesLoader addressablesLoader, IInputService inputService)
+        public GameplayState(IInputService inputService)
         {
-            _addressablesLoader = addressablesLoader;
             _inputService = inputService;
         }
 
@@ -21,7 +18,6 @@ namespace Infrastructure.GameFSM.States
         public void Exit()
         {
             _inputService.DisableAllInput();
-            _addressablesLoader.ClearCache();
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using Infrastructure.LevelLoading.Data;
 using Infrastructure.Progress;
 using Infrastructure.Services.SaveLoadService;
+using Infrastructure.Services.SceneLoading;
 
 namespace UI.Windows.Implementations.SaveSelection
 {
@@ -20,12 +21,17 @@ namespace UI.Windows.Implementations.SaveSelection
 
         public async void StartGame(SaveSlot saveSlot)
         {
+            LevelLoadingRequest levelLoadingRequest = await CreateLevelLoadingRequest(saveSlot);
+            _gameStateMachine.EnterState<LevelLoadingState, LevelLoadingRequest>(levelLoadingRequest);
+        }
+
+        private async UniTask<LevelLoadingRequest> CreateLevelLoadingRequest(SaveSlot saveSlot)
+        {
             AllProgress currentProgress = await GetAllProgress(saveSlot);
 
-            LevelData currentLevelData = currentProgress.CurrentLevel;
-            LevelLoadingRequest levelLoadingRequest = new LevelLoadingRequest(currentLevelData, currentProgress);
-            
-            _gameStateMachine.EnterState<LevelLoadingState, LevelLoadingRequest>(levelLoadingRequest);
+            SceneType currentLevelScene = currentProgress.CurrentScene;
+            LevelLoadingRequest levelLoadingRequest = new LevelLoadingRequest(currentLevelScene, currentProgress);
+            return levelLoadingRequest;
         }
 
         private async UniTask<AllProgress> GetAllProgress(SaveSlot saveSlot)

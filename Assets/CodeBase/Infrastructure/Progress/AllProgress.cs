@@ -1,6 +1,4 @@
 ﻿using System;
-using Infrastructure.LevelLoading;
-using Infrastructure.LevelLoading.Data;
 using Infrastructure.Progress.Handling.Heros;
 using Infrastructure.Progress.Handling.IslandLevel;
 using Infrastructure.Services.SaveLoadService;
@@ -12,8 +10,8 @@ namespace Infrastructure.Progress
     public class AllProgress
     {
         public readonly SaveSlot SaveSlot;
-        
-        public LevelData CurrentLevel;
+
+        public SceneType CurrentScene;
 
         public HeroProgress HeroProgress;
         public IslandWorldProgress IslandWorldProgress;
@@ -22,7 +20,7 @@ namespace Infrastructure.Progress
         {
             SaveSlot = saveSlot;
 
-            CurrentLevel = new LevelData(LevelType.Island, SceneType.Island);
+            CurrentScene = SceneType.Island;
             HeroProgress = new HeroProgress();
             IslandWorldProgress = new IslandWorldProgress();
         }

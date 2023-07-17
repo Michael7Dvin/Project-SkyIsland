@@ -1,6 +1,5 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using TMPro;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Controls.Buttons.Close;
@@ -15,6 +14,7 @@ namespace UI.Windows.Implementations.PauseWindow
     {
         [SerializeField] private CloseButton _closeButton;
         [SerializeField] private SelectableButton _optionsButton;
+        [SerializeField] private SelectableButton _loadButton;
         [SerializeField] private SelectableButton _saveButton;
         [SerializeField] private SelectableButton _mainMenuButton;
 
@@ -29,6 +29,7 @@ namespace UI.Windows.Implementations.PauseWindow
             _closeButton.Construct(config.CloseButtonConfig);
             
             _optionsButton.Construct(config.OptionsButtonConfig);
+            _loadButton.Construct(config.LoadButtonConfig);
             _saveButton.Construct(config.SaveButtonConfig);
             _mainMenuButton.Construct(config.MainMenuButtonConfig);
             
@@ -43,6 +44,7 @@ namespace UI.Windows.Implementations.PauseWindow
         
         public event Action CloseButtonClicked;
         public event Action OptionsButtonClicked;
+        public event Action LoadButtonClicked;
         public event Action SaveButtonClicked;
         public event Action MainMenuButtonClicked;
 
@@ -77,6 +79,7 @@ namespace UI.Windows.Implementations.PauseWindow
         {
             _closeButton.Cliked += OnCloseButtonClick;
             _optionsButton.Cliked += OnOptionsButtonClick;
+            _loadButton.Cliked += OnLoadButtonClick;
             _saveButton.Cliked += OnSaveButtonClick;
             _mainMenuButton.Cliked += OnMainMenuButtonClick;
         }
@@ -85,6 +88,7 @@ namespace UI.Windows.Implementations.PauseWindow
         {
             _closeButton.Cliked -= OnCloseButtonClick;
             _optionsButton.Cliked -= OnOptionsButtonClick;
+            _loadButton.Cliked -= OnLoadButtonClick;
             _saveButton.Cliked -= OnSaveButtonClick;
             _mainMenuButton.Cliked -= OnMainMenuButtonClick;
         }
@@ -107,7 +111,10 @@ namespace UI.Windows.Implementations.PauseWindow
         private void OnOptionsButtonClick() => 
             OptionsButtonClicked?.Invoke();
 
-        private  void OnSaveButtonClick() => 
+        private void OnLoadButtonClick() => 
+            LoadButtonClicked?.Invoke();
+        
+        private void OnSaveButtonClick() => 
             SaveButtonClicked?.Invoke();
 
         private void OnMainMenuButtonClick() => 

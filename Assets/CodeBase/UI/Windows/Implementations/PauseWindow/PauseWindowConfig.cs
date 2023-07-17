@@ -13,6 +13,7 @@ namespace UI.Windows.Implementations.PauseWindow
         [field: SerializeField] public WindowMoverConfig WindowMoverConfig { get; private set; }
         [field: SerializeField] public CloseButtonConfig CloseButtonConfig { get; private set; }
         [field: SerializeField] public SelectableButtonConfig OptionsButtonConfig { get; private set; }
+        [field: SerializeField] public SelectableButtonConfig LoadButtonConfig { get; private set; }
         [field: SerializeField] public SelectableButtonConfig SaveButtonConfig { get; private set; }
         [field: SerializeField] public SelectableButtonConfig MainMenuButtonConfig { get; private set; }
     }

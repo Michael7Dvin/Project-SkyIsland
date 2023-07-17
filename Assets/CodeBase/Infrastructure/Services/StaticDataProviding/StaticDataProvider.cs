@@ -1,9 +1,6 @@
-﻿using Gameplay.Services.Creation.Heros;
-using Gameplay.Services.Creation.Heros.Factory;
-using Gameplay.Services.Creation.PlayerCameras;
+﻿using Gameplay.Services.Factories.Heros;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.SceneLoading;
-using UI;
 using UI.Services.Factories.Window;
 
 namespace Infrastructure.Services.StaticDataProviding
@@ -13,14 +10,12 @@ namespace Infrastructure.Services.StaticDataProviding
         public StaticDataProvider(AllAssetsAddresses allAssetsAddresses,
             ScenesData scenesData,
             HeroConfig heroConfig,
-            PlayerCameraConfig playerCameraConfig,
             WindowsConfigs windowsConfigs)
         {
             AssetsAddresses = allAssetsAddresses;
             ScenesData = scenesData;
 
             HeroConfig = heroConfig;
-            PlayerCameraConfig = playerCameraConfig;
             WindowsConfigs = windowsConfigs;
         }
 
@@ -29,6 +24,5 @@ namespace Infrastructure.Services.StaticDataProviding
 
         public HeroConfig HeroConfig { get; }
         public WindowsConfigs WindowsConfigs { get; }
-        public PlayerCameraConfig PlayerCameraConfig { get; }
     }
 }
