@@ -5,10 +5,10 @@ using Gameplay.PlayerCameras;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.AssetProviding.Providers.ForCamera;
 using Infrastructure.Services.Input;
-using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Gameplay.Services.Factories.PlayerCameras
 {
@@ -93,7 +93,8 @@ namespace Gameplay.Services.Factories.PlayerCameras
         {
             CinemachineFreeLook prefab = await _cameraAssetsProvider.LoadFreeLookController();
             
-            CinemachineFreeLook controller = _instantiator.InstantiatePrefabForComponent(prefab, parent);
+            CinemachineFreeLook controller = 
+                _instantiator.InstantiatePrefabForComponent<CinemachineFreeLook>(prefab, parent);
 
             SetUpFreeLookControllerInput(controller);
 

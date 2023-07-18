@@ -16,7 +16,7 @@ namespace UI.Windows.Implementations.PauseWindow
         public override WindowType Type => WindowType.Pause;
         public override int MaxOpenedInstances => 1;
 
-        protected override void SubscribeLogic()
+        protected override void OnOpened()
         {
             _view.CloseButtonClicked += Close;
             _view.OptionsButtonClicked += _logic.OpenOptions;
@@ -25,7 +25,7 @@ namespace UI.Windows.Implementations.PauseWindow
             _view.MainMenuButtonClicked += _logic.ReturnToMainMenu;
         }
 
-        protected override void UnSubscribeLogic()
+        protected override void OnClosed()
         {
             _view.CloseButtonClicked -= Close;
             _view.OptionsButtonClicked -= _logic.OpenOptions;

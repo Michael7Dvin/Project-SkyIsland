@@ -8,19 +8,19 @@ namespace Infrastructure.Services.StaticDataProviding
     public class StaticDataProvider : IStaticDataProvider
     {
         public StaticDataProvider(AllAssetsAddresses allAssetsAddresses,
-            ScenesData scenesData,
+            AllScenesData allScenesData,
             HeroConfig heroConfig,
             WindowsConfigs windowsConfigs)
         {
             AssetsAddresses = allAssetsAddresses;
-            ScenesData = scenesData;
+            ScenesData = allScenesData;
 
             HeroConfig = heroConfig;
             WindowsConfigs = windowsConfigs;
         }
 
         public AllAssetsAddresses AssetsAddresses { get; }
-        public ScenesData ScenesData { get; }
+        public AllScenesData ScenesData { get; }
 
         public HeroConfig HeroConfig { get; }
         public WindowsConfigs WindowsConfigs { get; }

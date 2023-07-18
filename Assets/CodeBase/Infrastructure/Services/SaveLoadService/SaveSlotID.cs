@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Services.SaveLoadService
 {
-    public enum SaveSlot
+    public enum SaveSlotID
     {
         First = 0,
         Second = 1,

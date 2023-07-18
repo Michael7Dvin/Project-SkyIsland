@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.Providers.UI.Backgrounds;
-using Infrastructure.Services.Instantiating;
 using UI.Services.Providing.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace UI.Services.Factories.Background
 {

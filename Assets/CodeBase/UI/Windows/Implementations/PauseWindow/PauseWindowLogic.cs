@@ -12,7 +12,9 @@ namespace UI.Windows.Implementations.PauseWindow
         private readonly IGameStateMachine _gameStateMachine;
         private readonly IWindowsOperator _windowsOperator;
 
-        public PauseWindowLogic(ILevelProgressService levelProgressService, IGameStateMachine gameStateMachine, IWindowsOperator windowsOperator)
+        public PauseWindowLogic(ILevelProgressService levelProgressService,
+            IGameStateMachine gameStateMachine,
+            IWindowsOperator windowsOperator)
         {
             _levelProgressService = levelProgressService;
             _gameStateMachine = gameStateMachine;

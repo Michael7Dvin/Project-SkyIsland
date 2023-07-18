@@ -14,10 +14,8 @@ using Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners.Island;
 using Infrastructure.LevelLoading.WorldData;
 using Infrastructure.Progress.Handling.Heros;
 using Infrastructure.Progress.Handling.IslandLevel;
-using Infrastructure.Services.Instantiating;
 using UnityEngine;
 using Zenject;
-using IInstantiator = Infrastructure.Services.Instantiating.IInstantiator;
 
 namespace Infrastructure.Installers.Levels
 {

@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.Providers.UI.Windows;
-using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Factories.Background;
@@ -12,6 +11,7 @@ using UI.Windows.Implementations.MainMenu;
 using UI.Windows.Implementations.PauseWindow;
 using UI.Windows.Implementations.SaveSelection;
 using UnityEngine;
+using Zenject;
 
 namespace UI.Services.Factories.Window
 {
@@ -83,7 +83,8 @@ namespace UI.Services.Factories.Window
             GameObject background = await _backgroundFactory.CreateMainMenu();
 
             MainMenuWindowView viewPrefab = await _assetsProvider.LoadMainMenuWindow();
-            MainMenuWindowView view = _instantiator.InstantiatePrefabForComponent(viewPrefab, Canvas);
+            MainMenuWindowView view =
+                _instantiator.InstantiatePrefabForComponent<MainMenuWindowView>(viewPrefab, Canvas);
             view.Construct(_windowsConfigs.MainMenu, background);
 
             MainMenuWindowLogic logic = _instantiator.Instantiate<MainMenuWindowLogic>();
@@ -96,7 +97,8 @@ namespace UI.Services.Factories.Window
         private async UniTask<SaveSelectionWindow> CreateSaveSelection()
         {
             SaveSelectionWindowView viewPrefab = await _assetsProvider.LoadSaveSelectionWindow();
-            SaveSelectionWindowView view = _instantiator.InstantiatePrefabForComponent(viewPrefab, Canvas);
+            SaveSelectionWindowView view = 
+                _instantiator.InstantiatePrefabForComponent<SaveSelectionWindowView>(viewPrefab, Canvas);
             view.Construct(_windowsConfigs.SaveSelection);
 
             SaveSelectionWindowLogic logic = _instantiator.Instantiate<SaveSelectionWindowLogic>();
@@ -111,7 +113,7 @@ namespace UI.Services.Factories.Window
             GameObject background = await _backgroundFactory.CreatePause();
 
             PauseWindowView viewPrefab = await _assetsProvider.LoadPauseWindow();
-            PauseWindowView view = _instantiator.InstantiatePrefabForComponent(viewPrefab, Canvas);
+            PauseWindowView view = _instantiator.InstantiatePrefabForComponent<PauseWindowView>(viewPrefab, Canvas);
             view.Construct(_windowsConfigs.Pause, background);
 
             PauseWindowLogic logic = _instantiator.Instantiate<PauseWindowLogic>();
@@ -125,7 +127,7 @@ namespace UI.Services.Factories.Window
             GameObject background = await _backgroundFactory.CreateDeath();
             
             DeathWindowView viewPrefab = await _assetsProvider.LoadDeathWindow();
-            DeathWindowView view = _instantiator.InstantiatePrefabForComponent(viewPrefab, Canvas);
+            DeathWindowView view = _instantiator.InstantiatePrefabForComponent<DeathWindowView>(viewPrefab, Canvas);
             view.Construct(_windowsConfigs.Death, background);
             
             DeathWindowLogic logic = _instantiator.Instantiate<DeathWindowLogic>();

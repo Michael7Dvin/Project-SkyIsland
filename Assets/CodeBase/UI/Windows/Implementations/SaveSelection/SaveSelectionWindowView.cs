@@ -4,7 +4,6 @@ using Infrastructure.Services.SaveLoadService;
 using UI.Animators.WindowMover;
 using UI.Animators.WindowScaler;
 using UI.Controls.Buttons.Close;
-using UI.Controls.Buttons.SaveSlots;
 using UI.Windows.Base.WindowView;
 using UnityEngine;
 
@@ -14,9 +13,9 @@ namespace UI.Windows.Implementations.SaveSelection
     public class SaveSelectionWindowView : BaseWindowView
     {
         [SerializeField] private CloseButton _closeButton;
-        [SerializeField] private SaveSlotButton _saveSlot1;
-        [SerializeField] private SaveSlotButton _saveSlot2;
-        [SerializeField] private SaveSlotButton _saveSlot3;
+        [SerializeField] private SaveSlot _saveSlot1;
+        [SerializeField] private SaveSlot _saveSlot2;
+        [SerializeField] private SaveSlot _saveSlot3;
         
         private bool _isWindowClosing;
 
@@ -27,9 +26,9 @@ namespace UI.Windows.Implementations.SaveSelection
         {
             _closeButton.Construct(config.CloseButtonConfig);
             
-            _saveSlot1.Construct(config.SaveSlotButtonConfig);
-            _saveSlot2.Construct(config.SaveSlotButtonConfig);
-            _saveSlot3.Construct(config.SaveSlotButtonConfig);
+            _saveSlot1.Construct(SaveSlotID.First, config.SaveSlotButtonConfig, config.DeleteSaveButtonConfig);
+            _saveSlot2.Construct(SaveSlotID.Second, config.SaveSlotButtonConfig, config.DeleteSaveButtonConfig);
+            _saveSlot3.Construct(SaveSlotID.Third, config.SaveSlotButtonConfig, config.DeleteSaveButtonConfig);
 
             RectTransform rectTransform = GetComponent<RectTransform>();
 
@@ -39,8 +38,13 @@ namespace UI.Windows.Implementations.SaveSelection
             EnableAnimators();
         }
 
+        public SaveSlot SaveSlot1 => _saveSlot1;
+        public SaveSlot SaveSlot2 => _saveSlot2;
+        public SaveSlot SaveSlot3 => _saveSlot3;
+        
         public event Action CloseButtonClicked;
-        public event Action<SaveSlot> SaveSlotButtonClicked;
+        public event Action<SaveSlotID> SaveSlotButtonClicked;
+        public event Action<SaveSlotID> DeleteSaveButtonClicked;
 
         public override async void Open()
         {
@@ -71,17 +75,26 @@ namespace UI.Windows.Implementations.SaveSelection
         {
             _closeButton.Cliked += OnCloseSlotButtonClick;
             
-            _saveSlot1.Cliked += OnFirstSaveSlotButtonClick;
-            _saveSlot2.Cliked += OnSecondSaveSlotButtonClick;
-            _saveSlot3.Cliked += OnThirdSaveSlotButtonClick;
+            _saveSlot1.SaveSlotButton.Cliked += OnFirstSaveSlotButtonClick;
+            _saveSlot2.SaveSlotButton.Cliked += OnSecondSaveSlotButtonClick;
+            _saveSlot3.SaveSlotButton.Cliked += OnThirdSaveSlotButtonClick;
+            
+            _saveSlot1.DeleteSaveButton.Cliked += OnFirstDeleteSaveButtonClick;
+            _saveSlot2.DeleteSaveButton.Cliked += OnSecondDeleteSaveButtonClick;
+            _saveSlot3.DeleteSaveButton.Cliked += OnThirdDeleteSaveButtonClick;
         }
 
         protected override void UnsubscribeControls()
         {
             _closeButton.Cliked -= OnCloseSlotButtonClick;
-            _saveSlot1.Cliked -= OnFirstSaveSlotButtonClick;
-            _saveSlot2.Cliked -= OnSecondSaveSlotButtonClick;
-            _saveSlot3.Cliked -= OnThirdSaveSlotButtonClick;
+            
+            _saveSlot1.SaveSlotButton.Cliked -= OnFirstSaveSlotButtonClick;
+            _saveSlot2.SaveSlotButton.Cliked -= OnSecondSaveSlotButtonClick;
+            _saveSlot3.SaveSlotButton.Cliked -= OnThirdSaveSlotButtonClick;
+            
+            _saveSlot1.DeleteSaveButton.Cliked -= OnFirstDeleteSaveButtonClick;
+            _saveSlot2.DeleteSaveButton.Cliked -= OnSecondDeleteSaveButtonClick;
+            _saveSlot3.DeleteSaveButton.Cliked -= OnThirdDeleteSaveButtonClick;
         }
 
         protected override void EnableAnimators()
@@ -100,10 +113,17 @@ namespace UI.Windows.Implementations.SaveSelection
             CloseButtonClicked?.Invoke();
         
         private void OnFirstSaveSlotButtonClick() => 
-            SaveSlotButtonClicked?.Invoke(SaveSlot.First);
+            SaveSlotButtonClicked?.Invoke(SaveSlotID.First);
         private void OnSecondSaveSlotButtonClick() => 
-            SaveSlotButtonClicked?.Invoke(SaveSlot.Second);
+            SaveSlotButtonClicked?.Invoke(SaveSlotID.Second);
         private void OnThirdSaveSlotButtonClick() => 
-            SaveSlotButtonClicked?.Invoke(SaveSlot.Third);
+            SaveSlotButtonClicked?.Invoke(SaveSlotID.Third);
+        
+        private void OnFirstDeleteSaveButtonClick() => 
+            DeleteSaveButtonClicked?.Invoke(SaveSlotID.First);
+        private void OnSecondDeleteSaveButtonClick() => 
+            DeleteSaveButtonClicked?.Invoke(SaveSlotID.Second);
+        private void OnThirdDeleteSaveButtonClick() => 
+            DeleteSaveButtonClicked?.Invoke(SaveSlotID.Third);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gameplay.Movement.GroundSpherecasting;
 using Infrastructure.Services.AssetProviding.Providers.Common;
-using Infrastructure.Services.Instantiating;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Services.Factories.GroundSpherecasting
 {

@@ -10,11 +10,11 @@ using Gameplay.MonoBehaviours.Destroyable;
 using Gameplay.Services.Factories.Heros.Moving;
 using Gameplay.Services.Factories.PlayerCameras;
 using Infrastructure.Services.AssetProviding.Providers.Common;
-using Infrastructure.Services.Instantiating;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using UI.Services.Factories.HUD;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay.Services.Factories.Heros
 {
@@ -97,7 +97,7 @@ namespace Gameplay.Services.Factories.Heros
         private async Task<GameObject> CreateHeroGameObject(Vector3 position, Quaternion rotation)
         {
             GameObject prefab = await _commonAssetsProvider.LoadHero();
-            GameObject heroGameObject = _instantiator.InstantiatePrefab(prefab, position, rotation);
+            GameObject heroGameObject = _instantiator.InstantiatePrefab(prefab, position, rotation, null);
             return heroGameObject;
         }
 

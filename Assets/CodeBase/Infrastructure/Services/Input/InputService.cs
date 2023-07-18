@@ -10,7 +10,7 @@ namespace Infrastructure.Services.Input
     {
         private PlayerInput _input;
         
-        public void Init()
+        public void Initialize()
         {
             _input = new PlayerInput();
             _input.Enable();

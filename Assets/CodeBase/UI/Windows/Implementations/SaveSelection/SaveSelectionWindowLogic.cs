@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.Progress;
@@ -19,29 +18,35 @@ namespace UI.Windows.Implementations.SaveSelection
             _gameStateMachine = gameStateMachine;
         }
 
-        public async void StartGame(SaveSlot saveSlot)
+        public async void StartGame(SaveSlotID saveSlotID)
         {
-            LevelLoadingRequest levelLoadingRequest = await CreateLevelLoadingRequest(saveSlot);
+            LevelLoadingRequest levelLoadingRequest = await CreateLevelLoadingRequest(saveSlotID);
             _gameStateMachine.EnterState<LevelLoadingState, LevelLoadingRequest>(levelLoadingRequest);
         }
 
-        private async UniTask<LevelLoadingRequest> CreateLevelLoadingRequest(SaveSlot saveSlot)
+        public UniTask<(bool isSuccessful, AllProgress result)> GetProgress(SaveSlotID saveSlotID) =>
+            _saveLoadService.TryLoad(saveSlotID);
+        
+        public void DeleteSaveFile(SaveSlotID saveSlotID) =>
+            _saveLoadService.DeleteSaveFile(saveSlotID);
+
+        private async UniTask<LevelLoadingRequest> CreateLevelLoadingRequest(SaveSlotID saveSlotID)
         {
-            AllProgress currentProgress = await GetAllProgress(saveSlot);
+            AllProgress currentProgress = await GetAllProgress(saveSlotID);
 
             SceneType currentLevelScene = currentProgress.CurrentScene;
             LevelLoadingRequest levelLoadingRequest = new LevelLoadingRequest(currentLevelScene, currentProgress);
             return levelLoadingRequest;
         }
 
-        private async UniTask<AllProgress> GetAllProgress(SaveSlot saveSlot)
+        private async UniTask<AllProgress> GetAllProgress(SaveSlotID saveSlotID)
         {
-            (bool isSuccessful, AllProgress result) progressLoading = await _saveLoadService.TryLoad(saveSlot);
+            (bool isSuccessful, AllProgress result) progressLoading = await _saveLoadService.TryLoad(saveSlotID);
 
             if (progressLoading.isSuccessful == true)
                 return progressLoading.result;
 
-            return new AllProgress(saveSlot);
+            return new AllProgress(saveSlotID);
         }
     }
 }

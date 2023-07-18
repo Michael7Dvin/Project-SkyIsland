@@ -1,10 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gameplay.Healths;
 using Infrastructure.Services.AssetProviding.Providers.UI.HUD;
-using Infrastructure.Services.Instantiating;
 using UI.HUD;
 using UI.Services.Providing.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace UI.Services.Factories.HUD
 {
@@ -32,7 +32,7 @@ namespace UI.Services.Factories.HUD
         public async UniTask<HealthBar> CreateHealthBar(IHealth health)
         {
             HealthBar prefab = await _assetsProvider.LoadHealthBar();
-            HealthBar healthBar = _instantiator.InstantiatePrefabForComponent(prefab, Canvas);
+            HealthBar healthBar = _instantiator.InstantiatePrefabForComponent<HealthBar>(prefab, Canvas);
             healthBar.Construct(health);
             return healthBar;
         }

@@ -12,6 +12,7 @@ namespace UI.Windows.Implementations.SaveSelection
         [field: SerializeField] public WindowScalerConfig WindowScalerConfig { get; private set; }
         [field: SerializeField] public WindowMoverConfig WindowMoverConfig { get; private set; }
         [field: SerializeField] public CloseButtonConfig CloseButtonConfig { get; private set; }
+        [field: SerializeField] public CloseButtonConfig DeleteSaveButtonConfig { get; private set; }
         [field: SerializeField] public SaveSlotButtonConfig SaveSlotButtonConfig { get; private set; }
     }
 }

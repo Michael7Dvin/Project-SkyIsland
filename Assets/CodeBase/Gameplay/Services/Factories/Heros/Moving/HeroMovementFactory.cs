@@ -13,7 +13,7 @@ using Infrastructure.Services.Input;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
 using UnityEngine;
-using IInstantiator = Infrastructure.Services.Instantiating.IInstantiator;
+using Zenject;
 
 namespace Gameplay.Services.Factories.Heros.Moving
 {

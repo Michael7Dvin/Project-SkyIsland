@@ -18,3 +18,4 @@ MonoBehaviour:
     type: 2}
   <Camera>k__BackingField: {fileID: 11400000, guid: a231723da9d9c3947b95e95c22a8f81e,
     type: 2}
+  <AllScenes>k__BackingField: {fileID: 0}

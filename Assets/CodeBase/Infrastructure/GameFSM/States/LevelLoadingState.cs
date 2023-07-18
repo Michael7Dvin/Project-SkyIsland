@@ -6,7 +6,6 @@ using Infrastructure.LevelLoading.SceneServices.WarmUppers;
 using Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners;
 using Infrastructure.Progress;
 using Infrastructure.Services.SceneLoading;
-using UnityEngine;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -27,6 +26,8 @@ namespace Infrastructure.GameFSM.States
 
         public async void Enter(LevelLoadingRequest request)
         {
+            request.Progress.CurrentScene = request.SceneType;
+            
             await LoadScene(request.SceneType);
 
             await SetCurrentProgress(request.Progress);
@@ -45,10 +46,9 @@ namespace Infrastructure.GameFSM.States
 
         private async UniTask LoadScene(SceneType sceneType)
         {
-            if (_sceneLoader.CurrentSceneType == sceneType)
+            if (_sceneLoader.CurrentScene == sceneType)
                 return;
             
-            Debug.Log("load scene");
             await _sceneLoader.Load(sceneType);
         }
 

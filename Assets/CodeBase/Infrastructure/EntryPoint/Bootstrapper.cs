@@ -1,16 +1,14 @@
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using UnityEngine;
 using Zenject;
 
-namespace Infrastructure
+namespace Infrastructure.EntryPoint
 {
-    public class Bootstrapper : MonoBehaviour, IInitializable
+    public class Bootstrapper : IInitializable
     {
-        private IGameStateMachine _gameStateMachine;
+        private readonly IGameStateMachine _gameStateMachine;
 
-        [Inject]
-        public void InjectDependencies(IGameStateMachine gameStateMachine,
+        public Bootstrapper(IGameStateMachine gameStateMachine,
             InitializationState initializationState,
             MainMenuState mainMenuState,
             LevelLoadingState levelLoadingState,

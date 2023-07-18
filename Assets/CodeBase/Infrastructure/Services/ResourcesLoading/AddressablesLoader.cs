@@ -22,7 +22,7 @@ namespace Infrastructure.Services.ResourcesLoading
         {
             if (assetReference.RuntimeKeyIsValid() == false)
             {
-                _logger.LogError("AssetReference is null");
+                _logger.LogError("Unable to load GameObject. AssetReference is null");
                 return null;
             }
 
@@ -44,7 +44,7 @@ namespace Infrastructure.Services.ResourcesLoading
             if (gameObject.TryGetComponent(out T component))
                 return component;
 
-            _logger.LogError($"AssetReference: '{assetReference}' has no required component: '{nameof(T)}' attached");
+            _logger.LogError($"Unable to load Component. AssetReference: '{assetReference}' has no required component: '{nameof(T)}' attached");
             return null;
         }
 

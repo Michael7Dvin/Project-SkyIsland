@@ -76,8 +76,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _allAssetsAddresses: {fileID: 11400000, guid: d619824faef37334a8f676ec48bdf645,
     type: 2}
-  _scenesData: {fileID: 11400000, guid: 2dfaa30438c2b8c43986cc55b2600435, type: 2}
+  _allScenesData: {fileID: 11400000, guid: f7c6969e380a11e4d8171b148c848159, type: 2}
   _heroConfig: {fileID: 11400000, guid: 18d970801670d9342b0507845021d04f, type: 2}
-  _playerCameraConfig: {fileID: 11400000, guid: 4b97f4861d04fc74dba6ec0f65ff4c0c,
-    type: 2}
   _windowsConfigs: {fileID: 11400000, guid: 97ed40fde8417994d891680d7f7d0bbf, type: 2}

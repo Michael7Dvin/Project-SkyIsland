@@ -1,10 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.Services.AssetProviding.Providers.UI.All;
 using Infrastructure.Services.Input;
-using Infrastructure.Services.Instantiating;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using Zenject;
 
 namespace UI.Services.Factories.Utilities
 {
@@ -33,14 +33,14 @@ namespace UI.Services.Factories.Utilities
         public async UniTask<Canvas> CreateCanvas()
         {
             Canvas prefab = await _uiUtilitiesAssetsProvider.LoadCanvas();
-            Canvas canvas = _instantiator.InstantiatePrefabForComponent(prefab);
+            Canvas canvas = _instantiator.InstantiatePrefabForComponent<Canvas>(prefab);
             return canvas;
         }
         
         public async UniTask<EventSystem> CreateEventSystem()
         {
             EventSystem prefab = await _uiUtilitiesAssetsProvider.LoadEventSystem();
-            EventSystem eventSystem = _instantiator.InstantiatePrefabForComponent(prefab);
+            EventSystem eventSystem = _instantiator.InstantiatePrefabForComponent<EventSystem>(prefab);
             
             SetUpEventSystemInput(eventSystem);
 

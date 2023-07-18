@@ -16,13 +16,13 @@ namespace UI.Windows.Implementations.DeathWindow
         public override WindowType Type => WindowType.Death;
         public override int MaxOpenedInstances => 1;
 
-        protected override void SubscribeLogic()
+        protected override void OnOpened()
         {
             _view.RespawnButtonClicked += _logic.LoadLastSavedProgress;
             _view.MainMenuButtonClicked += _logic.ReturnToMainMenu;
         }
 
-        protected override void UnSubscribeLogic()
+        protected override void OnClosed()
         {
             _view.RespawnButtonClicked -= _logic.LoadLastSavedProgress;
             _view.MainMenuButtonClicked -= _logic.ReturnToMainMenu;

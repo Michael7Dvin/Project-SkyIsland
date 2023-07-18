@@ -29,24 +29,24 @@ namespace UI.Windows.Base.Window
         public void Open()
         {
             _view.Open();
-            SubscribeLogic();
+            OnOpened();
             _isOpen.Value = true;
         }
 
         public void Close()
         {
             _view.Close();
-            UnSubscribeLogic();
+            OnClosed();
             _isOpen.Value = false;
         }
 
-        protected abstract void SubscribeLogic();
-        protected abstract void UnSubscribeLogic();
+        protected abstract void OnOpened();
+        protected abstract void OnClosed();
         
         private void OnDestroy()
         {
             Destroyed -= OnDestroy;
-            UnSubscribeLogic();
+            OnClosed();
             _isOpen.Value = false;
         }
     }

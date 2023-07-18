@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using System.Globalization;
+using Cysharp.Threading.Tasks;
 using Infrastructure.LevelLoading.SceneServices.SceneServicesProviding;
 using Infrastructure.Progress;
 using Infrastructure.Progress.Handling.Heros;
@@ -38,6 +40,8 @@ namespace Infrastructure.LevelLoading.SceneServices.ProgressServices
 
         public async UniTask SaveCurrentProgress()
         {
+            CurrentProgress.LastSaveDateTime = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            
             _heroProgressHandler.WriteProgress(CurrentProgress.HeroProgress);
             _worldProgressHandler.WriteProgress(CurrentProgress.IslandWorldProgress);
 

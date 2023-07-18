@@ -9,7 +9,7 @@ namespace Infrastructure.Services.Input
 {
     public interface IInputService : IDisposable
     {
-        void Init();
+        void Initialize();
         
         InputActionAsset InputActionAsset { get; }
         

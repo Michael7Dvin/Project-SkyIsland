@@ -9,7 +9,7 @@ namespace Infrastructure.LevelLoading.SceneServices.SceneServicesProviding
     {
         private IWorldObjectsSpawner _currentWorldObjectsSpawner;
         private IWarmUpper _currentWarmUpper;
-        private ILevelProgressService _currentProgresService;
+        private ILevelProgressService _currentProgressService;
         
         public async UniTask<IWorldObjectsSpawner> GetWorldObjectsSpawner()
         {
@@ -25,8 +25,8 @@ namespace Infrastructure.LevelLoading.SceneServices.SceneServicesProviding
 
         public async UniTask<ILevelProgressService> GetProgressService()
         {
-            await UniTask.WaitUntil(() => _currentProgresService != null);
-            return _currentProgresService;
+            await UniTask.WaitUntil(() => _currentProgressService != null);
+            return _currentProgressService;
         }
 
         public void SetWorldObjectsSpawner(IWorldObjectsSpawner worldObjectsSpawner) => 
@@ -36,6 +36,6 @@ namespace Infrastructure.LevelLoading.SceneServices.SceneServicesProviding
             _currentWarmUpper = warmUpper;
 
         public void SetProgressService(ILevelProgressService levelProgressLoader) => 
-            _currentProgresService = levelProgressLoader;
+            _currentProgressService = levelProgressLoader;
     }
 }
