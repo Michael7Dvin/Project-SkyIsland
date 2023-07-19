@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c44b95bbc644738938dc031d30dd10f, type: 3}
   m_Name: Windows
   m_EditorClassIdentifier: 
-  <MainMenuWindowView>k__BackingField:
+  <MainMenu>k__BackingField:
     m_AssetGUID: 5e6379bdd39cc4b42be02979adb76bb2
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 0
-  <SaveSelectionWindowView>k__BackingField:
+    m_EditorAssetChanged: 1
+  <SaveSelection>k__BackingField:
     m_AssetGUID: c665ec5d811fe62439f46030f6b57c19
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <PauseWindowView>k__BackingField:
+  <Pause>k__BackingField:
     m_AssetGUID: 150415565c57a4d45b19b3dbe69adf2d
     m_SubObjectName: 
     m_SubObjectType: 
-    m_EditorAssetChanged: 1
-  <DeathWindowView>k__BackingField:
+    m_EditorAssetChanged: 0
+  <Death>k__BackingField:
     m_AssetGUID: ebac5622ae370f245b135fdfdb19a706
     m_SubObjectName: 
     m_SubObjectType: 

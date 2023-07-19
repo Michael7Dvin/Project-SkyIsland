@@ -1,5 +1,4 @@
 ﻿using Cysharp.Threading.Tasks;
-using Gameplay.MonoBehaviours.Destroyable;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.StaticDataProviding;

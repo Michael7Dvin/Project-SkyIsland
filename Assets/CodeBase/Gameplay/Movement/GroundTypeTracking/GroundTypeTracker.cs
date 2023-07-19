@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Gameplay.Movement.GroundTypeTracking
 {
-    public class GroundTypeTracker : IGroundTypeTracker
+    public class GroundTypeTracker
     {
-        private readonly IGroundSphereCaster _groundSphereCaster;
+        private readonly GroundSphereCaster _groundSphereCaster;
 
         private readonly Observable<GroundType> _currentGroundType = new();
 
-        public GroundTypeTracker(IGroundSphereCaster groundSphereCaster)
+        public GroundTypeTracker(GroundSphereCaster groundSphereCaster)
         {
             _groundSphereCaster = groundSphereCaster;
             

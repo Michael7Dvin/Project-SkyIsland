@@ -5,14 +5,14 @@ using Gameplay.Movement.StateMachine.States.Base;
 
 namespace Gameplay.Movement.StateMachine
 {
-    public class MovementStateMachine : IMovementStateMachine
+    public class MovementStateMachine
     {
         private readonly StateRunner<ExitableMovementState> _stateRunner = new();
         
-        private readonly IMovementStatesProvider _statesProvider;
-        private readonly IGroundTypeTracker _groundTypeTracker;
+        private readonly MovementStatesProvider _statesProvider;
+        private readonly GroundTypeTracker _groundTypeTracker;
 
-        public MovementStateMachine(IMovementStatesProvider statesProvider, IGroundTypeTracker groundTypeTracker)
+        public MovementStateMachine(MovementStatesProvider statesProvider, GroundTypeTracker groundTypeTracker)
         {
             _statesProvider = statesProvider;
             _groundTypeTracker = groundTypeTracker;

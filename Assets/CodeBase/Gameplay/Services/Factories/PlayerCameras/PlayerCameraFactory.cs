@@ -1,6 +1,6 @@
 ﻿using Cinemachine;
 using Cysharp.Threading.Tasks;
-using Gameplay.MonoBehaviours.Destroyable;
+using Gameplay.MonoBehaviours;
 using Gameplay.PlayerCameras;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.AssetProviding.Providers.ForCamera;
@@ -49,7 +49,7 @@ namespace Gameplay.Services.Factories.PlayerCameras
 
             GameObject cameraGameObject = await CreateCamera(root.transform);
 
-            GetComponents(cameraGameObject, out Camera camera, out IDestroyable destroyable);
+            GetComponents(cameraGameObject, out Camera camera, out Destroyable destroyable);
             
             CinemachineFreeLook freeLookController = 
                 await CreateFreeLookController(root.transform);
@@ -79,13 +79,13 @@ namespace Gameplay.Services.Factories.PlayerCameras
             return _instantiator.InstantiatePrefab(prefab, parent);
         }
 
-        private void GetComponents(GameObject cameraGameObject, out Camera camera, out IDestroyable destroyable)
+        private void GetComponents(GameObject cameraGameObject, out Camera camera, out Destroyable destroyable)
         {
             if (cameraGameObject.TryGetComponent(out camera) == false)
                 _logger.LogError($"{nameof(camera)} prefab have no {nameof(Camera)} attached");
             
             if (cameraGameObject.TryGetComponent(out destroyable) == false)
-                _logger.LogError($"{nameof(camera)} prefab have no {nameof(IDestroyable)} attached");
+                _logger.LogError($"{nameof(camera)} prefab have no {nameof(Destroyable)} attached");
         }
         
 

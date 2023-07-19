@@ -3,7 +3,6 @@ using Gameplay.PlayerCameras;
 using Gameplay.Services.Providers.HeroProviding;
 using Gameplay.Services.Providers.PlayerCameraProviding;
 using Infrastructure.Services.Logging;
-using UnityEngine;
 
 namespace Infrastructure.Progress.Handling.IslandLevel
 {
@@ -20,12 +19,12 @@ namespace Infrastructure.Progress.Handling.IslandLevel
             _logger = logger;
         }
 
-        private IHeroProgressDataProvider HeroProgressDataProvider
+        private HeroProgressDataProvider HeroProgressDataProvider
         {
             get
             {
                 if (_heroProvider.Hero == null)
-                    _logger.LogError($"Can't perform operation. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
+                    _logger.LogError($"Unable to perform operation. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
 
                 return _heroProvider.Hero.Value.ProgressDataProvider;
             }
@@ -36,7 +35,7 @@ namespace Infrastructure.Progress.Handling.IslandLevel
             get
             {
                 if (_playerCameraProvider.PlayerCamera == null)
-                    _logger.LogError($"Can't perform operation. {nameof(IPlayerCameraProvider)} have no {nameof(PlayerCamera)} set");
+                    _logger.LogError($"Unable to perform operation. {nameof(IPlayerCameraProvider)} have no {nameof(PlayerCamera)} set");
 
                 return _playerCameraProvider.PlayerCamera.Value.ProgressDataDataProvider;
             }

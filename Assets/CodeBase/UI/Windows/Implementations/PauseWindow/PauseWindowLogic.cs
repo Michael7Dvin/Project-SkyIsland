@@ -1,8 +1,8 @@
 ﻿using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Infrastructure.LevelLoading;
-using Infrastructure.LevelLoading.SceneServices.ProgressServices;
 using Infrastructure.Progress;
+using Infrastructure.SceneServices.ProgressServices;
 using Infrastructure.Services.SceneLoading;
 using UI.Services.Operating;
 

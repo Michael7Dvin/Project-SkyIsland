@@ -23,7 +23,7 @@ namespace Gameplay.Services.Factories.GroundSpherecasting
         public async UniTask WarmUp() => 
             await _commonAssetsProvider.LoadEmptyGameObject();
 
-        public async UniTask<IGroundSphereCaster> Create(Transform parent,
+        public async UniTask<GroundSphereCaster> Create(Transform parent,
             Vector3 sphereCastPointOffset,
             float sphereCastRadius,
             float sphereCastDistance)

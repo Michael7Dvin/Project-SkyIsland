@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace Gameplay.Movement.SlopeCalculation
 {
-    public class SlopeCalculator : ISlopeCalculator
+    public class SlopeCalculator 
     {
-        private readonly IGroundSphereCaster _groundSphereCaster;
+        private readonly GroundSphereCaster _groundSphereCaster;
 
-        public SlopeCalculator(IGroundSphereCaster groundSphereCaster)
+        public SlopeCalculator(GroundSphereCaster groundSphereCaster)
         {
             _groundSphereCaster = groundSphereCaster;
             

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common.Observable;
 using Gameplay.Movement.GroundTypeTracking;
-using Gameplay.Movement.Rotator;
+using Gameplay.Movement.Rotation;
 using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine.States.Base;
 using UnityEngine;
@@ -13,15 +13,15 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly float _jogSpeed;
         private readonly float _antiBumpSpeed;
         
-        private readonly ISlopeSlideMovement _slopeSlideMovement;
-        private readonly IRotator _rotator;
+        private readonly SlopeSlideMovement _slopeSlideMovement;
+        private readonly Rotator _rotator;
 
         private readonly IReadOnlyObservable<Vector3> _moveDirection;
 
         public JogState(float jogSpeed,
             float antiBumpSpeed,
-            ISlopeSlideMovement slopeSlideMovement,
-            IRotator rotator,
+            SlopeSlideMovement slopeSlideMovement,
+            Rotator rotator,
             IReadOnlyObservable<Vector3> moveDirection)
         {
             _jogSpeed = jogSpeed;

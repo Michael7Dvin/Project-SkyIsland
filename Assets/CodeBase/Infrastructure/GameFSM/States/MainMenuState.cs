@@ -1,8 +1,8 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
-using Infrastructure.LevelLoading.SceneServices.SceneServicesProviding;
-using Infrastructure.LevelLoading.SceneServices.WarmUppers;
-using Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners;
+using Infrastructure.SceneServices.SceneServicesProviding;
+using Infrastructure.SceneServices.WarmUppers;
+using Infrastructure.SceneServices.WorldObjectsSpawners;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.ResourcesLoading;
 using Infrastructure.Services.SceneLoading;
@@ -45,13 +45,13 @@ namespace Infrastructure.GameFSM.States
         
         private async UniTask WarmUp()
         {
-            IWarmUpper warmUpper = await _sceneServicesProvider.GetWarmUpper();
+            IWarmUpper warmUpper = _sceneServicesProvider.WarmUpper;
             await warmUpper.WarmUp();
         }
 
         private async UniTask SpawnWorldObjects()
         {
-            IWorldObjectsSpawner worldObjectsSpawner = await _sceneServicesProvider.GetWorldObjectsSpawner();
+            IWorldObjectsSpawner worldObjectsSpawner = _sceneServicesProvider.WorldObjectsSpawner;
             await worldObjectsSpawner.SpawnWorldObjects();
         }
     }

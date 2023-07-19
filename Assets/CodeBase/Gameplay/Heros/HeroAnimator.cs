@@ -82,10 +82,8 @@ namespace Gameplay.Heros
             _activeMovementState.Changed -= OnActiveMovementStateChanged;
         }
         
-        private void Update(float deltaTime)
-        {
+        private void Update(float deltaTime) => 
             SetMotionIntensity(deltaTime);
-        }
 
         private void OnActiveMovementStateChanged(ExitableMovementState state)
         {

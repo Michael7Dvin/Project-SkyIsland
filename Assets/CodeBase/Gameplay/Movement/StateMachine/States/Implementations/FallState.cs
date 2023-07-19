@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Common.Observable;
 using Gameplay.Movement.GroundTypeTracking;
-using Gameplay.Movement.Rotator;
+using Gameplay.Movement.Rotation;
 using Gameplay.Movement.StateMachine.States.Base;
 using UnityEngine;
 
@@ -12,13 +12,13 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly float _verticalSpeed;
         private readonly float _horizontalspeed;
         
-        private readonly IRotator _rotator;
+        private readonly Rotator _rotator;
 
         private readonly IReadOnlyObservable<Vector3> _moveDirection;
 
         public FallState(float verticalSpeed,
             float horizontalspeed,
-            IRotator rotator,
+            Rotator rotator,
             IReadOnlyObservable<Vector3> moveDirection)
         {
             _verticalSpeed = verticalSpeed;

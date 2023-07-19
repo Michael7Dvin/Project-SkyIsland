@@ -11,12 +11,12 @@ namespace Infrastructure.Services.Input.Handlers.Hero
         private PlayerCamera _horizontalDirectionAligningCamera;
         
         private readonly Observable<Vector3> _horizontalDirection = new();
-        private readonly PlayerInput.MovementActions _movementActions;
+        private readonly PlayerInput.MovementActions _actions;
         private Vector3 _currentHorizontalDirection;
 
-        public HeroInput(PlayerInput.MovementActions movementActions)
+        public HeroInput(PlayerInput.MovementActions actions)
         {
-            _movementActions = movementActions;
+            _actions = actions;
         }
 
         public IReadOnlyObservable<Vector3> HorizontalMoveDirection => _horizontalDirection;
@@ -33,27 +33,27 @@ namespace Infrastructure.Services.Input.Handlers.Hero
 
         public void Init()
         {
-            _movementActions.Horizontal.started += OnHorizontalInput;
-            _movementActions.Horizontal.canceled += OnHorizontalInput;
-            _movementActions.Horizontal.performed += OnHorizontalInput;
+            _actions.Horizontal.started += OnHorizontalInput;
+            _actions.Horizontal.canceled += OnHorizontalInput;
+            _actions.Horizontal.performed += OnHorizontalInput;
 
-            _movementActions.Jump.performed += OnJumped;
+            _actions.Jump.performed += OnJumped;
         }
 
         public void Dispose()
         {
-            _movementActions.Horizontal.started -= OnHorizontalInput;
-            _movementActions.Horizontal.canceled -= OnHorizontalInput;
-            _movementActions.Horizontal.performed -= OnHorizontalInput;
+            _actions.Horizontal.started -= OnHorizontalInput;
+            _actions.Horizontal.canceled -= OnHorizontalInput;
+            _actions.Horizontal.performed -= OnHorizontalInput;
 
-            _movementActions.Jump.performed -= OnJumped;
+            _actions.Jump.performed -= OnJumped;
         }
 
         public void Enable() =>
-            _movementActions.Enable();
+            _actions.Enable();
 
         public void Disable() =>
-            _movementActions.Disable();
+            _actions.Disable();
 
         private void OnHorizontalInput(InputAction.CallbackContext context)
         {

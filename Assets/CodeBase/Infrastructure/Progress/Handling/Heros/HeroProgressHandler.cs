@@ -15,29 +15,25 @@ namespace Infrastructure.Progress.Handling.Heros
             _logger = logger;
         }
 
-        private IHeroProgressDataProvider HeroProgressDataProvider =>
-            _heroProvider.Hero.Value.ProgressDataProvider;
+        private HeroProgressDataProvider HeroProgressDataProvider
+        {
+            get
+            {
+                if (_heroProvider.Hero == null)
+                    _logger.LogError($"Unable to perform operation. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
+
+                return _heroProvider.Hero.Value.ProgressDataProvider;
+            }
+        }
 
         public void WriteProgress(HeroProgress progress)
         {
-            if (_heroProvider.Hero == null)
-            {
-                _logger.LogError($"Can't write values. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
-                return;
-            }
-
-            progress.CurrentHealth = HeroProgressDataProvider.Health;
             progress.IsEmpty = false;
+            progress.CurrentHealth = HeroProgressDataProvider.Health;
         }
         
         public void LoadProgress(HeroProgress progress)
         {
-            if (_heroProvider.Hero == null)
-            {
-                _logger.LogError($"Can't set values. {nameof(IHeroProvider)} have no {nameof(Hero)} set");
-                return;
-            }
-
             if (progress.IsEmpty == false)
                 HeroProgressDataProvider.Health = progress.CurrentHealth;
         }

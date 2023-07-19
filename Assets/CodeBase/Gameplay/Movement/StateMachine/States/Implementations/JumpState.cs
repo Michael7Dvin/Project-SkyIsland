@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Common.Observable;
 using Gameplay.Movement.GroundTypeTracking;
-using Gameplay.Movement.Rotator;
+using Gameplay.Movement.Rotation;
 using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine.States.Base;
 using UnityEngine;
@@ -20,17 +20,17 @@ namespace Gameplay.Movement.StateMachine.States.Implementations
         private readonly AnimationCurve _jumpCurve;
         private readonly float _horizontalspeed;
         
-        private readonly IRotator _rotator;
-        private readonly IGroundTypeTracker _groundTypeTracker;
-        private readonly ISlopeSlideMovement _slopeSlideMovement;
+        private readonly Rotator _rotator;
+        private readonly GroundTypeTracker _groundTypeTracker;
+        private readonly SlopeSlideMovement _slopeSlideMovement;
 
         private readonly IReadOnlyObservable<Vector3> _moveDirection;
 
         public JumpState(AnimationCurve jumpCurve,
             float horizontalspeed,
-            IRotator rotator,
-            IGroundTypeTracker groundTypeTracker,
-            ISlopeSlideMovement slopeSlideMovement,
+            Rotator rotator,
+            GroundTypeTracker groundTypeTracker,
+            SlopeSlideMovement slopeSlideMovement,
             IReadOnlyObservable<Vector3> moveDirection)
         {
             _jumpCurve = jumpCurve;

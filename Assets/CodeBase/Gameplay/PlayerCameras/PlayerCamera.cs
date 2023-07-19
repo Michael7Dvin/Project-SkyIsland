@@ -1,5 +1,5 @@
 ﻿using System;
-using Gameplay.MonoBehaviours.Destroyable;
+using Gameplay.MonoBehaviours;
 using UnityEngine;
 
 namespace Gameplay.PlayerCameras
@@ -8,7 +8,7 @@ namespace Gameplay.PlayerCameras
     {
         public PlayerCamera(Camera camera,
             PlayerCameraController playerCameraController,
-            IDestroyable destroyable,
+            Destroyable destroyable,
             PlayerCameraProgressDataProvider progressDataDataProvider)
         {
             Camera = camera;
@@ -21,7 +21,7 @@ namespace Gameplay.PlayerCameras
 
         public Camera Camera { get; }
         public PlayerCameraController PlayerCameraController { get; }
-        public IDestroyable Destroyable { get; }
+        public Destroyable Destroyable { get; }
         public PlayerCameraProgressDataProvider ProgressDataDataProvider { get; }
 
         public void Dispose()

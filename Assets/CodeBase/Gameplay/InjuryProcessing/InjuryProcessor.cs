@@ -1,14 +1,14 @@
 ﻿using Gameplay.Healths;
-using Gameplay.MonoBehaviours.Damagable;
+using Gameplay.MonoBehaviours;
 
 namespace Gameplay.InjuryProcessing
 {
-    public class InjuryProcessor : IInjuryProcessor
+    public class InjuryProcessor
     {
         private readonly IHealth _health;
-        private readonly IDamagable _damagable;
+        private readonly Damagable _damagable;
 
-        public InjuryProcessor(IHealth health, IDamagable damagable)
+        public InjuryProcessor(IHealth health, Damagable damagable)
         {
             _health = health;
             _damagable = damagable;

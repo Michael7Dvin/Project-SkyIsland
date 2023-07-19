@@ -6,7 +6,7 @@ using Infrastructure.Services.Logging;
 
 namespace Gameplay.Movement.StateMachine
 {
-    public class MovementStatesProvider : IMovementStatesProvider
+    public class MovementStatesProvider
     {
         private readonly Dictionary<Type, ExitableMovementState> _states = new();
         

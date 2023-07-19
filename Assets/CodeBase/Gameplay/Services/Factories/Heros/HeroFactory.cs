@@ -3,10 +3,9 @@ using Cysharp.Threading.Tasks;
 using Gameplay.Dying;
 using Gameplay.Healths;
 using Gameplay.Heros;
-using Gameplay.Heros.Movement;
 using Gameplay.InjuryProcessing;
-using Gameplay.MonoBehaviours.Damagable;
-using Gameplay.MonoBehaviours.Destroyable;
+using Gameplay.MonoBehaviours;
+using Gameplay.Movement;
 using Gameplay.Services.Factories.Heros.Moving;
 using Gameplay.Services.Factories.PlayerCameras;
 using Infrastructure.Services.AssetProviding.Providers.Common;
@@ -67,8 +66,8 @@ namespace Gameplay.Services.Factories.Heros
             GetComponents(heroGameObject,
                 out CharacterController characterController,
                 out Animator animator,
-                out IDamagable damageNotifier,
-                out IDestroyable destroyable);
+                out Damagable damageNotifier,
+                out Destroyable destroyable);
 
             IMovement movement = await CreateMovement(heroGameObject.transform,
                 characterController,
@@ -77,17 +76,15 @@ namespace Gameplay.Services.Factories.Heros
             IHealth health = CreateHealth(_logger);
             await _hudFactory.CreateHealthBar(health);
 
-            IInjuryProcessor injuryProcessor = CreateInjuryProcessor(health, damageNotifier);
+            InjuryProcessor injuryProcessor = new(health, damageNotifier);
             
             Death death = _instantiator.Instantiate<Death>();
             death.Construct(health, heroGameObject);
 
-            IHeroProgressDataProvider heroProgressDataProvider =
-                new HeroProgressDataProvider(heroGameObject.transform, movement, health);
+            HeroProgressDataProvider heroProgressDataProvider = new(heroGameObject.transform, movement, health);
             
             return new Hero(movement,
                 injuryProcessor,
-                heroGameObject,
                 cameraFollowPoint,
                 death,
                 destroyable,
@@ -115,8 +112,8 @@ namespace Gameplay.Services.Factories.Heros
         private void GetComponents(GameObject hero,
             out CharacterController characterController,
             out Animator animator,
-            out IDamagable damagable,
-            out IDestroyable destroyable)
+            out Damagable damagable,
+            out Destroyable destroyable)
         {
             if (hero.TryGetComponent(out characterController) == false)
                 _logger.LogError($"{nameof(hero)} prefab have no {nameof(CharacterController)} attached");
@@ -125,10 +122,10 @@ namespace Gameplay.Services.Factories.Heros
                 _logger.LogError($"{nameof(hero)} prefab have no {nameof(Animator)} attached");
             
             if (hero.TryGetComponent(out damagable) == false)
-                _logger.LogError($"{nameof(hero)} prefab have no {nameof(IDamagable)} attached");
+                _logger.LogError($"{nameof(hero)} prefab have no {nameof(Damagable)} attached");
             
             if (hero.TryGetComponent(out destroyable) == false)
-                _logger.LogError($"{nameof(hero)} prefab have no {nameof(IDestroyable)} attached");
+                _logger.LogError($"{nameof(hero)} prefab have no {nameof(Destroyable)} attached");
         }
 
         private async UniTask<IMovement> CreateMovement(Transform parent,
@@ -137,10 +134,7 @@ namespace Gameplay.Services.Factories.Heros
         {
             return await _movementFactory.Create(parent, animator, characterController);
         }
-
-        private IInjuryProcessor CreateInjuryProcessor(IHealth health, IDamagable damagable) =>
-            new InjuryProcessor(health, damagable);
-
+        
         private IHealth CreateHealth(ICustomLogger logger) =>
             new Health(_config.Stats.CrrentHealth, _config.Stats.MaxHealth, logger);
     }

@@ -1,7 +1,7 @@
 ﻿using Gameplay.Services.Factories.Heros;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
-using Infrastructure.LevelLoading.SceneServices.SceneServicesProviding;
+using Infrastructure.SceneServices.SceneServicesProviding;
 using Infrastructure.Services.AssetProviding.Addresses;
 using Infrastructure.Services.AssetProviding.Providers.Common;
 using Infrastructure.Services.AssetProviding.Providers.ForCamera;

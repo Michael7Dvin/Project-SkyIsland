@@ -19,7 +19,7 @@ namespace Infrastructure.Services.AssetProviding.Providers.ForCamera
         }
 
         public async UniTask<GameObject> LoadCamera() =>
-             await _addressablesLoader.LoadGameObject(_addresses.Camera);
+             await _addressablesLoader.LoadGameObject(_addresses.PlayerCamera);
         
         public async UniTask<CinemachineFreeLook> LoadFreeLookController() =>
             await _addressablesLoader.LoadComponent<CinemachineFreeLook>(_addresses.FreeLookController);

@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89bfe6ebe2e54b4ca3a7d411b7387d87, type: 3}
   m_Name: Backgrounds
   m_EditorClassIdentifier: 
-  <MainMenuBackground>k__BackingField:
+  <MainMenu>k__BackingField:
     m_AssetGUID: cd6b695183879a24b8f50f214f32ddf0
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <PauseBackground>k__BackingField:
+  <Pause>k__BackingField:
     m_AssetGUID: 936ec0d0549cebd498d42ac37b1b17ea
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  <DeathBackground>k__BackingField:
+  <Death>k__BackingField:
     m_AssetGUID: 5965ac4e883fe3b4aaca98a39fc10d3c
     m_SubObjectName: 
     m_SubObjectType: 

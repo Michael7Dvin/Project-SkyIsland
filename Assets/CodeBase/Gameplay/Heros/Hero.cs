@@ -1,8 +1,8 @@
 ﻿using System;
 using Gameplay.Dying;
-using Gameplay.Heros.Movement;
 using Gameplay.InjuryProcessing;
-using Gameplay.MonoBehaviours.Destroyable;
+using Gameplay.MonoBehaviours;
+using Gameplay.Movement;
 using UnityEngine;
 
 namespace Gameplay.Heros
@@ -10,20 +10,18 @@ namespace Gameplay.Heros
     public class Hero : IDisposable
     {
         private readonly IMovement _movement;
-        private readonly IInjuryProcessor _injuryProcessor;
+        private readonly InjuryProcessor _injuryProcessor;
 
         public Hero(IMovement movement,
-            IInjuryProcessor injuryProcessor,
-            GameObject gameObject,
+            InjuryProcessor injuryProcessor,
             Transform cameraFollowPoint,
             IDeath death,
-            IDestroyable destroyable,
-            IHeroProgressDataProvider progressDataProvider)
+            Destroyable destroyable,
+            HeroProgressDataProvider progressDataProvider)
         {
             _movement = movement;
             _injuryProcessor = injuryProcessor;
 
-            GameObject = gameObject;
             CameraFollowPoint = cameraFollowPoint;
             Death = death;
             Destroyable = destroyable;
@@ -32,11 +30,10 @@ namespace Gameplay.Heros
             Destroyable.Destroyed += Dispose;
         }
 
-        public GameObject GameObject { get; }
         public Transform CameraFollowPoint { get; }
         public IDeath Death { get; }
-        public IDestroyable Destroyable { get; }
-        public IHeroProgressDataProvider ProgressDataProvider { get; }
+        public Destroyable Destroyable { get; }
+        public HeroProgressDataProvider ProgressDataProvider { get; }
 
         public void Dispose()
         {

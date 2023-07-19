@@ -1,10 +1,10 @@
 ﻿using Gameplay.Healths;
-using Gameplay.Heros.Movement;
+using Gameplay.Movement;
 using UnityEngine;
 
 namespace Gameplay.Heros
 {
-    public class HeroProgressDataProvider : IHeroProgressDataProvider
+    public class HeroProgressDataProvider
     {
         private readonly Transform _transform;
         private readonly IMovement _movement;

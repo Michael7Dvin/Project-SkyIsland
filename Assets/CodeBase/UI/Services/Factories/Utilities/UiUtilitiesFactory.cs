@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using Infrastructure.Services.AssetProviding.Providers.UI.All;
+using Infrastructure.Services.AssetProviding.Providers.UI.Utilities;
 using Infrastructure.Services.Input;
 using UnityEngine;
 using UnityEngine.EventSystems;

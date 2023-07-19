@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Gameplay.Movement.SlopeMovement
 {
-    public class SlopeSlideMovement : ISlopeSlideMovement
+    public class SlopeSlideMovement
     {
         private readonly float _speed;
         private readonly float _minSlopeAngle;
         
-        private readonly ISlopeCalculator _slopeCalculator;
+        private readonly SlopeCalculator _slopeCalculator;
 
-        public SlopeSlideMovement(float speed, float minSlopeAngle, ISlopeCalculator slopeCalculator)
+        public SlopeSlideMovement(float speed, float minSlopeAngle, SlopeCalculator slopeCalculator)
         {
             _speed = speed;
             _minSlopeAngle = minSlopeAngle;

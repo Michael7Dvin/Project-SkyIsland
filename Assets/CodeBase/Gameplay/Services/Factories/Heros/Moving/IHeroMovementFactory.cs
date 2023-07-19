@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using Gameplay.Heros.Movement;
+using Gameplay.Movement;
 using UnityEngine;
 
 namespace Gameplay.Services.Factories.Heros.Moving

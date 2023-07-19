@@ -1,9 +1,9 @@
 ﻿using Common.FSM;
 using Cysharp.Threading.Tasks;
-using Infrastructure.LevelLoading.SceneServices.ProgressServices;
-using Infrastructure.LevelLoading.SceneServices.SceneServicesProviding;
-using Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners;
 using Infrastructure.Progress;
+using Infrastructure.SceneServices.ProgressServices;
+using Infrastructure.SceneServices.SceneServicesProviding;
+using Infrastructure.SceneServices.WorldObjectsSpawners;
 
 namespace Infrastructure.GameFSM.States
 {
@@ -20,11 +20,11 @@ namespace Infrastructure.GameFSM.States
 
         public async void Enter(AllProgress progress)
         {
-            await SetCurrentProgress(progress);
+            SetCurrentProgress(progress);
 
             await SpawnWorldObjects();
             
-            await LoadProgress();
+            LoadProgress();
             
             _gameStateMachine.EnterState<GameplayState>();
         }
@@ -33,21 +33,21 @@ namespace Infrastructure.GameFSM.States
         {
         }
 
-        private async UniTask SetCurrentProgress(AllProgress progress)
+        private void SetCurrentProgress(AllProgress progress)
         {
-            ILevelProgressService levelProgressService = await _sceneServicesProvider.GetProgressService();
+            ILevelProgressService levelProgressService = _sceneServicesProvider.ProgressService;
             levelProgressService.SetCurrentProgress(progress);
         }
 
         private async UniTask SpawnWorldObjects()
         {
-            IWorldObjectsSpawner worldObjectsSpawner = await _sceneServicesProvider.GetWorldObjectsSpawner();
+            IWorldObjectsSpawner worldObjectsSpawner = _sceneServicesProvider.WorldObjectsSpawner;
             await worldObjectsSpawner.SpawnWorldObjects();
         }
 
-        private async UniTask LoadProgress()
+        private void LoadProgress()
         {
-            ILevelProgressService levelProgressService = await _sceneServicesProvider.GetProgressService();
+            ILevelProgressService levelProgressService = _sceneServicesProvider.ProgressService;
             levelProgressService.Load();
         }
     }

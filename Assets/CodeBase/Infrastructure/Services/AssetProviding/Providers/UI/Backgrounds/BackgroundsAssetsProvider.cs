@@ -18,12 +18,12 @@ namespace Infrastructure.Services.AssetProviding.Providers.UI.Backgrounds
         }
         
         public async UniTask<GameObject> LoadMainMenu() => 
-            await _addressablesLoader.LoadGameObject(_addresses.MainMenuBackground);
+            await _addressablesLoader.LoadGameObject(_addresses.MainMenu);
 
         public async UniTask<GameObject> LoadPause() => 
-            await _addressablesLoader.LoadGameObject(_addresses.PauseBackground);
+            await _addressablesLoader.LoadGameObject(_addresses.Pause);
         
         public async UniTask<GameObject> LoadDeath() => 
-            await _addressablesLoader.LoadGameObject(_addresses.DeathBackground);
+            await _addressablesLoader.LoadGameObject(_addresses.Death);
     }
 }

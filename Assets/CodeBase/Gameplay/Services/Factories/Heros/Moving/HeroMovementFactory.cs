@@ -1,9 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
 using Gameplay.Heros;
-using Gameplay.Heros.Movement;
+using Gameplay.Movement;
 using Gameplay.Movement.GroundSpherecasting;
 using Gameplay.Movement.GroundTypeTracking;
-using Gameplay.Movement.Rotator;
+using Gameplay.Movement.Rotation;
 using Gameplay.Movement.SlopeCalculation;
 using Gameplay.Movement.SlopeMovement;
 using Gameplay.Movement.StateMachine;
@@ -45,16 +45,16 @@ namespace Gameplay.Services.Factories.Heros.Moving
             Animator animator,
             CharacterController characterController)
         {
-            IGroundSphereCaster groundSphereCaster = await CreateGroundSpherecaster(parent);
-            ISlopeCalculator slopeCalculator = CreateSlopeCalculator(groundSphereCaster);
-            IGroundTypeTracker groundTypeTracker = CreateGroundTypeTracker(groundSphereCaster);
+            GroundSphereCaster groundSphereCaster = await CreateGroundSpherecaster(parent);
+            SlopeCalculator slopeCalculator = new(groundSphereCaster);
+            GroundTypeTracker groundTypeTracker = new(groundSphereCaster);
 
-            ISlopeSlideMovement slopeSlideMovement =
+            SlopeSlideMovement slopeSlideMovement =
                 new SlopeSlideMovement(_config.SlopeSlideSpeed, _config.MinSlopeAngle, slopeCalculator);
 
-            IRotator rotator = new Rotator(_config.RotationSpeed); 
+            Rotator rotator = new Rotator(_config.RotationSpeed); 
             
-            IMovementStateMachine movementStateMachine = 
+            MovementStateMachine movementStateMachine = 
                 CreateMovementStateMachine(groundTypeTracker, slopeSlideMovement, rotator);
             
             HeroAnimator movementAnimator = _instantiator.Instantiate<HeroAnimator>();
@@ -71,7 +71,7 @@ namespace Gameplay.Services.Factories.Heros.Moving
             return heroMovement;
         }
 
-        private async UniTask<IGroundSphereCaster> CreateGroundSpherecaster(Transform parent)
+        private async UniTask<GroundSphereCaster> CreateGroundSpherecaster(Transform parent)
         {
             return await _groundSpherecasterFactory.Create(parent,
                 _config.GroundSphereCastingPointOffset,
@@ -79,12 +79,9 @@ namespace Gameplay.Services.Factories.Heros.Moving
                 _config.GroundSphereCastingDistance);
         }
         
-        private IGroundTypeTracker CreateGroundTypeTracker(IGroundSphereCaster groundSphereCaster) => 
-            new GroundTypeTracker(groundSphereCaster);
-
-        private MovementStateMachine CreateMovementStateMachine(IGroundTypeTracker groundTypeTracker,
-            ISlopeSlideMovement slopeSlideMovement,
-            IRotator rotator)
+        private MovementStateMachine CreateMovementStateMachine(GroundTypeTracker groundTypeTracker,
+            SlopeSlideMovement slopeSlideMovement,
+            Rotator rotator)
         {
             JogState jogState = 
                 new(_config.JogSpeed,
@@ -106,7 +103,7 @@ namespace Gameplay.Services.Factories.Heros.Moving
                 slopeSlideMovement,
                 _inputService.Hero.HorizontalMoveDirection);
             
-            IMovementStatesProvider statesProvider = 
+            MovementStatesProvider statesProvider = 
                 new MovementStatesProvider(jogState, fallState, _logger);
 
             statesProvider.AddState(jogState);
@@ -117,8 +114,5 @@ namespace Gameplay.Services.Factories.Heros.Moving
             
             return movementStateMachine;
         }
-
-        private ISlopeCalculator CreateSlopeCalculator(IGroundSphereCaster groundSphereCaster) => 
-            new SlopeCalculator(groundSphereCaster);
     }
 }

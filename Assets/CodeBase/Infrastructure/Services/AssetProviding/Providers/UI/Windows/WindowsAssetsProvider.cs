@@ -21,15 +21,15 @@ namespace Infrastructure.Services.AssetProviding.Providers.UI.Windows
         }
 
         public async UniTask<MainMenuWindowView> LoadMainMenuWindow() =>
-            await _addressablesLoader.LoadComponent<MainMenuWindowView>(_addresses.MainMenuWindowView);
+            await _addressablesLoader.LoadComponent<MainMenuWindowView>(_addresses.MainMenu);
 
         public async UniTask<SaveSelectionWindowView> LoadSaveSelectionWindow() =>
-            await _addressablesLoader.LoadComponent<SaveSelectionWindowView>(_addresses.SaveSelectionWindowView);
+            await _addressablesLoader.LoadComponent<SaveSelectionWindowView>(_addresses.SaveSelection);
 
         public async UniTask<PauseWindowView> LoadPauseWindow() =>
-            await _addressablesLoader.LoadComponent<PauseWindowView>(_addresses.PauseWindowView);
+            await _addressablesLoader.LoadComponent<PauseWindowView>(_addresses.Pause);
 
         public async UniTask<DeathWindowView> LoadDeathWindow() =>
-            await _addressablesLoader.LoadComponent<DeathWindowView>(_addresses.DeathWindowView);
+            await _addressablesLoader.LoadComponent<DeathWindowView>(_addresses.Death);
     }
 }

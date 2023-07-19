@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Gameplay.Movement.GroundSpherecasting
 {
-    public class GroundSphereCaster : IGroundSphereCaster
+    public class GroundSphereCaster
     {
         private Transform _castPoint;
         private float _sphereRadius;
@@ -35,13 +35,9 @@ namespace Gameplay.Movement.GroundSpherecasting
         private void FixedUpdate(float deltaTime)
         {
             if (Physics.SphereCast(_castPoint.position, _sphereRadius, Vector3.down, out RaycastHit hit, _castDistance))
-            {
                 SphereCasted?.Invoke(hit);
-            }
             else
-            {
                 SphereCastMissed?.Invoke();
-            }
         }
     }
 }
