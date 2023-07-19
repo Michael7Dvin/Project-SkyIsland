@@ -7,6 +7,6 @@ namespace Infrastructure.Services.SceneLoading
     public class SceneData : ScriptableObject
     {
         [field: SerializeField] public AssetReference AssetReference { get; private set; }
-        [field: SerializeField] public SceneType SceneType { get; private set; }
+        [field: SerializeField] public SceneID SceneID { get; private set; }
     }
 }

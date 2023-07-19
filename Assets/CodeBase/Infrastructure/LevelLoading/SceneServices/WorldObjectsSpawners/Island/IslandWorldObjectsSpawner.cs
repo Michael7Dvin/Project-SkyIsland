@@ -7,7 +7,6 @@ using Gameplay.Services.Providers.PlayerCameraProviding;
 using Gameplay.Services.Spawners.Heros;
 using Gameplay.Services.Spawners.PlayerCameras;
 using Infrastructure.LevelLoading.SceneServices.SceneServicesProviding;
-using Infrastructure.LevelLoading.WorldData;
 using Infrastructure.Services.Input;
 using UI.Services.Providing.Utilities;
 using UI.Services.Spawners;
@@ -17,39 +16,46 @@ namespace Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners.Island
 {
     public class IslandWorldObjectsSpawner : IWorldObjectsSpawner
     {
+        private readonly Transform _heroSpawnPoint;
+        
         private readonly ISceneServicesProvider _sceneServicesProvider;
-        private readonly IslandWorldData _worldData;
 
         private readonly IUiUtilitiesSpawner _uiUtilitiesSpawner;
-        private readonly IHeroSpawner _heroSpawner;
-        private readonly IPlayerCameraSpawner _playerCameraSpawner;
-
         private readonly IUiUtilitiesProvider _uiUtilitiesProvider;
+        
+        private readonly IHeroSpawner _heroSpawner;
         private readonly IHeroProvider _heroProvider;
+        
+        private readonly IPlayerCameraSpawner _playerCameraSpawner;
         private readonly IPlayerCameraProvider _playerCameraProvider;
         
         private readonly IHeroDeathService _heroDeathService;
         private readonly IInputService _inputService;
 
-        public IslandWorldObjectsSpawner(ISceneServicesProvider sceneServicesProvider,
-            IslandWorldData worldData,
+        public IslandWorldObjectsSpawner(Transform heroSpawnPoint,
+            ISceneServicesProvider sceneServicesProvider,
             IUiUtilitiesSpawner uiUtilitiesSpawner,
-            IHeroSpawner heroSpawner,
-            IPlayerCameraSpawner playerCameraSpawner,
             IUiUtilitiesProvider uiUtilitiesProvider,
+            IHeroSpawner heroSpawner,
             IHeroProvider heroProvider,
+            IPlayerCameraSpawner playerCameraSpawner,
             IPlayerCameraProvider playerCameraProvider,
             IHeroDeathService heroDeathService,
             IInputService inputService)
         {
+            _heroSpawnPoint = heroSpawnPoint;
+            
             _sceneServicesProvider = sceneServicesProvider;
-            _worldData = worldData;
+            
             _uiUtilitiesSpawner = uiUtilitiesSpawner;
-            _heroSpawner = heroSpawner;
-            _playerCameraSpawner = playerCameraSpawner;
             _uiUtilitiesProvider = uiUtilitiesProvider;
+            
+            _heroSpawner = heroSpawner;
             _heroProvider = heroProvider;
+            
+            _playerCameraSpawner = playerCameraSpawner;
             _playerCameraProvider = playerCameraProvider;
+            
             _heroDeathService = heroDeathService;
             _inputService = inputService;
         }
@@ -64,6 +70,9 @@ namespace Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners.Island
             await SpawnPlayerCamera(hero.CameraFollowPoint);
         }
 
+        private void SetSelfToProvider() => 
+            _sceneServicesProvider.SetWorldObjectsSpawner(this);
+
         private async UniTask SpawnUIUtilities()
         {
             if (_uiUtilitiesProvider.Canvas.Value == null) 
@@ -72,15 +81,15 @@ namespace Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners.Island
             if (_uiUtilitiesProvider.EventSystem.Value == null) 
                 await _uiUtilitiesSpawner.SpawnEventSystem();
         }
-        
+
         private async UniTask<Hero> SpawnHero()
         {
             Hero hero = _heroProvider.Hero.Value;
             
             if (hero == null)
             {
-                Vector3 position = _worldData.HeroSpawnPoint.position;
-                Quaternion rotation = _worldData.HeroSpawnPoint.rotation;
+                Vector3 position = _heroSpawnPoint.position;
+                Quaternion rotation = _heroSpawnPoint.rotation;
                 hero = await _heroSpawner.Spawn(position, rotation);
             }
             
@@ -98,8 +107,5 @@ namespace Infrastructure.LevelLoading.SceneServices.WorldObjectsSpawners.Island
             playerCamera.PlayerCameraController.SetFollowPoint(heroFollowPoint);
             _inputService.Hero.SetHorizontalDirectionAligningCamera(playerCamera);
         }
-        
-        private void SetSelfToProvider() => 
-            _sceneServicesProvider.SetWorldObjectsSpawner(this);
     }
 }

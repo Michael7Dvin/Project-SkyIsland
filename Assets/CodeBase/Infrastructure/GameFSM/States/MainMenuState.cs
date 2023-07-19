@@ -29,9 +29,9 @@ namespace Infrastructure.GameFSM.States
 
         public async void Enter()
         {
-            await _sceneLoader.Load(SceneType.MainMenu);
+            await _sceneLoader.Load(SceneID.MainMenu);
 
-            await WarmUpServices();
+            await WarmUp();
             await SpawnWorldObjects();
             
             _inputService.UI.Enable();
@@ -43,7 +43,7 @@ namespace Infrastructure.GameFSM.States
             _addressablesLoader.ClearCache();
         }
         
-        private async UniTask WarmUpServices()
+        private async UniTask WarmUp()
         {
             IWarmUpper warmUpper = await _sceneServicesProvider.GetWarmUpper();
             await warmUpper.WarmUp();

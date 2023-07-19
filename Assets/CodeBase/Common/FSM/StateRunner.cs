@@ -19,7 +19,8 @@ namespace Common.FSM
             state.Enter();
         }
 
-        public void EnterState<TState, TArgs>(TState state, TArgs args) where TState : TBaseState, IStateWithArguments<TArgs>
+        public void EnterState<TState, TArgument>(TState state, TArgument args)
+            where TState : TBaseState, IStateWithArgument<TArgument>
         {
             _activeState.Value?.Exit();
             _activeState.Value = state;

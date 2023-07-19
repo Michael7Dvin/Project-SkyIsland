@@ -7,7 +7,7 @@ namespace Gameplay.Movement.StateMachine
     {
         void AddState<TState>(TState state) where TState : ExitableMovementState;
         TState GetState<TState>() where TState : MovementState;
-        TState GetState<TState, TArgs>() where TState : MovementStateWithArguments<TArgs>;
+        TState GetState<TState, TArgs>() where TState : MovementStateWithArgument<TArgs>;
         MovementState GetDefaultStateByGroundType(GroundType groundType);
     }
 }

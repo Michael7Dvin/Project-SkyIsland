@@ -17,19 +17,36 @@ namespace Infrastructure.Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<IWindowsOperator>().To<WindowsOperator>().AsSingle();
+            BindUiUtilities();
+            BindWindows();
+            BindBackGrounds();
+            BindHUD();
+        }
 
+        private void BindUiUtilities()
+        {
             Container.Bind<IUiUtilitiesSpawner>().To<UiUtilitiesSpawner>().AsSingle();
             Container.Bind<IUiUtilitiesFactory>().To<UiUtilitiesFactory>().AsSingle();
             Container.Bind<IUiUtilitiesProvider>().To<UiUtilitiesProvider>().AsSingle();
-
-            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
-            Container.Bind<IBackgroundFactory>().To<BackgroundFactory>().AsSingle();
-            Container.Bind<IHUDFactory>().To<HUDFactory>().AsSingle();
-            
             Container.Bind<IUiUtilitiesAssetsProvider>().To<UiUtilitiesAssetsProvider>().AsSingle();
+        }
+
+        private void BindWindows()
+        {
+            Container.Bind<IWindowFactory>().To<WindowFactory>().AsSingle();
             Container.Bind<IWindowsAssetsProvider>().To<WindowsAssetsProvider>().AsSingle();
+            Container.Bind<IWindowsOperator>().To<WindowsOperator>().AsSingle();
+        }
+
+        private void BindBackGrounds()
+        {
+            Container.Bind<IBackgroundFactory>().To<BackgroundFactory>().AsSingle();
             Container.Bind<IBackgroundsAssetsProvider>().To<BackgroundsAssetsProvider>().AsSingle();
+        }
+
+        private void BindHUD()
+        {
+            Container.Bind<IHUDFactory>().To<HUDFactory>().AsSingle();
             Container.Bind<IHUDAssetsProvider>().To<HUDAssetsProvider>().AsSingle();
         }
     }

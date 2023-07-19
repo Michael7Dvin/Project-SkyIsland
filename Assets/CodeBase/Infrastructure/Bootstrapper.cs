@@ -2,7 +2,7 @@ using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
 using Zenject;
 
-namespace Infrastructure.EntryPoint
+namespace Infrastructure
 {
     public class Bootstrapper : IInitializable
     {
@@ -12,6 +12,7 @@ namespace Infrastructure.EntryPoint
             InitializationState initializationState,
             MainMenuState mainMenuState,
             LevelLoadingState levelLoadingState,
+            LevelRestartState levelRestartState,
             GameplayState gameplayState,
             QuitState quitState)
         {
@@ -20,6 +21,7 @@ namespace Infrastructure.EntryPoint
             _gameStateMachine.AddState(initializationState);
             _gameStateMachine.AddState(mainMenuState);
             _gameStateMachine.AddState(levelLoadingState);
+            _gameStateMachine.AddState(levelRestartState);
             _gameStateMachine.AddState(gameplayState);
             _gameStateMachine.AddState(quitState);
         }

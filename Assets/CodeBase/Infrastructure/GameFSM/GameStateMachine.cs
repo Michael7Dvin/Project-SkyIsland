@@ -19,10 +19,10 @@ namespace Infrastructure.GameFSM
             _stateMachine.EnterState<TState>();
         }
 
-        public void EnterState<TState, TArgs>(TArgs args) where TState : IStateWithArguments<TArgs>
+        public void EnterState<TState, TArgument>(TArgument argument) where TState : IStateWithArgument<TArgument>
         {
-            _logger.Log(typeof(TState).Name);
-            _stateMachine.EnterState<TState, TArgs>(args);
+            _logger.Log($"Entered: {typeof(TState).Name}");
+            _stateMachine.EnterState<TState, TArgument>(argument);
         }
 
         public void AddState<TState>(TState state) where TState : IExitableState =>

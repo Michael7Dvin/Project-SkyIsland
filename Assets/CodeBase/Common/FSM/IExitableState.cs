@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Common.FSM
+﻿namespace Common.FSM
 {
     public interface IExitableState 
     {

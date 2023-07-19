@@ -6,7 +6,7 @@ namespace Infrastructure.Services.SceneLoading
     {
         void Initailize();
         
-        SceneType CurrentScene { get; }
-        UniTask Load(SceneType type);
+        SceneID CurrentSceneID { get; }
+        UniTask Load(SceneID id);
     }
 }

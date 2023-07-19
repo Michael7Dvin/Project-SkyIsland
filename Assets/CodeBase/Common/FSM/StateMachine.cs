@@ -1,35 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using Common.Observable;
 
 namespace Common.FSM
 {
     public class StateMachine<TBaseState> : IDisposable where TBaseState : IExitableState
     {
         private readonly Dictionary<Type, TBaseState> _states = new();
-        private readonly Observable<TBaseState> _activeState = new();
-        
-        public IReadOnlyObservable<TBaseState> ActiveState => _activeState;
+        private TBaseState _activeState;
 
         public void Dispose() => 
-            _activeState.Value?.Exit();
+            _activeState?.Exit();
 
         public void EnterState<TState>() where TState : TBaseState, IState
         {
             TBaseState newState = _states[typeof(TState)];
         
-            _activeState.Value?.Exit();
-            _activeState.Value = newState;
+            _activeState?.Exit();
+            _activeState = newState;
             (newState as IState).Enter();
         }
 
-        public void EnterState<TState, TArgs>(TArgs args) where TState : TBaseState, IStateWithArguments<TArgs>
+        public void EnterState<TState, TArgument>(TArgument argument)
+            where TState : TBaseState, IStateWithArgument<TArgument>
         {
             TBaseState newState = _states[typeof(TState)];
         
-            _activeState.Value?.Exit();
-            _activeState.Value = newState;
-            (newState as IStateWithArguments<TArgs>).Enter(args);
+            _activeState?.Exit();
+            _activeState = newState;
+            (newState as IStateWithArgument<TArgument>).Enter(argument);
         }
 
         public void AddState<TState>(TState state) where TState : TBaseState

@@ -8,7 +8,7 @@ namespace Infrastructure.LevelLoading.SceneServices.ProgressServices
         AllProgress CurrentProgress { get; }
         void SetCurrentProgress(AllProgress progress);
 
-        UniTask SaveCurrentProgress();
-        void LoadCurrentProgress();
+        UniTask Save();
+        void Load();
     }
 }

@@ -42,6 +42,7 @@ namespace Infrastructure.Installers
             Container.Bind<InitializationState>().AsSingle();
             Container.Bind<MainMenuState>().AsSingle();
             Container.Bind<LevelLoadingState>().AsSingle();
+            Container.Bind<LevelRestartState>().AsSingle();
             Container.Bind<GameplayState>().AsSingle();
             Container.Bind<QuitState>().AsSingle();
         }

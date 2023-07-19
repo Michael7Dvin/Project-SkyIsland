@@ -3,7 +3,7 @@
 namespace Infrastructure.Services.SceneLoading
 {
     [Serializable]
-    public enum SceneType
+    public enum SceneID
     {
         MainMenu = 0,
         Island = 1,

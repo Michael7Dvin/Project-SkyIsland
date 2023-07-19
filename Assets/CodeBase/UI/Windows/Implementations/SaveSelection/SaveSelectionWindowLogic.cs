@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using Infrastructure.GameFSM;
 using Infrastructure.GameFSM.States;
+using Infrastructure.LevelLoading;
 using Infrastructure.Progress;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.SceneLoading;
@@ -20,8 +21,8 @@ namespace UI.Windows.Implementations.SaveSelection
 
         public async void StartGame(SaveSlotID saveSlotID)
         {
-            LevelLoadingRequest levelLoadingRequest = await CreateLevelLoadingRequest(saveSlotID);
-            _gameStateMachine.EnterState<LevelLoadingState, LevelLoadingRequest>(levelLoadingRequest);
+            LevelLoadRequest levelLoadRequest = await CreateLevelLoadingRequest(saveSlotID);
+            _gameStateMachine.EnterState<LevelLoadingState, LevelLoadRequest>(levelLoadRequest);
         }
 
         public UniTask<(bool isSuccessful, AllProgress result)> GetProgress(SaveSlotID saveSlotID) =>
@@ -30,13 +31,13 @@ namespace UI.Windows.Implementations.SaveSelection
         public void DeleteSaveFile(SaveSlotID saveSlotID) =>
             _saveLoadService.DeleteSaveFile(saveSlotID);
 
-        private async UniTask<LevelLoadingRequest> CreateLevelLoadingRequest(SaveSlotID saveSlotID)
+        private async UniTask<LevelLoadRequest> CreateLevelLoadingRequest(SaveSlotID saveSlotID)
         {
             AllProgress currentProgress = await GetAllProgress(saveSlotID);
 
-            SceneType currentLevelScene = currentProgress.CurrentScene;
-            LevelLoadingRequest levelLoadingRequest = new LevelLoadingRequest(currentLevelScene, currentProgress);
-            return levelLoadingRequest;
+            SceneID currentLevelScene = currentProgress.SceneID;
+            LevelLoadRequest levelLoadRequest = new LevelLoadRequest(currentLevelScene, currentProgress);
+            return levelLoadRequest;
         }
 
         private async UniTask<AllProgress> GetAllProgress(SaveSlotID saveSlotID)

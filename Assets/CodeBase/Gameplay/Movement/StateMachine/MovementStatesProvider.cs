@@ -48,7 +48,7 @@ namespace Gameplay.Movement.StateMachine
             return null;
         }
 
-        public TState GetState<TState, TArgs>() where TState : MovementStateWithArguments<TArgs>
+        public TState GetState<TState, TArgs>() where TState : MovementStateWithArgument<TArgs>
         {
             Type stateType = typeof(TState);
 

@@ -61,9 +61,9 @@ namespace Gameplay.Movement.StateMachine
             }
         }
 
-        public void EnterState<TState, TArgs>(TArgs args) where TState : MovementStateWithArguments<TArgs>
+        public void EnterState<TState, TArgs>(TArgs args) where TState : MovementStateWithArgument<TArgs>
         {
-            MovementStateWithArguments<TArgs> state = _statesProvider.GetState<TState, TArgs>();
+            MovementStateWithArgument<TArgs> state = _statesProvider.GetState<TState, TArgs>();
 
             if (state.CanStart(CurrentGroundType) == true)
             {

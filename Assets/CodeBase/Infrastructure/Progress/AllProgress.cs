@@ -12,7 +12,7 @@ namespace Infrastructure.Progress
     {
         public readonly SaveSlotID SaveSlotID;
 
-        public SceneType CurrentScene;
+        public SceneID SceneID;
         public string LastSaveDateTime;
         
         public HeroProgress HeroProgress;
@@ -22,7 +22,7 @@ namespace Infrastructure.Progress
         {
             SaveSlotID = saveSlotID;
 
-            CurrentScene = SceneType.Island;
+            SceneID = SceneID.Island;
             LastSaveDateTime = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             
             HeroProgress = new HeroProgress();

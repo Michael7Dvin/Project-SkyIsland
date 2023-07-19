@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Infrastructure.Services.Logging;
 using Infrastructure.Services.StaticDataProviding;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -10,7 +11,7 @@ namespace Infrastructure.Services.SceneLoading
 {
     public class SceneLoader : ISceneLoader
     {
-        private Dictionary<SceneType, AssetReference> _scenes;
+        private Dictionary<SceneID, AssetReference> _scenes;
         
         private readonly AllScenesData _allScenesData;
         private readonly ICustomLogger _logger;
@@ -21,32 +22,32 @@ namespace Infrastructure.Services.SceneLoading
             _logger = logger;
         }
 
-        public SceneType CurrentScene { get; private set; }
+        public SceneID CurrentSceneID { get; private set; }
 
         public void Initailize()
         {
             SceneData mainMenu = _allScenesData.MainMenu;
             SceneData island = _allScenesData.Island;
-            
-            _scenes = new Dictionary<SceneType, AssetReference>
+
+            _scenes = new Dictionary<SceneID, AssetReference>
             {
-                { mainMenu.SceneType, mainMenu.AssetReference },
-                { island.SceneType, island.AssetReference },
+                { mainMenu.SceneID, mainMenu.AssetReference },
+                { island.SceneID, island.AssetReference },
             };
         }
 
-        public async UniTask Load(SceneType type)
+        public async UniTask Load(SceneID id)
         {
-            if (_scenes.ContainsKey(type) == false)
+            if (_scenes.ContainsKey(id) == false)
             {
-                _logger.LogError($"Unable to load scene. Can't find {nameof(SceneType)}: '{type}' in {nameof(_scenes)}");
+                _logger.LogError($"Unable to load scene. Can't find {nameof(SceneID)}: '{id}' in {nameof(_scenes)}");
                 return;
             }
 
-            AssetReference sceneReference = _scenes[type];
+            AssetReference sceneReference = _scenes[id];
 
             await Load(sceneReference);
-            CurrentScene = type;
+            CurrentSceneID = id;
         }
 
         private async UniTask Load(AssetReference sceneReference)

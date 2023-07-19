@@ -9,6 +9,6 @@ namespace Gameplay.Movement.StateMachine
         IReadOnlyObservable<ExitableMovementState> ActiveState { get; }
         
         void EnterState<TState>() where TState : MovementState;
-        void EnterState<TState, TArgs>(TArgs args) where TState : MovementStateWithArguments<TArgs>;
+        void EnterState<TState, TArgs>(TArgs args) where TState : MovementStateWithArgument<TArgs>;
     }
 }

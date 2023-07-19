@@ -1,13 +1,10 @@
-using Infrastructure.EntryPoint;
 using Zenject;
 
 namespace Infrastructure.Installers
 {
     public class BootstrapInstaller : MonoInstaller
     {
-        public override void InstallBindings()
-        {
+        public override void InstallBindings() => 
             Container.BindInterfacesTo<Bootstrapper>().AsSingle();
-        }
     }
 }

@@ -15,9 +15,7 @@ namespace Infrastructure.GameFSM.States
         public void Enter() => 
             _inputService.EnableAllInput();
 
-        public void Exit()
-        {
+        public void Exit() => 
             _inputService.DisableAllInput();
-        }
     }
 }
